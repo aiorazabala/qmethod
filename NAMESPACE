@@ -1,0 +1,13 @@
+import("methods", "psych", "GPArotation")
+
+export("qmethod",
+       "qzscores",
+       "qflag",
+       "qfcharact",
+       "qdc",
+       "import.pqmethod",
+       "export.qm")
+S3method("plot", "QmethodRes")
+S3method("summary", "QmethodRes")
+S3method("print", "QmethodRes")
+

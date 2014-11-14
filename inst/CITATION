@@ -1,0 +1,14 @@
+citHeader("To cite 'qmethod' in publications, please use:")
+
+
+citEntry(entry = "manual",
+    title = "{qmethod}: {a}n R package to analyse Q method data",
+    author = "Aiora Zabala",
+    organization = "University of Cambridge",
+    address = "Cambridge, UK",
+    note = "version 1.0",
+    year = "2014",
+    textVersion  = paste("Zabala, A. (2014).",
+        "qmethod: R package to analyse Q method data.",
+        "version 1.0. University of Cambridge. Cambridge, UK.")
+)
