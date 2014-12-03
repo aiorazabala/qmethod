@@ -2,7 +2,7 @@
 \alias{export.qm}
 \title{Q Methodology: export results to a plain text document}
 \description{Exports an object of class \code{"QmethodRes"} to a plain text file (.TXT). All the objects within the list resulting from \code{\link{qmethod}} are exported as they are. This is intended for interpretation rather than for further analysis.}
-\usage{export.qm(qmobject, file, style="R")}
+\usage{export.qm(qmobject, file, style= c("R", "PQMethod"))}
 
 \arguments{
   \item{qmobject}{an object of Q methodology results, obtained from the function \code{\link{qmethod}}.}

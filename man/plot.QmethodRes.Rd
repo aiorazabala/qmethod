@@ -7,7 +7,7 @@
             colours=NULL, fnames=NULL, legend=TRUE, ...)
                    }
 \arguments{
-  \item{x}{results object returned by \code{\link{qmethod}}.}
+  \item{x}{number of Q-sorts in the study.}
   \item{xlab}{label for x axis. Defaults to 'z-scores'.}
   \item{ylab}{label for y axis. Defaults to 'statements'.}
   \item{pchlist}{array of \code{pch} symbols to be used in plotting the points for each factor. Defaults to a pre-defined set of symbols.}
