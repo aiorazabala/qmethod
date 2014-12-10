@@ -2,10 +2,10 @@ qmethod
 =======
 This R package performs the analysis of Q methodology data. See [more details in the wiki](https://github.com/aiorazabala/qmethod/wiki).
 
-You can install the stable version on [CRAN](http://cran.r-project.org/web/packages/qmethod/index.html):
+You can install the stable version from [CRAN](http://cran.r-project.org/web/packages/qmethod/index.html):
 
 ```{r}
-install.packages('knitr', dependencies = TRUE)
+install.packages('qmethod')
 ```
 
 [Q](http://qmethod.org/about) is a methodology to study the distinct perspectives existing within a group on a topic of interest. It is used across social, health, and environmental studies.
