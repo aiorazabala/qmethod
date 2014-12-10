@@ -1,11 +1,11 @@
 qmethod
 =======
+This R package performs the analysis of Q methodology data.
 
-Q is a methodology to study the distinct perspectives existing within a group, on a topic of interest. It is used across social, health, and environmental studies. See further in http://qmethod.org/about.
+See [more details in the wiki](https://github.com/aiorazabala/qmethod/wiki)
 
-This R package performs the analysis of Q methodology data using principal components analysis and varimax rotation (replaceable by other rotations).
+Q is a methodology to study the distinct perspectives existing within a group, on a topic of interest. It is used across social, health, and environmental studies.
 
-* The [package in CRAN, the R repository](http://cran.r-project.org/web/packages/qmethod/index.html)
-* The latest code of the package is in this Github site
-* The [package reference manual in CRAN, the R repository](http://cran.r-project.org/web/packages/qmethod/qmethod.pdf)
-* A [cookbook of _qmethod_ in progress](https://github.com/aiorazabala/qmethod/wiki/Cookbook-for-qmethod-(draft))
+Contributions to the development of the package are most welcome, either in the form of new function development or as suggestions. See the current projects and suggestions in the [list of issues](https://github.com/aiorazabala/qmethod/issues), an please report any bugs or suggestions for improvement by adding new issues.
+
+
