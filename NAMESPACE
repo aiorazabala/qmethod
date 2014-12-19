@@ -6,8 +6,10 @@ export("qmethod",
        "qfcharact",
        "qdc",
        "import.pqmethod",
+	"ImportQSample",
+			 "ImportQSorts",
+			 "ImportQFeedback",
        "export.qm")
 S3method("plot", "QmethodRes")
 S3method("summary", "QmethodRes")
 S3method("print", "QmethodRes")
-
