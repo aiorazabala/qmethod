@@ -27,7 +27,7 @@ ImportQSorts <- function(dir.sorts, q.sample, q.distribution) {
 
 	# Set up data structure =======================================================
 	participants <- list.files( #  find *all* participants over all  conditions
-		dir.sorts, #  this should become a variable later on
+		dir.sorts, #
 		all.files = FALSE, #  don't look at invisibles
 		recursive = TRUE, #  do look at before/after folders
 		full.names = TRUE, #  don't include relative path, just filename
