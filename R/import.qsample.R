@@ -1,4 +1,4 @@
-ImportQSample <- function(dir.concourse, translations, file.ids, q.distribution, file.sample) {
+import.qsample <- function(dir.concourse, translations, file.ids, q.distribution, file.sample) {
 	# Imports full items per translation (full.trans) from a directory with items as /trans/*.tex files, where * is the item short handle (short) and returns them in a dataframe with item identifiers (id), with items as rows.
 	#
 	# Args:
