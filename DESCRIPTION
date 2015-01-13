@@ -2,10 +2,9 @@ Package: qmethod
 Version: 1.3.0
 Date: 2015-01-13
 Title: Analysis of Subjective Perspectives Using Q Methodology
-Authors@R: c(
-  person(given="Aiora", family="Zabala", email="aiora.zabala@gmail.com", role=c("aut", "cre"),
-  person(given="Maximilian", family="Held", email="maximilian.held83@gmail.com", role="ctb")
-),
+Authors@R: c(person(given="Aiora", family="Zabala", email="aiora.zabala@gmail.com", role=c("aut", "cre")),
+             person(given="Maximilian", family="Held", email="maximilian.held83@gmail.com", role=c("ctb"))
+            )
 Description: Analysis of Q methodology data to identify the distinct perspectives existing within a group.
   This methodology is used across social, health and environmental sciences to understand diversity of attitudes, discourses, or decision-making styles (for more information, see http://qmethod.org). 
   The function qmethod() runs the full analysis. 
