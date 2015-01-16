@@ -2,7 +2,9 @@ import("methods",
        "psych",
        "GPArotation",
        "digest",
-       "tools")
+       "tools",
+       "xtable",
+       "knitr")
 export("qmethod",
        "qzscores",
        "qflag",
@@ -13,7 +15,9 @@ export("qmethod",
        "import.q.concourse",
        "import.q.sorts",
        "import.q.feedback",
-       "export.qm")
+       "make.cards",
+       "export.qm",
+       "make.cards")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
