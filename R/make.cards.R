@@ -4,7 +4,6 @@ make.cards <- function(q.set, study.language, paper.format, output.pdf = TRUE, m
     x = q.set,
     optional = TRUE
   )
-  
   # Create lookup table (same as in import.q.feedback and import.q.sorts!)=====
   if (is.null(manual.lookup)) {  # in case there is no manual lookup
     lookup.table <- apply(  # replace every language field with its hash
