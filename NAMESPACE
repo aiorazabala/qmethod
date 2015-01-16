@@ -1,7 +1,7 @@
-import("methods", 
-       "psych", 
-       "GPArotation", 
-       "digest", 
+import("methods",
+       "psych",
+       "GPArotation",
+       "digest",
        "tools")
 export("qmethod",
        "qzscores",
@@ -9,13 +9,14 @@ export("qmethod",
        "qfcharact",
        "qdc",
        "import.pqmethod",
-       "import.qsample",
-       "import.qsorts",
-       "import.qfeedback",
+       "build.q.set",
+       "import.q.concourse",
+       "import.q.sorts",
+       "import.q.feedback",
        "export.qm")
-S3method("plot", 
+S3method("plot",
          "QmethodRes")
-S3method("summary", 
+S3method("summary",
          "QmethodRes")
-S3method("print", 
+S3method("print",
          "QmethodRes")
