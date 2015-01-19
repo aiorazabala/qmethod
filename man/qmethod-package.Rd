@@ -3,15 +3,26 @@
 \alias{qmethod-package}
 \docType{package}
 \title{Package for Q methodology analysis}
-\description{Q is a methodology to study the distinct perspectives existing within a group on a topic of interest. It is used across social, health, and environmental studies. See the references below for more details about the methodology.
+\description{
+	Q is a methodology to study the distinct perspectives existing within a group on a topic of interest.
+	It is used across social, health, and environmental studies.
+	See the references below for more details about the methodology.
 
-Overview of the \code{qmethod} package. This package performs the analysis of Q methodology data using principal components analysis, varimax rotation (replaceable by other rotations allowed in \code{\link[psych]{principal}}), and automatic flagging.
+	Overview of the \code{qmethod} package.
+	This package performs the analysis of Q methodology data using principal components analysis, varimax rotation (replaceable by other rotations allowed in \code{\link[psych]{principal}}), and automatic flagging.
 
-The following steps of the analysis correspond to separate functions: factor loadings for Q-sorts, automatic flagging of Q-sorts (manual flagging is optional), z-scores and rounded scores for statements, distinguishing and consensus statements, and general characteristics of the factors. The function \code{\link{qmethod}} wraps them all.
+	The following steps of the analysis correspond to separate functions: factor loadings for Q-sorts, automatic flagging of Q-sorts (manual flagging is optional), z-scores and rounded scores for statements, distinguishing and consensus statements, and general characteristics of the factors.
+	The function \code{\link{qmethod}} wraps them all.
 
-The functions for each step may be used separately for advanced analysis, for example, for manual flagging (see details in \code{\link{qzscores}}).
+	The functions for each step may be used separately for advanced analysis, for example, for manual flagging (see details in \code{\link{qzscores}}).
 
-The package includes a function to import data from PQMethod software, to export plain text data for interpretation in two flavours, and to print and plot Q method results. Use \code{help(package="qmethod")} for a list of all the functions.}
+	The package includes a function to import data from PQMethod software, to export plain text data for interpretation in two flavours, and to print and plot Q method results.
+	Use \code{help(package="qmethod")} for a list of all the functions.
+
+	The package also features several functions to strengthen reproduceable research, including functions to import q-sorts \code{\link{import.q.sorts}} and participant item feedback (\code{\link{import.q.feedback}}) from flat \code{*.csv} files, as well as complete concourses (\code{\link{import.q.concourse}}) and samples (\code{\link{build.q.set}}).
+
+	The package also includes a function for the administration of a q-study, \code{\link{make.cards}}, which produces a production-quality PDF with full item wordings and codes on business cards ready for printout.
+}
 \author{
   Aiora Zabala\cr
   \url{http://www.landecon.cam.ac.uk/directory/aiora-zabala}

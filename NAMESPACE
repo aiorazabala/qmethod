@@ -1,13 +1,26 @@
-import("methods", "psych", "GPArotation")
-
+import("methods",
+       "psych",
+       "GPArotation",
+       "digest",
+       "tools",
+       "xtable",
+       "knitr")
 export("qmethod",
        "qzscores",
        "qflag",
        "qfcharact",
        "qdc",
        "import.pqmethod",
-       "export.qm")
-S3method("plot", "QmethodRes")
-S3method("summary", "QmethodRes")
-S3method("print", "QmethodRes")
-
+       "build.q.set",
+       "import.q.concourse",
+       "import.q.sorts",
+       "import.q.feedback",
+       "make.cards",
+       "export.qm",
+       "make.cards")
+S3method("plot",
+         "QmethodRes")
+S3method("summary",
+         "QmethodRes")
+S3method("print",
+         "QmethodRes")
