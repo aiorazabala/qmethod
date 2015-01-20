@@ -1,6 +1,6 @@
 qmethod
 =======
-This R package performs the analysis of Q methodology data. See [more details in the wiki](https://github.com/aiorazabala/qmethod/wiki).
+This R package performs the analysis of Q methodology data. See a [visual demo here](https://azabala.shinyapps.io/shinyapps/qmethod.Rmd), and [more details in the wiki](https://github.com/aiorazabala/qmethod/wiki).
 
 You can install the stable version from [CRAN](http://cran.r-project.org/web/packages/qmethod/index.html):
 
