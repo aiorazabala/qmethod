@@ -1,4 +1,4 @@
-make.cards <- function(q.set, study.language, paper.format = "AveryZweckformC32010", output.pdf = TRUE, manual.lookup = NULL) {
+make.cards <- function(q.set, study.language="english", paper.format = "AveryZweckformC32010", output.pdf = TRUE, manual.lookup = NULL) {
   # Read in items =============================================================
   q.set.print <- as.data.frame( #  read in complete q.set, all translations
     x = q.set,
