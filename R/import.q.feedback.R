@@ -1,4 +1,4 @@
-import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup) {
+import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup=NULL) {
 
 	# Set up empty array ==========================================================
 	q.feedback <- q.sorts # copy data structure from q.sorts

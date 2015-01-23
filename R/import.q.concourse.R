@@ -1,4 +1,4 @@
-import.q.concourse <- function(q.concourse.dir, languages) {
+import.q.concourse <- function(q.concourse.dir, languages=c("english")) {
 
   # Find all meaningful item short handles across all languages ================
   q.item.handles <- c() #  set up empty vector

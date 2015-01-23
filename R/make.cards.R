@@ -1,4 +1,4 @@
-make.cards <- function(q.set, study.language, paper.format, output.pdf = TRUE, manual.lookup = NULL) {
+make.cards <- function(q.set, study.language, paper.format = "AveryZweckformC32010", output.pdf = TRUE, manual.lookup = NULL) {
   # Read in items =============================================================
   q.set.print <- as.data.frame( #  read in complete q.set, all translations
     x = q.set,
@@ -19,7 +19,7 @@ make.cards <- function(q.set, study.language, paper.format, output.pdf = TRUE, m
   if (any(duplicated(lookup.table))) {  # test lookup table
     stop ("There are duplicate IDs in the lookup table.")
   }
-  
+
   # Add ids to q.set.print ====================================================
   q.set.print$id <- NA  # set up empty id
   for (handle in rownames(q.set.print)) {  # loop over all ids in q.set
@@ -41,7 +41,7 @@ make.cards <- function(q.set, study.language, paper.format, output.pdf = TRUE, m
   if (output.pdf == TRUE) {
     return(
       knit2pdf(path)
-    ) 
+    )
   } else {
     return(
       knit(path)

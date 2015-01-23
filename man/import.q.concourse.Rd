@@ -5,7 +5,7 @@
   Imports full set of items (concourse) from a directory of .TEX files, including possible translations.
 }
 \usage{
-  import.q.concourse(q.concourse.dir, languages)
+  import.q.concourse(q.concourse.dir, languages=c("english"))
 }
 
 \arguments{
@@ -15,6 +15,8 @@
    }
   \item{languages}{
   	a character vector of languages, same as folders below \code{q.concourse.dir}.
+  	If your concourse is monolingual, just specify your language as a vector with length one, such as \code{c("esperanto")}.
+  	Defaults to \code{c("english")}.
   }
 }
 \details{

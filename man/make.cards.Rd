@@ -6,7 +6,12 @@
   Full item wordings are printed on the front of business cards, item identifiers (ID) on the back.
 }
 \usage{
-  make.cards(q.set, study.language, paper.format, output.pdf=TRUE, manual.lookup=NULL)
+  make.cards(
+  	q.set,
+  	study.language,
+  	paper.format="AveryZweckformC32010",
+  	output.pdf=TRUE,
+  	manual.lookup=NULL)
 }
 
 \arguments{
@@ -18,7 +23,7 @@
   }
   \item{paper.format}{
   	A character vector of length one, choosing among available templates of business card sheets.
-  	Currently only \code{"AveryZweckformC32010"} is available.
+  	Defaults to the only currently available \code{"AveryZweckformC32010"}.
   }
   \item{output.pdf}{
   	Logical.
