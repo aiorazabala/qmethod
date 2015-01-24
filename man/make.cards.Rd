@@ -78,3 +78,9 @@
 	\code{\link{import.q.sorts}},
 	\code{\link{import.q.concourse}}
 }
+
+\examples{
+ ## Make cards from importexample
+ data(importexample)
+ make.cards(importexample$q.set)
+}

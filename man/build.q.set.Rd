@@ -46,3 +46,15 @@
 	\code{\link{import.q.sorts}},
 	\code{\link{make.cards}}
 }
+
+\examples{
+  ## Build a Q Set from a concourse and a sample
+  data(importexample)
+  q.set <- build.q.set(
+    q.concourse = importexample$q.concourse,  # as created by import.q.concourse
+    q.sample = c("life-with-q","q-uprising","r-dominance","small-village"),
+    # add vector with items to be selected from concourse
+    # q.sample is ideally read in from a separate CSV
+    q.distribution = c(1,2,1) # very simple distribution,
+  )
+}
