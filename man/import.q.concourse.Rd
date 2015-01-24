@@ -49,3 +49,17 @@
 	\code{\link{import.q.sorts}},
 	\code{\link{make.cards}}
 }
+
+\examples{
+  ## Import a full q concourse from keyneson dataset
+  path.concourse <- paste(  # this part is only for the example!
+    path.package("qmethod"),  # just to make sure, use absolute path
+    # keyneson example files are in root of package
+    "/keyneson/keyneson-sample/keyneson-concourse/",  # location of concourse
+    sep = ""
+  )
+  q.concourse <- import.q.concourse(  # import concourse
+    q.concourse.dir = path.concourse, # insert your applicable path here
+    languages = c("english", "german")  # choose your languages, same as in path
+  )
+}
