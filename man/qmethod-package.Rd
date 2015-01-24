@@ -19,9 +19,23 @@
 	The package includes a function to import data from PQMethod software, to export plain text data for interpretation in two flavours, and to print and plot Q method results.
 	Use \code{help(package="qmethod")} for a list of all the functions.
 
-	The package also features several functions to strengthen reproduceable research, including functions to import q-sorts \code{\link{import.q.sorts}} and participant item feedback (\code{\link{import.q.feedback}}) from flat \code{*.csv} files, as well as complete concourses (\code{\link{import.q.concourse}}) and samples (\code{\link{build.q.set}}).
+	The package also features several functions to strengthen reproduceable research, including functions to import Q sorts \code{\link{import.q.sorts}} and participant item feedback (\code{\link{import.q.feedback}}) from flat \code{*.csv} files, as well as complete concourses (\code{\link{import.q.concourse}}) and samples (\code{\link{build.q.set}}).
 
-	The package also includes a function for the administration of a q-study, \code{\link{make.cards}}, which produces a production-quality PDF with full item wordings and codes on business cards ready for printout.
+	The package also includes a function for the administration of a Q study, \code{\link{make.cards}}, which produces a production-quality PDF with full item wordings and codes on business cards ready for printout.
+  
+  The import functions \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}} and the print function \code{\link{make.cards}} imply three distinct ways to refer to \emph{items}:
+  \enumerate{
+    \item \emph{Full item wording}, is, obviously, the complete item, such as \code{One small community of indomitable Q-methodologists.} (...) from \code{\link{importexample}}.
+      The full wording is read in from individual TEX files.
+    \item The item \emph{handle} is a shorthand way of referring to an item, that should be meaningful to the researcher.
+      Item handles are \emph{researcher-facing}.
+      It is used as rownames in imported data, and expected as filenames for the full wording TEX files.
+    \item The item \emph{ID} is another shorthand way of referring to an item, that should not be intelligble to humans, such as an arbitrary string of characters.
+    Depending on the used arguments, these IDs can be either hard-entered by setting \code{manual.lookup}, or automatically generated as hashes from the full item wording (default behavior for all functions).
+    Item IDs are \emph{participant-facing}.
+    Item IDs are used to quickly identify items in any given Q sort, as well as to identify item feedback by participants.
+    Item IDs need to be non-intelligible so as to not provide unintended, additional stimulus to participants.
+  }
 }
 \author{
   Aiora Zabala\cr
