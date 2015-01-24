@@ -36,6 +36,11 @@
     Item IDs are used to quickly identify items in any given Q sort, as well as to identify item feedback by participants.
     Item IDs need to be non-intelligible so as to not provide unintended, additional stimulus to participants.
   }
+  
+  The import functions \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}} and the print function \code{\link{make.cards}} also imply a nested directory structure under the root of \code{/study/} as can be found in \code{/extdata/importexample}.
+  The subdirectories for \emph{conditions} are optional depending on passed arguments, but the functions \emph{always} expect at least one language.
+  It is highly recommended to follow this directory structure.
+  For larger, collaborative and systematic Q projects, it is also recommended to put these directories under \emph{independent} version control (such as \code{git submodule}), as explained on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 \author{
   Aiora Zabala\cr
