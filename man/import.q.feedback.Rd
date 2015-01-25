@@ -49,6 +49,8 @@
 	\code{c12,"This q-item sounds like r-research to me!",FALSE}, indicating that it should \emph{not} be ignored (\code{FALSE}).
 
 	Item feedback is best enclosed in quotes, allowing comas inside cells.
+
+	More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 
 \value{

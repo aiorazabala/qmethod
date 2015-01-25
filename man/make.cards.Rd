@@ -55,6 +55,8 @@
 	Instead, this function expects or creates identifiers (ID) that are not intelligble to participants.
 
 	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.Rnw} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed out multi-page table.
+
+  More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 
 \value{

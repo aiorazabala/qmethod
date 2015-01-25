@@ -36,6 +36,8 @@
 
 	Throws error if items are not available in all translations.
 	Must have at least one language (as all studies will).
+
+  More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 \value{
 	Returns character matrix with meaningful item short handles (from file names) as rownames, languages as columns and full wording per language in cells.

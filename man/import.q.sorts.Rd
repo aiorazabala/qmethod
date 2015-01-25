@@ -45,29 +45,31 @@
 }
 
 \details{
-Q sorts in their raw form, as created by participants, have columns as ranks (from, say, \code{-6} to \code{+6}) with cards (items) sorted in rows.
-The vertical dimension of Q sorts is \emph{meaningless}.
-For reproduceable research, Q sorts, as all data, should be maintained in their rawest form and any processing should be well-documented.
+	Q sorts in their raw form, as created by participants, have columns as ranks (from, say, \code{-6} to \code{+6}) with cards (items) sorted in rows.
+	The vertical dimension of Q sorts is \emph{meaningless}.
+	For reproduceable research, Q sorts, as all data, should be maintained in their rawest form and any processing should be well-documented.
 
-That is what this function offers, by reading in Q sorts from the form in which they were entered by participants.
+	That is what this function offers, by reading in Q sorts from the form in which they were entered by participants.
 
-Q sorts are best entered not by typing up the full form of an item, but some unique string (ID) printed on the card.
-So as \emph{not} to influence participants, these strings should be meaningless to humans.
-This function offers either a set of arbitrary strings hard entered by a researcher for identification in \code{manual.lookup}, or expects a cryptographic hash of the complete item wording, as conveniently also created by \code{\link{make.cards}}.
-These hash values change whenever \emph{anything} in the full item wordings is changed, and allow a precise idenfication of different versions of an item.
+	Q sorts are best entered not by typing up the full form of an item, but some unique string (ID) printed on the card.
+	So as \emph{not} to influence participants, these strings should be meaningless to humans.
+	This function offers either a set of arbitrary strings hard entered by a researcher for identification in \code{manual.lookup}, or expects a cryptographic hash of the complete item wording, as conveniently also created by \code{\link{make.cards}}.
+	These hash values change whenever \emph{anything} in the full item wordings is changed, and allow a precise idenfication of different versions of an item.
 
-Q sorts are conveniently entered as *.CSV (comma separated values) files in popular spreadsheet editors.
-This function will ignore any rows in the files below the maximum height of columns expected from the \code{q.distribution}.
+	Q sorts are conveniently entered as *.CSV (comma separated values) files in popular spreadsheet editors.
+	This function will ignore any rows in the files below the maximum height of columns expected from the \code{q.distribution}.
 
-This function includes a number of tests to verify the integrity of entered Q sorts:
-\enumerate{
-	\item \code{manual.lookup} tables provided are tested for duplicate identifiers.
-	\item Function returns a warning if some participants do not have Q sort files under all conditions (applies only if there are more than one \code{conditions}).
-	\item Function errors out if there are IDs in a Q sort not defined in the (automatic or manual) lookup table.
-	\item Function errors out if the distribution in any given Q sort does not conform to the defined \code{q.distribution}.
-	\item Function errors out if there are items in the sample \code{q.set} that cannot be found in any given Q sort.
-	\item Function errors out if there are items in any given Q sort that cannot be found in the sample \code{q.set}.
-}
+	This function includes a number of tests to verify the integrity of entered Q sorts:
+	\enumerate{
+		\item \code{manual.lookup} tables provided are tested for duplicate identifiers.
+		\item Function returns a warning if some participants do not have Q sort files under all conditions (applies only if there are more than one \code{conditions}).
+		\item Function errors out if there are IDs in a Q sort not defined in the (automatic or manual) lookup table.
+		\item Function errors out if the distribution in any given Q sort does not conform to the defined \code{q.distribution}.
+		\item Function errors out if there are items in the sample \code{q.set} that cannot be found in any given Q sort.
+		\item Function errors out if there are items in any given Q sort that cannot be found in the sample \code{q.set}.
+	}
+
+	More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 
 \value{
