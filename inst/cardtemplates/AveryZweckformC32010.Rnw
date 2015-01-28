@@ -25,7 +25,7 @@
 q.set.print$empty <- c("\\rule[-27mm]{0mm}{54mm}")  # creates empty column with a white height line to make sure rows have some height
 print.xtable(
     xtable(
-        x     = q.set.print[c("id","empty",study.language)], # remember to put hash here for future use
+        x     = q.set.print[c("id","empty","full wording")],
         type  = "latex",
         align = c(
         	"m{0mm}",  # this is just for the rownames, isn't actually printed
