@@ -1,4 +1,17 @@
 import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, manual.lookup=NULL) {
+  # Input validation (also see validation at the bottom!)
+  if (!is.matrix(q.set)) {
+    stop("The q.set specified is not a matrix.")
+  }
+  if (!is.vector(q.distribution)) {
+   stop("The q.distribution specified is not a vector.")
+  }
+  if (!is.null(conditions) &  !is.vector(conditions)) {
+    stop("The conditions specified are not a vector.")
+  }
+  if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
+    stop("The manual.lookup specified is not a matrix.")
+  }
 
   # Deal with no conditions
   if (is.null(conditions)) {

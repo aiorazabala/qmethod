@@ -20,7 +20,7 @@
 		\itemize{
 			\item folders are \code{conditions} (such as \emph{before} or \emph{after}).
 			If there are no \code{conditions} (defaults to \code{NULL}), there should be no folders.
-			\item filenames of .CSVs are participant names (might be given pseudneums).
+			\item filenames of .CSVs are participant names (might be given pseudonyms).
 			\item .CSVs contain \emph{raw} qsorts, beginning with all lines of items, such as \code{,,item-12,item-64,,}.
 			There is no need to include the values of the x-axis (say, \code{-4} to \code{+4}) in these files.
 			If they are included, they should be the last row.
@@ -29,7 +29,7 @@
 		}
 	}
 	\item{q.set}{
-		A matrix with short handles as rownames, languages in columns, as produced by \code{\link{build.q.set}}.
+		A matrix with short handles as rownames, languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
 	}
 	\item{q.distribution}{
 		The chosen Q distribution as a vector of integers, such as \code{c(1,3,1)}.
