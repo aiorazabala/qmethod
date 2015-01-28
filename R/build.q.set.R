@@ -36,6 +36,7 @@ build.q.set <- function(q.concourse, q.sample, q.distribution) {
 
   # Subset the concourse =================================================
   q.set <- q.concourse[q.sample,]  # only add sampled rows from concourse
+  q.set <- as.matrix(q.set)
   message(paste("Build a q.set of", nrow(q.set), "items."))
 	return(q.set)
 }
