@@ -1,5 +1,16 @@
 import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup=NULL) {
 
+	# Input validation
+	if (!is.matrix(q.set)) {
+    stop("The q.set specified is not a matrix.")
+  }
+  if (!(is.matrix(q.sorts) | is.array(q.sorts))) {
+    stop("The q.sorts specified are neither a matrix nor an array.")
+  }
+  if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
+    stop("The manual.lookup specified is not a matrix.")
+  }
+
 	# Set up empty array ==========================================================
 	q.feedback <- q.sorts # copy data structure from q.sorts
   q.feedback[ ] <- NA  # make NA for now
