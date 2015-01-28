@@ -1,0 +1,3 @@
+item_id,item_feedback,correction
+i01,"I don't like Asterix and Obelix",FALSE
+i02,"There is a typo here!",TRUE
