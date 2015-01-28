@@ -69,6 +69,10 @@
 	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q cards, preferably with a version control system.
 	Researchers should also record the complete Q sorts of participants in an \emph{unhashed} form, such as a picture of the completed sort in full wordings, in case problems with the hashing arise.
 
+  When \code{output.pdf = TRUE}, the function will sometimes fail with the error message \code{Running 'texi2dvi' on ... failed}.
+  This is not a bug with the function, but simply indicates that the path to pdflatex is not available in the current R environment.
+  To fix this issue, compile the resulting TEX manually, use RStudio or try \href{http://www.r-bloggers.com/building-r-packages-missing-path-to-pdflatex/}{this fix}.
+
 	This function currently only works for Avery Zweckform C32010 templates, designed in \code{/cardtemplates/AveryZweckformC32010.Rnw}.
 	If you would like support for other templates, check out / chip in here: \url{https://github.com/aiorazabala/qmethod/issues/34}.
 }
