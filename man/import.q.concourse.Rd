@@ -10,7 +10,7 @@
 
 \arguments{
   \item{q.concourse.dir}{
-    A directory of individual .TEX files named as meaninful items hort handles (e.g. \code{happy-feeling.tex}).
+    A directory of individual .TEX files named as meaningful item short handles (e.g. \code{happy-feeling.tex}).
     If \code{languages} are specified, a directory with folders per language, with all full Q items as individual .TEX files in each language folder, with files named as the \emph{same} meaningful item short handle (e.g. \code{happy-feeling.tex}) across all languages.
 
     Directories end with a trailing slash, such as \code{study/q-sample/q-concourse/}.
