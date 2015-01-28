@@ -5,18 +5,19 @@
   Imports full set of items (concourse) from a directory of .TEX files, including possible translations.
 }
 \usage{
-  import.q.concourse(q.concourse.dir, languages=c("english"))
+  import.q.concourse(q.concourse.dir, languages=NULL)
 }
 
 \arguments{
   \item{q.concourse.dir}{
-    a directory of folders per language, with all full Q items as individual .TEX files in each language folder, with files named as the same meaningful item short handle (e.g. \code{happy-feeling.tex}) across all languages.
+    A directory of individual .TEX files named as meaninful items hort handles (e.g. \code{happy-feeling.tex}).
+    If \code{languages} are specified, a directory with folders per language, with all full Q items as individual .TEX files in each language folder, with files named as the \emph{same} meaningful item short handle (e.g. \code{happy-feeling.tex}) across all languages.
+
     Directories end with a trailing slash, such as \code{study/q-sample/q-concourse/}.
    }
   \item{languages}{
   	a character vector of languages, same as folders below \code{q.concourse.dir}.
-  	If your concourse is monolingual, just specify your language as a vector with length one, such as \code{c("esperanto")}.
-  	Defaults to \code{c("english")}.
+  	If your concourse is monolingual, leave empty, defaults to \code{NULL}.
   }
 }
 \details{
@@ -35,12 +36,13 @@
 	There is no need to know \href{http://www.latex-project.org}{LaTeX}.
 
 	Throws error if items are not available in all translations.
-	Must have at least one language (as all studies will).
+
+  Defaults to monolingual variant.
 
   More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 \value{
-	Returns character matrix with meaningful item short handles (from file names) as rownames, languages as columns and full wording per language in cells.
+	Returns character matrix with meaningful item short handles (from file names) as rownames, languages (if applicable) as columns and full wording per language in cells.
 }
 
 \author{Maximilian Held}
@@ -63,6 +65,6 @@
   q.concourse <- import.q.concourse(  # import concourse
     q.concourse.dir = path.concourse, # insert your applicable path here
     languages = c("english","german")  # choose your languages from path here
-)
+  )
 
 }
