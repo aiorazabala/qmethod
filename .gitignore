@@ -2,3 +2,5 @@ gitHeadInfo.gin
 R/.DS_Store
 R/.Rapp.history
 inst/.DS_Store
+data/.DS_Store
+inst/cardtemplates/.DS_Store
