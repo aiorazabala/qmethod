@@ -1,9 +1,40 @@
-make.cards <- function(q.set, study.language="english", paper.format = "AveryZweckformC32010", output.pdf = TRUE, manual.lookup = NULL) {
+make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckformC32010.Rnw", output.pdf = TRUE, manual.lookup = NULL) {
+
+  # Input validation also check more below
+  if (!is.matrix(q.set)) {
+    stop("The q.set specified is not a matrix.")
+  }
+  if (!is.null(study.language)) {
+    if (!(study.language %in% colnames(q.set)))
+    {
+      stop("The specified study language to be printed is not available in the q.set.")
+    }
+  }
+  available.formats <- list.files(
+    path = paste(
+      path.package("qmethod"),  # where is the package?
+      "/cardtemplates/",
+      sep = ""
+    ),
+    no.. = TRUE  # no dotfiles
+  )
+  if (!paper.format %in% available.formats) {
+    stop("The paper.format specified is not available.")
+  }
+  if (!is.logical(output.pdf)) {
+    stop("The argument output.pdf has not been specified logically.")
+  }
+  if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
+    stop("The manual.lookup specified is not a matrix.")
+  }
+  if (is.null(study.language)) {  # if there no languages
+    study.language <- 1 # just look in column 1
+  }
   # Read in items =============================================================
   q.set.print <- as.data.frame( #  read in complete q.set, all translations
-    x = q.set,
-    optional = TRUE
+    x = q.set[,study.language]
   )
+  colnames(q.set.print) <- "full wording"
   # Create lookup table (same as in import.q.feedback and import.q.sorts!)=====
   if (is.null(manual.lookup)) {  # in case there is no manual lookup
     lookup.table <- apply(  # replace every language field with its hash
@@ -35,7 +66,6 @@ make.cards <- function(q.set, study.language="english", paper.format = "AveryZwe
     # remember, "inst" is not in path, because stuff from inst get put in root of package!
     "/cardtemplates/",
     paper.format,  # hopefully will have more templates in the future
-    ".Rnw",
     sep = ""
   )
   if (output.pdf == TRUE) {

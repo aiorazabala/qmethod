@@ -8,23 +8,24 @@
 \usage{
   make.cards(
   	q.set,
-  	study.language="english",
-  	paper.format="AveryZweckformC32010",
+  	study.language=NULL,
+  	paper.format="AveryZweckformC32010.Rnw",
   	output.pdf=TRUE,
   	manual.lookup=NULL)
 }
 
 \arguments{
   \item{q.set}{
-    A matrix with short handles as rownames, languages in columns, as produced by \code{\link{build.q.set}}.
+    A matrix with short handles as rownames, languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
   }
   \item{study.language}{
   	A character vector of length one, choosing a language from \code{q.concourse.dir} and same as in \code{\link{import.q.concourse}} to print items in.
-  	Defaults to \code{"english"}, same as \code{\link{import.q.concourse}}.
+  	Defaults to \code{NULL}, in which case the first column from \code{q.concourse} is selected.
   }
   \item{paper.format}{
   	A character vector of length one, choosing among available templates of business card sheets.
-  	Defaults to the only currently available \code{"AveryZweckformC32010"}.
+  	Defaults to the only currently available \code{"AveryZweckformC32010.Rnw"}.
+    Must include file extension of template.
   }
   \item{output.pdf}{
   	Logical.
