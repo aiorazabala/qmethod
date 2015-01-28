@@ -11,7 +11,8 @@
   	study.language=NULL,
   	paper.format="AveryZweckformC32010.Rnw",
   	output.pdf=TRUE,
-  	manual.lookup=NULL)
+  	manual.lookup=NULL,
+    wording.font.size = NULL)
 }
 
 \arguments{
@@ -36,6 +37,11 @@
   \item{manual.lookup}{
   	A matrix with meaningful short handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings in any of the columns as also expected in \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
 		Defaults to \code{NULL} in which case items are automatically identified by full item hashes, as also detected by \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
+  }
+  \item{wording.font.size}{
+    A character vector of length 1 to set the font size of the full item wording on the cards.
+    Defaults to \code{NULL} in which the default font size 12pt is used.
+    Only \href{http://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing_text}{standard LaTeX font sizes} are allowed, from \code{\\tiny} to \code{\\Huge}.
   }
 }
 \details{
@@ -72,6 +78,10 @@
   When \code{output.pdf = TRUE}, the function will sometimes fail with the error message \code{Running 'texi2dvi' on ... failed}.
   This is not a bug with the function, but simply indicates that the path to pdflatex is not available in the current R environment.
   To fix this issue, compile the resulting TEX manually, use RStudio or try \href{http://www.r-bloggers.com/building-r-packages-missing-path-to-pdflatex/}{this fix}.
+
+  This function does \emph{not} automatically scale the font size to fit the given card size.
+  Instead, users will have to proceed by trial and error, using a \code{wording.font.size} that works for their longest item.
+  The default value should work for most Q items.
 
 	This function currently only works for Avery Zweckform C32010 templates, designed in \code{/cardtemplates/AveryZweckformC32010.Rnw}.
 	If you would like support for other templates, check out / chip in here: \url{https://github.com/aiorazabala/qmethod/issues/34}.

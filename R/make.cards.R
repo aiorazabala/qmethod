@@ -1,4 +1,4 @@
-make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckformC32010.Rnw", output.pdf = TRUE, manual.lookup = NULL) {
+make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckformC32010.Rnw", output.pdf = TRUE, manual.lookup = NULL, wording.font.size = NULL) {
 
   # Input validation also check more below
   if (!is.matrix(q.set)) {
@@ -68,6 +68,7 @@ make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckfor
     paper.format,  # hopefully will have more templates in the future
     sep = ""
   )
+  wording.font.size <- wording.font.size  # dumb, but otherwise R complains about unused argument
   if (output.pdf == TRUE) {
     return(
       knit2pdf(path)
