@@ -21,7 +21,7 @@
 
 	The package also features several functions to strengthen reproduceable research, including functions to import Q sorts \code{\link{import.q.sorts}} and participant item feedback (\code{\link{import.q.feedback}}) from flat \code{*.csv} files, as well as complete concourses (\code{\link{import.q.concourse}}) and samples (\code{\link{build.q.set}}).
 
-	The package also includes a function for the administration of a Q study, \code{\link{make.cards}}, which produces a production-quality PDF with full item wordings and codes on business cards ready for printout.
+	The package also includes functions for the administration of a Q study, including \code{\link{make.cards}}, which produces a production-quality PDF with full item wordings and codes on business cards ready for printout as well as \code{\link{make.distribution}} to create Q distributions.
 
   The import functions \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}} and the print function \code{\link{make.cards}} imply three distinct ways to refer to \emph{items}:
   \enumerate{
