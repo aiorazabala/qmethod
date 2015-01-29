@@ -17,7 +17,8 @@ export("qmethod",
        "import.q.feedback",
        "make.cards",
        "export.qm",
-       "make.cards")
+       "make.cards",
+       "make.distribution")
 S3method("plot",
          "QmethodRes")
 S3method("summary",

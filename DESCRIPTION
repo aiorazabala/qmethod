@@ -10,6 +10,7 @@ Description: Analysis of Q methodology data to identify the distinct perspective
   The function qmethod() runs the full analysis.
   Each step can be run separately using the corresponding functions: qflag() for automatic flagging of Q-sorts (manual flagging is optional), qzscores() for scores for statements, qda() for distinguishing and consensus statements, and qfcharact() for general characteristics of the factors.
   Additional functions import data from PQMethod software or flat (csv) files, export plain text data for interpretation in two flavours, print and plot Q method results in a synthetic manner.
+  The package also offers functions to print Q cards and to generate Q distributions for convenient study administration.
   The package uses principal components and it offers the following choices: manual or automatic flagging, a number of mathematical methods for rotation, and a number of correlation coefficients for the initial correlation matrix.
 License: GPL (>= 2)
 Imports:
