@@ -1,4 +1,8 @@
 gitHeadInfo.gin
-R/.DS_Store
 R/.Rapp.history
-inst/.DS_Store
+*.DS_Store
+inst/cardtemplates/AveryZweckformC32010-concordance.tex
+inst/cardtemplates/AveryZweckformC32010.log
+inst/cardtemplates/AveryZweckformC32010.pdf
+inst/cardtemplates/AveryZweckformC32010.synctex.gz
+inst/cardtemplates/AveryZweckformC32010.tex
