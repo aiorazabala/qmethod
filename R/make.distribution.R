@@ -24,7 +24,7 @@ make.distribution <- function(nstat, max.bin = 5) {
 			paste(
 				"Could not fit",
 				nstat,
-				"number of items neatly under a standard normal distribution.",
+				"items neatly under a standard normal distribution.",
 				"You need",
 				sum(distribution),
 				"items for good fit instead.",
