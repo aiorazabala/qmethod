@@ -16,20 +16,8 @@ make.distribution <- function(nstat, max.bin = 5) {
 
 	nbins <- (2 * max.bin) + 1 # make sure that nbins is uneven
  	# this +1 ensures that there will always be a 0 bin.
-	item.pos <- qnorm( # to the left of which value lies...
-		1:(nstat) / (nstat+1)# ... the n-statement?
-		# using nstat + 1 because we want midpoints, not cutoffs for later
-	)
-	bins <- cut(
-		x = item.pos,
-		breaks = nbins,
-		ordered_result = TRUE,
-		include.lowest = FALSE,
-		right = FALSE,
-		labels = c(-max.bin:max.bin)
-	)
-	bins
-	distribution <- summary(bins)
-	distribution <- as.numeric(distribution)
+	range <- qnorm(1/nstat) # what's the cutoff for 1/n?
+	distribution <- dnorm(seq((-range),range, length = nbins))/sum(dnorm(seq(-range,range, length = nbins)))*nstat
+	distribution <- round(distribution)
 	return(distribution)
 }
