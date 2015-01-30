@@ -25,6 +25,10 @@
 \details{
 	Participations in Q studies are frequently asked to sort their items under a (quasi) normal distribution.
 
+  Not every combination on \code{nstat} and \code{max.bin} can be neatly fit under a standard normal distribution, in which case the function returns a vector of unequal length to the specified \code{nstat}.
+  The function will issue a warning in that case.
+  Researchers can than either accept the different \code{nstat}, or try again with a different \code{max.bin}.
+
   This function generates such a Q distribution, given a number of statements \code{nstat} and a desired maximum positive value \code{max.bin} in the Q distribution.
 }
 

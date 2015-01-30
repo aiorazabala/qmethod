@@ -19,5 +19,18 @@ make.distribution <- function(nstat, max.bin = 5) {
 	range <- qnorm(1/nstat) # what's the cutoff for 1/n?
 	distribution <- dnorm(seq((-range),range, length = nbins))/sum(dnorm(seq(-range,range, length = nbins)))*nstat
 	distribution <- round(distribution)
+	if (sum(distribution) != nstat) {
+		warning(
+			paste(
+				"Could not fit",
+				nstat,
+				"number of items neatly under a standard normal distribution.",
+				"You need",
+				sum(distribution),
+				"items for good fit instead.",
+				"Live with that or try again with a different max.bin."
+			)
+		)
+	}
 	return(distribution)
 }
