@@ -25,7 +25,7 @@
 
   The import functions \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}} and the print function \code{\link{make.cards}} imply three distinct ways to refer to \emph{items}:
   \enumerate{
-    \item \emph{Full item wording}, is, obviously, the complete item, such as \code{One small community of indomitable Q-methodologists.} (...) from \code{\link{importexample}}.
+    \item \emph{Full item wording}, is, obviously, the complete item, such as \code{One small community of indomitable Q-methodologists.} (...).
       The full wording is read in from individual TEX files.
     \item The item \emph{handle} is a shorthand way of referring to an item, that should be meaningful to the researcher.
       Item handles are \emph{researcher-facing}.
