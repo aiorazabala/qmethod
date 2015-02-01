@@ -1,6 +1,6 @@
 \name{import.q.sorts}
 \alias{import.q.sorts}
-\title{Q methodology: imports q sorts from csvs}
+\title{Q methodology: imports q sorts from CSV}
 \description{
 	Turns raw Q sorts (from .CSV) into clean, verified q.sorts array or matrix.
 }
