@@ -41,7 +41,7 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
   colnames(zsc_sum) <- paste("z_sum_",c(1:length(floa)),sep="")
   colnames(zsc_mea) <- paste("z_mea_",c(1:length(floa)),sep="")
   colnames(zsc_std) <- paste("z_std_",c(1:length(floa)),sep="")
-  colnames(item_sd) <- paste("item_sd_",c(1:length(floa)),sep="")
+  colnames(item_sd) <- paste("item_sd_f",c(1:length(floa)),sep="")
   #-- z-scores for each statement
   zsc <- data.frame(cbind(1:nstat))
   row.names(zsc) <- row.names(dataset)
@@ -102,8 +102,9 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
   qmethodresults[[5]] <- zsc
   qmethodresults[[6]] <- zsc_n
   qmethodresults[[7]] <- f_char
-  qmethodresults[[9]] <- item_sd  # 8 is qdc!
-  names(qmethodresults) <- c("brief", "dataset", "loa", "flagged", "zsc", "zsc_n", "f_char","item_sd")
+  names(qmethodresults) <- c("brief", "dataset", "loa", "flagged", "zsc", "zsc_n", "f_char")
+  qmethodresults[[9]] <- item_sd
+  names(qmethodresults)[9] <- "item_sd"
   class(qmethodresults) <- "QmethodRes"
   return(qmethodresults)
 }
