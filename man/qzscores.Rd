@@ -14,7 +14,7 @@
   \item{distribution}{logical; when \code{forced = FALSE}, the distribution has to be provided as a vector of numbers, such as \code{c(-2, -1, -1, 0, 1, 1, 2, 2)}.}
 }
 
-\details{In order to implement manual flagging, use a manually created data frame for \code{flagged}. The loadings from \code{principal(...)$loadings} can be explored to decide upong flagging. The \code{loa} data frame should have Q-sorts as rows, and factors as columns, where \code{TRUE} are the flagged Q-sorts.}
+\details{In order to implement manual flagging, use a manually created data frame for \code{flagged}. The loadings from \code{principal(...)$loadings} can be explored to decide upon flagging. The \code{loa} data frame should have Q-sorts as rows, and factors as columns, where \code{TRUE} are the flagged Q-sorts.}
 \value{
 \item{brief}{a list with the basic values of the analysis: date (\code{"date"}), number of statements (\code{"nstat"}), number of Q-sorts (\code{"nqsort"}), number of factors extracted (\code{"nfactors"}), type or rotation (\code{"rotation"}), and method for correlation in the PCA (\code{"cor.method"}).}
 \item{rawdata}{original data.}
