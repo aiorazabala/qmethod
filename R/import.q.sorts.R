@@ -105,7 +105,8 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
 				  header = FALSE, #  colnames will do
 				  stringsAsFactors = FALSE, #  would only add confusion
 				  nrows = max(q.distribution), # stuff below is ignored (item feedback, scores etc.)
-				  na.strings = "" #  empty cells become NAs
+				  na.strings = "", #  empty cells become NAs
+				  colClasses = "character"  # just to make sure R doesn't choke (mistakenly identified) irrational numbers :)
 			  )
 			  current.sort <- as.matrix(current.sort) #  because read.csv makes dataframe
         for (id in na.omit(as.vector(current.sort))) {  # loops over ids
