@@ -1,9 +1,12 @@
-array.viz <- function(QmethodRes, f.names = NULL, extreme.labels = c("very much disagree", "very much agree")) {
-  
+array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.labels = c("very much disagree", "very much agree"), color.scheme = "Set1") {
+  # Input verification ===================
   # Name factors ===============================================================
-  factors <- seq(QmethodRes$brief$nfactors)
+  factors <- seq(QmethodRes$brief$nfactors)  # set vector with length of factors
   if (!(is.null(f.names))) {
-    names(factors) <- f.names
+    names(factors) <- f.names  # give meaningful names, if specified
+  }
+  if (is.null(f.colors)) {
+    f.colors <- brewer.pal(n = length(factors), name = color.scheme)
   }
   g.list <- as.list(f.names, all.names=FALSE)  # set up empty list
   names(g.list) <- f.names  # name list items appropriately
@@ -52,7 +55,7 @@ array.viz <- function(QmethodRes, f.names = NULL, extreme.labels = c("very much 
       )
     )
     g <- g + scale_fill_gradient(
-      low="green" 
+      low=f.colors[current.fac]
       ,high="white"
       ,limits = c(0,max(array.viz.data$item_sd))
       ,name = "Item Standard Deviation Across Flagged Q-Sorts\n"
