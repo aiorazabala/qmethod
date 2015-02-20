@@ -1,14 +1,14 @@
 #calculates final z-scores and factor scores, and extracts main results for Q method
-qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, distribution=NA) {    
+qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, distribution=NA) {
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
-  pop.sd <- function(x)(sqrt(var(x)*(length(x)-1)/length(x)))
+  pop.sd <- function(x)(sd(x) * sqrt((length(x)-1)/length(x)))
   #A. select FLAGGED Q sorts
   floa <- flagged*loa #as.data.frame(loa); floa[which(!flagged, arr.ind=T)] <- 0 # the latter does not work in old versions of R
   #B. calculate FACTOR WEIGHTS for each Q sort, in a new matrix -needs to be a data.frame to perform variable calculations
   fwe <- as.data.frame(apply(floa, 2, function(x) x/(1-x^2))) # this the formula from from Brown 1980: 242
-  #C. calculate Z-SCORES for each sentence and factor 
+  #C. calculate Z-SCORES for each sentence and factor
   #-- new matrix for wsubm*ssubmn (original matrix * q sort factor weight), and transpose
   wraw_all <- list()
   n <- 1
@@ -34,7 +34,7 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
     zsc_mea[,n] <- mean(rowSums(wraw_all[[n]]))
     zsc_std[,n] <-   sd(rowSums(wraw_all[[n]]))  # again, this is the sd across all items per factor
     # here comes the sd across all sorts flagged on a factor
-    wraw_all_flagged <- wraw_all[[n]][,which(!apply(wraw_all[[n]]==0,2,all))]  # chose only flagged
+    wraw_all_flagged <- wraw_all[[n]][,which(!apply(wraw_all[[n]]==0,2,all)), drop=FALSE]  # chose only flagged, drop must be FALSE in case there is only one flagged, which causes errors downstream
     item_sd[,n] <- apply(wraw_all_flagged,1,pop.sd) # make pop sd
     n <- n+1
   }
@@ -87,7 +87,7 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
   brief$rotation <- "unknown"
   brief$cor.method <- "unknown"
   brief$info <- c("Q-method z-scores.",
-                  paste0("Finished on:             ", brief$date), 
+                  paste0("Finished on:             ", brief$date),
                   paste0("Original data:           ", brief$nstat, " statements, ", brief$nqsorts, " Q-sorts"),
                   paste0("Number of factors:       ", brief$nfactors),
                   paste0("Rotation:                ", brief$rotation),
