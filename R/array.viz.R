@@ -1,18 +1,18 @@
 array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.labels = c("very much disagree", "very much agree"), color.scheme = "Set1", incl.qdc = TRUE) {
   # Input verification ===================
-#   QmethodRes <- keyneson$before
-#   f.names <- c("resentment","critical","moderate")
-#   f.colors <- NULL
+#    QmethodRes <- keyneson$before
+#    f.names <- c("resentment","critical","moderate")
+#    f.colors <- NULL
 #   extreme.labels <- c("very much disagree","very much agree")
-#   color.scheme <- "Set1"
-#   incl.qdc <- FALSE
-#   
-#   library("RColorBrewer")
-#   library("reshape2")
-#   library("stringr")
-#   library("ggplot2")
-#   
-#   current.fac <- 1
+#    color.scheme <- "Set1"
+#    incl.qdc <- TRUE
+# #   
+#    library("RColorBrewer")
+#    library("reshape2")
+#    library("stringr")
+#    library("ggplot2")
+# # 
+#    current.fac <- NULL
   # Preparation ===============================================================
   factors <- seq(QmethodRes$brief$nfactors)  # set vector with length of factors
   if (!(is.null(f.names))) {  # if factor names are specified ...
@@ -24,6 +24,7 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
   if (is.null(f.colors)) {  # if there are no colors
     f.colors <- brewer.pal(n = length(factors), name = color.scheme)
   }
+  names(f.colors) <- f.names # this is later necessary because of a bug
   g.list <- as.list(f.names, all.names=FALSE)  # set up empty list
   names(g.list) <- f.names  # name list items appropriately
 
@@ -50,7 +51,7 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
         ,y = ycoord  # just the random ycoord for viz
         ,ymax = max(ycoord)
         ,ymin = 0
-        ,label = item.wrapped  # for identification, separate variable with wrapped strings
+        #,label = item.wrapped  # for identification, separate variable with wrapped strings
       )
     )
     g <- g + geom_tile(  # add background tiles
@@ -68,38 +69,59 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
     
     # include QDC information on distinguishing and consensus factors ==========
     if (incl.qdc == TRUE) {
-      array.viz.qdc <- array.viz.data  # duplicate baseline dataset
-      array.viz.qdc$zsc <- NULL  # not needed, only coordinates remain
-      array.viz.qdc$item_sd <- NULL  # not needed, only coordinates remain
-      array.viz.qdc$item.handles <- NULL  # not needed, only coordinates remain
-      n <- 1  # just a counter for navigating columns later on
-      for (other.fac in factors[-current.fac]) {
-        for (it in rownames(array.viz.qdc)) { # go over all items
-          if (QmethodRes$f_char$sd_dif[current.fac,other.fac] * 1.96 < abs(QmethodRes$zsc[it,other.fac] - QmethodRes$zsc[it,current.fac])) { # same formula as in qdc, duplicate here because qdc table results are hard to read in
-            array.viz.qdc[it,2+n] <- QmethodRes$zsc_n[it,other.fac] - QmethodRes$zsc_n[it,current.fac]  # add difference in absolutes / 4+n is used to navigate to next empty column to the right
-          } else {
-            array.viz.qdc[it,2+n] <- NA  # add null if non-significant
+      array.viz.qdc.diff <- array.viz.data[,c("fsc","ycoord")]  # duplicate baseline dataset
+      array.viz.qdc.sig <- array.viz.data[,c("fsc","ycoord")]  # duplicate baseline dataset
+      for (other.fac in factors[-current.fac]) {  # go over the other factors
+        sed <- QmethodRes$f_char$sd_dif[current.fac,other.fac]  # this and below unfortunately reproduces analysis from qdc.R, because qdc results are hard to read in
+        for (it in rownames(array.viz.data)) {  # go over all items
+          diff <- QmethodRes$zsc[it,other.fac] - QmethodRes$zsc[it,current.fac]  # set up difference in zscores
+          if (sed * 2.58 < abs(diff)) {  # if sig at .05 ...
+            array.viz.qdc.diff[it,f.names[other.fac]] <- diff  # ... assign difference
+            array.viz.qdc.sig[it,f.names[other.fac]] <- ".01"  # ... assign sig
+          } else if (sed * 1.96 < abs(diff)) {  # if sig at .01
+            array.viz.qdc.diff[it,f.names[other.fac]] <- diff  # ... assign difference
+            array.viz.qdc.sig[it,f.names[other.fac]] <- ".05"  # ... assign sig
+          } else {  # if non-sig ...
+            array.viz.qdc.diff[it,f.names[other.fac]] <- NA  # ... assign NA
+            array.viz.qdc.sig[it,f.names[other.fac]] <- NA  # ... assign NA
           }
         }
-        colnames(array.viz.qdc)[2+n] <- f.names[other.fac]  # give real colname
-        n <- n + 1 # advance the counter one for the current factor
       }
-      array.viz.qdc$item <- rownames(array.viz.qdc)
-      array.viz.qdc <- melt(data = array.viz.qdc, id.vars = c("fsc","ycoord", "item"), variable.name="distinguishing.factor", value.name="difference", na.rm=TRUE)
-      array.viz.qdc["sign"] <- lapply(X = array.viz.qdc["difference"], FUN = sign)
+      array.viz.qdc.diff$item <- rownames(array.viz.qdc.diff)  # add manual item names for orientation (gets killed in melt)
+      array.viz.qdc.diff <- melt(
+        data = array.viz.qdc.diff
+        ,id.vars = c("fsc","ycoord", "item")
+        ,variable.name="factor"
+        ,value.name="difference"
+        ,na.rm=TRUE
+      )
+      array.viz.qdc.sig$item <- rownames(array.viz.qdc.sig)  # add manual item names for orientation (gets killed in melt)
+      array.viz.qdc.sig <- melt(
+        data = array.viz.qdc.sig
+        ,id.vars = c("fsc","ycoord", "item")
+        ,variable.name="factor"
+        ,value.name="significance"
+        ,na.rm=TRUE
+      )
+      array.viz.qdc <- merge(array.viz.qdc.diff,array.viz.qdc.sig)  # merge sig and diff
       g <- g + geom_segment(
         data = array.viz.qdc
         ,mapping = aes(
-          x = fsc+(difference/28),
-          y = ycoord-0.5,
-          xend = fsc+(difference/28),
-          yend = ycoord+0.5,
-          colour = distinguishing.factor
-          #,size = difference
-        ),
-        position = "dodge"
+          x = fsc+(difference/max(difference)*0.45)  # scale to highest existing difference
+          ,y = ycoord-0.5
+          ,xend = fsc+(difference/max(difference)*0.45)  # divide by 2.1 so that lines are not on boundary
+          ,yend = ycoord+0.5
+          ,colour = factor(factor)
+          ,linetype = significance
+        )
+        ,position = "dodge"
       )
-      g <- g + scale_color_manual(values=f.colors[-current.fac])
+      g <- g + labs(linetype = "Item Difference Significance")
+      # g <- g + scale_colour_manual(values = f.colors[- current.fac])  # this, oddly, won't work, probably because of this: https://groups.google.com/forum/#!msg/ggplot2/mQskLl-TNQk/UxxE1FQcVH8J hence the need for the below shenanigan
+      g <- g + scale_colour_manual(
+        values = f.colors
+        ,name = "Item Position on Distinguishing Factor"
+      )
     }
     # Add item labels ======================================================
     g <- g + geom_text(  # this cannot happen earlier; mind the levels

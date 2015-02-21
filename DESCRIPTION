@@ -20,7 +20,9 @@ Imports:
   digest,
   knitr,
   xtable,
-  RColorBrewer
+  RColorBrewer,
+  reshape2,
+  stringr
 LazyData: true
 Repository: CRAN
 URL: https://github.com/aiorazabala/qmethod

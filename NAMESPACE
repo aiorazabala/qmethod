@@ -5,7 +5,9 @@ import("methods",
        "tools",
        "xtable",
        "knitr",
-       "RColorBrewer")
+       "RColorBrewer",
+       "reshape2",
+       "stringr")
 export("qmethod",
        "qzscores",
        "qflag",
