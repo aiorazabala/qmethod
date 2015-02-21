@@ -1,6 +1,46 @@
-array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.labels = c("very much disagree", "very much agree"), color.scheme = "Set1", incl.qdc = TRUE) {
+array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.labels = c("negative", "positive"), color.scheme = "Set1", incl.qdc = TRUE) {
   # Input verification ===================
-#    QmethodRes <- keyneson$before
+  # MH TODO: would be nice verify QmethodRes somehow, not sure how
+  if (!is.null(f.names)){
+    if (length(f.names) != QmethodRes$brief$nfactors) {
+      stop(
+        "The number of factor names specified is different from the number of extracted factors."
+      )
+    }
+    if (!is.vector(f.names)) {
+      stop(
+        "The factor names specified are not a vector."
+      )
+    }
+  }
+  if (!is.null(f.colors)) {
+    if (length(f.colors) != QmethodRes$brief$nfactors) {
+      stop(
+        "The number of factor colors specified is different from the number of extracted factors."
+      )
+    }
+    if (!is.vector(f.colors)) {
+      stop(
+        "The factor colors specified are not a vector."
+      )
+    }
+  }
+  if (!is.vector(extreme.labels) | length(extreme.labels) != 2)  {
+    stop(
+      "The extreme labels specified are not a vector of length 2"
+    )
+  }
+  try(  # test if the color.scheme is ok
+    brewer.pal(
+      n = QmethodRes$brief$nfactors
+      ,name = color.scheme
+    )
+    ,silent = FALSE
+  )
+  if (!is.logical(incl.qdc)) {
+    "The argument set for incl.qdc needs to be TRUE or FALSE."
+  }
+#     QmethodRes <- keyneson$before
 #    f.names <- c("resentment","critical","moderate")
 #    f.colors <- NULL
 #   extreme.labels <- c("very much disagree","very much agree")
@@ -11,16 +51,15 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
 #    library("reshape2")
 #    library("stringr")
 #    library("ggplot2")
-# # 
+#    
+#    current.fac <- 4
 #    current.fac <- NULL
   # Preparation ===============================================================
   factors <- seq(QmethodRes$brief$nfactors)  # set vector with length of factors
-  if (!(is.null(f.names))) {  # if factor names are specified ...
-    names(factors) <- f.names  # ... name vector accordingly
-  }
   if (is.null(f.names)) {  # if there are no factor names ...
-    f.names <- factors  # ... name them just by numbers
+    f.names <- paste("f",factors,sep="")  # ... name them just by numbers
   }
+  names(factors) <- f.names  # even if those may just be numbers
   if (is.null(f.colors)) {  # if there are no colors
     f.colors <- brewer.pal(n = length(factors), name = color.scheme)
   }
@@ -35,10 +74,10 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
       ,QmethodRes$zsc[current.fac]  # also add zscore, maybe for future use
       ,QmethodRes$item_sd[current.fac]  # standard deviation per item
     )
-    head(array.viz.data)
     colnames(array.viz.data)[1] <- "fsc"  # add generalized name
     colnames(array.viz.data)[2] <- "zsc"  # add generalized name
     colnames(array.viz.data)[3] <- "item.sd"  # add generalized name
+    array.viz.data$item.sd[is.na(array.viz.data$item.sd)] <- 0  # set SDs to 0 if they are NA, which happens when only 1 person loads. Bit of a hack job.
     array.viz.data$item.wrapped <- str_wrap(gsub("-", " ", rownames(array.viz.data)), 10)  # make shorter, wrapped item handles
     array.viz.data <- array.viz.data[order(array.viz.data[,"fsc"],array.viz.data[,"item.sd"]),]  # ordering, needed for y variable
     array.viz.data$ycoord <- sequence(q.distribution)  # add meaningless y variable for plotting
@@ -51,7 +90,7 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
         ,y = ycoord  # just the random ycoord for viz
         ,ymax = max(ycoord)
         ,ymin = 0
-        #,label = item.wrapped  # for identification, separate variable with wrapped strings
+        #,label = item.wrapped  # this for some reason causes an error
       )
     )
     g <- g + geom_tile(  # add background tiles
@@ -148,7 +187,7 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
     x.tick.labels <- seq(min(QmethodRes$dataset),max(QmethodRes$dataset))  # add numeric tick labels
     x.tick.labels[1] <- paste(x.tick.labels[1], extreme.labels[1], sep = "\n")  # add lable for negative extreme
     x.tick.labels[length(x.tick.labels)] <- paste(x.tick.labels[length(x.tick.labels)], extreme.labels[2], sep = "\n")  # add lable for extreme positive
-    g <- g + scale_x_continuous(breaks= seq(-7,7), labels=x.tick.labels)  # break only at full scores
+    g <- g + scale_x_continuous(breaks= seq(min(QmethodRes$dataset),max(QmethodRes$dataset)), labels=x.tick.labels)  # break only at full scores
     g <- g + theme_bw()  # choose simpler theme
     g <- g + theme(  # get rid of fluff
       axis.title.y = element_blank()  # no y labels, because meaningless
