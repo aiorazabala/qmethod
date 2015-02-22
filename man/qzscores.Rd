@@ -23,7 +23,10 @@
 \item{zsc}{statements z-scores.}
 \item{zsc_n}{statements rounded scores, rounded to the values in the first row of the original dataset.}
 \item{f_char}{factor characteristics obtained from \code{\link{qfcharact}}.}
-\item{item_sd}{(population) standard deviations of item scores across all flagged q sorts for a given factor, weighted same as \code{zsc}.}
+\item{item_sd}{
+  Population standard deviations of item scores \emph{across} all flagged q sorts for a given factor, weighted same as \code{zsc}.
+  Used for visualization in \code{\link{array.viz}}
+}
 }
 \references{Brown, S. R., 1980 \emph{Political subjectivity: Applications of Q methodology in political science}, New Haven, CT: Yale University Press.
 

@@ -38,6 +38,10 @@ Returns a list with eight objects:
     }
     }
 \item{qdc}{Distinguishing and consensus statements}
+\item{item_sd}{
+  Population standard deviation of items \emph{across} flagged Q sorts on a given factor, weighted same as \code{\link{qzscores}}.
+  Used for visualization in \code{\link{array.viz}}.
+}
 }
 \references{Brown, S. R., 1980 \emph{Political subjectivity: Applications of Q methodology in political science}, New Haven, CT: Yale University Press.
 
