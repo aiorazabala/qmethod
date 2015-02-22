@@ -1,13 +1,15 @@
 import("methods",
        "psych",
        "GPArotation",
-       "digest",
        "tools",
        "xtable",
        "knitr",
-       "RColorBrewer",
-       "reshape2",
+       "ggplot2",
        "stringr")
+importFrom("plyr","count")
+importFrom("reshape2","melt")
+importFrom("digest", "digest")
+importFrom("RColorBrewer", "brewer.pal")
 export("qmethod",
        "qzscores",
        "qflag",

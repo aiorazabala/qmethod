@@ -52,7 +52,7 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
   names(f.colors) <- f.names # this is later necessary because of a bug
   g.list <- as.list(f.names, all.names=FALSE)  # set up empty list
   names(g.list) <- f.names  # name list items appropriately
-
+  q.distribution <- count(df = QmethodRes$dataset, 1)[,2]  # infer distribution from first column in dataset
   # Loop over extracted factors ================================================
   for (current.fac in factors) {
     array.viz.data <- cbind(  # read in data
@@ -69,6 +69,7 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
     array.viz.data$ycoord <- sequence(q.distribution)  # add meaningless y variable for plotting
 
     # actual plotting ==========================================================
+    fsc <- ycoord <- item.sd <- difference <- significance <- item.wrapped <- NULL  # this is a hideous, nonsensical piece of code to avoid a spurious R CMD Check note. It is recommended by the author of the offending package on StackExchange at http://stackoverflow.com/questions/9439256/how-can-i-handle-r-cmd-check-no-visible-binding-for-global-variable-notes-when
     g <- ggplot(
       data = array.viz.data
       ,aes(

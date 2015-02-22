@@ -21,8 +21,10 @@ Imports:
   knitr,
   xtable,
   RColorBrewer,
-  reshape2,
-  stringr
+  stringr,
+  ggplot2,
+  plyr,
+  reshape2
 LazyData: true
 Repository: CRAN
 URL: https://github.com/aiorazabala/qmethod
