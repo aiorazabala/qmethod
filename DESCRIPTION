@@ -12,9 +12,11 @@ Description: Analysis of Q methodology data to identify the distinct perspective
   Additional functions import data from PQMethod software or flat (csv) files, export plain text data for interpretation in two flavours, print and plot Q method results in a synthetic manner.
   The package uses principal components and it offers the following choices: manual or automatic flagging, a number of mathematical methods for rotation, and a number of correlation coefficients for the initial correlation matrix.
 License: GPL (>= 2)
+Depends:
+  ggplot2,
+  psych
 Imports:
   methods,
-  psych,
   GPArotation,
   tools,
   digest,
@@ -22,7 +24,6 @@ Imports:
   xtable,
   RColorBrewer,
   stringr,
-  ggplot2,
   plyr,
   reshape2
 LazyData: true
