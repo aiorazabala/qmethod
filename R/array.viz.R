@@ -130,12 +130,13 @@ array.viz <- function(QmethodRes, f.names = NULL, f.colors = NULL, extreme.label
         ,na.rm=TRUE
       )
       array.viz.qdc <- merge(array.viz.qdc.diff,array.viz.qdc.sig)  # merge sig and diff
+      max.qdc.diff <- max(abs(range(array.viz.qdc$difference)))
       g <- g + geom_segment(
         data = array.viz.qdc
         ,mapping = aes(
-          x = fsc+(difference/max(difference)*0.45)  # scale to highest existing difference
+          x = fsc+(difference/max.qdc.diff)*0.45  # scale to highest existing difference
           ,y = ycoord-0.5
-          ,xend = fsc+(difference/max(difference)*0.45)  # divide by 2.1 so that lines are not on boundary
+          ,xend = fsc+(difference/max.qdc.diff)*0.45  # multiply by .45 to make sure it's within half of the tile
           ,yend = ycoord+0.5
           ,colour = factor(factor)
           ,linetype = significance
