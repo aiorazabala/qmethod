@@ -1,4 +1,4 @@
-make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckformC32010.Rnw", output.pdf = TRUE, manual.lookup = NULL, wording.font.size = NULL) {
+make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckformC32010.Rnw", output.pdf = TRUE, manual.lookup = NULL, wording.font.size = NULL, file.name = "QCards") {
 
   # Input validation also check more below
   if (!is.matrix(q.set)) {
@@ -29,6 +29,9 @@ make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckfor
   }
   if (is.null(study.language)) {  # if there no languages
     study.language <- 1 # just look in column 1
+  }
+  if (!is.character((file.name))) {  # if filename not character
+    stop("The specified filename is invalid.")
   }
   # Read in items =============================================================
   q.set.print <- as.data.frame( #  read in complete q.set, all translations
@@ -71,11 +74,17 @@ make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckfor
   wording.font.size <- wording.font.size  # dumb, but otherwise R complains about unused argument
   if (output.pdf == TRUE) {
     return(
-      knit2pdf(path)
+      knit2pdf(
+        input = path
+        ,output = paste(getwd(),"/",file.name,".tex",sep="")
+      )
     )
   } else {
     return(
-      knit(path)
+      knit(
+        input = path
+        ,output = paste(getwd(),"/",file.name,".tex",sep="")
+      )
     )
   }
 }

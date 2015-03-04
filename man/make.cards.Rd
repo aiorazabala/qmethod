@@ -12,7 +12,9 @@
   	paper.format="AveryZweckformC32010.Rnw",
   	output.pdf=TRUE,
   	manual.lookup=NULL,
-    wording.font.size = NULL)
+    wording.font.size = NULL,
+    file.name = "QCards"
+    )
 }
 
 \arguments{
@@ -42,6 +44,10 @@
     A character vector of length 1 to set the font size of the full item wording on the cards.
     Defaults to \code{NULL} in which the default font size 12pt is used.
     Only \href{http://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing_text}{standard LaTeX font sizes} are allowed, from \code{\\tiny} to \code{\\Huge}.
+  }
+  \item{file.name}{
+    A character vector of length 1 to set the filename \emph{without file extension}.
+    Defaults to \code{QCards}.
   }
 }
 \details{
