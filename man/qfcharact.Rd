@@ -17,7 +17,7 @@
 
 If input data contains row names and variable names, these will be kept throughout the analysis. Input data is validated, and it will give an error either if there are non numerical values or if the number of statements and Q sorts introduced does not match with the input data.
 
-This function works with any number of factors rotated, of statements, and of Q-sorts. The function returns the factor characteristics indicated below.
+This function works with any number of factors rotated, of statements, and of Q sorts. The function returns the factor characteristics indicated below.
 }
 
 \value{
