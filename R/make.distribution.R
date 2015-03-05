@@ -16,7 +16,7 @@ make.distribution <- function(nstat, max.bin = 5) {
 
 	nbins <- (2 * max.bin) + 1 # make sure that nbins is uneven
  	# this +1 ensures that there will always be a 0 bin.
-	range <- qnorm(1/nstat) # what's the cutoff for 1/n?
+	range <- qnorm(1/nstat) # what's the cutoff for 1/n? This the farthest point under the normal distribution where you'd still expect a card, given nstat
 	distribution <- dnorm(seq((-range),range, length = nbins))/sum(dnorm(seq(-range,range, length = nbins)))*nstat
 	distribution <- round(distribution)
 	if (sum(distribution) != nstat) {
