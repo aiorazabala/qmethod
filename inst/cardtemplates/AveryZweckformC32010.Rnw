@@ -8,7 +8,16 @@
 \usepackage{calc}  % to easily identify dimensions etc.
 \usepackage[T1]{fontenc}  % read in eur sim
 \usepackage[utf8]{inputenc}  % allow accents etc in inputs
-\usepackage[ngerman,english]{babel}  % for international support
+<<babel.language, echo=FALSE, results="asis" >>=
+if(!is.null(babel.language)) {
+  cat(
+    "\\usepackage[",
+    babel.language, # for international support
+    "]{babel}",
+    sep="" 
+  )
+}
+@
 \usepackage[
   a4paper,
   height=54mm*5,  % 5 cards on top of one another

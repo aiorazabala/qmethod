@@ -1,4 +1,4 @@
-make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckformC32010.Rnw", output.pdf = TRUE, manual.lookup = NULL, wording.font.size = NULL, file.name = "QCards") {
+make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckformC32010.Rnw", output.pdf = TRUE, manual.lookup = NULL, wording.font.size = NULL, file.name = "QCards", babel.language=NULL) {
 
   # Input validation also check more below
   if (!is.matrix(q.set)) {
@@ -32,6 +32,9 @@ make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckfor
   }
   if (!is.character((file.name))) {  # if filename not character
     stop("The specified filename is invalid.")
+  }
+  if (!is.null(babel.language) & !is.character((babel.language))) {  # if filename not character
+    stop("The specified babel language is invalid.")
   }
   # Read in items =============================================================
   q.set.print <- as.data.frame( #  read in complete q.set, all translations
