@@ -13,7 +13,8 @@
   	output.pdf=TRUE,
   	manual.lookup=NULL,
     wording.font.size = NULL,
-    file.name = "QCards"
+    file.name = "QCards",
+    babel.language = NULL
     )
 }
 
@@ -48,6 +49,13 @@
   \item{file.name}{
     A character vector of length 1 to set the filename \emph{without file extension}.
     Defaults to \code{QCards}.
+  }
+  \item{babel.language}{
+    A character vector of length 1 to set the babel language for appropriate hyphenation, special letters and other international support as provided by the babel LaTeX package.
+    Only available babel options are permissible.
+    Defaults to \code{NULL}, in which case babel is never called.
+    Changing \code{babel.language} between function class can occassionally leave inconsistent LaTeX temp files, which may trip up compilation.
+    Please re-run the function once again or clean up temp files in that case.
   }
 }
 \details{
