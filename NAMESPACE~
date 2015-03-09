@@ -9,6 +9,7 @@ export("qmethod",
        "qzscores",
        "qflag",
        "qfcharact",
+	"q.factor.names",
        "qdc",
        "import.pqmethod",
        "build.q.set",
@@ -24,7 +25,4 @@ S3method("summary",
          "QmethodRes")
 S3method("print",
          "QmethodRes")
-.onLoad <- function(...) {
-packageStartupMessage(cat(paste("'qmethod' version ", packageVersion("qmethod")), "\n\nTo cite package 'qmethod' in publications, please use:\n\n    Aiora Zabala (2014) qmethod: A Package to Explore Human Perspectives\n    Using Q Methodology. The R Journal, 6(2):163-173"))
-  }
 

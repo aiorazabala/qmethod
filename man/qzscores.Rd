@@ -37,7 +37,7 @@ library(psych)
 loa <- as.data.frame(unclass(principal(lipset[[1]], 
                     nfactors = 3, rotate = "varimax")$loadings))
 flagged <- qflag(nstat = 33, loa = loa)
-qmzsc <- qzscores(lipset[[1]], nfactors = 3,
+qmzsc <- qzscores(lipset[[1]], nfactors = 3, forced = TRUE,
                     flagged = flagged, loa = loa)
 qmzsc
 }
