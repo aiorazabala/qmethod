@@ -19,10 +19,3 @@ If the following error occurs: \code{"invalid multibyte string"}, a possible sol
 File descriptions in \emph{PQMethod Manual}: \url{http://schmolck.org/qmethod/pqmanual.htm#appdxa}}
 
 \author{Aiora Zabala}
-
-\examples{
-data(lipset)
-results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")
-export.qm(results, "lipset_R.txt")
-export.qm(results, "lipset_PQMethod.txt", style="PQMethod")
-}

@@ -3,8 +3,8 @@
 \title{Q methodology analysis}
 \description{This function performs a full Q method analysis using principal components analysis (see Notes). The main results are factor characteristics, statement z-scores and rounded factor scores, and distinguising and consensus statements.}
 \usage{
-qmethod(dataset, nfactors, rotation="varimax", forced=TRUE, 
-        distribution=NA, cor.method="pearson", ...)}
+qmethod(dataset, nfactors, rotation = "varimax", forced, 
+        distribution = NA, cor.method = "pearson", ...)}
 
 \arguments{
   \item{dataset}{a matrix or a data frame containing original data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell.}
@@ -56,7 +56,8 @@ This package uses PCA because this function is already implemented in R. If you 
 }
 \examples{
 data(lipset)
-results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")
+results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax", 
+                   forced = TRUE)
 summary(results)
 results #shows all results
 }

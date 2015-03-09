@@ -63,7 +63,8 @@ Peter Schmolck's Q Method Page.
 }
 \examples{
 data(lipset)
-results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")
+results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax",
+                   forced = TRUE)
 summary(results)
 results
 }

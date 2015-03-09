@@ -25,10 +25,11 @@
 }
 \examples{
 data(lipset)
-results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")
+results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax",
+                   forced = TRUE)
 title <- "Q method z-scores, lipset dataset"
 subtitle <- paste0("Three factors, PCA, varimax. Printed on ",
                     Sys.Date())
-plot(results, main=title, sub=subtitle)
+plot(results, main = title, sub = subtitle)
 }
 \keyword{plot}

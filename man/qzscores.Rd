@@ -2,8 +2,7 @@
 \alias{qzscores}
 \title{Q methodology: z-scores from loadings}
 \description{Calculates factor characteristics, z-scores, and rounded scores, provided a matrix of loadings and a matrix of flagged Q-sorts.}
-\usage{qzscores(dataset, nfactors, loa=loa,
-        flagged=flagged, forced=TRUE, distribution=NA)}
+\usage{qzscores(dataset, nfactors, loa, flagged, forced, distribution = NA)}
 
 \arguments{
   \item{dataset}{a matrix or a data frame containing raw data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell.}
@@ -36,9 +35,9 @@ See further references on the methodology in \code{\link{qmethod-package}}.}
 data(lipset)
 library(psych)
 loa <- as.data.frame(unclass(principal(lipset[[1]], 
-                    nfactors=3, rotate="varimax")$loadings))
-flagged <- qflag(nstat=33, loa=loa)
-qmzsc <- qzscores(lipset[[1]], nfactors=3,
-                    flagged=flagged, loa=loa)
+                    nfactors = 3, rotate = "varimax")$loadings))
+flagged <- qflag(nstat = 33, loa = loa)
+qmzsc <- qzscores(lipset[[1]], nfactors = 3,
+                    flagged = flagged, loa = loa)
 qmzsc
 }
