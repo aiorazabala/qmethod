@@ -2,7 +2,7 @@
 \alias{import.q.sorts}
 \title{Q methodology: imports q sorts from CSV}
 \description{
-	Turns raw Q sorts (from .CSV) into clean, verified q.sorts array or matrix.
+	Turns raw Q sorts (from .CSV) into clean, verified q.sorts array (when there are > 2 conditions) or matrix (with single condition).
 }
 \usage{
 	import.q.sorts(
@@ -20,12 +20,16 @@
 		\itemize{
 			\item folders are \code{conditions} (such as \emph{before} or \emph{after}).
 			If there are no \code{conditions} (defaults to \code{NULL}), there should be no folders.
-			\item filenames of .CSVs are participant names (might be given pseudonyms).
-			\item .CSVs contain \emph{raw} qsorts, beginning with all lines of items, such as \code{,,item-12,item-64,,}.
+			\item filenames of .CSV files are participant names (might be given pseudonyms).
+			\item .CSV files contain \emph{raw} qsorts, beginning with all lines of items, such as \code{,,item-12,item-64,,}.
+			All lines below the maximum Q Sort height will be ignored and can have arbitrary input.
+			For example in a study with a highest column of 8 cards, everything below the 8th line th file will be ignored.
 			There is no need to include the values of the x-axis (say, \code{-4} to \code{+4}) in these files.
 			If they are included, they should be the last row.
-			\item cells contain \emph{not} meaningful short handles, but some string (ID) to identify them as per the \code{manual.lookup} option.
-			If there is no \code{manual.lookup} (defaults to \code{NULL}), this function expects automatically created hashes as created by \code{\link{make.cards}}.
+			\item cells contain a string ID to identify.
+			Meaningful short handles should \emph{not} be used here.
+			If a \code{manual.lookup} is specified, strings from that matrix (see below) are expected.
+			Otherwise, hash values as produced by \code{\link{make.cards}} are expected for identification.
 		}
 	}
 	\item{q.set}{
