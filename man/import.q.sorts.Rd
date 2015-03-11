@@ -2,7 +2,7 @@
 \alias{import.q.sorts}
 \title{Q methodology: imports Q-sorts from CSV}
 \description{
-	Turns raw Q-sorts (from .CSV) into clean, verified Q-sorts array (when there are > 2 conditions) or matrix (with single condition).
+	Turns raw Q-sorts (from *.CSV) into verified Q-sorts array (when there are > 2 conditions) or matrix (with single condition).
 }
 \usage{
 	import.q.sorts(
@@ -20,8 +20,8 @@
 		\itemize{
 			\item folders are \code{conditions} (such as \emph{before} or \emph{after}).
 			If there are no \code{conditions} (defaults to \code{NULL}), there should be no folders.
-			\item filenames of .CSV files are participant names (might be given pseudonyms).
-			\item .CSV files contain \emph{raw} Q-sorts, beginning with all lines of items, such as \code{,,item-12,item-64,,}.
+			\item filenames of *.CSV files are participant names (might be given pseudonyms).
+			\item *.CSV files contain \emph{raw} Q-sorts, beginning with all lines of items, such as \code{,,item-12,item-64,,}.
 			All lines below the maximum Q-sort height will be ignored and can have arbitrary input.
 			For example in a study with a highest column of 8 cards, everything below the 8th line th file will be ignored.
 			There is no need to include the values of the x-axis (say, \code{-4} to \code{+4}) in these files.
@@ -40,7 +40,7 @@
 	}
 	\item{conditions}{
 		A character vector of study conditions, such as \code{c("before","after")}, same as folders under \code{q.sorts.dir}.
-		Defaults to \code{NULL} in which case there is only condition, and CSVs are expected directly under \code{q.sorts.dir}.
+		Defaults to \code{NULL} in which case there is only condition, and *.CSV files are expected directly under \code{q.sorts.dir}.
 	}
 	\item{manual.lookup}{
 		A matrix with (meaningful, short) handles (such as \code{''q-is-great''}, same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings (ID, such as \code{''it212''}) in any of the columns as printed on the q-cards by \code{\link{make.cards}}.
@@ -49,7 +49,7 @@
 }
 
 \details{
-	This function imports Q-sorts from their raw format stored in CSV files, in the form in which they were sorted by participants.
+	This function imports Q-sorts from their raw format stored in *.CSV files, in the form in which they were sorted by participants.
 
 	Q-sorts in their raw form have columns as ranks (from, say, \code{-6} to \code{+6}) with cards (items) sorted in rows.
 	The vertical dimension of Q-sorts is \emph{meaningless}.
@@ -96,12 +96,12 @@
 	If you want it to work with free distributions, check out and/or chip in at \url{https://github.com/aiorazabala/qmethod/issues/33}.
 
 	Hashed identification has not been widely tested in Q studies and should be used with great care and only for extra convenience.
-	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q cards, preferably with a version control system.
+	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q-cards, preferably with a version control system.
 	Researchers should also record the complete Q-sorts of participants in an \emph{unhashed} form, such as a picture of the completed sort in full wordings, in case problems with the hashing arise.
 
-	This function does \emph{not} test whether Q sorts were entered correctly into the CSV files.
+	This function does \emph{not} test whether Q sorts were entered correctly into the *.CSV files.
 	It is recommended to enter any given Q-sort more than once and have a spreadsheet editor compare several entry attempts for consistency.
-	This function ignores any entries in CSV files below the highest row expected by the \code{q.distribution}.
+	This function ignores any entries in *.CSV files below the highest row expected by the \code{q.distribution}.
 }
 
 \author{Maximilian Held}
@@ -115,7 +115,7 @@
 }
 
 \examples{
-  ## Import a Q sample from a directory of CSVs
+  ## Import a Q sample from a directory of *.CSV files
   data(importexample)
   path.sorts <- paste(  # this part is only for the example!
     path.package("qmethod"),  # just to make sure, use absolute path
@@ -128,7 +128,7 @@
     q.set = importexample$q.set,  # as produced by build.q.set
     q.distribution = c(1,2,1), # very simple distribution
     conditions = c("before","after"),  # enter your conditions here, same as in path
-    manual.lookup = matrix(  # ideally empty for automatic hashing, or read in from csv
+    manual.lookup = matrix(  # ideally empty for automatic hashing, or read in from *.CSV file
       c("i01","i02","i03","i04"),
       ncol = 1,
       nrow = 4,

@@ -19,7 +19,7 @@
 	The package includes a function to import data from PQMethod software, to export plain text data for interpretation in two flavours, and to print and plot Q method results.
 	Use \code{help(package="qmethod")} for a list of all the functions.
 
-	The package also features several functions to strengthen reproduceable research, including functions to import Q sorts \code{\link{import.q.sorts}} and participant item feedback (\code{\link{import.q.feedback}}) from flat \code{*.csv} files, as well as complete concourses (\code{\link{import.q.concourse}}) and samples (\code{\link{build.q.set}}).
+	The package also features several functions to strengthen reproduceable research, including functions to import Q-sorts \code{\link{import.q.sorts}} and participant item feedback (\code{\link{import.q.feedback}}) from flat *.CSV files, as well as complete concourses (\code{\link{import.q.concourse}}) and samples (\code{\link{build.q.set}}).
 
 	The package also includes a function for the administration of a Q study, \code{\link{make.cards}}, which produces a production-quality PDF with full item wordings and codes on business cards ready for printout.
 

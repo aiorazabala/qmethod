@@ -57,7 +57,7 @@
     q.concourse = importexample$q.concourse,  # as created by import.q.concourse
     q.sample = c("life-with-q","q-uprising","r-dominance","small-village"),
     # add vector with items to be selected from concourse
-    # q.sample is ideally read in from a separate CSV
+    # q.sample is ideally read in from a separate *.CSV file
     q.distribution = c(1,2,1) # very simple distribution,
   )
 }

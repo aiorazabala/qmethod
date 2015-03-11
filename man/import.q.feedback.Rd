@@ -2,7 +2,7 @@
 \alias{import.q.feedback}
 \title{Q methodology: imports feedback on Q items}
 \description{
-	Turns raw item feedback (in .CSV) into a clean, verified array or matrix.
+	Turns raw item feedback (in *.CSV files) into a  verified array or matrix.
 }
 \usage{
 	import.q.feedback(
@@ -18,8 +18,8 @@
 		A relative path to a directory structure where:
 		\itemize{
 			\item folders are \code{conditions} (such as before or after), if there are more than one conditions.
-			\item filenames of .CSV are participant names (might be given pseudonyms)
-			\item .CSV files within folders contain raw feedback, beginning with an arbitary header line (ignored), and the following columns, starting from the left:
+			\item filenames of *.CSV are participant names (might be given pseudonyms)
+			\item *.CSV files within folders contain raw feedback, beginning with an arbitary header line (ignored), and the following columns, starting from the left:
 			\enumerate{
 				\item An automatic hash from \code{\link{make.cards}} or a \code{manual.lookup} ID.
 				Each ID only occurs once.
@@ -46,7 +46,7 @@
 	An additional, optional (3rd) column indicates whether the current line should be ignored (TRUE), as may be the case for privacy reasons or when the feedback is merely a correction of a typographic error.
 	If no such 3rd column is included, all feedback will be imported.
 
-	After an (arbitrary) header line, a CSV file may look like this:
+	After an (arbitrary) header line, a *.CSV file may look like this:
 	\code{c12,"This q-item sounds like r-research to me!",FALSE}, indicating that it should \emph{not} be ignored (\code{FALSE}).
 
 	In order to allow commas in the feedback, this should be enclosed with quotes.
@@ -81,7 +81,7 @@
     q.feedback.dir = path.feedback,  # add your path here
     q.sorts = importexample$q.sorts,
     q.set = importexample$q.set,  # as produced by build.q.set
-    manual.lookup = matrix(  # ideally empty for automatic hashing, or read in from csv
+    manual.lookup = matrix(  # ideally empty for automatic hashing, or read in from *.CSV
       c("i01","i02","i03","i04"),
       ncol = 1,
       nrow = 4,
