@@ -20,7 +20,7 @@
 
 \arguments{
   \item{q.set}{
-    A matrix with (meaningful, short) handles as rownames (\code{''q-is-great''}, for example), languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
+    A matrix with handles as row names (\code{''q-is-great''}, for example), languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
   }
   \item{study.language}{
   	A character vector of length one, choosing a language from \code{q.concourse.dir} and same as in \code{\link{import.q.concourse}} to print items in.
@@ -34,11 +34,11 @@
   \item{output.pdf}{
   	Logical.
   	If \code{TRUE}, function invokes \code{knit2pdf} to create a PDF in the workspace.
-  	If \code{FALSE}, function invokes \code{knit} to return only a .TEX in the workspace, may be preferable if no \href{http://www.latex-project.org}{LaTeX} installation is available on the used computer.
+  	If \code{FALSE}, function invokes \code{knit} to return only a *.TEX in the workspace, may be preferable if no \href{http://www.latex-project.org}{LaTeX} installation is available on the used computer.
   	Defaults to \code{TRUE}.
   }
   \item{manual.lookup}{
-  	A matrix with (meaningful, short) handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings in any of the columns as also expected in \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
+  	A matrix with handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as row names, and arbitrary, unique identifying strings in any of the columns as also expected in \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
 		Defaults to \code{NULL} in which case items are automatically identified by full item hashes, as also detected by \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
   }
   \item{wording.font.size}{
@@ -73,21 +73,21 @@
 	Identifiers (ID) in this function \emph{should not be mistaken} for the \emph{(meaningful, short) handles}, also used in several of these functions (\code{''q-is-great''}, for example).
 	Handles are meant for researchers only, to easily navigate a larger concourse or sample of items.
 	They should \emph{not} be exposed to participants, because these (meaningful, short) handles may be interpreted by participants as unintended, additional stimulus.
-	Instead, this function expects or creates identifiers (ID) that are not intelligble to participants.
+	Instead, this function expects or creates identifiers (ID) that are not intelligible to participants.
 
-	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.Rnw} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed out multi-page table.
+	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.Rnw} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed-out multi-page table.
 
   More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 
 \value{
-	Writes a PDF or its source TEX to the working directory ready for printout.
+	Writes a *.PDF file or its source *.TEX file to the working directory ready for printout.
 }
 
 \note{
 	Hashed identification has not been widely tested in Q studies and should be used with great care and only for extra convenience.
-	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q cards, preferably with a version control system.
-	Researchers should also record the complete Q sorts of participants in an \emph{unhashed} form, such as a picture of the completed sort in full wordings, in case problems with the hashing arise.
+	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q-cards, preferably with a version control system.
+	Researchers should also record the complete Q-sorts of participants in an \emph{unhashed} form, such as a picture of the completed sort in full wordings, in case problems with the hashing arise.
 
   When \code{output.pdf = TRUE}, the function will sometimes fail with the error message \code{Running 'texi2dvi' on ... failed}.
   This is not a bug with the function, but simply indicates that the path to pdflatex is not available in the current R environment.
