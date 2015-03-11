@@ -64,7 +64,9 @@ import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup=NULL
 					colClasses = c("character","character","logical"),
 					na.strings = "" #  empty cells become NAs
 				)
-				current.feedback <- current.feedback[!(current.feedback[,2]),]  # drop corrections
+				if (ncol(current.feedback) > 1) {  # if a drop correction column is included
+					current.feedback <- current.feedback[!(current.feedback[,2]),]  # drop corrections
+				}
         for (id in rownames(current.feedback)) {  # loops over ids
 				  if (any(lookup.table == id)) {  # do we know the id in the current feedback?
 				    row <- which(lookup.table == id, arr.ind=TRUE)[,1]  # where is it in the table?

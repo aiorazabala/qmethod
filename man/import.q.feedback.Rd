@@ -43,7 +43,8 @@
 \details{
 	Participants in Q studies are often invited to provide open-ended feedback on items, giving Q researchers a additional information on participants' viewpoints.
 	This feedback is conveniently entered in a spreadsheet editor (2nd column), where each line of feedback corresponds to an item ID (1st column), either a \code{manual.lookup}, or an automatic hash from \code{\link{make.cards}}.
-	An additional (3rd) column indicates whether the current line should be ignored (TRUE), as may be the case for privacy reasons or when the feedback is merely a correction of a typographic error.
+	An additional, optional (3rd) column indicates whether the current line should be ignored (TRUE), as may be the case for privacy reasons or when the feedback is merely a correction of a typographic error.
+	If no such 3rd column is included, all feedback will be imported.
 
 	After an (arbitrary) header line, a CSV file may look like this:
 	\code{c12,"This q-item sounds like r-research to me!",FALSE}, indicating that it should \emph{not} be ignored (\code{FALSE}).
