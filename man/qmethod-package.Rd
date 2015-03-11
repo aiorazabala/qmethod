@@ -26,11 +26,11 @@
   The import functions \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}} and the print function \code{\link{make.cards}} imply three distinct ways to refer to \emph{items}:
   \enumerate{
     \item \emph{Full item wording}, is, obviously, the complete item, such as \code{One small community of indomitable Q-methodologists.} (...) from \code{\link{importexample}}.
-      The full wording is read in from individual TEX files.
+      The full wording is read in from individual *.TEX files.
     \item The item \emph{handle} is a shorthand way of referring to an item, that should be meaningful to the researcher.
       Item handles are \emph{researcher-facing}.
       It is used as rownames in imported data, and expected as filenames for the full wording TEX files.
-    \item The item \emph{ID} is another shorthand way of referring to an item, that should not be intelligble to humans, such as an arbitrary string of characters.
+    \item The item \emph{ID} is another shorthand way of referring to an item, that should not be intelligible to humans, such as an arbitrary string of characters.
     Depending on the used arguments, these IDs can be either hard-entered by setting \code{manual.lookup}, or automatically generated as hashes from the full item wording (default behavior for all functions).
     Item IDs are \emph{participant-facing}.
     Item IDs are used to quickly identify items in any given Q sort, as well as to identify item feedback by participants.

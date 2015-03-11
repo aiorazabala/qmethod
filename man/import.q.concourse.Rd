@@ -2,7 +2,7 @@
 \alias{import.q.concourse}
 \title{Q methodology: import concourse of Q items}
 \description{
-  Imports full set of items (concourse) from a directory of .TEX files (one file per item), including possible translations in separate folders.
+  Imports full set of items (concourse) from a directory of *.TEX files (one file per item), including possible translations in separate folders.
 }
 \usage{
   import.q.concourse(q.concourse.dir, languages=NULL)
@@ -10,9 +10,10 @@
 
 \arguments{
   \item{q.concourse.dir}{
-    A directory of individual .TEX files named as (meaningful, short) handles for items (e.g. \code{happy-feeling.tex}).
-    If \code{languages} are specified, the directory should contain one folder per language, with all full Q items as individual individual TEX files in each language folder.
-    The files within each language folder should be named as the \emph{same} (meaningful, short) item handle (e.g. \code{happy-feeling}) across all languages.
+    A directory of \emph{individual} items in *.TEX files with meaningful, short names (e.g. \code{happy-feeling.tex}).
+    These meaningful, short names are used and referred to as \emph{handles} in other functions and objects.
+    If \code{languages} are specified, the directory should contain one folder per language, with all full Q items as individual individual *.TEX files in each language folder.
+    Items should have the \emph{same} file name across all languages (e.g. \code{happy-feeling}).
     Directories end with a trailing slash, such as \code{study/q-sample/q-concourse/}.
    }
   \item{languages}{
@@ -28,11 +29,11 @@
 
 	For some studies, it is necessary to have the complete items available in several languages.
 
-	This function simply imports all full item wordings and assigns a (meaningful, short) \emph{handle} for the item, based on the file name.
-	These handles should be meaningful to the researcher.
+	This function simply imports all full item wordings and assigns a \emph{handle} for the item, based on the file name.
+	These handles should be short and meaningful to the researcher.
 
-	Individual items as TEX files should include minimal markup, and no trailing whitespace or empty newlines.
-	If you do not need any additional formatting, you can just save plain text files (TXT) with the extension TEX.
+	Individual items as *.TEX files should include minimal markup, and no trailing whitespace or empty newlines.
+	If you do not need any additional formatting, you can just save plain text files (*.TXT) with the extension *.TEX.
 	There is no need to know \href{http://www.latex-project.org}{LaTeX}.
 
 	Returns error if items are not available in all translations.
@@ -42,7 +43,7 @@
   More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 \value{
-	Returns character matrix with (meaningful, short) handles (from file names, such as \code{''q-is-great''}, for example) as rownames, languages (if applicable) as columns and full wording per language in cells.
+	Returns character matrix with handles as row names, languages (if applicable) as columns and full wording per language in cells.
 }
 
 \author{Maximilian Held}

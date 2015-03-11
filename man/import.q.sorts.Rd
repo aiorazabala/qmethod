@@ -18,22 +18,20 @@
   \item{q.sorts.dir}{
 		A relative path to a directory structure where:
 		\itemize{
-			\item folders are \code{conditions} (such as \emph{before} or \emph{after}).
+			\item folders are (within-subject) \code{conditions} (such as \emph{before} or \emph{after}).
 			If there are no \code{conditions} (defaults to \code{NULL}), there should be no folders.
 			\item filenames of *.CSV files are participant names (might be given pseudonyms).
 			\item *.CSV files contain \emph{raw} Q-sorts, beginning with all lines of items, such as \code{,,item-12,item-64,,}.
 			All lines below the maximum Q-sort height will be ignored and can have arbitrary input.
-			For example in a study with a highest column of 8 cards, everything below the 8th line th file will be ignored.
+			For example in a study with a highest column of 8 cards, everything below the 8th line in the file will be ignored.
 			There is no need to include the values of the x-axis (say, \code{-4} to \code{+4}) in these files.
 			If they are included, they should be the last row.
-			\item cells contain a string ID to identify.
-			Meaningful short handles should \emph{not} be used here.
-			If a \code{manual.lookup} is specified, strings from that matrix (see below) are expected.
-			Otherwise, hash values as produced by \code{\link{make.cards}} are expected for identification.
+			\item cells contain a string ID (\emph{not a handle}) to identify.
+			The ID can take two forms, either \emph{manually} specified strings as per the below \code{manual.lookup} option, or \emph{automatic} hash values as produced by \code{\link{make.cards}}.
 		}
 	}
 	\item{q.set}{
-		A matrix with (meaningful, short) handles (\code{''q-is-great''}, for example) as rownames, languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
+		A matrix with handles as row names, languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
 	}
 	\item{q.distribution}{
 		The chosen Q distribution as a vector of integers, such as \code{c(1,3,1)}.
@@ -43,7 +41,7 @@
 		Defaults to \code{NULL} in which case there is only condition, and *.CSV files are expected directly under \code{q.sorts.dir}.
 	}
 	\item{manual.lookup}{
-		A matrix with (meaningful, short) handles (such as \code{''q-is-great''}, same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings (ID, such as \code{''it212''}) in any of the columns as printed on the q-cards by \code{\link{make.cards}}.
+		A matrix with handles (such as \code{''q-is-great''}, same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as row names, and arbitrary, unique identifying strings (ID, such as \code{''it212''}) in any of the columns as printed on the Q-cards by \code{\link{make.cards}}.
 		Defaults to \code{NULL} in which case items are automatically identified by full item hashes, as also used by \code{\link{make.cards}}.
 	}
 }
@@ -53,11 +51,11 @@
 
 	Q-sorts in their raw form have columns as ranks (from, say, \code{-6} to \code{+6}) with cards (items) sorted in rows.
 	The vertical dimension of Q-sorts is \emph{meaningless}.
-	It is recommended that Q-sort data are kept in their rawest form (with clear documentation of any processing applied on this data).
-	This is good practice for reproducible research.
+	It is recommended that Q-sort data are kept in their rawest form, with clear documentation of any processing applied to this data.
+	This is also good practice for reproducible research.
 
 	Q-sorts are best entered not by typing up the full form of an item, but some unique string (ID) printed on the card.
-	So as \emph{not} to influence participants, these strings should be meaningless to humans.
+	So as \emph{not} to influence participants, these strings should be \emph{meaningless} to humans.
 
 	This function offers two ways to build such unique strings (IDs), paralleled by equivalent functions in \code{\link{make.cards}}.
 	\enumerate{
@@ -99,7 +97,7 @@
 	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q-cards, preferably with a version control system.
 	Researchers should also record the complete Q-sorts of participants in an \emph{unhashed} form, such as a picture of the completed sort in full wordings, in case problems with the hashing arise.
 
-	This function does \emph{not} test whether Q sorts were entered correctly into the *.CSV files.
+	This function does \emph{not} test whether Q-sorts were entered correctly into the *.CSV files.
 	It is recommended to enter any given Q-sort more than once and have a spreadsheet editor compare several entry attempts for consistency.
 	This function ignores any entries in *.CSV files below the highest row expected by the \code{q.distribution}.
 }
