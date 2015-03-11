@@ -20,7 +20,7 @@
 
 \arguments{
   \item{q.set}{
-    A matrix with short handles as rownames, languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
+    A matrix with (meaningful, short) handles as rownames (\code{''q-is-great''}, for example), languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
   }
   \item{study.language}{
   	A character vector of length one, choosing a language from \code{q.concourse.dir} and same as in \code{\link{import.q.concourse}} to print items in.
@@ -38,12 +38,12 @@
   	Defaults to \code{TRUE}.
   }
   \item{manual.lookup}{
-  	A matrix with meaningful short handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings in any of the columns as also expected in \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
+  	A matrix with (meaningful, short) handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings in any of the columns as also expected in \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
 		Defaults to \code{NULL} in which case items are automatically identified by full item hashes, as also detected by \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
   }
   \item{wording.font.size}{
     A character vector of length 1 to set the font size of the full item wording on the cards.
-    Defaults to \code{NULL} in which the default font size 12pt is used.
+    Defaults to \code{NULL} in which case the default font size 12pt is used.
     Only \href{http://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing_text}{standard LaTeX font sizes} are allowed, from \code{\\tiny} to \code{\\Huge}.
   }
   \item{file.name}{
@@ -51,11 +51,11 @@
     Defaults to \code{QCards}.
   }
   \item{babel.language}{
-    A character vector of length 1 to set the babel language for appropriate hyphenation, special letters and other international support as provided by the babel LaTeX package.
+    A character vector of length 1 to set the babel language for appropriate hyphenation, special letters and other international support as provided by the \href{https://www.ctan.org/pkg/babel}{babel LaTeX package}.
     Only available babel options are permissible.
     Defaults to \code{NULL}, in which case babel is never called.
-    Changing \code{babel.language} between function class can occassionally leave inconsistent LaTeX temp files, which may trip up compilation.
-    Please re-run the function once again or clean up temp files in that case.
+    Changing \code{babel.language} between function calls can occasionally leave inconsistent LaTeX temp files, which may trip up compilation.
+    Please re-run the function once again or clean up temp files (in the working directory) in that case.
   }
 }
 \details{
@@ -63,16 +63,16 @@
 	Participants require well-printed, well-designed cards for their sorting task, ideally on heavier paper.
 	Cards should include shorthand, unique identifiers to simply later data entry.
 
-	This function prepares a production-quality PDF (or .TEX source), where items are printed on readily-available A4 (or other) business card templates, from which individual cards can be easily broken out.
+	This function prepares a production-quality PDF (or .TEX source), where items are printed on readily-available business card templates, from which individual cards can be easily broken out.
 
 	The function prints the full item wording on the \emph{right} column of any page, and the identifier (ID) on the \emph{left} column.
 	If templates are duplex printed with the same page on the front and back, and in proper orientation, the front of each card includes the full wording, and the back its unique identifier (ID).
 
 	Identifiers (ID) entered manually or automatically hashed from full wordings are also expected in the import functions \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
 
-	Identifiers (ID) in this function \emph{should not be mistaken} for the \emph{meaningful short handles}, also used in several of these functions.
-	Meaningful short handles are meant for researchers only, to easily navigate a larger concourse or sample of items.
-	They should \emph{not} be exposed to participants, because these short handles may be interpreted by participants as unintended, additional stimulus.
+	Identifiers (ID) in this function \emph{should not be mistaken} for the \emph{(meaningful, short) handles}, also used in several of these functions (\code{''q-is-great''}, for example).
+	Handles are meant for researchers only, to easily navigate a larger concourse or sample of items.
+	They should \emph{not} be exposed to participants, because these (meaningful, short) handles may be interpreted by participants as unintended, additional stimulus.
 	Instead, this function expects or creates identifiers (ID) that are not intelligble to participants.
 
 	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.Rnw} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed out multi-page table.

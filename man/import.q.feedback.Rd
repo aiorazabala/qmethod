@@ -18,8 +18,8 @@
 		A relative path to a directory structure where:
 		\itemize{
 			\item folders are \code{conditions} (such as before or after), if there are more than one conditions.
-			\item filenames of .CSV are participant names (might be given pseudneums)
-			\item .CSV containing raw feedback, beginning with an arbitary header line (ignored), and the following columns, starting from the left:
+			\item filenames of .CSV are participant names (might be given pseudonyms)
+			\item .CSV files within folders contain raw feedback, beginning with an arbitary header line (ignored), and the following columns, starting from the left:
 			\enumerate{
 				\item An automatic hash from \code{\link{make.cards}} or a \code{manual.lookup} ID.
 				Each ID only occurs once.
@@ -29,32 +29,33 @@
 		}
 	}
 	\item{q.sorts}{
-		A matrix or array with handles as rownames, participant as colnames, conditions as 3rd dimension and cells as ranks, as produced by \code{\link{import.q.sorts}}.
+		A matrix or array with (meaningful, short) handles as rownames, participant as colnames, conditions as 3rd dimension and cells as ranks, as produced by \code{\link{import.q.sorts}}.
 	}
 	\item{q.set}{
-		A matrix with short handles as rownames, languages in columns, as produced by \code{\link{build.q.set}}.
+		A matrix with (meaningful, short) handles as rownames, languages in columns, as produced by \code{\link{build.q.set}}.
 	}
 	\item{manual.lookup}{
-		A matrix with meaningful short handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings (IDs) in any of the columns as printed on the q-cards by \code{\link{make.cards}}.
-		Defaults to \code{NULL} in which case items are automatically identified by full item hashes, as also used by \code{\link{make.cards}}.
+		A matrix with (meaningful, short) handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings (IDs) (such as \code{'sta121'}) in any of the columns as printed on the q-cards by \code{\link{make.cards}}.
+		Defaults to \code{NULL} in which case items are automatically identified by hashes of full item wordings, as also used by \code{\link{make.cards}}.
 	}
 }
 
 \details{
-	Participants in Q studies are often invited to provide open-ended feedback on items, given Q researchers a additional information on participants' viewpoints.
+	Participants in Q studies are often invited to provide open-ended feedback on items, giving Q researchers a additional information on participants' viewpoints.
 	This feedback is conveniently entered in a spreadsheet editor (2nd column), where each line of feedback corresponds to an item ID (1st column), either a \code{manual.lookup}, or an automatic hash from \code{\link{make.cards}}.
-	An additional (3rd) column indicates whether the current line should be ignored (TRUE), as may be the case for privacy reasons or when the feedback is merely a correction of a typographic error.
+	An additional, optional (3rd) column indicates whether the current line should be ignored (TRUE), as may be the case for privacy reasons or when the feedback is merely a correction of a typographic error.
+	If no such 3rd column is included, all feedback will be imported.
 
-	After an (arbitrary) header line, a CSV may look like this:
+	After an (arbitrary) header line, a CSV file may look like this:
 	\code{c12,"This q-item sounds like r-research to me!",FALSE}, indicating that it should \emph{not} be ignored (\code{FALSE}).
 
-	Item feedback is best enclosed in quotes, allowing comas inside cells.
+	In order to allow commas in the feedback, this should be enclosed with quotes.
 
 	More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 
 \value{
-	Returns a matrix or array (of more than one condition) with short handles as rownames, people as colnames, conditions (if more than one) as 3rd dimname and ranks in cells.
+	Returns a matrix or array (of more than one condition) with (meaningful, short) handles as rownames, people as column names, conditions (if more than one) as 3rd dimension name and Q sort scores in cells.
 	The return parallels the output from \code{\link{import.q.sorts}}, only with feedback as array cells, not ranks.
 }
 
