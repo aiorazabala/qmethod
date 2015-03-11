@@ -35,7 +35,7 @@
 		A matrix with (meaningful, short) handles as rownames, languages in columns, as produced by \code{\link{build.q.set}}.
 	}
 	\item{manual.lookup}{
-		A matrix with (meaningful, short) handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings (IDs) (such as \code{'sta121'}) in any of the columns as printed on the q-cards by \code{\link{make.cards}}.
+		A matrix with (meaningful, short) handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings (IDs) (such as \code{'sta121'}) in any of the columns as printed on the Q-cards by \code{\link{make.cards}}.
 		Defaults to \code{NULL} in which case items are automatically identified by hashes of full item wordings, as also used by \code{\link{make.cards}}.
 	}
 }
