@@ -55,7 +55,7 @@
 }
 
 \value{
-	Returns a matrix or array (of more than one condition) with (meaningful, short) handles as rownames, people as column names, conditions (if more than one) as 3rd dimension name and Q sort scores in cells.
+	Returns a matrix or array (of more than one condition) with (meaningful, short) handles as rownames, people as column names, conditions (if more than one) as 3rd dimension name and Q-sort scores in cells.
 	The return parallels the output from \code{\link{import.q.sorts}}, only with feedback as array cells, not ranks.
 }
 
