@@ -23,7 +23,8 @@ export("qmethod",
        "make.cards",
        "export.qm",
        "make.cards",
-       "array.viz")
+       "array.viz",
+       "pop.sd")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
