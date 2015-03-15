@@ -57,6 +57,7 @@
 
 	Q-sorts are best entered not by typing up the full form of an item, but some unique string (ID) printed on the card.
 	This function, and, analogously, \code{\link{make.cards}} and \code{\link{import.q.feedback}} offer a manual and automatic way to create these IDs, which are then expected as input (see \link{qmethod-package} for details).
+	The automatic summary of full item wordings, technically known as \emph{hashing}, proceeds internally by passing the full item wording to the \code{digest()} function of the package \pkg{digest} (with \code{algo=crc32, serialize=FALSE}.)
 
 	Q-sorts are conveniently entered as *.CSV (comma separated values) files in standard spreadsheet editors.
 	This function ignores any rows in the files below the maximum height of columns expected from \code{q.distribution}.

@@ -51,6 +51,8 @@
 	An additional, optional (3rd) column indicates whether the current line should be ignored (TRUE), as may be the case for privacy reasons or when the feedback is merely a correction of a typographic error.
 	If no such 3rd column is included, all feedback will be imported.
 
+	The automatic summary of full item wordings, technically known as \emph{hashing}, proceeds internally by passing the full item wording to the \code{digest()} function of the package \pkg{digest} (with \code{algo=crc32, serialize=FALSE}.)
+
 	After an (arbitrary) header line, a *.CSV file may look like this:
 	\samp{sta001,"This q-item sounds like r-research to me!",FALSE}, indicating that it should \emph{not} be ignored (\kbd{FALSE}).
 }

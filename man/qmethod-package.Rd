@@ -44,7 +44,7 @@
         The manual IDs are related to the (above) handles using values passed to the \code{manual.lookup} arguments in the above function.
         See the documentation of these functions for details.
         \item A set of hexadecimal \strong{hashed IDs} (such as \kbd{ae128fs}) can be automatically generated and expected by the functions \code{\link{make.cards}}, \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}} if the \code{manual.lookup} argument remains empty and defaults to \code{NULL}.
-        In that case, IDs are computed by ``summarizing'' the \emph{complete} item wordings ("\samp{Q Method is used by a crazy, but charming community of ...}"") into a hexadecimal number ("\kbd{ae128fs}"), a process known as cryptographic \emph{hashing}.
+        In that case, IDs are computed by ``summarizing'' the \emph{complete} item wordings ("\samp{Q Method is used by a crazy, but charming community of ...}") into a hexadecimal number ("\kbd{ae128fs}"), a process known as cryptographic \emph{hashing} (for more details see the \pkg{digest} function).
         These hash values change whenever \emph{anything} in the full item wordings is changed, and allow a precise identification of different versions of an item.
         This function never exposes users to the hash values; the encrypting and decrypting are done under the hood by the respective functions.
         Automatic, hashed IDs are generally recommended and easier to use, but some caveats apply (see \code{\link{make.cards}}).
