@@ -9,8 +9,8 @@
 }
 \usage{importexample}
 \format{
-  Importexample is included as a directory in the package root, including subdirectories as documented in the package documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
-  Importexample is \emph{also} partly included as a ready-made RData datafile in \code{data} so that (cumulative) function examples can run.
+  \code{importexample} is included as a directory in \code{qmethod} package root folder, including subdirectories as documented in the package documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
+  Importexample is \emph{also} partly included as a ready-made RData datafile in the folder \code{qmethod/data} so that (cumulative) function examples can run.
 }
 \source{None.}
 \keyword{datasets}

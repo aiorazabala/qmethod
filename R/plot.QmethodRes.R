@@ -1,7 +1,7 @@
 plot.QmethodRes <- function(x, 
                             xlab='z-scores', ylab='statements',
-                            pchlist=NULL, colours=NULL,
-                            fnames=NULL, legend=TRUE, ...) {
+                            pchlist = NULL, colours = NULL,
+                            fnames = NULL, legend = TRUE, ...) {
   dfr <- x$zsc
   lowlim <- floor(min(dfr[[1]]))
   highlim <- ceiling(max(dfr))
@@ -9,7 +9,8 @@ plot.QmethodRes <- function(x,
   nfactors <- length(dfr)
   dfr <- dfr[order(apply(dfr, 1, sd)), ]
   if (is.null(colours)) colours <- rainbow(length(dfr))
-  if (is.null(fnames)) fnames <- paste0("Factor ", 1:nfactors)
+  if (is.null(fnames) & names(x$zsc)[1] == "zsc_f1") fnames <- paste0("Factor ", 1:nfactors)
+  if (is.null(fnames) & names(x$zsc)[1] != "zsc_f1") fnames <- names(x$zsc)
   dotchart(dfr[[1]], lcolor=grey(0.4),
            xlim=c(lowlim, highlim),
            ylab=ylab, xlab=xlab, axis=NULL,

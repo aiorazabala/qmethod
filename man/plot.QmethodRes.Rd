@@ -7,12 +7,12 @@
             colours=NULL, fnames=NULL, legend=TRUE, ...)
                    }
 \arguments{
-  \item{x}{number of Q-sorts in the study.}
+  \item{x}{results object returned by \code{\link{qmethod}}.}
   \item{xlab}{label for x axis. Defaults to 'z-scores'.}
   \item{ylab}{label for y axis. Defaults to 'statements'.}
   \item{pchlist}{array of \code{pch} symbols to be used in plotting the points for each factor. Defaults to a pre-defined set of symbols.}
   \item{colours}{array of colours to be used when plotting the points for each perspective. Defaults to a pre-defined set of colours based on the \code{\link[grDevices]{rainbow}} palette.}
-  \item{fnames}{names for factors to be used in the legend. Defaults to \code{'Factor 1'}, \code{'Factor 2'}, etc.}
+  \item{fnames}{names for factors to be used in the legend. In results where factor names have not been changed (using, e.g. \code{\link{q.fnames}}) it defaults to \code{'Factor 1'}, \code{'Factor 2'}, etc.}
   \item{legend}{logical; if \code{FALSE}, no \code{legend} will be drawn.}
   \item{...}{other arguments for \code{\link[graphics]{plot}}.}
 
@@ -25,10 +25,11 @@
 }
 \examples{
 data(lipset)
-results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")
+results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax",
+                   forced = TRUE)
 title <- "Q method z-scores, lipset dataset"
 subtitle <- paste0("Three factors, PCA, varimax. Printed on ",
                     Sys.Date())
-plot(results, main=title, sub=subtitle)
+plot(results, main = title, sub = subtitle)
 }
 \keyword{plot}

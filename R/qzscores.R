@@ -1,5 +1,5 @@
 #calculates final z-scores and factor scores, and extracts main results for Q method
-qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, distribution=NA) {    
+qzscores <- function(dataset, nfactors, loa, flagged, forced, distribution = NA) {    
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
@@ -48,7 +48,7 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
     qscores <- sort(dataset[,1], decreasing=FALSE)
   } else {
     qscores <- sort(distribution, decreasing=FALSE)
-    if (length(distribution) != nrow(dataset) | (class(distribution)[1] != "numeric" & class(distribution) != "integer")) stop("Q method input: The distribution of items was set as non-forced and the distribution provided is not suitable (it is the wrong length or it is non numerical)")
+    if (length(distribution) != nrow(dataset) | (class(distribution)[1] != "numeric" & class(distribution) != "integer")) stop("Q method input: The distribution of items was set as non-forced and the distribution provided is not suitable (either the length of the 'distribution' vector is different from the number of statements or the vector contains non-numerical elements)")
   }
   zsc_n <- as.data.frame(zsc)
   f <- 1
@@ -75,15 +75,17 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
   brief$date <- date()
   brief$nstat <- nstat
   brief$nqsorts <- nqsorts
+  brief$distro <- forced
   brief$nfactors <- nfactors
-  brief$rotation <- "unknown"
-  brief$cor.method <- "unknown"
+  brief$rotation <- "Unknown: loadings were provided separately."
+  brief$cor.method <- "Unknown: loadings were provided separately."
   brief$info <- c("Q-method z-scores.",
                   paste0("Finished on:             ", brief$date), 
                   paste0("Original data:           ", brief$nstat, " statements, ", brief$nqsorts, " Q-sorts"),
+                  paste0("Forced distribution:     ", brief$distro),
                   paste0("Number of factors:       ", brief$nfactors),
                   paste0("Rotation:                ", brief$rotation),
-                  paste0("Flagging:                unknown"),
+                  paste0("Flagging:                Unknown: flagged Q-sorts were provided separately."),
                   paste0("Correlation coefficient: ", brief$cor.method))
   # brief <- paste0("z-scores calculated on ", date(), ". Original data: ", nstat, " statements, ", nqsorts, " Q-sorts. Number of factors: ",nfactors,".")
   qmethodresults <- list()

@@ -16,14 +16,14 @@ print.QmethodRes <- function(x, length=10, digits=2, ...) {
   for (i in nxt) {
     cat("\n")
     cat(nl[i], ":\n")
-    print(x[[i]][1:dimsorts, ])
+    print(format(x[[i]][1:dimsorts, ], scientific=F))
     if (dimsorts < x$brief$nqsorts) cat(" (...) See item '...$", i, "' for the full data.\n", sep="")
   }
   nxt <- c("zsc", "zsc_n")
   for (i in nxt) {
     cat("\n")
     cat(nl[i], ":\n")
-    print(x[[i]][1:dimstats, ])
+    print(format(x[[i]][1:dimstats, ], scientific=F))
     if (dimstats < x$brief$nstat) cat(" (...) See item '...$", i, "' for the full data.\n", sep="")
   }
   cat("\n", nl[7], ":\n", sep="")

@@ -1,8 +1,8 @@
 \name{import.q.sorts}
 \alias{import.q.sorts}
-\title{Q methodology: imports q sorts from CSV}
+\title{Q methodology: import Q-sorts from CSV}
 \description{
-	Turns raw Q sorts (from .CSV) into clean, verified q.sorts array or matrix.
+	Turns raw Q-sorts (from *.CSV) into a Q-sorts array (when there are > 2 conditions) or matrix (with single condition).
 }
 \usage{
 	import.q.sorts(
@@ -18,75 +18,84 @@
   \item{q.sorts.dir}{
 		A relative path to a directory structure where:
 		\itemize{
-			\item folders are \code{conditions} (such as \emph{before} or \emph{after}).
+			\item (optional) folders are (within-subjects) \code{conditions} (such as \emph{before} or \emph{after}), if there is more than one condition as per the \code{conditions} argument.
 			If there are no \code{conditions} (defaults to \code{NULL}), there should be no folders.
-			\item filenames of .CSVs are participant names (might be given pseudonyms).
-			\item .CSVs contain \emph{raw} qsorts, beginning with all lines of items, such as \code{,,item-12,item-64,,}.
+			\item filenames of *.CSV files are participant names (might be given pseudonyms).
+			\item *.CSV files contain \emph{raw} Q-sorts, where each line contains item IDs, such as \code{,,sta12,sta64,,}.
+			All lines below the maximum Q-sort height will be ignored and can have arbitrary input.
+			For example, in a study with a highest column of 8 cards, everything below the 8th line in the file will be ignored.
 			There is no need to include the values of the x-axis (say, \code{-4} to \code{+4}) in these files.
 			If they are included, they should be the last row.
-			\item cells contain \emph{not} meaningful short handles, but some string (ID) to identify them as per the \code{manual.lookup} option.
-			If there is no \code{manual.lookup} (defaults to \code{NULL}), this function expects automatically created hashes as created by \code{\link{make.cards}}.
+			\item cells contains either all manual or all automatic item IDs (such as \kbd{sta12}), both as produced by \code{\link{make.cards}}.
 		}
 	}
 	\item{q.set}{
-		A matrix with short handles as rownames, languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
+		A matrix with handles as row names, languages (if applicable) in columns, as read in by \code{\link{build.q.set}}.
 	}
 	\item{q.distribution}{
 		The chosen Q distribution as a vector of integers, such as \code{c(1,3,1)}.
 	}
 	\item{conditions}{
-		A character vector of study conditions, such as \code{c("before","after")}, same as folders under \code{q.sorts.dir}.
-		Defaults to \code{NULL} in which case there is only condition, and CSVs are expected directly under \code{q.sorts.dir}.
+		A character vector of (optional) study (within-subjects) conditions, such as \code{c("before","after")}, same as folders under \code{q.sorts.dir}.
+		Defaults to \code{NULL} in which case there is only one condition, and *.CSV files are expected directly under \code{q.sorts.dir}.
 	}
 	\item{manual.lookup}{
-		A matrix with meaningful short handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as rownames, and arbitary, unique identifying strings (ID) in any of the columns as printed on the q-cards by \code{\link{make.cards}}.
-		Defaults to \code{NULL} in which case items are automatically identified by full item hashes, as also used by \code{\link{make.cards}}.
+		A matrix with handles (such as \kbd{q-is-great}, same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as row names, and arbitrary strings (item IDs, such as \code{''it212''}) in any of the columns as printed on the Q-cards by \code{\link{make.cards}}.
+		Defaults to \code{NULL} in which case items are automatically identified by automatic hash IDs, as also produced by \code{\link{make.cards}}.
 	}
 }
 
 \details{
-	Q sorts in their raw form, as created by participants, have columns as ranks (from, say, \code{-6} to \code{+6}) with cards (items) sorted in rows.
-	The vertical dimension of Q sorts is \emph{meaningless}.
-	For reproduceable research, Q sorts, as all data, should be maintained in their rawest form and any processing should be well-documented.
+  \bold{If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}}.
 
-	That is what this function offers, by reading in Q sorts from the form in which they were entered by participants.
+	This function imports Q-sorts from their raw format stored in *.CSV files, in the form in which they were sorted by participants (applicable to Q-sorts with forced distributions only).
+  
+    Q-sorts in their raw form have columns as ranks (from, say, \code{-6} to \code{+6}) with cards (items) sorted in rows.
+	The vertical dimension of Q-sorts is \emph{meaningless}.
+  
 
-	Q sorts are best entered not by typing up the full form of an item, but some unique string (ID) printed on the card.
-	So as \emph{not} to influence participants, these strings should be meaningless to humans.
-	This function offers either a set of arbitrary strings hard entered by a researcher for identification in \code{manual.lookup}, or expects a cryptographic hash of the complete item wording, as conveniently also created by \code{\link{make.cards}}.
-	These hash values change whenever \emph{anything} in the full item wordings is changed, and allow a precise idenfication of different versions of an item.
+Q-sorts are conveniently entered as *.CSV (comma separated values) files in standard spreadsheet editors.
+  This function ignores any rows in the files below the maximum height of columns expected from \code{q.distribution}.
 
-	Q sorts are conveniently entered as *.CSV (comma separated values) files in popular spreadsheet editors.
-	This function will ignore any rows in the files below the maximum height of columns expected from the \code{q.distribution}.
+    It is recommended that Q-sort data are kept in their rawest form, with clear documentation of any processing applied to this data.
+	This is also good practice for reproducible research.
 
-	This function includes a number of tests to verify the integrity of entered Q sorts:
+	Q-sorts are best entered not by typing up the full form of an item, but some unique string (ID) printed on the card.
+	This function, and, analogously, \code{\link{make.cards}} and \code{\link{import.q.feedback}} offer a manual and automatic way to create these IDs, which are then expected as input (see \link{qmethod-package} for details).
+  
+
+	This function includes a number of tests to verify the integrity of entered Q-sorts:
 	\enumerate{
 		\item \code{manual.lookup} tables provided are tested for duplicate identifiers.
-		\item Function returns a warning if some participants do not have Q sort files under all conditions (applies only if there are more than one \code{conditions}).
-		\item Function errors out if there are IDs in a Q sort not defined in the (automatic or manual) lookup table.
-		\item Function errors out if the distribution in any given Q sort does not conform to the defined \code{q.distribution}.
-		\item Function errors out if there are items in the sample \code{q.set} that cannot be found in any given Q sort.
-		\item Function errors out if there are items in any given Q sort that cannot be found in the sample \code{q.set}.
+		\item Function returns a warning if some participants do not have Q-sort files under all conditions (applies only if there are more than one \code{conditions}).
+		\item Function errors out if there are item IDs in a Q-sort not matched by any manually or automatically specified ID, respectively (see \link{qmethod-package} for details).
+		\item Function errors out if the distribution in a given Q-sort does not conform to the defined \code{q.distribution}.
+		\item Function errors out if there are items in the sample \code{q.set} that cannot be found in any given Q-sort.
+		\item Function errors out if there are items in a given Q-sort that cannot be found in the sample \code{q.set}.
 	}
 
-	More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 
 \value{
-	Returns a matrix or array (of more than one condition) with short handles as rownames, people as colnames, conditions (if more than one) as 3rd dimension and ranks in cells, as expected for analysis by \code{\link{qmethod}}.
+	Returns a matrix (when there is a single condition) or array (with two or more conditions) with handles as row names, people as column names, conditions (if more than one) as 3rd dimension and Q-sort ranks in cells, as expected for analysis by \code{\link{qmethod}}.
+	
+  Notice that \code{\link{qmethod}} expects a matrix (with two dimensions).
+	If you have several conditions, and therefore an array of data, you must pass them to \code{\link{qmethod}} in individual ``slices'' of conditions, using subsetting.
 }
 
 \note{
 	This function currently works only with forced distributions.
 	If you want it to work with free distributions, check out and/or chip in at \url{https://github.com/aiorazabala/qmethod/issues/33}.
 
-	Hashed identification has not been widely tested in Q studies and should be used with great care and only for extra convenience.
-	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q cards, preferably with a version control system.
-	Researchers should also record the complete Q sorts of participants in an \emph{unhashed} form, such as a picture of the completed sort in full wordings, in case problems with the hashing arise.
+ When argument \code{manual.lookup} is set to \code{NULL}, IDs are computed by “summarizing” the complete item wordings (\code{"Q Method is used by a crazy, but charming community of ..."}) into a hexadecimal number (\code{"ae128fs"}), a process known as cryptographic hashing. These hash values change whenever anything in the full item wordings is changed, and allow a precise identification of different versions of an item. This function never exposes users to the hash values; the encrypting and decrypting are done under the hood by the respective functions. Automatic, hashed IDs are generally recommended and easier to use, but some caveats apply.
 
-	The one test this function \emph{cannot} do is whether Q sorts were entered correctly into the .CSVs.
-	It is recommended to enter any given Q sort more than once and have a spreadsheet editor compare several entry attempts for consistency.
-	This function conveniently ignores any entries in CSVs below the highest row expected by the \code{q.distribution}.
+	Hashed identification has not been widely tested in Q studies and should be used with great care and only for extra convenience.
+	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q-cards, preferably with a version control system.
+	Researchers should also record the complete Q-sorts of participants in an \emph{unhashed} form, such as a picture of the completed sort in full wordings, in case problems with the hashing arise.
+
+	This function does \emph{not} test whether Q-sorts were entered correctly into the *.CSV files.
+	It is recommended to enter any given Q-sort more than once and have a spreadsheet editor compare several entry attempts for consistency.
+	This function ignores any entries in *.CSV files below the highest row expected by the \code{q.distribution}.
 }
 
 \author{Maximilian Held}
@@ -100,7 +109,7 @@
 }
 
 \examples{
-  ## Import a Q sample from a directory of CSVs
+  ## Import a Q sample from a directory of *.CSV files
   data(importexample)
   path.sorts <- paste(  # this part is only for the example!
     path.package("qmethod"),  # just to make sure, use absolute path
@@ -113,7 +122,7 @@
     q.set = importexample$q.set,  # as produced by build.q.set
     q.distribution = c(1,2,1), # very simple distribution
     conditions = c("before","after"),  # enter your conditions here, same as in path
-    manual.lookup = matrix(  # ideally empty for automatic hashing, or read in from csv
+    manual.lookup = matrix(  # ideally empty for automatic hashing, or read in from *.CSV file
       c("i01","i02","i03","i04"),
       ncol = 1,
       nrow = 4,

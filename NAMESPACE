@@ -9,6 +9,7 @@ export("qmethod",
        "qzscores",
        "qflag",
        "qfcharact",
+       "q.fnames",
        "qdc",
        "import.pqmethod",
        "build.q.set",
@@ -24,3 +25,4 @@ S3method("summary",
          "QmethodRes")
 S3method("print",
          "QmethodRes")
+

@@ -10,6 +10,7 @@ qdc <- function(dataset, nfactors, zsc, sed) {
     for (i in 1:length(comparisons)) {
       comp <- append(comp, paste("f", comparisons[[i]], collapse="_", sep=""), after = length(comp))
     }
+    # Absolute differences in z-scores (for statistical testing)
     qdc1 <- data.frame(matrix(data=as.numeric(NA), ncol=length(comp), nrow=nrow(dataset), dimnames=list(row.names(dataset), comp)))
     # differences in zsc between factors
     for (n in 1:length(comp)) {
@@ -56,7 +57,19 @@ qdc <- function(dataset, nfactors, zsc, sed) {
         # -- "" leaves empty those which do not fullfil any of the above conditions, i.e. are not consensus neither are clearly distinguishing any factor.
       }
     }
-    qdc.res <- cbind(qdc1, qdc2)
+    # Differences in z-scores (for reporting)
+    qdc3 <- data.frame(matrix(data=as.numeric(NA), ncol=length(comp), nrow=nrow(dataset), dimnames=list(row.names(dataset), comp)))
+    # differences in zsc between factors
+    for (n in 1:length(comp)) {
+      first <-  names(zsc)[grep(paste0("f", comparisons[[n]][1]), 
+                                names(zsc))]
+      second <- names(zsc)[grep(paste0("f", comparisons[[n]][2]), 
+                                names(zsc))]
+      qdc3[n] <- zsc[first] - zsc[second]
+    }
+    qdc3 <- as.data.frame(qdc3)
+    #Bind all together
+    qdc.res <- cbind(qdc3, qdc2)
     ord <- rep(1:length(qdc1), each=2)
     ord[which(1:(length(qdc1)*2) %% 2 == 0)] <- ord[which(1:(length(qdc1)*2) %% 2 == 0)] + length(qdc1)
     qdc.res <- qdc.res[c(length(qdc.res), ord)]
