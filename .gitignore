@@ -1,3 +1,6 @@
 gitHeadInfo.gin
 R/.Rapp.history
 *.DS_Store
+.Rproj.user
+.Rhistory
+qmethod.Rproj
