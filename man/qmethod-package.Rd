@@ -34,7 +34,7 @@
         Item handles are \emph{researcher-facing} and are used to refer to items during data \emph{analysis}.
         Item handles are read in from the \emph{filenames} of individual *.TEX in \code{\link{import.q.concourse}}.
         Handles are used to identify items in many other functions and their respective results objects.
-        For example, resulting array or matrix from \code{\link{import.q.sorts}} carries the these handles as row names.
+        For example, the resulting array or matrix from \code{\link{import.q.sorts}} carries these handles as row names.
       \item The item \strong{ID} is another shorthand way of referring to an item, that should be \emph{meaningless} to humans, such as an arbitrary string of characters.
       Item IDs are \emph{participant-facing} and are used to identify items during data \emph{entry}.
       (They should be meaningless so as not to influence the participants in unintended ways.)

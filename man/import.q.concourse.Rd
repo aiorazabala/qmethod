@@ -11,7 +11,7 @@
 \arguments{
   \item{q.concourse.dir}{
     A directory of \emph{individual} item wordings in *.TEX files with handles as filenames (e.g. \kbd{happy-feeling.tex}).
-    If \code{languages} are specified, the directory should contain one folder per language, with all full item wordings as individual individual *.TEX files in \emph{each} language folder.
+    If \code{languages} are specified, the directory should contain one folder per language, with all full item wordings as individual *.TEX files in \emph{each} language folder.
     Items should have the \emph{same} file name across all languages (e.g. \kbd{happy-feeling.tex}).
     Directories end with a trailing slash, such as \code{study/q-sample/q-concourse/}.
    }

@@ -20,7 +20,7 @@
 			\item (optional) folders are \code{conditions} (such as \kbd{before} and \kbd{after}), if there is more than one condition.
 			Conditions are inferred from the specified \code{q.sorts}.
 			If there are no conditions, there should be no folders.
-			\item filenames of *.CSV are participant names (might be given pseudonyms)
+			\item filenames of *.CSV are participant names (might be given pseudonyms).
 			\item *.CSV files within folders contain raw feedback, beginning with an arbitrary header line (ignored), and the following columns, starting from the left:
 			\enumerate{
 				\item An ID, either as an automatic hash or manually specified (see \link{qmethod-package}), as specified per the \code{manual.lookup} option of \code{\link{make.cards}}.

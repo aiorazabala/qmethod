@@ -3,7 +3,7 @@
 \title{Q methodology: produce printable cards for Q study with ID and full item wording}
 \description{
   Creates cards for administering a Q study.
-  Full item wordings are printed on the front of business cards, item IDs on the back.
+  Full item wordings are printed on the front of business cards and item IDs on the back.
 }
 \usage{
   make.cards(
@@ -73,7 +73,7 @@
 
 	Identifiers (ID) entered manually or automatically hashed from full wordings are also expected in the import functions \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
 
-	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.Rnw} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed-out multi-page table.
+	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.RNW} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed-out multi-page table.
 }
 
 \value{

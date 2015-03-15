@@ -37,7 +37,7 @@
 	}
 	\item{conditions}{
 		A character vector of (optional) study (within-subjects) conditions, such as \code{c("before","after")}, same as folders under \code{q.sorts.dir}.
-		Defaults to \code{NULL} in which case there is only condition, and *.CSV files are expected directly under \code{q.sorts.dir}.
+		Defaults to \code{NULL} in which case there is only one condition, and *.CSV files are expected directly under \code{q.sorts.dir}.
 	}
 	\item{manual.lookup}{
 		A matrix with handles (such as \kbd{q-is-great}, same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as row names, and arbitrary strings (item IDs, such as \code{''it212''}) in any of the columns as printed on the Q-cards by \code{\link{make.cards}}.
