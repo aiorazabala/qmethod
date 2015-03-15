@@ -49,10 +49,10 @@
   \bold{If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}}.
 
 	This function imports Q-sorts from their raw format stored in *.CSV files, in the form in which they were sorted by participants (applicable to Q-sorts with forced distributions only).
-  
+
     Q-sorts in their raw form have columns as ranks (from, say, \code{-6} to \code{+6}) with cards (items) sorted in rows.
 	The vertical dimension of Q-sorts is \emph{meaningless}.
-  
+
 
 Q-sorts are conveniently entered as *.CSV (comma separated values) files in standard spreadsheet editors.
   This function ignores any rows in the files below the maximum height of columns expected from \code{q.distribution}.
@@ -62,7 +62,11 @@ Q-sorts are conveniently entered as *.CSV (comma separated values) files in stan
 
 	Q-sorts are best entered not by typing up the full form of an item, but some unique string (ID) printed on the card.
 	This function, and, analogously, \code{\link{make.cards}} and \code{\link{import.q.feedback}} offer a manual and automatic way to create these IDs, which are then expected as input (see \link{qmethod-package} for details).
-  
+
+	The automatic summary of full item wordings, technically known as \emph{hashing}, proceeds internally by passing the full item wording to the \code{digest()} function of the package \pkg{digest} (with \code{algo=crc32, serialize=FALSE}.)
+
+	Q-sorts are conveniently entered as *.CSV (comma separated values) files in standard spreadsheet editors.
+	This function ignores any rows in the files below the maximum height of columns expected from \code{q.distribution}.
 
 	This function includes a number of tests to verify the integrity of entered Q-sorts:
 	\enumerate{
@@ -78,7 +82,7 @@ Q-sorts are conveniently entered as *.CSV (comma separated values) files in stan
 
 \value{
 	Returns a matrix (when there is a single condition) or array (with two or more conditions) with handles as row names, people as column names, conditions (if more than one) as 3rd dimension and Q-sort ranks in cells, as expected for analysis by \code{\link{qmethod}}.
-	
+
   Notice that \code{\link{qmethod}} expects a matrix (with two dimensions).
 	If you have several conditions, and therefore an array of data, you must pass them to \code{\link{qmethod}} in individual ``slices'' of conditions, using subsetting.
 }

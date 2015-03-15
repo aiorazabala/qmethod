@@ -15,7 +15,7 @@
     The function \code{\link{qmethod}} wraps them all.
 
     The functions for each step may be used separately for advanced analysis, for example, for manual flagging (see details in \code{\link{qzscores}}).
-    
+
     The package also includes additional functions for the following:
 
     \itemize{
@@ -36,7 +36,7 @@
 
   \subsection{Terminology}{
     The functions for analysis use the terms standard in Q methodology.
-    
+
     In addition, the optional functions to import raw data from separate *.CSV files (\code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}}) and the card printing function (\code{\link{make.cards}}) refer to items in three distinct ways:
     \enumerate{
       \item Item \strong{full wording}, is the complete item, such as "\samp{One small community of indomitable Q-methodologists ...}" (from \code{\link{importexample}}).
@@ -48,12 +48,16 @@
         Handles can be used to identify items in other functions and their outputs.
         For example, the resulting array or matrix from \code{\link{import.q.sorts}} carries these handles as row names.
       \item The item \strong{ID} is another shorthand way of referring to an item, that should be \emph{meaningless} to humans (so as not to influence the participants in unintended ways), such as an arbitrary string of characters.
-      Item IDs are \emph{participant-facing} and are used to identify items during data \emph{entry}. 
+      Item IDs are \emph{participant-facing} and are used to identify items during data \emph{entry}.
       The item ID can take two forms, depending on function arguments specified by the user:
       \enumerate{
         \item Standard \strong{IDs} (such as \kbd{sta12}, \kbd{sta13}) which are generated automatically in \code{\link{qmethod}} or can be provided by the user using the respective \code{manual.lookup} arguments in \code{\link{make.cards}}, \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
         See the documentation of these functions for details.
-        \item Hexadecimal cryptographic \strong{hashed IDs} (such as \kbd{ae128fs}) can be automatically generated in functions in \code{\link{make.cards}}, \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}} when the argument \code{manual.lookup} is \code{NULL}. Automatic, hashed IDs have advantages, but some caveats apply (see \code{\link{make.cards}}).
+        \item A set of hexadecimal \strong{hashed IDs} (such as \kbd{ae128fs}) can be automatically generated and expected by the functions \code{\link{make.cards}}, \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}} if the \code{manual.lookup} argument remains empty and defaults to \code{NULL}.
+        In that case, IDs are computed by ``summarizing'' the \emph{complete} item wordings ("\samp{Q Method is used by a crazy, but charming community of ...}") into a hexadecimal number ("\kbd{ae128fs}"), a process known as cryptographic \emph{hashing} (for more details see the \pkg{digest} function).
+        These hash values change whenever \emph{anything} in the full item wordings is changed, and allow a precise identification of different versions of an item.
+        This function never exposes users to the hash values; the encrypting and decrypting are done under the hood by the respective functions.
+        Automatic, hashed IDs are generally recommended and easier to use, but some caveats apply (see \code{\link{make.cards}}).
       }
     }
   For more information on this terminology and the rationale behind it, consider the best practices suggested by Maximilian Held on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
@@ -62,7 +66,7 @@
   \subsection{Suggested File Structure}{
     For studies in which each Q-sort and item are kept in separate *.CSV files, the import functions \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}} and the print function \code{\link{make.cards}} require a nested directory structure in the study folder, an example of which can be found in \code{../qmethod/extdata/importexample}.
     Although recommended for complex studies, this structure is not necessary for using the data analysis functions or for exploring and exporting results.
-    
+
     If the suggested file structure is followed, the subdirectories for (within-subjects) \emph{conditions} and \emph{languages} are optional, and need to be used only if there are more than one condition and language, respectively.
     Arguments \code{conditions} and \code{languages} for the above import functions must be specified accordingly.
 
