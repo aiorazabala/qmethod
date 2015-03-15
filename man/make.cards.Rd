@@ -110,5 +110,5 @@
 \examples{
  ## Make cards from importexample
  data(importexample)
- make.cards(importexample$q.set)
+ make.cards(importexample$q.set, output.pdf = FALSE)
 }
