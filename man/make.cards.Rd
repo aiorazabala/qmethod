@@ -2,8 +2,8 @@
 \alias{make.cards}
 \title{Q methodology: produce printable cards for Q study with ID and full item wording}
 \description{
-  Creates production quality cards for administering a Q study.
-  Full item wordings are printed on the front of business cards, item identifiers (ID) on the back.
+  Creates cards for administering a Q study.
+  Full item wordings are printed on the front of business cards and item IDs on the back.
 }
 \usage{
   make.cards(
@@ -20,14 +20,15 @@
 
 \arguments{
   \item{q.set}{
-    A matrix with handles as row names (\code{''q-is-great''}, for example), languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
+    A matrix with handles as row names ("\code{q-is-great}", for example), languages (if applicable) in columns, as produced by \code{\link{build.q.set}}.
   }
   \item{study.language}{
-  	A character vector of length one, choosing a language from \code{q.concourse.dir} and same as in \code{\link{import.q.concourse}} to print items in.
-  	Defaults to \code{NULL}, in which case the first column from \code{q.concourse} is selected.
+  	A character vector of length 1.
+    Must be one of the languages from the column names in the specified \code{q.set} (which will be the same as the respective Q concourse object).
+  	Defaults to \code{NULL}, in which case the first column from \code{q.set} is selected.
   }
   \item{paper.format}{
-  	A character vector of length one, choosing among available templates of business card sheets.
+  	A character vector of length 1, choosing among available templates of business card sheets.
   	Defaults to the only currently available \code{"AveryZweckformC32010.Rnw"}.
     Must include file extension of template.
   }
@@ -59,25 +60,20 @@
   }
 }
 \details{
-	Preparing cards with full items and identifiers (IDs) quickly becomes cumbersome if a study is done several times or if items change frequently.
-	Participants require well-printed, well-designed cards for their sorting task, ideally on heavier paper.
-	Cards should include shorthand, unique identifiers to simply later data entry.
+  \bold{If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}}.
 
-	This function prepares a production-quality PDF (or .TEX source), where items are printed on readily-available business card templates, from which individual cards can be easily broken out.
+	Preparing cards with full items and IDs quickly becomes cumbersome if a study is done several times or if items change frequently.
+	Participants require well-printed, well-designed cards for their sorting task, ideally on heavier paper.
+	Cards should include shorthand, unique identifiers to simplify later data entry.
+
+	This function prepares a properly typeset *.PDF (or *.TEX source), where items are printed on readily-available business card templates, from which individual cards can be easily broken out.
 
 	The function prints the full item wording on the \emph{right} column of any page, and the identifier (ID) on the \emph{left} column.
 	If templates are duplex printed with the same page on the front and back, and in proper orientation, the front of each card includes the full wording, and the back its unique identifier (ID).
 
 	Identifiers (ID) entered manually or automatically hashed from full wordings are also expected in the import functions \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
 
-	Identifiers (ID) in this function \emph{should not be mistaken} for the \emph{(meaningful, short) handles}, also used in several of these functions (\code{''q-is-great''}, for example).
-	Handles are meant for researchers only, to easily navigate a larger concourse or sample of items.
-	They should \emph{not} be exposed to participants, because these (meaningful, short) handles may be interpreted by participants as unintended, additional stimulus.
-	Instead, this function expects or creates identifiers (ID) that are not intelligible to participants.
-
-	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.Rnw} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed-out multi-page table.
-
-  More details on the files and directory structure expected by this function can be found in the \link{qmethod-package} documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
+	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.RNW} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed-out multi-page table.
 }
 
 \value{
@@ -92,6 +88,7 @@
   When \code{output.pdf = TRUE}, the function will sometimes fail with the error message \code{Running 'texi2dvi' on ... failed}.
   This is not a bug with the function, but simply indicates that the path to pdflatex is not available in the current R environment.
   To fix this issue, compile the resulting TEX manually, use RStudio or try \href{http://www.r-bloggers.com/building-r-packages-missing-path-to-pdflatex/}{this fix}.
+  You can also report other suggestions \href{https://github.com/aiorazabala/qmethod/issues/110}{here}.
 
   This function does \emph{not} automatically scale the font size to fit the given card size.
   Instead, users will have to proceed by trial and error, using a \code{wording.font.size} that works for their longest item.
