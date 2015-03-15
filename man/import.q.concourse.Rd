@@ -17,7 +17,7 @@
    }
   \item{languages}{
   	A character vector of languages, same as folders below \code{q.concourse.dir}.
-  	If your concourse is monolingual, leave empty, defaults to \code{NULL}.
+  	If your concourse is monolingual, leave empty. Defaults to \code{NULL}.
   }
 }
 \details{

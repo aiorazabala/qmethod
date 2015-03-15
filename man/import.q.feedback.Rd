@@ -46,9 +46,9 @@
 \details{
   \bold{If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}}.
 
-	Participants in Q studies are often invited to provide open-ended feedback on items, giving Q researchers additional information on participants' viewpoints.
+	Participants in Q studies are often invited to provide open-ended feedback on items, giving researchers additional information on participants' viewpoints.
 	This feedback is conveniently entered in a spreadsheet editor (2nd column), where each line of feedback corresponds to an item ID (1st column)
-	An additional, optional (3rd) column indicates whether the current line should be ignored (TRUE), as may be the case for privacy reasons or when the feedback is merely a correction of a typographic error.
+	An additional, optional (3rd) column indicates whether the current line should be ignored (\code{TRUE}), as may be the case for privacy reasons or when the feedback is merely a correction of a typographic error.
 	If no such 3rd column is included, all feedback will be imported.
 
 	After an (arbitrary) header line, a *.CSV file may look like this:
