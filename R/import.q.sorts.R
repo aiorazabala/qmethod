@@ -12,6 +12,20 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
   if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
     stop("The manual.lookup specified is not a matrix.")
   }
+  if (!is.null(conditions)) {  # test conditions subdir only if there are conditions
+    for (cond in conditions) {
+      if (!file.exists(paste(q.sorts.dir, cond, "/", sep="")))
+      {
+        stop(
+          paste(
+            "Folder for condition",
+            cond,
+            "could not be found."
+          )
+        )
+      }
+    }
+  }
 
   # Deal with no conditions
   if (is.null(conditions)) {
@@ -120,7 +134,8 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
                 path,
                 "contains id",
                 id,
-                "not defined in the lookup table."
+                "is not defined as per manual.lookup and was ignored.",
+                "Check whether you defined manual.lookup argument as intended."
               )
             )
           }
