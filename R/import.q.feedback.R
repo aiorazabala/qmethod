@@ -81,7 +81,8 @@ import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup=NULL
 				        path,
 				        "under id",
 				        id,
-				        "is not defined in the lookup table and was ignored."
+				        "is not defined as per manual.lookup and was ignored.",
+				        "Check whether you defined manual.lookup argument as intended."
 				      )
 				    )
 				  }
