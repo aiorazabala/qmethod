@@ -21,8 +21,7 @@ Returns the object \code{results} of class \code{"QmethodRes"}, with the new fac
 }
 \examples{
 data(lipset)
-results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax", 
-                   forced = TRUE)
+results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax")
 factor.names <- c("good", "bad", "ugly") 
 results2 <- q.fnames(results, fnames = factor.names)
 results #shows all results

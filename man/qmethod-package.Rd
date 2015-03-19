@@ -96,8 +96,7 @@ Peter Schmolck's Q Method Page, with further references, datasets and the PQMeth
 }
 \examples{
 data(lipset)
-results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax",
-                   forced = TRUE)
+results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax")
 summary(results)
 results
 }

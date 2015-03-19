@@ -1,5 +1,5 @@
 #calculates final z-scores and factor scores, and extracts main results for Q method
-qzscores <- function(dataset, nfactors, loa, flagged, forced, distribution = NA) {    
+qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distribution = NULL) {    
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
@@ -46,9 +46,13 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced, distribution = NA)
   #D. FACTOR SCORES: rounded z-scores
   if (forced) {
     qscores <- sort(dataset[,1], decreasing=FALSE)
-  } else {
+    if (sum(apply(dataset, 2, function(x) sort(x) != qscores)) > 0) stop("Q method input: The argument 'forced' is set as 'TRUE', but your data contains one or more Q-sorts that do not to follow the same distribution.")
+  }
+  if (!forced) {
+    if (is.null(distribution)) stop("Q method input: The argument 'forced' is set as 'FALSE', but no distribution has been provided in the argument 'distribution'.")
+    if (length(distribution) != nrow(dataset)) stop("Q method input: The length of the distribution provided does not match the number of statements.")
+    if (!is.numeric(distribution) & !is.integer(distribution)) stop("Q method input: The distribution provided contains non-numerical values.")
     qscores <- sort(distribution, decreasing=FALSE)
-    if (length(distribution) != nrow(dataset) | (class(distribution)[1] != "numeric" & class(distribution) != "integer")) stop("Q method input: The distribution of items was set as non-forced and the distribution provided is not suitable (either the length of the 'distribution' vector is different from the number of statements or the vector contains non-numerical elements)")
   }
   zsc_n <- as.data.frame(zsc)
   f <- 1

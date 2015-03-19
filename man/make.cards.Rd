@@ -6,12 +6,12 @@
   Full item wordings are printed on the front of business cards and item IDs on the back.
 }
 \usage{
-  make.cards(
+make.cards(
   	q.set,
-  	study.language=NULL,
-  	paper.format="AveryZweckformC32010.Rnw",
-  	output.pdf=TRUE,
-  	manual.lookup=NULL,
+    study.language = NULL,
+    paper.format = "AveryZweckformC32010.Rnw",
+    output.pdf = TRUE,
+    manual.lookup = NULL,
     wording.font.size = NULL,
     file.name = "QCards",
     babel.language = NULL

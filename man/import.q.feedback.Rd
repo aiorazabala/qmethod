@@ -5,12 +5,12 @@
 	Turns raw item feedback (in *.CSV files) into a  verified array or matrix.
 }
 \usage{
-	import.q.feedback(
+import.q.feedback(
 		q.feedback.dir,
 		q.sorts,
 		q.set,
 		manual.lookup=NULL
-	)
+	  )
 }
 
 \arguments{

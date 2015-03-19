@@ -25,8 +25,7 @@
 }
 \examples{
 data(lipset)
-results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax",
-                   forced = TRUE)
+results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax")
 title <- "Q method z-scores, lipset dataset"
 subtitle <- paste0("Three factors, PCA, varimax. Printed on ",
                     Sys.Date())

@@ -5,7 +5,7 @@
 	Turns raw Q-sorts (from *.CSV) into a Q-sorts array (when there are > 2 conditions) or matrix (with single condition).
 }
 \usage{
-import.q.sorts(
+	import.q.sorts(
 		q.sorts.dir,
 		q.set,
 		q.distribution,
@@ -92,7 +92,7 @@ Q-sorts are conveniently entered as *.CSV (comma separated values) files in stan
 	This function currently works only with forced distributions.
 	If you want it to work with free distributions, check out and/or chip in at \url{https://github.com/aiorazabala/qmethod/issues/33}.
 
- When argument \code{manual.lookup} is set to \code{NULL}, IDs are computed by "summarizing" the complete item wordings (\code{"Q Method is used by a crazy, but charming community of ..."}) into a hexadecimal number (\code{"ae128fs"}), a process known as cryptographic hashing. These hash values change whenever anything in the full item wordings is changed, and allow a precise identification of different versions of an item. This function never exposes users to the hash values; the encrypting and decrypting are done under the hood by the respective functions. Automatic, hashed IDs are generally recommended and easier to use, but some caveats apply.
+ When argument \code{manual.lookup} is set to \code{NULL}, IDs are computed by “summarizing” the complete item wordings (\code{"Q Method is used by a crazy, but charming community of ..."}) into a hexadecimal number (\code{"ae128fs"}), a process known as cryptographic hashing. These hash values change whenever anything in the full item wordings is changed, and allow a precise identification of different versions of an item. This function never exposes users to the hash values; the encrypting and decrypting are done under the hood by the respective functions. Automatic, hashed IDs are generally recommended and easier to use, but some caveats apply.
 
 	Hashed identification has not been widely tested in Q studies and should be used with great care and only for extra convenience.
 	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q-cards, preferably with a version control system.
