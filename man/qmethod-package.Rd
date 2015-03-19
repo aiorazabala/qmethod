@@ -30,6 +30,7 @@
          \item Complete concourses (\code{\link{import.q.concourse}})
          \item Item samples (\code{\link{build.q.set}})
       }
+      \item A function to rename the factors in the results, with short, meaningful names (\code{\link{q.fnames}}).
     }
     Use \code{help(package="qmethod")} for a list of all the functions.
   }
