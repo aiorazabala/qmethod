@@ -6,15 +6,15 @@
 
 \arguments{
   \item{dataset}{a matrix or a dataframe containing original data, with statements as rows, Q sorts as columns, and grid column values in each cell.}
-  \item{nfactors}{number of factors to extract using PCA.}
-  \item{zsc}{a matrix with the factor z scores for statements resulting from \code{\link{qzscores}}.}
+  \item{nfactors}{number of factors extracted.}
+  \item{zsc}{a matrix with the factor z-scores for statements resulting from \code{\link{qzscores}}.}
   \item{sed}{a matrix with the standard error of differences resulting from \code{\link{qfcharact}}.}
 }
 
 \details{
-	Finds the distinguishing and consensus statements, based on the absolute differences (SED, calculated in \code{\link{qfcharact}}) between factor z-scores being larger than the standard error of differences for a given pair of factors.
+	Finds the distinguishing and consensus statements, based on the absolute differences between factor z-scores being larger than the standard error of differences (SED, calculated in \code{\link{qfcharact}}) for a given pair of factors.
 
-	Differences that are significant at a p-value < .05 are indicated by \code{'*'}, and differences significant at a p-value < .01 are indicated by \code{'**'}.
+	Differences that are significant at a p-value < .05 are indicated with \code{'*'}, and differences significant at a p-value < .01 are indicated with \code{'**'}.
 
 	Returns a single data frame with the differences in z-scores between each pair of factors and the variable \code{dist.and.cons}, indicating whether each statement is distinguishing or consensus and for which factor(s) it is distinguishing. These are the possible categories in the \code{dist.and.cons} variable:
 	\itemize{

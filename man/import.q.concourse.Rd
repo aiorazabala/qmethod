@@ -2,10 +2,10 @@
 \alias{import.q.concourse}
 \title{Q methodology: import concourse of Q items}
 \description{
-  Imports full set of items (concourse) from a directory of *.TEX files (one file per item), including possible translations in separate folders.
+  Imports a full set of items (statements in a concourse) from a directory of *.TEX files (one file per item), including possible translations in separate folders.
 }
 \usage{
-  import.q.concourse(q.concourse.dir, languages=NULL)
+import.q.concourse(q.concourse.dir, languages = NULL)
 }
 
 \arguments{
@@ -16,13 +16,11 @@
     Directories end with a trailing slash, such as \code{study/q-sample/q-concourse/}.
    }
   \item{languages}{
-  	A character vector of languages, same as folders below \code{q.concourse.dir}.
-  	If your concourse is monolingual, leave empty. Defaults to \code{NULL}.
+  	A character vector of languages, same as folders within \code{q.concourse.dir}.
+  	If the concourse is monolingual, leave empty. Defaults to \code{NULL}.
   }
 }
 \details{
-  \bold{If you are not familiar with the terminology of Q item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}}.
-
 	Q studies are conducted by asking participants (or a P set) to rank order a \emph{sample} (or Q Set) of items, drawn from a universe (or concourse) of items, based on some sampling strategy.
 	A concourse is, simply put, \emph{the sum of all things people could say about a subject matter}.
 
@@ -40,9 +38,11 @@
 	Returns error if items are not available in all translations.
 
   Defaults to monolingual variant.
+  
+  If you are not familiar with the terminology of Q item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 \value{
-	Returns character matrix with handles as row names, languages (if applicable) as columns and full item wording per language in cells.
+	Returns a character matrix with handles as row names, languages (if applicable) as columns and full item wording per language in cells.
 }
 
 \author{Maximilian Held}
@@ -55,16 +55,16 @@
 }
 
 \examples{
-  ## Import a full q concourse from 'importexample' dataset
-  path.concourse <- paste(  # this part is only for the example!
-    path.package("qmethod"),  # just to make sure, use absolute path
-    # import example files are in root/extdata of package
-    "/extdata/importexample/sample/concourse/",  # location of concourse
-    sep = ""
+## Import a full q concourse from 'importexample' dataset
+path.concourse <- paste(            # this part is only for the example!
+  path.package("qmethod"),          # just to make sure, use absolute path
+  # import example files are in root/extdata of package
+  "/extdata/importexample/sample/concourse/",  # location of concourse
+  sep = ""
   )
-  q.concourse <- import.q.concourse(  # import concourse
-    q.concourse.dir = path.concourse, # insert your applicable path here
-    languages = c("english","german") # choose your languages from path here
+q.concourse <- import.q.concourse(  # import concourse
+  q.concourse.dir = path.concourse, # insert your applicable path here
+  languages = c("english","german") # choose your languages from path here
   )
 
 }

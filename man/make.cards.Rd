@@ -7,7 +7,7 @@
 }
 \usage{
 make.cards(
-  	q.set,
+  	 q.set,
     study.language = NULL,
     paper.format = "AveryZweckformC32010.Rnw",
     output.pdf = TRUE,
@@ -60,7 +60,6 @@ make.cards(
   }
 }
 \details{
-  \bold{If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}}.
 
 	Preparing cards with full items and IDs quickly becomes cumbersome if a study is done several times or if items change frequently.
 	Participants require well-printed, well-designed cards for their sorting task, ideally on heavier paper.
@@ -72,9 +71,11 @@ make.cards(
 	If templates are duplex printed with the same page on the front and back, and in proper orientation, the front of each card includes the full wording, and the back its unique identifier (ID).
 
 	Identifiers (ID) entered manually or automatically hashed from full wordings are also expected in the import functions \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
-  The automatic summary of full item wordings, technically known as \emph{hashing}, proceeds internally by passing the full item wording to the \code{digest()} function of the package \pkg{digest} (with \code{algo=crc32, serialize=FALSE}.)
+  The automatic summary of full item wordings, technically known as \emph{hashing}, proceeds internally by passing the full item wording to the \code{\link[digest]{digest}} function of the package \pkg{digest} (with arguments set to \code{algo = crc32, serialize = FALSE}.)
 
 	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.RNW} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed-out multi-page table.
+  
+  If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}
 }
 
 \value{
@@ -86,16 +87,16 @@ make.cards(
 	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q-cards, preferably with a version control system.
 	Researchers should also record the complete Q-sorts of participants in an \emph{unhashed} form, such as a picture of the completed sort in full wordings, in case problems with the hashing arise.
 
-  When \code{output.pdf = TRUE}, the function will sometimes fail with the error message \code{Running 'texi2dvi' on ... failed}.
+  When \code{output.pdf = TRUE}, the function will sometimes fail with the error message\cr \code{"Running 'texi2dvi' on ... failed"}.
   This is not a bug with the function, but simply indicates that the path to pdflatex is not available in the current R environment.
-  To fix this issue, compile the resulting TEX manually, use RStudio or try \href{http://www.r-bloggers.com/building-r-packages-missing-path-to-pdflatex/}{this fix}.
+  To fix this issue, compile the resulting *.TEX manually, use RStudio or try \href{http://www.r-bloggers.com/building-r-packages-missing-path-to-pdflatex/}{this fix}.
   You can also report other suggestions \href{https://github.com/aiorazabala/qmethod/issues/110}{here}.
 
   This function does \emph{not} automatically scale the font size to fit the given card size.
   Instead, users will have to proceed by trial and error, using a \code{wording.font.size} that works for their longest item.
   The default value should work for most Q items.
 
-	This function currently only works for Avery Zweckform C32010 templates, designed in \code{/cardtemplates/AveryZweckformC32010.Rnw}.
+	This function currently only works for Avery Zweckform C32010 templates, designed in\cr \code{/cardtemplates/AveryZweckformC32010.Rnw}.
 	If you would like support for other templates, check out / chip in here: \url{https://github.com/aiorazabala/qmethod/issues/34}.
 }
 
@@ -109,7 +110,7 @@ make.cards(
 }
 
 \examples{
- ## Make cards from importexample
- data(importexample)
- make.cards(importexample$q.set, output.pdf = FALSE)
+## Make cards from importexample
+data(importexample)
+make.cards(importexample$q.set, output.pdf = FALSE)
 }

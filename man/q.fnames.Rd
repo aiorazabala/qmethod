@@ -6,12 +6,12 @@
 q.fnames(results, fnames)}
 
 \arguments{
-  \item{results}{an object of class \code{"QmethodRes"}.}
-  \item{fnames}{a vector with the names of the factors. The number of names provided has to match the number of factors extracted in the object \code{results}. The names cannot begin with a number. A limit of 50 characters is set, to avoid excessively wide columns. Names should ideally contain no spaces or symbols that are used for other purposes in R (e.g. '-', '+', '/' , ). '.' are fine.}
+  \item{results}{an object of class \code{QmethodRes}.}
+  \item{fnames}{a vector with the names of the factors. The number of names provided has to match the number of factors extracted in the object \code{results}. The names cannot begin with a number. A limit of 50 characters is set, to avoid excessively wide columns. Names should ideally contain no spaces or symbols that are used for other purposes in R (e.g. '-', '+', '/' , ). However '.' are fine.}
 }
 
 \value{
-Returns the object \code{results} of class \code{"QmethodRes"}, with the new factor names.
+Returns the object \code{results} of class \code{QmethodRes}, with the new factor names.
 }
 
 \author{Aiora Zabala}
