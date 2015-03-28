@@ -14,7 +14,7 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
   }
   if (!is.null(conditions)) {  # test conditions subdir only if there are conditions
     for (cond in conditions) {
-      if (!file.exists(paste(q.sorts.dir, cond, "/", sep="")))
+      if (!file.exists(paste(q.sorts.dir, cond, sep="")))  # this must not have a trailing slash, file.exists does not like that on win http://r.789695.n4.nabble.com/file-exists-does-not-like-path-names-ending-in-td4683717.html
       {
         stop(
           paste(
@@ -42,8 +42,8 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
       } else {  # if more conditions
         paste (  # here comes the path
           q.sorts.dir,
-          "/",
           cond,  # consider condition in path
+          "/",
           sep = ""
         )
       },
