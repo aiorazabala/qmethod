@@ -2,7 +2,8 @@
 \alias{qzscores}
 \title{Q methodology: z-scores from loadings}
 \description{Calculates factor characteristics, z-scores, and factor scores, provided a matrix of loadings and a matrix of (manually or automatically) flagged Q-sorts.}
-\usage{qzscores(dataset, nfactors, loa, flagged, forced = TRUE, distribution = NULL)}
+\usage{qzscores(dataset, nfactors, loa, flagged, forced = TRUE, 
+         distribution = NULL)}
 
 \arguments{
   \item{dataset}{a matrix or a data frame containing raw data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell.}

@@ -21,6 +21,7 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
     if (length(distribution) != nrow(dataset)) stop("Q method input: The length of the distribution provided does not match the number of statements.")
     if (!is.numeric(distribution) & !is.integer(distribution)) stop("Q method input: The distribution provided contains non-numerical values.")
   }
+  if (length(unique(colnames(dataset))) != nqsorts) stop("Q method input: one or more Q-sort names are duplicated. Please change the names of the dataset by using colnames().")
   
   # Run the analysis
   cor.data <- cor(dataset, method=cor.method)
