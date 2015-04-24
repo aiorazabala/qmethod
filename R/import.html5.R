@@ -27,7 +27,7 @@ import.html5 <- function(filename, ...) {
   vars <- names(a)[-which(names(a) %in% sta)]
   dataset[[2]] <- a[,vars]
 
-  cat("-------------------------------------------------\nThe dataset contains", nqsorts, "Q-sorts and", nstat, "statements\n-------------------------------------------------\nIf this does not correspond to your data,\nplease report to the package maintainer.")
+  cat("-------------------------------------------------\nThe dataset contains", nqsorts, "Q-sorts and", nstat, "statements\n-------------------------------------------------\nIf this does not correspond to your data,\nplease report to the package maintainer.\n")
   
   return(dataset)
 }

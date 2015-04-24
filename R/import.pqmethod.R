@@ -17,6 +17,6 @@ import.pqmethod <- function(file, ...) {
   nqsort.written <- as.numeric(substr(read.delim(file, header=F, stringsAsFactors=F)[1,], 4, 6)) #reads the number of Q-sorts from the number stated in the first line of the DAT file
   if(nqsort.written != length(dataset)) warning(paste0("Q method input: The number of Q-sorts indicated in the first line of the file (", nqsort.written, ") does not correspond with the total number of Q-sorts in the file (", length(dataset), ").\n\nThe file was imported but might contain errors. Please check."))
   
-  cat("-----------------------------------------------\nThe dataset named:\n",substr(read.delim(file, header=F, stringsAsFactors=F)[1,], 11, 1000), "\nwith", length(dataset), "Q-sorts and", nrow(dataset), "statements, was extracted successfully from the file:\n", file, "\n-----------------------------------------------\nPlease inspect the dataset to confirm.")
+  cat("-----------------------------------------------\nThe dataset named:\n",substr(read.delim(file, header=F, stringsAsFactors=F)[1,], 11, 1000), "\nwith", length(dataset), "Q-sorts and", nrow(dataset), "statements, was extracted successfully from the file:\n", file, "\n-----------------------------------------------\nPlease inspect the dataset to confirm.\n")
   return(dataset)
 }
