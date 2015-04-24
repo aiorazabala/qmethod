@@ -18,7 +18,7 @@
   The package also includes additional functions for the following:
 
   \itemize{
-    \item Import data from PQMethod software (\code{\link{import.pqmethod}}), and from both HTML5 and FlashQ (\code{\link{import.htmlq}}).
+    \item Import data from PQMethod software (\code{\link{import.pqmethod}}), and from both HTMLQ and FlashQ (\code{\link{import.htmlq}}).
     \item Export a plain-text report of the analysis for interpretation in two flavours (\code{\link{export.qm}}).
     \item Generic methods to \code{\link{print.QmethodRes}} and \code{\link{plot.QmethodRes}} Q method results.
     \item Generate printable cards for the administration of a Q study. The function \code{\link{make.cards}} produces a PDF with full item wording and codes, ready for printout on business card templates that can be easily broken into individual Q-cards.
