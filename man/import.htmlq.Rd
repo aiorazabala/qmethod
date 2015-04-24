@@ -1,8 +1,8 @@
-\name{import.html5}
-\alias{import.html5}
+\name{import.htmlq}
+\alias{import.htmlq}
 \title{Q methodology: import data from HTMLQ and FlashQ}
 \description{Imports data from *.CSV files created with HTMLQ or FlashQ softwares for Q-sort administration.}
-\usage{import.html5(filename, ...)}
+\usage{import.htmlq(filename, ...)}
 
 \arguments{
   \item{filename}{a file with extension *.CSV (see full description of the file below in References).}

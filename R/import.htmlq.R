@@ -1,4 +1,4 @@
-import.html5 <- function(filename, ...) {
+import.htmlq <- function(filename, ...) {
   if (substr(filename, nchar(filename)-3, nchar(filename)) != ".csv" & substr(filename, nchar(filename)-3, nchar(filename)) != ".DAT") stop("Q method input: the file name provided is not a '.csv' filename")
   
   dataset <- list()
