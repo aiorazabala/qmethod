@@ -1,6 +1,6 @@
 Package: qmethod
-Version: 1.3.0
-Date: 2015-01-13
+Version: 1.4.0
+Date: 2015-05-14
 Title: Analysis of Subjective Perspectives Using Q Methodology
 Authors@R: c(person(given="Aiora", family="Zabala", email="aiora.zabala@gmail.com", role=c("aut", "cre")),
              person(given="Maximilian", family="Held", email="maximilian.held83@gmail.com", role=c("aut"))
