@@ -1,7 +1,7 @@
 \name{qmethod}
 \alias{qmethod}
 \title{Q methodology analysis}
-\description{This function performs a full Q method analysis using principal components analysis (see Notes). The main results are factor characteristics, statement z-scores and factor scores, and distinguising and consensus statements.}
+\description{This function performs a full Q method analysis using principal components analysis (see Notes). The main results are factor characteristics, statement z-scores and factor scores, and distinguishing and consensus statements.}
 \usage{
 qmethod(dataset, nfactors, rotation = "varimax", forced = TRUE, 
         distribution = NULL, cor.method = "pearson", ...)}
