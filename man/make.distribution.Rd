@@ -23,7 +23,7 @@
   }
 }
 \details{
-	Participants in Q studies are frequently asked to sort Q items under a normal distribution.
+	Participants in Q studies are frequently asked to sort Q items under a quasi-normal distribution.
 	This function generates such a Q distribution, given a number of statements \code{nstat} and a desired maximum positive value \code{max.bin} in the Q distribution.
 
   The function always returns an \emph{uneven} number of columns, ensuring that there is always a modal column at the zero mark.
