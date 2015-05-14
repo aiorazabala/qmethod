@@ -1,14 +1,16 @@
 citHeader("To cite 'qmethod' in publications, please use:")
 
 
-citEntry(entry = "manual",
-    title = "{qmethod}: {a}n R package to analyse Q method data",
-    author = "Aiora Zabala",
-    organization = "University of Cambridge",
-    address = "Cambridge, UK",
-    note = "version 1.0",
-    year = "2014",
-    textVersion  = paste("Zabala, A. (2014).",
-        "qmethod: R package to analyse Q method data.",
-        "version 1.0. University of Cambridge. Cambridge, UK.")
+citEntry(entry = "article",
+  title        = "{qmethod}: A Package to Explore Human Perspectives Using Q Methodology",          
+  author       = c(person("Aiora", "Zabala")),     
+  year         = 2014,          
+  journal      = "The R Journal",
+  year         = 2014,
+  volume       = 6,
+  number       = 2,
+  pages        = "163--173",     
+  url          = "http://journal.r-project.org/archive/2014-2/zabala.pdf",
+  textVersion  = "Aiora Zabala. qmethod: A Package to Explore Human Perspectives Using Q Methodology. The R Journal, 6(2):163-173, Dec 2014."
 )
+

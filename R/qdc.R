@@ -17,7 +17,7 @@ qdc <- function(dataset, nfactors, zsc, sed) {
                                 names(zsc))]
       second <- names(zsc)[grep(paste0("f", comparisons[[n]][2]), 
                                 names(zsc))]
-      qdc1[n] <- abs(zsc[first] - zsc[second])
+      qdc1[n] <- zsc[first] - zsc[second]
     }
     qdc2 <- as.data.frame(qdc1)
     # significant differences
@@ -61,5 +61,5 @@ qdc <- function(dataset, nfactors, zsc, sed) {
     ord[which(1:(length(qdc1)*2) %% 2 == 0)] <- ord[which(1:(length(qdc1)*2) %% 2 == 0)] + length(qdc1)
     qdc.res <- qdc.res[c(length(qdc.res), ord)]
   }
-return(qdc.res)
+  return(qdc.res)
 }

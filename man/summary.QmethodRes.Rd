@@ -1,14 +1,14 @@
 \name{summary.QmethodRes}
 \alias{summary.QmethodRes}
-\title{Q methodology: summary for class "QmethodRes"}
-\description{Shows a summary of the results of Q methodology from the \link{qmethod} function: final factor scores and factor characteristics.}
+\title{Q methodology: summary for class 'QmethodRes'}
+\description{Shows a summary of the results of Q methodology from the \code{\link{qmethod}} function: factor scores and factor characteristics.}
 \usage{
 \method{summary}{QmethodRes}(object, ...)
 }
 
 \arguments{
   \item{object}{an object of class \code{QmethodRes} created after \code{\link{qmethod}} function.}
-  \item{...}{any other argument for the \code{summary} function.}
+  \item{...}{any other argument for the \code{\link{summary}} function.}
 }
 \value{
 Returns the summary of the analysis:
@@ -26,6 +26,6 @@ Returns the summary of the analysis:
 }
 \examples{
 data(lipset)
-results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")
+results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax")
 summary(results)
 }

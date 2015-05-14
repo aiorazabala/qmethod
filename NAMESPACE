@@ -14,8 +14,10 @@ export("qmethod",
        "qzscores",
        "qflag",
        "qfcharact",
+       "q.fnames",
        "qdc",
        "import.pqmethod",
+       "import.htmlq",
        "build.q.set",
        "import.q.concourse",
        "import.q.sorts",
@@ -31,3 +33,4 @@ S3method("summary",
          "QmethodRes")
 S3method("print",
          "QmethodRes")
+

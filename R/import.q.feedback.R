@@ -1,4 +1,15 @@
-import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup) {
+import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup=NULL) {
+
+	# Input validation
+	if (!is.matrix(q.set)) {
+    stop("The q.set specified is not a matrix.")
+  }
+  if (!(is.matrix(q.sorts) | is.array(q.sorts))) {
+    stop("The q.sorts specified are neither a matrix nor an array.")
+  }
+  if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
+    stop("The manual.lookup specified is not a matrix.")
+  }
 
 	# Set up empty array ==========================================================
 	q.feedback <- q.sorts # copy data structure from q.sorts
@@ -53,7 +64,9 @@ import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup) {
 					colClasses = c("character","character","logical"),
 					na.strings = "" #  empty cells become NAs
 				)
-				current.feedback <- current.feedback[!(current.feedback[,2]),]  # drop corrections
+				if (ncol(current.feedback) > 1) {  # if a drop correction column is included
+					current.feedback <- current.feedback[!(current.feedback[,2]),]  # drop corrections
+				}
         for (id in rownames(current.feedback)) {  # loops over ids
 				  if (any(lookup.table == id)) {  # do we know the id in the current feedback?
 				    row <- which(lookup.table == id, arr.ind=TRUE)[,1]  # where is it in the table?
@@ -68,7 +81,8 @@ import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup) {
 				        path,
 				        "under id",
 				        id,
-				        "is not defined in the lookup table and was ignored."
+				        "is not defined as per manual.lookup and was ignored.",
+				        "Check whether you defined manual.lookup argument as intended."
 				      )
 				    )
 				  }

@@ -1,4 +1,31 @@
 import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, manual.lookup=NULL) {
+  # Input validation (also see validation at the bottom!)
+  if (!is.matrix(q.set)) {
+    stop("The q.set specified is not a matrix.")
+  }
+  if (!is.vector(q.distribution)) {
+   stop("The q.distribution specified is not a vector.")
+  }
+  if (!is.null(conditions) &  !is.vector(conditions)) {
+    stop("The conditions specified are not a vector.")
+  }
+  if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
+    stop("The manual.lookup specified is not a matrix.")
+  }
+  if (!is.null(conditions)) {  # test conditions subdir only if there are conditions
+    for (cond in conditions) {
+      if (!file.exists(paste(q.sorts.dir, cond, sep="")))  # this must not have a trailing slash, file.exists does not like that on win http://r.789695.n4.nabble.com/file-exists-does-not-like-path-names-ending-in-td4683717.html
+      {
+        stop(
+          paste(
+            "Folder for condition",
+            cond,
+            "could not be found."
+          )
+        )
+      }
+    }
+  }
 
   # Deal with no conditions
   if (is.null(conditions)) {
@@ -15,13 +42,13 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
       } else {  # if more conditions
         paste (  # here comes the path
           q.sorts.dir,
-          "/",
           cond,  # consider condition in path
+          "/",
           sep = ""
         )
       },
-      no.. = TRUE, #  no dotfiles
-      pattern = "\\.csv$"#  only csv
+      no.. = TRUE,  # no dotfiles
+      pattern = "\\.csv$"  # only csv
     )
     p.set.cond <- file_path_sans_ext(p.set.cond) #  kill extensions
     p.set <- append(p.set, p.set.cond) # append vector
@@ -45,7 +72,7 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
   )
 
   # Create lookup table =======================================================
-	if (is.null(manual.lookup)) {  # automatic hashing, same as in make cards
+	if (is.null(manual.lookup)) {  # automatic hashing, same as in make.cards
     lookup.table <- apply(  # replace every language field with its hash
       X = q.set,
       MARGIN = c(1,2),
@@ -92,7 +119,8 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
 				  header = FALSE, #  colnames will do
 				  stringsAsFactors = FALSE, #  would only add confusion
 				  nrows = max(q.distribution), # stuff below is ignored (item feedback, scores etc.)
-				  na.strings = "" #  empty cells become NAs
+				  na.strings = "", #  empty cells become NAs
+				  colClasses = "character"  # just to make sure R doesn't choke (mistakenly identified) irrational numbers :)
 			  )
 			  current.sort <- as.matrix(current.sort) #  because read.csv makes dataframe
         for (id in na.omit(as.vector(current.sort))) {  # loops over ids
@@ -106,7 +134,8 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
                 path,
                 "contains id",
                 id,
-                "not defined in the lookup table."
+                "is not defined as per manual.lookup and was ignored.",
+                "Check whether you defined manual.lookup argument as intended."
               )
             )
           }

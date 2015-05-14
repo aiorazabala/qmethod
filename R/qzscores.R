@@ -1,13 +1,12 @@
 #calculates final z-scores and factor scores, and extracts main results for Q method
-qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, distribution=NA) {
+qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distribution = NULL) {    
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
-  pop.sd <- function(x)(sd(x) * sqrt((length(x)-1)/length(x)))
   #A. select FLAGGED Q sorts
   floa <- flagged*loa #as.data.frame(loa); floa[which(!flagged, arr.ind=T)] <- 0 # the latter does not work in old versions of R
   #B. calculate FACTOR WEIGHTS for each Q sort, in a new matrix -needs to be a data.frame to perform variable calculations
-  fwe <- as.data.frame(apply(floa, 2, function(x) x/(1-x^2))) # this the formula from from Brown 1980: 242
+  fwe <- as.data.frame(apply(floa, 2, function(x) x/(1-x^2)))
   #C. calculate Z-SCORES for each sentence and factor
   #-- new matrix for wsubm*ssubmn (original matrix * q sort factor weight), and transpose
   wraw_all <- list()
@@ -19,29 +18,22 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
     n <- n+1
   }
   #-- sums, average and stdev for each statement
-  #-- also itemsd, the standard dev of each statement across all flagged qsorts
   zsc_sum <- data.frame(cbind(1:nstat))
   zsc_mea <- data.frame(cbind(1:nstat))
-  zsc_std <- data.frame(cbind(1:nstat))  # for zscoring, sd across all items per factor
-  item_sd <- data.frame(cbind(1:nstat))  # for viz, sd across all qsorts on an item per factor
+  zsc_std <- data.frame(cbind(1:nstat))
   row.names(zsc_sum) <- row.names(dataset)
   row.names(zsc_mea) <- row.names(dataset)
   row.names(zsc_std) <- row.names(dataset)
-  row.names(item_sd) <- row.names(dataset)
   n <- 1
   while (n <= length(floa)) {
     zsc_sum[,n] <-      rowSums(wraw_all[[n]])
     zsc_mea[,n] <- mean(rowSums(wraw_all[[n]]))
-    zsc_std[,n] <-   sd(rowSums(wraw_all[[n]]))  # again, this is the sd across all items per factor
-    # here comes the sd across all sorts flagged on a factor
-    wraw_all_flagged <- wraw_all[[n]][,which(!apply(wraw_all[[n]]==0,2,all)), drop=FALSE]  # chose only flagged, drop must be FALSE in case there is only one flagged, which causes errors downstream
-    item_sd[,n] <- apply(wraw_all_flagged,1,pop.sd) # make pop sd
+    zsc_std[,n] <-   sd(rowSums(wraw_all[[n]]))
     n <- n+1
   }
   colnames(zsc_sum) <- paste("z_sum_",c(1:length(floa)),sep="")
   colnames(zsc_mea) <- paste("z_mea_",c(1:length(floa)),sep="")
   colnames(zsc_std) <- paste("z_std_",c(1:length(floa)),sep="")
-  colnames(item_sd) <- paste("item_sd_f",c(1:length(floa)),sep="")
   #-- z-scores for each statement
   zsc <- data.frame(cbind(1:nstat))
   row.names(zsc) <- row.names(dataset)
@@ -54,9 +46,13 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
   #D. FACTOR SCORES: rounded z-scores
   if (forced) {
     qscores <- sort(dataset[,1], decreasing=FALSE)
-  } else {
+    if (sum(apply(dataset, 2, function(x) sort(x) != qscores)) > 0) stop("Q method input: The argument 'forced' is set as 'TRUE', but your data contains one or more Q-sorts that do not to follow the same distribution.")
+  }
+  if (!forced) {
+    if (is.null(distribution)) stop("Q method input: The argument 'forced' is set as 'FALSE', but no distribution has been provided in the argument 'distribution'.")
+    if (length(distribution) != nrow(dataset)) stop("Q method input: The length of the distribution provided does not match the number of statements.")
+    if (!is.numeric(distribution) & !is.integer(distribution)) stop("Q method input: The distribution provided contains non-numerical values.")
     qscores <- sort(distribution, decreasing=FALSE)
-    if (length(distribution) != nrow(dataset) | (class(distribution)[1] != "numeric" & class(distribution) != "integer")) stop("Q method input: The distribution of items was set as non-forced and the distribution provided is not suitable (it is the wrong length or it is non numerical)")
   }
   zsc_n <- as.data.frame(zsc)
   f <- 1
@@ -83,15 +79,17 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
   brief$date <- date()
   brief$nstat <- nstat
   brief$nqsorts <- nqsorts
+  brief$distro <- forced
   brief$nfactors <- nfactors
-  brief$rotation <- "unknown"
-  brief$cor.method <- "unknown"
+  brief$rotation <- "Unknown: loadings were provided separately."
+  brief$cor.method <- "Unknown: loadings were provided separately."
   brief$info <- c("Q-method z-scores.",
-                  paste0("Finished on:             ", brief$date),
+                  paste0("Finished on:             ", brief$date), 
                   paste0("Original data:           ", brief$nstat, " statements, ", brief$nqsorts, " Q-sorts"),
+                  paste0("Forced distribution:     ", brief$distro),
                   paste0("Number of factors:       ", brief$nfactors),
                   paste0("Rotation:                ", brief$rotation),
-                  paste0("Flagging:                unknown"),
+                  paste0("Flagging:                Unknown: flagged Q-sorts were provided separately."),
                   paste0("Correlation coefficient: ", brief$cor.method))
   # brief <- paste0("z-scores calculated on ", date(), ". Original data: ", nstat, " statements, ", nqsorts, " Q-sorts. Number of factors: ",nfactors,".")
   qmethodresults <- list()
@@ -103,9 +101,6 @@ qzscores <- function(dataset, nfactors, loa=loa, flagged=flagged, forced=TRUE, d
   qmethodresults[[6]] <- zsc_n
   qmethodresults[[7]] <- f_char
   names(qmethodresults) <- c("brief", "dataset", "loa", "flagged", "zsc", "zsc_n", "f_char")
-  qmethodresults[[9]] <- item_sd
-  names(qmethodresults)[9] <- "item_sd"
   class(qmethodresults) <- "QmethodRes"
   return(qmethodresults)
 }
-
