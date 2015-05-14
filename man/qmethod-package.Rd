@@ -21,7 +21,7 @@
 
 	The package also features several functions to strengthen reproduceable research, including functions to import q-sorts \code{\link{import.q.sorts}} and participant item feedback (\code{\link{import.q.feedback}}) from flat \code{*.csv} files, as well as complete concourses (\code{\link{import.q.concourse}}) and samples (\code{\link{build.q.set}}).
 
-  The package also includes a function for the administration of a q-study, \code{\link{make.cards}}, which produces a production-quality PDF with full item wordings and codes on business cards ready for printout.
+	The package also includes a function for the administration of a q-study, \code{\link{make.cards}}, which produces a production-quality PDF with full item wordings and codes on business cards ready for printout.
 
   For convenience, the package also includes a helper function \code{\link{make.distribution}} to fit a given number of items under a quasi-normal distribution, with a given maximum value.
 }
