@@ -1,4 +1,5 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/qmethod)](http://cran.r-project.org/web/packages/qmethod)
+[![Build Status](https://travis-ci.org/aiorazabala/qmethod.svg)](https://travis-ci.org/aiorazabala/qmethod)
 
 qmethod
 =======
