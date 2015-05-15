@@ -2,7 +2,7 @@
 ^\.Rproj\.user$
 .git
 .gitignore
-.LICENSE.md
-.README.md
+LICENSE.md
+README.md
 .DS_Store
 .travis.yml
