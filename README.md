@@ -1,3 +1,5 @@
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/qmethod)](http://cran.r-project.org/web/packages/qmethod)
+
 qmethod
 =======
 This R package performs the analysis of Q methodology data. See a [visual demo here](https://azabala.shinyapps.io/shinyapps/qmethod.Rmd), and [more details in the wiki](https://github.com/aiorazabala/qmethod/wiki).
