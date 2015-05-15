@@ -1,0 +1,9 @@
+language: r
+
+# Don't fail just for warnings (though these need to be fixed for CRAN)
+warnings_are_errors: false
+
+sudo: required
+
+r_check_args: --no-examples
+[![Build Status](https://travis-ci.org/aiorazabala/qmethod.svg)](https://travis-ci.org/aiorazabala/qmethod)
