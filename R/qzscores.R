@@ -5,18 +5,8 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
   nqsorts <- ncol(dataset)
   #A. select FLAGGED Q sorts
   floa <- flagged*loa #as.data.frame(loa); floa[which(!flagged, arr.ind=T)] <- 0 # the latter does not work in old versions of R
-  #B. calculate FACTOR WEIGHTS for each Q sort, in a new matrix -needs to be a data.frame to perform variable calculations
-  fwe <- as.data.frame(apply(floa, 2, function(x) x/(1-x^2))) # this the formula from from Brown 1980: 242
-  #C. calculate Z-SCORES for each sentence and factor
-  #-- new matrix for wsubm*ssubmn (original matrix * q sort factor weight), and transpose
-  wraw_all <- list()
-  n <- 1
-  for (i in fwe) {
-    wraw_all[[n]] <- t(t(dataset)*i)
-    names(wraw_all[[n]]) <- paste("wraw_",n,sep="")
-    wraw_all[[n]] <- as.data.frame(wraw_all[[n]])
-    n <- n+1
-  }
+  #B.-C. Factor weights, now separated in qfwe()
+  wraw_all <- qfwe(dataset = dataset, loa = loa, flagged = flagged)
   #-- sums, average and stdev for each statement
   zsc_sum <- data.frame(cbind(1:nstat))
   zsc_mea <- data.frame(cbind(1:nstat))

@@ -26,7 +26,8 @@ export("qmethod",
        "export.qm",
        "make.cards",
        "array.viz",
-       "pop.sd")
+       "pop.sd",
+       "qfwe")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
