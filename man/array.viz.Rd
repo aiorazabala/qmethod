@@ -88,10 +88,10 @@
 }
 
 \examples{
-    data(lipset)  # use data included with this package
-    results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")  # run analysis
-    plots <- array.viz(QmethodRes = results)  # produces plots list
-    plots[1]  # retrieves and prints plot for first factor
+    # data(lipset)  # use data included with this package
+    # results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")  # run analysis
+    # plots <- array.viz(QmethodRes = results)  # produces plots list
+    # plots[1]  # retrieves and prints plot for first factor
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
