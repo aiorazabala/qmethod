@@ -33,4 +33,3 @@ S3method("summary",
          "QmethodRes")
 S3method("print",
          "QmethodRes")
-

@@ -3,7 +3,7 @@
 \title{Q methodology: calculate population standard deviation}
 \description{
 	Calculates the \emph{population} standard deviation.
-	This is just a helper function because base R's \code{sd()} gives the \emph{sample} standard deviation.
+	Wraps base R's \code{\link[stats]{sd}}.
 }
 \usage{
 	pop.sd(x, ...)
@@ -21,7 +21,12 @@
 	Base R provides only a \emph{sample} standard deviation, as documented for \code{\link[stats]{sd}}.
 	Q methodology requires a \emph{population} standard deviation in several places.
 	This function calculates a population standard deviation from a sample standard deviation as per this fix: \url{http://stackoverflow.com/questions/6457755/standard-deviation-in-r-seems-to-be-returning-the-wrong-answer-am-i-doing-some}.
-	This is an internal helper function that is exposed to users who may manually calculate population standard deviations.
+	This is helper function is exposed for advanced users who may wish to calculate population standard deviations for custom analyses.
 }
 
 \author{Maximilian Held}
+
+\examples{
+  pop.sd(c(1,2))
+  sd(c(1,2))  # notice the difference
+}
