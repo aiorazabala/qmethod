@@ -9,11 +9,11 @@
 }
 
 \usage{
-	q.item.sd(qmethodresults)
+	q.item.sd(results)
 }
 
 \arguments{
-  \item{qmethodresults}{
+  \item{results}{
   	An object of class \code{QMethodRes}, as produced by \code{\link{qmethod}}.
 	}
 }
