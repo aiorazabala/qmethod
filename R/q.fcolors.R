@@ -46,6 +46,5 @@ q.fcolors <- function(results, fcolors = NULL, color.scheme = "Set1") {
     fcolors <- brewer.pal(n = results$brief$nfactors, name = color.scheme)
   }
   results$brief$fcolors <- fcolors
-  plot(results)
   return(invisible(results))
 }
