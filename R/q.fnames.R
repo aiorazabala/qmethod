@@ -19,5 +19,9 @@ q.fnames <- function(results, fnames) {
   rownames(results[[7]]$characteristics) <- fnames
   dimnames(results[[7]]$cor_zsc) <- list(fnames, fnames)
   dimnames(results[[7]]$sd_dif)  <- list(fnames, fnames)
+  # Factor colors
+  if (!is.null(results$brief$fcolors)) {  # when there are factor colors
+    names(results$brief$fcolors) <- fnames
+  }
   return(results)
 }
