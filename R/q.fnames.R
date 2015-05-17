@@ -1,10 +1,15 @@
 q.fnames <- function(results, fnames) {
-  # Error checks 
-  if (class(results) != "QmethodRes") stop("The object provided is not of class 'QmethodRes'")
+  # Error checks
+  if (class(results) != "QmethodRes") stop("The object provided is not of class 'QmethodRes'.")
   comb <- array(sapply(fnames, function(x) substring(x,1,1)))
   nos <- 0:9
+  if (!is.vector(fnames)) {  # correct type?
+    stop(
+      "The factor names specified are not a vector."
+    )
+  }
   if(sum(comb %in% nos) > 0) stop("The names should not begin with a number")
-  if (length(fnames) != results$brief$nfactors) stop(paste0("The names provided (", length(names), ") does not match the number of factors in the results (", results$brief$nfactors, ")"))
+  if (length(fnames) != results$brief$nfactors) stop(paste0("The names provided (", length(fnames), ") does not match the number of factors in the results (", results$brief$nfactors, ")"))
   if (max(nchar(fnames)) > 50) stop("The names provided are longer than 50 characters.")
   
   # Change factor names for meaningful names
