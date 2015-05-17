@@ -28,7 +28,8 @@ export("qmethod",
        "array.viz",
        "pop.sd",
        "qfwe",
-       "q.item.sd")
+       "q.item.sd",
+       "q.fcolors")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
