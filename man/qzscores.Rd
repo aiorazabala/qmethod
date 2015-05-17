@@ -20,7 +20,7 @@ The loadings from \code{principal(...)$loadings} can be explored to decide upon 
 \value{
 Returns a list of class \code{QmethodRes}, with seven objects:
 \item{brief}{a list with the basic values of the analysis: date (\code{"date"}), number of statements (\code{"nstat"}), number of Q-sorts (\code{"nqsort"}), whether the distribution was 'forced' (\code{"distro"}),  number of factors extracted (\code{"nfactors"}), type or rotation (\code{"rotation"}), method for correlation in the PCA (\code{"cor.method"}), and a summary of this information for display purposes (\code{"info"}).}
-\item{rawdata}{original data.}
+\item{dataset}{original data.}
 \item{loa}{factor loadings for Q-sorts.}
 \item{flagged}{logical dataframe of flagged Q-sorts.}
 \item{zsc}{statements z-scores.}
