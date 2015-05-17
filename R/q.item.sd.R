@@ -3,13 +3,13 @@ q.item.sd <- function(results) {
 
   # Input validation
   if (class(results) != "QmethodRes") {
-    stop("The input needs to be an object of class QmethodRes, as produced by qmethod()")
+    stop("The object provided is not of class 'QmethodRes'.")
   }
-  
+
   # Calculate item standard deviation
   wraw_all <- qfwe(  # take all objects from existing qmethod result
     dataset = results$dataset,
-    loa = results$loa, 
+    loa = results$loa,
     flagged = results$flagged
   )  # notice that all of the below depends on a SPECIFIC qmethod result, hence the importing
   item_sd <- data.frame(cbind(rep(x = NA, results$brief$nstat)))
