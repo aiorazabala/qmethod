@@ -35,6 +35,4 @@ Or, you know, just hack away.
 Please, though, be kind enough to squash your own `R CMD check` issues as they arise.
 It's very hard to fix very many of them once they pile up, and CRAN must be obeyed :smirk:
 
-(Now with travis.ci continuous integration test)
-
 
