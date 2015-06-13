@@ -5,7 +5,9 @@ import("methods",
        "xtable",
        "knitr",
        "ggplot2",
-       "stringr")
+       "stringr",
+       "paran",
+       "nFactors")
 importFrom("plyr","count")
 importFrom("reshape2","melt")
 importFrom("digest", "digest")
@@ -29,7 +31,8 @@ export("qmethod",
        "pop.sd",
        "qfwe",
        "q.item.sd",
-       "q.fcolors")
+       "q.fcolors",
+       "q.nfactors")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
