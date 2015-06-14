@@ -1,5 +1,41 @@
 q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05) {
-  # TODO(maxheld83) add input verification
+  # Input verification
+  if (!is.numeric(as.matrix(dataset)) & !is.integer(as.matrix(dataset))) {
+    stop("Q method input: The data frame or matrix entered has non-numerical values.")
+  }  # tests is from qmethod
+  if (!is.null(q.matrix)) {
+    if (!is.matrix(q.matrix)) {
+      stop("The specified q.matrix is not a matrix.")
+    }
+    if (!is.numeric(q.matrix)) {
+      stop("The specified q.matrix is not a matrix.")
+    }
+    if (ncol(q.matrix) != nrow(q.matrix)) {
+      stop("The specified q.matrix is not square.")
+    }
+  }
+  if (!is.null(cutoff)) {
+    if (cutoff > ncol(dataset)) {
+      stop("The specified cutoff is too large.")
+    }
+    if (!is.vector(cutoff) & !is.integer(cutoff)) {
+      stop("The specified cutoff is not an integer vector.")
+    }
+    if (length(cutoff) != 1) {
+      stop("The specified cutoff is not a vector of length 1.")
+    }
+  }
+  if (!is.null(siglevel)){
+    if (length(siglevel) != 1) {
+      stop("The specified siglevel is not a vector of length 1.")
+    }
+    if (!is.vector(siglevel) & !is.numeric(siglevel)) {
+      stop("The specified siglevel is not a numeric vector.")
+    }
+    if (!(0 < siglevel & siglevel < 1)) {
+      stop("The specified siglevel is between 0 and 1.")
+    }
+  }
 
   # Compute defaults
   if (is.null(q.matrix)) {  # if not specified ...
@@ -48,7 +84,6 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
   g <- g + geom_vline(xintercept = q.simple["6-8 People per Factor"], colour = "blue", show_guide = FALSE)
   g <- g + geom_hline(yintercept = 1, colour = "red", show_guide = FALSE)
   # TODO(maxheld83) the above still need show_guides = TRUE, but that screws up the
-  # TODO(maxheld83) add source for legend
   howmany$screeplot <- g
 
   # Produce communalities and residuals ===
@@ -67,8 +102,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
   howmany$residuals.plots <- q.residuals.plots
 
   # Bartlett's (et al.) test ===
-  q.Bartlett <- nBartlett(x = q.matrix, N = nrow(dataset), alpha = siglevel, cor = TRUE, details = TRUE, correction = TRUE)
-  # TODO(maxheld83) add sources here
+  q.Bartlett <- nBartlett(x = q.matrix, N = nrow(dataset), alpha = siglevel, cor = TRUE, details = TRUE, correction = TRUE)  # this is Bartlett 1950
   howmany$Bartlett <- q.Bartlett
 
   # Communalities plot ===
@@ -94,8 +128,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
     stringsAsFactors = FALSE
   )
   summary <- rbind(summary, list("Parallel Analysis", q.paran$Retained, "Horn (1965)"))
-  summary <- rbind(summary, list("No Identity Matrix", howmany$Bartlett$nFactors[1], "Bartlett"))
-  # TODO(maxheld83) add proper bartlett ref
+  summary <- rbind(summary, list("No Identity Matrix", howmany$Bartlett$nFactors[1], "Bartlett (1950, 1951)"))
   row.names(summary)[4:5] <- c("Paran", "Bartlett")
   howmany$summary <- summary  # save output
 
