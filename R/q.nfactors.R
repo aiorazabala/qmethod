@@ -25,7 +25,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
       stop("The specified cutoff is not a vector of length 1.")
     }
   }
-  if (!is.null(siglevel)){
+  if (!is.null(siglevel)) {
     if (length(siglevel) != 1) {
       stop("The specified siglevel is not a vector of length 1.")
     }
@@ -95,7 +95,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
     results <- principal(r = q.matrix, nfactors = i, residuals = TRUE, rotate = "none", n.obs = nrow(dataset))
     communalities[i, ] <- results$communality
     q.residuals[,,i] <- results$residual
-    q.residuals.plots[[i]] <- ggcorr(data = q.residuals[,,2], label = TRUE, geom = "tile") + ggtitle(paste("Residual Correlations after", i, "Factors"))
+    q.residuals.plots[[i]] <- ggcorr(data = q.residuals[,,i], label = TRUE, geom = "tile") + ggtitle(paste("Residual Correlations after", i, "Factors"))
   }
   howmany$communalities <- communalities  # store results
   howmany$residuals <- q.residuals
