@@ -1,6 +1,7 @@
 q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05) {
   # TODO(maxheld83) add input verification
 
+  # Compute defaults
   if (is.null(q.matrix)) {  # if not specified ...
     q.matrix <- cor(x = dataset, method = "spearman")  # use spearman
   }
@@ -14,7 +15,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
   # Parallel analysis (includes eigenvalues) ===
   q.paran <- paran(mat = q.matrix,
     iterations = 10000,
-    quietly = FALSE,
+    quietly = TRUE,
     status = TRUE,
     all = FALSE,
     centile = 100 - siglevel * 100,
