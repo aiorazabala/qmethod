@@ -96,6 +96,9 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
   row.names(summary)[4:5] <- c("Paran", "Bartlett")
   howmany$summary <- summary  # save output
 
+  # Simple correlation matrix
+  howmany$corr <- ggcorr(data = q.matrix, label = TRUE, geom = "tile") + ggtitle("Original Correlation Matrix")
+
   # Prints ===
   print(summary)
   grid.arrange(g, p)
