@@ -8,11 +8,6 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
     cutoff <- ncol(dataset)/2  # take half
   }
 
-  q.matrix <- cor$before
-  dataset <- q_sorts[,,"before"]
-  cutoff <- 6
-  siglevel <- 0.05
-
   howmany <- NULL  # set up empty results object
   # Parallel analysis (includes eigenvalues) ===
   q.paran <- paran(mat = q.matrix,
