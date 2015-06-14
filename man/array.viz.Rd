@@ -1,6 +1,6 @@
 \name{array.viz}
 \alias{array.viz}
-\title{Q Methodology: creates Q array graph}
+\title{Q methodology: creates Q array graph}
 \description{
   Visualizes Q Method results, with one Q array graph for each extracted factor.
 }

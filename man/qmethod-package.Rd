@@ -10,7 +10,8 @@
 
   This package performs the analysis of Q methodology data using principal components analysis, varimax rotation (replaceable by other rotations allowed in \code{\link[psych]{principal}}), and automatic flagging (manual flagging is optional).
 
-  The following steps of the analysis correspond to separate functions: factor loadings for Q-sorts, automatic flagging of Q-sorts (\code{\link{qflag}}), z-scores and factor scores for statements (\code{\link{qzscores}}), distinguishing and consensus statements (\code{\link{qdc}}), and general characteristics of the factors (\code{\link{qfcharact}}).
+  The following steps of the analysis correspond to separate functions:
+  factor loadings for Q-sorts, automatic flagging of Q-sorts (\code{\link{qflag}}), z-scores and factor scores for statements (\code{\link{qzscores}}), distinguishing and consensus statements (\code{\link{qdc}}), and general characteristics of the factors (\code{\link{qfcharact}}).
   The function \code{\link{qmethod}} wraps them all.
 
   The functions for each step may be used separately for advanced analysis, for example, for manual flagging (see details in \code{\link{qzscores}}).
@@ -30,6 +31,7 @@
        \item Item samples (\code{\link{build.q.set}})
     }
     \item A function to rename the factors in the results, with short, meaningful names (\code{\link{q.fnames}}).
+    \item A function to advise the number of factors to be extracted (\code{\link{q.nfactors}})).
   }
   Use \code{help(package="qmethod")} for a list of all the functions.
 
@@ -39,7 +41,7 @@
     In addition, the optional functions to import raw data from separate *.CSV files (\code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}}) and the card printing function (\code{\link{make.cards}}) refer to items in three distinct ways:
     \enumerate{
       \item Item \strong{full wording}, is the complete item, such as:
-      
+
       "\samp{One small community of indomitable Q-methodologists ...}".
         This item can be read in from individual *.TEX files by using \code{\link{import.q.concourse}}.
         The wording is not passed on to any other function, but can be readily retrieved from the object returned from \code{\link{import.q.concourse}}.
@@ -55,8 +57,8 @@
         \item Standard \strong{IDs} (such as \kbd{sta12}, \kbd{sta13}) which are generated automatically in \code{\link{qmethod}} or can be provided by the user using the respective \code{manual.lookup} arguments in \code{\link{make.cards}}, \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
         See the documentation of these functions for details.
         \item A set of hexadecimal \strong{hashed IDs} (such as \kbd{ae128fs}) can be automatically generated and expected by the functions \code{\link{make.cards}}, \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}} if the argument \code{manual.lookup} remains empty and defaults to \code{NULL}.
-        In that case, IDs are computed by 'summarising' the full item wordings (e.g. 
-        
+        In that case, IDs are computed by 'summarising' the full item wordings (e.g.
+
         "\samp{Q Method is used by a crazy, but charming community ...}") into a hexadecimal number (e.g. "\kbd{ae128fs}"), a process known as cryptographic \emph{hashing} (for more details see \code{\link[digest]{digest}})).
         These hash values change whenever \emph{anything} in the full item wordings is changed, and allow a precise identification of different versions of an item.
         This function never exposes users to the hash values.
@@ -81,9 +83,9 @@
   Main author and maintainer\cr
   \url{http://www.landecon.cam.ac.uk/directory/aiora-zabala}\cr
   \email{aiora.zabala@gmail.com}
-  
-  Maximilian Held\cr 
-  Author of data management functions: \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}} and \code{\link{make.cards}}\cr
+
+  Maximilian Held\cr
+  Author of additional functions: \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}}, \code{\link{make.cards}} and \code{\link{q.nfactors}}\cr
   \url{http://www.maxheld.de/}
 
 }
