@@ -62,8 +62,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
     results <- principal(r = q.matrix, nfactors = i, residuals = TRUE, rotate = "none", n.obs = nrow(dataset))
     communalities[i, ] <- results$communality
     q.residuals[,,i] <- results$residual
-    library(GGally)
-    q.residuals.plots[[i]] <- ggcorr(data = as.matrix(q.residuals[,,2]), label = TRUE, geom = "tile") + ggtitle(paste("Residual Correlations after", i, "Factors"))
+    q.residuals.plots[[i]] <- ggcorr(data = q.residuals[,,2], label = TRUE, geom = "tile") + ggtitle(paste("Residual Correlations after", i, "Factors"))
   }
   howmany$communalities <- communalities  # store results
   howmany$residuals <- q.residuals
