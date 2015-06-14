@@ -7,7 +7,9 @@ import("methods",
        "ggplot2",
        "stringr",
        "paran",
-       "nFactors")
+       "nFactors",
+       "grid",
+       "gridExtra")
 importFrom("plyr","count")
 importFrom("reshape2","melt")
 importFrom("digest", "digest")

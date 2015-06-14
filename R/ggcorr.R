@@ -116,6 +116,8 @@ ggcorr <- function(
   limits = TRUE,
   ...) {
 
+  guide <- NULL  # this is a hideous hack to appease CRAN as per http://stackoverflow.com/questions/9439256/how-can-i-handle-r-cmd-check-no-visible-binding-for-global-variable-notes-when
+
   M <- cor_matrix
 
   # protect against spaces in variable names

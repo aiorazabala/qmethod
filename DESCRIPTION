@@ -26,7 +26,9 @@ Imports:
   plyr,
   reshape2,
   paran,
-  nFactors
+  nFactors,
+  grid,
+  gridExtra
 LazyData: true
 Repository: CRAN
 URL: https://github.com/aiorazabala/qmethod, https://github.com/aiorazabala/qmethod/wiki
