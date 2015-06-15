@@ -8,4 +8,4 @@ sudo: required
 r_check_args: --no-examples
 
 notifications:
-  email: aiora.zabala@gmail.com
+  email: false
