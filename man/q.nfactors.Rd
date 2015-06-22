@@ -25,6 +25,7 @@
   }
   \item{siglevel}{
     The significance level passed on to Horn's (1965) parallel analysis in \code{\link[paran]{paran}} and Bartlett's (1950, 1951) test in \code{\link[nFactors]{nBartlett}}.
+    Defaults to \code{0.05}.
   }
 }
 
@@ -38,7 +39,7 @@
 }
 
 \value{
-  Returns a list of ten objects:
+  Returns a list of eleven objects:
   \item{paran}{
     Results from Horn's (1965) parallel analysis, improved by Glorfeld (1995) as implemented in \code{\link[paran]{paran}}.
     Random data can include spurious correlations and spurious factors by mere chance.
@@ -99,6 +100,9 @@
   }
   \item{corr}{
     A list of class \code{ggplot} as heatmap plot for the correlation matrix.
+  }
+  \item{eigenvalues}{
+    A dataframe, conveniently wrapping the unadjusted, random and adjusted eigenvalues, as well as the contribution to R2 by that component, calculated by dividing the unadjusted eigenvalue by the number of people-variables in the dataset.
   }
   \item{summary}{
     A dataframe with criterion, number of retained factors and source as columns.

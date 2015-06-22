@@ -67,10 +67,10 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
   howmany$simple <- q.simple
 
   # Screeplot ===
-  q.paran.long <- cbind(q.paran$Ev, q.paran$RndEv, q.paran$AdjEv, deparse.level = 2)  # put lists in dataframe
-  q.paran.long <- q.paran.long[1:cutoff,]  # drop all below cutoff
-  colnames(q.paran.long) <- c("Unadjusted", "Random", "Adjusted")  # give appropriate names
-  q.paran.long <- melt(data = q.paran.long)  # make long
+  q.paran.wide <- cbind(q.paran$Ev, q.paran$RndEv, q.paran$AdjEv, deparse.level = 2)  # put lists in dataframe
+  q.paran.wide <- q.paran.wide[1:cutoff,]  # drop all below cutoff
+  colnames(q.paran.wide) <- c("Unadjusted", "Random", "Adjusted")  # give appropriate names
+  q.paran.long <- melt(data = q.paran.wide)  # make long
   colnames(q.paran.long) <- c("PC", "Type", "Eigenvalue")  # give good names
   q.paran.long$PC <- as.ordered(q.paran.long$PC)  # real data type makes plot prettier, easier
   g <- NULL  # just testing, won't hurt
@@ -134,6 +134,11 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
 
   # Simple correlation matrix
   howmany$corr <- ggcorr(data = q.matrix, label = TRUE, geom = "tile") + ggtitle("Original Correlation Matrix")
+
+  # Make table of eigenvalues
+  q.paran.wide <- as.data.frame(q.paran.wide)  # different units, so should be df
+  q.paran.wide$R2 <- q.paran.wide[ , "Unadjusted"] / ncol(dataset)  # divide EV by n of vars, gives explained variance
+  howmany$eigenvalues <- q.paran.wide[,c(1,4,2,3)]  # return reordered results
 
   # Prints ===
   print(summary)
