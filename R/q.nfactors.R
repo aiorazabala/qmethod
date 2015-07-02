@@ -95,11 +95,13 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
     results <- principal(r = q.matrix, nfactors = i, residuals = TRUE, rotate = "none", n.obs = nrow(dataset))
     communalities[i, ] <- results$communality
     q.residuals[,,i] <- results$residual
-    q.residuals.plots[[i]] <- ggcorr(data = q.residuals[,,i], label = TRUE, geom = "tile") + ggtitle(paste("Residual Correlations after", i, "Factors"))
+    q.residuals.plots[[i]] <- q.corrplot(corr.matrix = q.matrix) + ggtitle(paste("Residual Correlations after", i, "Factors"))
   }
+  q.residuals.plots
   howmany$communalities <- communalities  # store results
   howmany$residuals <- q.residuals
   howmany$residuals.plots <- q.residuals.plots
+
 
   # Bartlett's (et al.) test ===
   q.Bartlett <- nBartlett(x = q.matrix, N = nrow(dataset), alpha = siglevel, cor = TRUE, details = TRUE, correction = TRUE)  # this is Bartlett 1950
@@ -133,7 +135,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
   howmany$summary <- summary  # save output
 
   # Simple correlation matrix
-  howmany$corr <- ggcorr(data = q.matrix, label = TRUE, geom = "tile") + ggtitle("Original Correlation Matrix")
+  howmany$corr <- q.corrplot(corr.matrix = q.matrix) + ggtitle(label = "Original Correlation Matrix")
 
   # Make table of eigenvalues
   q.paran.wide <- as.data.frame(q.paran.wide)  # different units, so should be df

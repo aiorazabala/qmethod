@@ -99,7 +99,7 @@
     Uses the (more conservative) variant of \code{\link[nFactors]{nBartlett}} for Bartlett's test, with \code{correction = TRUE}.
   }
   \item{corr}{
-    A list of class \code{ggplot} as heatmap plot for the correlation matrix.
+    A list of class \code{ggplot} as a plot for the correlation matrix.
   }
   \item{eigenvalues}{
     A dataframe, conveniently wrapping the unadjusted, random and adjusted eigenvalues, as well as the contribution to R2 by that component, calculated by dividing the unadjusted eigenvalue by the number of people-variables in the dataset.

@@ -34,7 +34,8 @@ export("qmethod",
        "qfwe",
        "q.item.sd",
        "q.fcolors",
-       "q.nfactors")
+       "q.nfactors",
+       "q.corrplot")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
