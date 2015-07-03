@@ -1,0 +1,3 @@
+[submodule "R/ggbiplot"]
+	path = R/ggbiplot
+	url = https://github.com/vqv/ggbiplot.git
