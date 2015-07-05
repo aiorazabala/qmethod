@@ -11,7 +11,7 @@ array.viz <- function(results, extreme.labels = c("negative", "positive"), incl.
   if (!is.logical(incl.qdc)) {  # type correct?
     "The argument set for incl.qdc needs to be TRUE or FALSE."
   }
-  
+
   # Preparation ===============================================================
   if (is.null(results$brief$fcolors)) {  # when there are no colors in object
     fcolors <- q.fcolors(results = results)$brief$fcolors  # calculate them
@@ -63,7 +63,7 @@ array.viz <- function(results, extreme.labels = c("negative", "positive"), incl.
       , name = "Item Standard Deviation Across Flagged Q-Sorts\n"
       , guide = "colorbar"
     )
-    
+
     # include QDC information on distinguishing and consensus factors ==========
     if (incl.qdc == TRUE) {
       array.viz.qdc.diff <- array.viz.data[,c("fsc", "ycoord")]  # duplicate baseline dataset
@@ -159,5 +159,6 @@ array.viz <- function(results, extreme.labels = c("negative", "positive"), incl.
     # Put into list ============================================================
     g.list[[current.fac]] <- g  # add current graph to list
   }
-  return(g.list)
+  do.call(what = "grid.arrange", args = c(g.list, ncol = round(sqrt(length(results$brief$nfactors)))))
+  return(invisible(g.list))
 }
