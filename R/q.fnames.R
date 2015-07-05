@@ -11,7 +11,7 @@ q.fnames <- function(results, fnames) {
   if(sum(comb %in% nos) > 0) stop("The names should not begin with a number")
   if (length(fnames) != results$brief$nfactors) stop(paste0("The names provided (", length(fnames), ") does not match the number of factors in the results (", results$brief$nfactors, ")"))
   if (max(nchar(fnames)) > 50) stop("The names provided are longer than 50 characters.")
-  
+
   # Change factor names for meaningful names
   q.objects <- c("loa", "flagged", "zsc", "zsc_n")
   for (i in q.objects) colnames(results[[i]]) <- fnames
@@ -23,5 +23,5 @@ q.fnames <- function(results, fnames) {
   if (!is.null(results$brief$fcolors)) {  # when there are factor colors
     names(results$brief$fcolors) <- fnames
   }
-  return(results)
+  return(invisible(results))
 }
