@@ -1,4 +1,9 @@
 q.compplot <- function(results) {
+  # Input verification =========================================================
+  if (class(results) != "QmethodRes") {  # only accept results object
+    stop("The object provided is not of class 'QmethodRes'.")
+  }
+
   loasq <- results$loa^2
   `Q-Sort` <- `Squared Loading` <- Factor <- NULL    # this is a hideous hack to appease CRAN as per http://stackoverflow.com/questions/9439256/how-can-i-handle-r-cmd-check-no-visible-binding-for-global-variable-notes-when
   loasq.molten <- melt(data = loasq, varnames = c("Q-Sort", "Factor"), value.name = "Squared Loading")
