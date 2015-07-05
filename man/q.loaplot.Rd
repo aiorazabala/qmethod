@@ -21,10 +21,6 @@
   Returns a list of lists of \pkg{ggplot2} objects, one for each pair of extracted factors.
 }
 
-\references{
-    Watts, S., and and P. Stenner, 2012. \emph{Doing Q Methodological Research: Theory, Method & Interpretation}, London: Sage Publications Ltd.
-}
-
 \author{Maximilian Held}
 
 \note{

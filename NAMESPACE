@@ -36,7 +36,8 @@ export("qmethod",
        "q.fcolors",
        "q.nfactors",
        "q.corrplot",
-       "q.loaplot")
+       "q.loaplot",
+       "q.compplot")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
