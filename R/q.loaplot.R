@@ -1,6 +1,9 @@
-q.loaplot <- function(results) {
+q.loaplot <- function(results, quietly = FALSE) {
 
   # Input verification =========================================================
+  if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
+    stop("The argument set for quietly must be a logical vector of length 1.")
+  }
   if (class(results) != "QmethodRes") {  # only accept results object
     stop("The object provided is not of class 'QmethodRes'.")
   }
@@ -30,7 +33,8 @@ q.loaplot <- function(results) {
     name <- paste(c[1], c[2], sep = "-")
     combs.plots[[name]] <- loaplots[[c[1]]][[c[2]]]
   }
+  if(!quietly) {
   do.call(what = "grid.arrange", args = c(combs.plots, ncol = round(sqrt(length(combs)))))
-
+  }
   return(invisible(loaplots))  # return them all
 }

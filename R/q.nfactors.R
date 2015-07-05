@@ -1,5 +1,8 @@
-q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05) {
+q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05, quietly = FALSE) {
   # Input verification
+  if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
+    stop("The argument set for quietly must be a logical vector of length 1.")
+  }
   if (!is.numeric(as.matrix(dataset)) & !is.integer(as.matrix(dataset))) {
     stop("Q method input: The data frame or matrix entered has non-numerical values.")
   }  # tests is from qmethod
@@ -143,7 +146,9 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)
   howmany$eigenvalues <- q.paran.wide[,c(1,4,2,3)]  # return reordered results
 
   # Prints ===
-  print(summary)
-  grid.arrange(g, p)
-  return(howmany)
+  if (!quietly) {
+    print(summary)
+    grid.arrange(g, p)
+  }
+  return(invisible(howmany))
 }

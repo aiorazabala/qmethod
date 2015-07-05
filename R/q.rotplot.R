@@ -1,5 +1,8 @@
-q.rotplot <- function(results) {
+q.rotplot <- function(results, quietly = FALSE) {
   # Input verification =========================================================
+  if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
+    stop("The argument set for quietly must be a logical vector of length 1.")
+  }
   if (class(results) != "QmethodRes") {  # only accept results object
     stop("The object provided is not of class 'QmethodRes'.")
   }
@@ -48,6 +51,8 @@ q.rotplot <- function(results) {
     name <- paste(c[1], c[2], sep = "-")
     rotplots[[name]] <- grid.rot
   }
-  do.call(what = "grid.arrange", args = c(rotplots, ncol = round(sqrt(length(combs)))))  # return all the plots
+  if (!quietly) {
+    do.call(what = "grid.arrange", args = c(rotplots, ncol = round(sqrt(length(combs)))))  # return all the plots
+  }
   return(invisible(rotplots))
 }

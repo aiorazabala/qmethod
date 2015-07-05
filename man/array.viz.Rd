@@ -9,6 +9,7 @@
     results
     , extreme.labels = c("negative", "positive")
     , incl.qdc = TRUE
+    , quietly = FALSE
     )
 }
 \arguments{
@@ -22,6 +23,10 @@
   \item{incl.qdc}{
     Logical, indicating whether lines for relative position of distinguishing items on other factors should be drawn.
     Defaults to \code{TRUE}.
+  }
+  \item{quietly}{
+    Logical, indicating whether a summary plot should be printed.
+    Defaults to \code{FALSE}.
   }
 }
 \details{

@@ -4,7 +4,7 @@
 \description{
   Produces statistics and plots to advise the number of factors to be extracted in a Q methodological analysis.
 }
-\usage{q.nfactors(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05)}
+\usage{q.nfactors(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05, quietly = FALSE)}
 
 \arguments{
   \item{dataset}{
@@ -26,6 +26,10 @@
   \item{siglevel}{
     The significance level passed on to Horn's (1965) parallel analysis in \code{\link[paran]{paran}} and Bartlett's (1950, 1951) test in \code{\link[nFactors]{nBartlett}}.
     Defaults to \code{0.05}.
+  }
+  \item{quietly}{
+    Logical, indicating whether a summary and plot should be printed.
+    Defaults to \code{FALSE}.
   }
 }
 

@@ -1,5 +1,8 @@
-q.compplot <- function(results) {
+q.compplot <- function(results, quietly = FALSE) {
   # Input verification =========================================================
+  if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
+    stop("The argument set for quietly must be a logical vector of length 1.")
+  }
   if (class(results) != "QmethodRes") {  # only accept results object
     stop("The object provided is not of class 'QmethodRes'.")
   }
@@ -20,6 +23,8 @@ q.compplot <- function(results) {
   } else {
     g <- g + scale_fill_manual(values = results$brief$fcolors)
   }
-  print(g)
-  return(g)
+  if (!quietly) {
+    print(g)
+  }
+  return(invisible(g))
 }

@@ -5,11 +5,15 @@
 	Produces a correlation plot from a given correlation matrix.
 }
 \usage{
-	q.corrplot(corr.matrix)
+	q.corrplot(corr.matrix, quietly = FALSE)
 }
 \arguments{
   \item{corr.matrix}{
   a correlation matrix as produced by \code{\link[stats]{cor}}.
+  }
+  \item{quietly}{
+    Logical, indicating whether a summary plot should be printed.
+    Defaults to \code{FALSE}.
   }
 }
 \details{

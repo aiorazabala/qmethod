@@ -1,5 +1,8 @@
-array.viz <- function(results, extreme.labels = c("negative", "positive"), incl.qdc = TRUE) {
+array.viz <- function(results, extreme.labels = c("negative", "positive"), incl.qdc = TRUE, quietly = FALSE) {
   # Input verification ===================
+  if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
+    stop("The argument set for quietly must be a logical vector of length 1.")
+  }
   if (class(results) != "QmethodRes") {  # only accept results object
     stop("The object provided is not of class 'QmethodRes'.")
   }
@@ -159,6 +162,8 @@ array.viz <- function(results, extreme.labels = c("negative", "positive"), incl.
     # Put into list ============================================================
     g.list[[current.fac]] <- g  # add current graph to list
   }
-  do.call(what = "grid.arrange", args = c(g.list, ncol = round(sqrt(length(results$brief$nfactors)))))
+  if (!quietly) {
+    do.call(what = "grid.arrange", args = c(g.list, ncol = round(sqrt(length(results$brief$nfactors)))))
+  }
   return(invisible(g.list))
 }

@@ -6,12 +6,16 @@
 }
 
 \usage{
-	q.compplot(results)
+	q.compplot(results, quietly = FALSE)
 }
 
 \arguments{
   \item{results}{
     A results object from \code{\link{qmethod}}.
+  }
+  \item{quietly}{
+    Logical, indicating whether a summary plot should be printed.
+    Defaults to \code{FALSE}.
   }
 }
 
