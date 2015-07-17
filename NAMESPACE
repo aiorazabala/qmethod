@@ -9,7 +9,8 @@ import("methods",
        "paran",
        "nFactors",
        "grid",
-       "gridExtra")
+       "gridExtra",
+       "memoise")
 importFrom("plyr","count")
 importFrom("reshape2","melt")
 importFrom("digest", "digest")
@@ -38,7 +39,8 @@ export("qmethod",
        "q.corrplot",
        "q.loaplot",
        "q.compplot",
-       "q.rotplot")
+       "q.rotplot",
+       "q.rotate")
 S3method("plot",
          "QmethodRes")
 S3method("summary",

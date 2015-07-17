@@ -28,7 +28,8 @@ Imports:
   paran,
   nFactors,
   grid,
-  gridExtra
+  gridExtra,
+  memoise
 LazyData: true
 Repository: CRAN
 URL: https://github.com/aiorazabala/qmethod, https://github.com/aiorazabala/qmethod/wiki
