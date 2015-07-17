@@ -14,7 +14,7 @@ q.loaplot <- function(results, quietly = FALSE) {
   # Create all possible plots, including redundant ones ========================
   for (v in colnames(results$loa)) {
     for (h in colnames(results$loa)) {
-      g <- ggplot(data = results$loa, mapping = aes_string(x = v, y = h, label = "rownames(results$loa)"))  # the assignment of v and h is weird, but otherwise the axes are the wrong way around. Horizontal should be specified first.
+      g <- ggplot(data = results$loa, mapping = aes_q(x = as.name(v), y = as.name(h), label = rownames(results$loa)))  # the assignment of v and h is weird, but otherwise the axes are the wrong way around. Horizontal should be specified first.
       g <- g + geom_text()
       g <- g + xlim(-1,1) + ylim(-1,1)  # factor loadings always range from -1 to 1, make sure that plots are comparable
       g <- g + coord_fixed()  # distortions of axes are bad and nonsensical
