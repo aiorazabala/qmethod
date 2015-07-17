@@ -145,7 +145,7 @@ q.rotate <- function(results, plot.type = "q.rotplot", plot.all = TRUE, cache = 
     for (i in -180:180) {
       rots[f.pair, "rotated.angle"] <- i
       results.rot.cache <- mem.rotate(results = results, rots = rots)
-      # g.cache <- mem.plot.rot(results = results.rot.cache, plot.type = plot.type)
+      g.cache <- mem.plot.rot(results = results.rot.cache, plot.type = plot.type)
       # tried plotting some of the ggplot2 plots here, slows done caching too much
       # base plotting is ok, but only if in quartz, so we're leaving that out, too
       setTxtProgressBar(pb = pb, value = i)
