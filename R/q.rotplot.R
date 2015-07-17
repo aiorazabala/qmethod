@@ -38,21 +38,29 @@ q.rotplot <- function(results, quietly = FALSE) {
 
   # find combinations
   combs <- combn(x = colnames(results$loa), m = 2, simplify = FALSE)  # the below couple of lines are unfortunately duplicate code from q.loaplot()
+  # TODO(maxheld83) this again could be read in from results$brief$rotation.angles IF that always existed
 
   # make plots
-  loaplots <- q.loaplot(results = results)
-  compplot <- q.compplot(results = results)
-  scoreplots <- array.viz(results = results, incl.qdc = FALSE)  # Let's not make this more complicated
-  rotplots <- NULL  # allow the object
+  loaplots <- q.loaplot(results = results, quietly = TRUE)
+  compplot <- q.compplot(results = results, quietly = TRUE)
+  scoreplots <- array.viz(results = results, incl.qdc = FALSE, quietly = TRUE)  # Let's not make this more complicated
 
-  # loop over factor pairs
-  for (c in combs) {
-    grid.rot <- arrangeGrob(arrangeGrob(scoreplots[[c[1]]], loaplots[[c[1]]][[c[2]]], compplot, scoreplots[[c[2]]]),  main = paste(results$brief$rotation), nrow=1)
+  rotplots <- loaplots.pairs <- NULL  # allow the object
+
+  # make the pairwise plots
+  for (c in combs) { # loop over factor pairs
     name <- paste(c[1], c[2], sep = "-")
-    rotplots[[name]] <- grid.rot
+    rotplots[["pairs"]][[name]] <- arrangeGrob(scoreplots[[c[2]]], loaplots[[c[1]]][[c[2]]], compplot, scoreplots[[c[1]]], nrow = 2)
+    loaplots.pairs[[name]] <- loaplots[[c[1]]][[c[2]]]
   }
+
+  # make all-in-one-plots
+  n.total.plots <- length(combs) + results$brief$nfactors + 1
+  rotplots[["all"]] <- do.call(what = "arrangeGrob", args = c(loaplots.pairs, scoreplots, list(compplot), nrow = ceiling(sqrt(n.total.plots))))
+
   if (!quietly) {
-    do.call(what = "grid.arrange", args = c(rotplots, ncol = round(sqrt(length(combs)))))  # return all the plots
+    grid.newpage()
+    grid.draw(rotplots$all)
   }
   return(invisible(rotplots))
 }
