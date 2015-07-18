@@ -24,7 +24,7 @@
 	\enumerate{
 	  \item the loadings of all Q-sorts in the factor space (\code{\link{q.loaplot}}),
 	  \item the share of explained variance by the retained factors for each of the Q-sorts (\code{\link{q.compplot}}),
-	  \item and the factor scores for the pair of factors (\code{\link{array.viz}}).
+	  \item and the factor scores for the pair of factors (\code{\link{q.rotplot}}).
 	}
 	This function arranges these plots in grids for convenient inspection on one screen.
 
@@ -50,7 +50,7 @@
 \seealso{
 	\code{\link{q.loaplot}}
 	\code{\link{q.compplot}}
-	\code{\link{array.viz}}
+	\code{\link{q.rotplot}}
 }
 
 \examples{

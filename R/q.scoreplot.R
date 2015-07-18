@@ -1,4 +1,4 @@
-array.viz <- function(results, extreme.labels = c("negative", "positive"), incl.qdc = TRUE, quietly = FALSE) {
+q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), incl.qdc = TRUE, quietly = FALSE) {
   # Input verification ===================
   if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
     stop("The argument set for quietly must be a logical vector of length 1.")

@@ -1,11 +1,11 @@
-\name{array.viz}
-\alias{array.viz}
+\name{q.scoreplot}
+\alias{q.scoreplot}
 \title{Q methodology: creates Q array graph}
 \description{
   Visualizes Q Method results, with one Q array graph for each extracted factor.
 }
 \usage{
-  array.viz(
+  q.scoreplot(
     results
     , extreme.labels = c("negative", "positive")
     , incl.qdc = TRUE
@@ -86,6 +86,6 @@
 \examples{
   # data(lipset)  # use data included with this package
   # results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")  # run analysis
-  # plots <- array.viz(results = results)  # produces plots list
+  # plots <- q.scoreplot(results = results)  # produces plots list
   # plots[1]  # retrieves and prints plot for first factor
 }

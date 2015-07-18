@@ -42,13 +42,13 @@
 \note{
 	Because the item standard deviation is a descriptive statistic about the actual Q sorts, with no intended inference to other cases, this function produces the \emph{population} standard deviation via \code{\link{pop.sd}}, not the \emph{sample} standard deviation.
 
-	This is a function used within \code{\link{array.viz}}.
+	This is a function used within \code{\link{q.scoreplot}}.
 	Rarely to be used independently.
 }
 
 \seealso{
 	\code{\link{qzscores}},
-	\code{\link{array.viz}}
+	\code{\link{q.scoreplot}}
 }
 
 \examples{

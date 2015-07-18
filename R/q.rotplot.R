@@ -43,7 +43,7 @@ q.rotplot <- function(results, quietly = FALSE) {
   # make plots
   loaplots <- q.loaplot(results = results, quietly = TRUE)
   compplot <- q.compplot(results = results, quietly = TRUE)
-  scoreplots <- array.viz(results = results, incl.qdc = FALSE, quietly = TRUE)  # Let's not make this more complicated
+  scoreplots <- q.scoreplot(results = results, incl.qdc = FALSE, quietly = TRUE)  # Let's not make this more complicated
 
   rotplots <- loaplots.pairs <- NULL  # allow the object
 
