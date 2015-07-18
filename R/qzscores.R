@@ -1,26 +1,16 @@
 #calculates final z-scores and factor scores, and extracts main results for Q method
-qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distribution = NULL) {    
+qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distribution = NULL) {
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
   #A. select FLAGGED Q sorts
   floa <- flagged*loa #as.data.frame(loa); floa[which(!flagged, arr.ind=T)] <- 0 # the latter does not work in old versions of R
-  #B. calculate FACTOR WEIGHTS for each Q sort, in a new matrix -needs to be a data.frame to perform variable calculations
-  fwe <- as.data.frame(apply(floa, 2, function(x) x/(1-x^2)))
-  #C. calculate Z-SCORES for each sentence and factor 
-  #-- new matrix for wsubm*ssubmn (original matrix * q sort factor weight), and transpose
-  wraw_all <- list()
-  n <- 1
-  for (i in fwe) {
-    wraw_all[[n]] <- t(t(dataset)*i)
-    names(wraw_all[[n]]) <- paste("wraw_",n,sep="")
-    wraw_all[[n]] <- as.data.frame(wraw_all[[n]])
-    n <- n+1
-  }
+  #B.-C. Factor weights, now separated in qfwe()
+  wraw_all <- qfwe(dataset = dataset, loa = loa, flagged = flagged)
   #-- sums, average and stdev for each statement
   zsc_sum <- data.frame(cbind(1:nstat))
   zsc_mea <- data.frame(cbind(1:nstat))
-  zsc_std <- data.frame(cbind(1:nstat))
+  zsc_std <- data.frame(cbind(1:nstat))  # this is for zscoring, the sd across ALL ITEMS per factor (different from q.item.sd!)
   row.names(zsc_sum) <- row.names(dataset)
   row.names(zsc_mea) <- row.names(dataset)
   row.names(zsc_std) <- row.names(dataset)
@@ -84,7 +74,7 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
   brief$rotation <- "Unknown: loadings were provided separately."
   brief$cor.method <- "Unknown: loadings were provided separately."
   brief$info <- c("Q-method z-scores.",
-                  paste0("Finished on:             ", brief$date), 
+                  paste0("Finished on:             ", brief$date),
                   paste0("Original data:           ", brief$nstat, " statements, ", brief$nqsorts, " Q-sorts"),
                   paste0("Forced distribution:     ", brief$distro),
                   paste0("Number of factors:       ", brief$nfactors),

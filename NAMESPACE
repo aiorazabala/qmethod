@@ -1,10 +1,20 @@
 import("methods",
        "psych",
        "GPArotation",
-       "digest",
        "tools",
        "xtable",
-       "knitr")
+       "knitr",
+       "ggplot2",
+       "stringr",
+       "paran",
+       "nFactors",
+       "grid",
+       "gridExtra",
+       "memoise")
+importFrom("plyr","count")
+importFrom("reshape2","melt")
+importFrom("digest", "digest")
+importFrom("RColorBrewer", "brewer.pal")
 export("qmethod",
        "qzscores",
        "qflag",
@@ -19,11 +29,21 @@ export("qmethod",
        "import.q.feedback",
        "make.cards",
        "export.qm",
-       "make.cards")
+       "make.cards",
+       "q.scoreplot",
+       "pop.sd",
+       "qfwe",
+       "q.item.sd",
+       "q.fcolors",
+       "q.nfactors",
+       "q.corrplot",
+       "q.loaplot",
+       "q.compplot",
+       "q.rotplot",
+       "q.rotate")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
          "QmethodRes")
 S3method("print",
          "QmethodRes")
-

@@ -3,12 +3,15 @@
 \title{Q methodology analysis}
 \description{This function performs a full Q method analysis using principal components analysis (see Notes). The main results are factor characteristics, statement z-scores and factor scores, and distinguishing and consensus statements.}
 \usage{
-qmethod(dataset, nfactors, rotation = "varimax", forced = TRUE, 
+qmethod(dataset, nfactors, rotation = "varimax", forced = TRUE,
         distribution = NULL, cor.method = "pearson", ...)}
 
 \arguments{
   \item{dataset}{a matrix or a data frame containing original data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell. The matrix or data frame should not contain character strings. The results keep row names and column names if set in the \code{dataset} (see 'Details').}
-  \item{nfactors}{number of factors to extract.}
+  \item{nfactors}{
+    number of factors to extract.
+    Consider \code{\link{q.nfactors}} function for further advice on how many factors to extract.
+  }
   \item{rotation}{rotation method, defaults to \code{"varimax"}. Other possible rotations allowed in \code{\link[psych]{principal}} function can be used: \code{"none"}, \code{"varimax"}, \code{"quartimax"}, \code{"promax"}, \code{"oblimin"}, \code{"simplimax"}, and \code{"cluster"}.}
   \item{forced}{logical; Is the ranking of the items forced to match the distributions? Set to \code{TRUE} if all respondents ranked the items strictly following the distribution scores, in which case the values of the distribution are calculated automatically. Set to \code{FALSE} if respondents were able to rank the items without following the distribution, and the values of the distribution have to be provided as an array in the argument \code{distribution}.}
 \item{distribution}{logical; when forced = \code{FALSE}, the distribution has to be provided as a vector of numbers, such as \code{c(-2, -1, -1, 0, 1, 1, 2, 2)}.}
@@ -44,7 +47,7 @@ Returns a list of class \code{QmethodRes}, with eight objects:
 See further references on the methodology in \code{\link{qmethod-package}}.}
 
 \note{
-In Q methodology there are commonly two techniques to extract the factors: principal components analysis (PCA) and centroid factor analysis. 
+In Q methodology there are commonly two techniques to extract the factors: principal components analysis (PCA) and centroid factor analysis.
 
 This package uses PCA because this function is already implemented in R. If you find a function in R that suitably implements centroid factor analysis as used in Q method (See Brown, 1980), please report to the author of this package: \email{aiora.zabala@gmail.com}.
 }
