@@ -23,5 +23,14 @@ q.fnames <- function(results, fnames) {
   if (!is.null(results$brief$fcolors)) {  # when there are factor colors
     names(results$brief$fcolors) <- fnames
   }
+
+  # Rename QDC columns and cells
+  qdc <- results$qdc
+  for (i in 1:length(fnames)) {
+    qdc$dist.and.cons <- gsub(pattern = paste0("f", i), replacement = fnames[i], x = qdc$dist.and.cons)
+    colnames(qdc) <- gsub(pattern = paste0("f", i), replacement = fnames[i], x = colnames(qdc))
+  }
+  results$qdc <- qdc
+
   return(invisible(results))
 }
