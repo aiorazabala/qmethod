@@ -1,0 +1,20 @@
+DoRotation <- function(myfactors,x,y) {
+# Input is a matrix of factors, usually unrotated, and the column numbers of two factors to be rotated w/ each other
+# Output is a 2-column matrix which can be used to overwrite the input columns
+# This function loops interactively, updating the plot with each loop (press q+<enter> to quit)
+  angle <- 1/15 # increment to move each time <enter> is pressed -- try holding it down...
+  M <- matrix( c(cos(angle), -sin(angle), sin(angle), cos(angle)), 2, 2 )
+  angle <- 6
+  N <- matrix( c(cos(angle), -sin(angle), sin(angle), cos(angle)), 2, 2 )
+  nupair <- ( as.matrix(myfactors[,c(x,y)])) 
+  cat("Press <enter> to continue rotation\n       b<enter> to back up\n       q<enter> to quit ")
+  repeat {
+    plot( nupair, xlim=c(-1,1),ylim=c(-1,1),pch=3)
+    grid(2,2)
+    answer <- readline()
+    if(answer=="q") {break}
+    if(answer=="b") {nupair <- nupair %*% N}
+    nupair <- nupair %*% M
+  }
+  return(nupair)
+}
