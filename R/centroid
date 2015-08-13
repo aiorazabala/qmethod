@@ -1,0 +1,38 @@
+FindSignVector <- function(X) {
+ # input is the matrix to be factored, whether original cor or residuals
+ # first find how many rows it has (rows=cols in our context)
+ n <- dim(X)[1]
+ # initialize the posn variable before entering loop
+ posn <- 0
+ repeat {
+  # change sign at posn unless just starting, then initialize sign vector Z
+  if (posn==0) {
+   Z <- c(rep(1,n))  # starts out all ones of length n
+  } else {
+   Z[pos] <- -1 #could mult by -1 but no need in this algorithm; always doing 1 -> -1
+  }
+  # Determine S and V
+  S <- Z %*% t(X)
+  S <- t(S)
+  V <- NULL
+  for (i in 1:n) {
+   V[i] <- X[i,] %*% S - Z[i] * X[i,] %*% X[i,]
+   print(V[i])
+  }
+  # search next element
+  val <- 0
+  posn <- 0
+  for (i in 1:n) {
+   if (Z[i]*V[i] < 0) {
+    if (abs(V[i]) > val) {
+	 val <- V[i]
+	 posn <- i
+	}
+   }
+  } # end of for loop
+ # 'until' condition for repeat loop in R must be implemented as break statement 
+ if (posn == 0) {break}
+ } # end of repeat loop
+ return(Z) 
+} # end of function FindSignVector
+  
