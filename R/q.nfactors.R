@@ -1,4 +1,4 @@
-q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05, quietly = FALSE) {
+q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05, quietly = FALSE, cor.method="pearson") {
   # Input verification
   if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
     stop("The argument set for quietly must be a logical vector of length 1.")
@@ -42,7 +42,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
 
   # Compute defaults
   if (is.null(q.matrix)) {  # if not specified ...
-    q.matrix <- cor(x = dataset, method = "spearman")  # use spearman
+    q.matrix <- cor(x = dataset, method = cor.method)
   }
   if (is.null(cutoff)) {  # if not specified ...
     cutoff <- ncol(dataset)/2  # take half

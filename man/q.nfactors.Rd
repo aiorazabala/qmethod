@@ -4,7 +4,16 @@
 \description{
   Produces statistics and plots to advise the number of factors to be extracted in a Q methodological analysis.
 }
-\usage{q.nfactors(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05, quietly = FALSE)}
+\usage{
+  q.nfactors(
+    dataset,
+    q.matrix = NULL,
+    cutoff = NULL,
+    siglevel = 0.05,
+    quietly = FALSE,
+    cor.method = "pearson"
+  )
+}
 
 \arguments{
   \item{dataset}{
@@ -14,7 +23,7 @@
   }
   \item{q.matrix}{
     a correlation matrix as produced by \code{\link[stats]{cor}}.
-    Defaults to \code{NULL} in which case a correlation matrix is computed from the provided \code{dataset}, using \emph{Spearman's} correlation coefficient.
+    Defaults to \code{NULL} in which case a correlation matrix is computed from the provided \code{dataset}, using \emph{Pearson's} correlation coefficient.
     For comparable results, the correlation matrix provided here should be based on the same \code{cor.method} as for \code{qmethod}.
   }
   \item{cutoff}{
@@ -30,6 +39,10 @@
   \item{quietly}{
     Logical, indicating whether a summary and plot should be printed.
     Defaults to \code{FALSE}.
+  }
+  \item{cor.method}{
+    If \code{q.matrix} is unspecified (\code{NULL}), character string indicating which correlation coefficient is to be computed, to be passed on to the function \code{\link[stats]{cor}}: \code{"pearson"} (default), \code{"kendall"}, or \code{"spearman"}.
+    Should be the same as the one later used in \code{\link{qmethod}}.
   }
 }
 
