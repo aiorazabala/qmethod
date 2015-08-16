@@ -98,9 +98,8 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
     results <- principal(r = q.matrix, nfactors = i, residuals = TRUE, rotate = "none", n.obs = nrow(dataset))
     communalities[i, ] <- results$communality
     q.residuals[,,i] <- results$residual
-    q.residuals.plots[[i]] <- q.corrplot(corr.matrix = q.matrix) + ggtitle(paste("Residual Correlations after", i, "Factors"))
+    q.residuals.plots[[i]] <- q.corrplot(corr.matrix = q.residuals[,,i]) + ggtitle(paste("Residual Correlations after", i, "Factors"))
   }
-  q.residuals.plots
   howmany$communalities <- communalities  # store results
   howmany$residuals <- q.residuals
   howmany$residuals.plots <- q.residuals.plots
