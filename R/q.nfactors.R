@@ -80,6 +80,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
   g <- ggplot(data = q.paran.long, mapping = aes(x = PC, y = Eigenvalue))
   g <- g + geom_line(mapping = aes(group = Type, linetype = Type))  # add the screeplot
   g <- g + geom_point(mapping = aes(shape = Type))  # add points
+  g <- g + ylim(0, max(q.paran.long$Eigenvalue))
   g <- g + theme(legend.position = "bottom")  # move legend to the bottom
   if (cutoff >= 7) {
     g <- g + geom_vline(xintercept = q.simple["Magic Number Seven"], colour = "green", show_guide = FALSE)
@@ -119,6 +120,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
   p <- p + geom_point(mapping = aes(colour = Qsort))
   p <- p + theme(legend.position = "bottom")
   p <- p + geom_text(size = 4)
+  p <- p + ylim(0, 1)
   # p <- p + scale_y_log10()   # maybe that's a bad idea, stacks the deck
   p <- p + geom_vline(xintercept = q.Bartlett$nFactors[1], linetype = "dashed", show_guide = FALSE)
   howmany$commplot <- p
