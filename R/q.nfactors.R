@@ -48,7 +48,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
     cutoff <- ncol(dataset)/2  # take half
   }
 
-  PC <- Eigenvalue <- Type <- Ncomps <- Communality <- Qsort <- Initial <- NULL  # this is a hideous hack to appease CRAN as per http://stackoverflow.com/questions/9439256/how-can-i-handle-r-cmd-check-no-visible-binding-for-global-variable-notes-when
+  PC <- Eigenvalue <- Type <- Ncomps <- Communality <- Qsort <- Initial <- y <- Threshold <- ymin <- ymax <- NULL  # this is a hideous hack to appease CRAN as per http://stackoverflow.com/questions/9439256/how-can-i-handle-r-cmd-check-no-visible-binding-for-global-variable-notes-when
 
   howmany <- NULL  # set up empty results object
   # Parallel analysis (includes eigenvalues) ===
@@ -77,18 +77,25 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
   colnames(q.paran.long) <- c("PC", "Type", "Eigenvalue")  # give good names
   q.paran.long$PC <- as.ordered(q.paran.long$PC)  # real data type makes plot prettier, easier
   g <- NULL  # just testing, won't hurt
-  g <- ggplot(data = q.paran.long, mapping = aes(x = PC, y = Eigenvalue))
-  g <- g + geom_line(mapping = aes(group = Type, linetype = Type))  # add the screeplot
-  g <- g + geom_point(mapping = aes(shape = Type))  # add points
+
+  g <- ggplot()  # set up empty g, because we need different data for different layers
+
+  # Screeplot layer
+  g <- g + geom_line(data = q.paran.long, mapping = aes(group = Type, linetype = Type, x = PC, y = Eigenvalue)) # add the screeplot
+  g <- g + geom_point(data = q.paran.long, mapping = aes(x = PC, y = Eigenvalue, shape = Type))  # add points
   g <- g + ylim(0, max(q.paran.long$Eigenvalue))
   g <- g + theme(legend.position = "bottom")  # move legend to the bottom
-  if (cutoff >= 7) {
-    g <- g + geom_vline(xintercept = q.simple["Magic Number Seven"], colour = "green", show_guide = FALSE)
-  }
-  g <- g + geom_vline(xintercept = q.simple["6-8 People per Factor"], colour = "blue", show_guide = FALSE)
-  g <- g + geom_hline(yintercept = 1, colour = "red", show_guide = FALSE)
-  # TODO(maxheld83) the above still need show_guides = TRUE, but that screws up the
-  howmany$screeplot <- g
+
+  # Thresholds layer
+  # This is a bit cumbersome, because we need this for later geom_line(), because of this bug/shortcoming in ggplot2: https://github.com/aiorazabala/qmethod/issues/157
+  Brown1980 <- data.frame(Threshold = rep(x = "Magic Number Seven", 2), PC = rep(x = q.simple["Magic Number Seven"], 2), y = c(0, max(q.paran.long$Eigenvalue)))
+  WattsStenner2012 <- data.frame(Threshold = rep(x = "6-8 Q-Sorts per Factor"), PC = rep(x = q.simple["6-8 People per Factor"], 2), y = c(0, max(q.paran.long$Eigenvalue)))
+  KaiserGuttman <- data.frame(Threshold = rep(x = "Eigenvalue > 1", 2), PC = c(1, max(q.paran.long$PC)), y = rep(x = 1, 2))
+  thresholds <- rbind(Brown1980, WattsStenner2012, KaiserGuttman)  # combine criteria
+  g <- g + geom_line(data = thresholds, mapping = aes(x = PC, y = y, colour = Threshold))  # plot thresholds as lines (awkward hack job because of above bug in ggplot)
+  g <- g + scale_colour_manual(values = c("Eigenvalue > 1" = "red", "Magic Number Seven" = "blue", "6-8 Q-Sorts per Factor" = "green"))  # fix colors
+
+  howmany$screeplot <- g  # write out plot
 
   # Produce communalities and residuals ===
   communalities <- NULL
@@ -115,14 +122,21 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
   colnames(communalities.long) <- c("Ncomps", "Qsort", "Communality")
   communalities.long$Ncomps <- as.ordered(communalities.long$Ncomps)  # proper datatypes make prettier plots
   communalities.long$Initial <- substr(x = communalities.long$Qsort, start = 1, stop = 2)  # assign initial
-  p <- ggplot(data = communalities.long, mapping = aes(x = Ncomps, y = Communality, group = Qsort, label = Initial))
-  p <- p + geom_line(mapping = aes(colour = Qsort))
-  p <- p + geom_point(mapping = aes(colour = Qsort))
+  p <- ggplot()  # must be blank because below layers have separate data
+
+  # communalities layer
+  p <- p + geom_line(data = communalities.long, mapping = aes(x = Ncomps, y = Communality, group = Qsort, colour = Qsort))
+  p <- p + geom_point(data = communalities.long, mapping = aes(x = Ncomps, y = Communality, colour = Qsort))
   p <- p + theme(legend.position = "bottom")
-  p <- p + geom_text(size = 4)
+  p <- p + geom_text(data = communalities.long, mapping = aes(label = Initial, x = Ncomps, y = Communality), size = 4)
   p <- p + ylim(0, 1)
   # p <- p + scale_y_log10()   # maybe that's a bad idea, stacks the deck
-  p <- p + geom_vline(xintercept = q.Bartlett$nFactors[1], linetype = "dashed", show_guide = FALSE)
+
+  # thresholds layer
+  # p <- p + geom_vline(xintercept = q.Bartlett$nFactors[1], linetype = "dashed", show_guide = FALSE) something along these lines would be better, but won't work for now -> https://github.com/aiorazabala/qmethod/issues/220
+  thresholds <- data.frame(Threshold = "Bartlett (1950, 1951)", PC = q.Bartlett$nFactors[1], ymin = 0, ymax = 1)  # ymin/max must always be 0-1 for communalities
+  p <- p + geom_linerange(data = thresholds, mapping = aes(x = PC, ymin = ymin, ymax = ymax, linetype = Threshold))
+  # write out result
   howmany$commplot <- p
 
   # Make summary ===

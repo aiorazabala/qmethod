@@ -61,6 +61,8 @@
   \item{screeplot}{
     A screeplot as list of class \code{ggplot}, plotting unadjusted, adjusted and random eigenvalues as well as the above-mentioned \code{simple} criteria.
     Catell suggested that on inspection of a screeplot, only factors to the left of an imagined elbow should be retained (1966b).
+
+    Also includes lines for the above \code{simple} criteria.
   }
   \item{communalities}{
     A matrix of communalities, with number of extracted factors as rows and Q sorts as columns.
