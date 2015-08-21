@@ -1,4 +1,4 @@
-import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, manual.lookup=NULL) {
+import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, manual.lookup=NULL, header = TRUE) {
   # Input validation (also see validation at the bottom!)
   if (!is.matrix(q.set)) {
     stop("The q.set specified is not a matrix.")
@@ -25,6 +25,9 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
         )
       }
     }
+  }
+  if (!is.logical(header)) {
+    stop("The argument header has not been specified logically.")
   }
 
   # Deal with no conditions
@@ -116,15 +119,15 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution, conditions=NULL, 
         )
 			} else {
 			  current.sort <- read.csv(path, # let's do one sort at a time
-				  header = FALSE, #  colnames will do
+				  header = header,  # take above option
 				  stringsAsFactors = FALSE, #  would only add confusion
 				  nrows = max(q.distribution), # stuff below is ignored (item feedback, scores etc.)
 				  na.strings = "", #  empty cells become NAs
 				  colClasses = "character"  # just to make sure R doesn't choke (mistakenly identified) irrational numbers :)
 			  )
 			  current.sort <- as.matrix(current.sort) #  because read.csv makes dataframe
-        for (id in na.omit(as.vector(current.sort))) {  # loops over ids
-          if (any(lookup.table == id)) {  # do we know the id in the current sort?
+        for (id in na.omit(as.vector(current.sort))) {# loops over ids
+          if (id %in% lookup.table) {  # do we know the id in the current sort?
             row <- which(lookup.table == id, arr.ind=TRUE)[,1]  # where is it in the table?
             handle <- rownames(lookup.table)[row]  # what is the short handle?
           } else {

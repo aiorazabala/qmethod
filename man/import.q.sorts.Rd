@@ -6,7 +6,7 @@
 }
 \usage{
 import.q.sorts(q.sorts.dir,	q.set, q.distribution,
-               conditions = NULL, manual.lookup = NULL)
+               conditions = NULL, manual.lookup = NULL, header = TRUE)
 }
 
 \arguments{
@@ -18,9 +18,9 @@ import.q.sorts(q.sorts.dir,	q.set, q.distribution,
 			\item file names of *.CSV files are participant names (might be given pseudonyms).
 			\item *.CSV files contain \emph{raw} Q-sorts, where each line contains item IDs, such as \samp{,,sta12,sta64,,}.
 			All lines below the maximum Q-sort height will be ignored and can have arbitrary input.
-			For example, in a study with a highest column of 8 cards, everything below the 8th line in the file will be ignored.
+			For example, in a study with a highest column of 8 cards (and \code{header = FALSE}), everything below the 8th line in the file will be ignored.
 			There is no need to include the values of the x-axis (say, \code{-4} to \code{+4}) in these files.
-			If they are included, they should be the last row.
+			If they are included, use \code{header} to indicate whether they can be found at the top or the bottom of the *.CSV files.
 			\item cells contains either all manual or all automatic item IDs (such as \kbd{"sta12"}), both as produced by \code{\link{make.cards}}.
 		}
 	}
@@ -41,6 +41,13 @@ import.q.sorts(q.sorts.dir,	q.set, q.distribution,
 
     \code{\link{import.q.concourse}}) as row names, and arbitrary strings (item IDs, such as \code{"it212"}) in \emph{any} of the columns as printed on the Q-cards by \code{\link{make.cards}}.
 		Defaults to \code{NULL} in which case items are automatically identified by automatic hash IDs, as also produced by \code{\link{make.cards}}.
+	}
+	\item{header}{
+	  Logical, passed on to \code{\link{read.csv}}.
+	  If \code{TRUE} (default), the first row in the *.CSV files will be considered as variable names and ignored.
+	  If \code{FALSE}, the first row in the *.CSV files will be considered as the top row in participant's Q-sorts.
+
+	  Notice that in both cases, \emph{columns} in the *.CSV must be ordered from right to left as in the original Q-sorts.
 	}
 }
 
@@ -90,7 +97,10 @@ If you are not familiar with the terminology of item \emph{handle}, \emph{ID} an
 	This function currently works only with forced distributions.
 	If you would like it to work with free distributions, check out and/or chip in at \url{https://github.com/aiorazabala/qmethod/issues/33}.
 
- When argument \code{manual.lookup} is set to \code{NULL}, IDs are computed by "summarising" the complete item wordings (\code{"Q Method is used by a crazy, but charming community of ..."}) into a hexadecimal number (\code{"ae128fs"}), a process known as cryptographic hashing. These hash values change whenever anything in the full item wordings is changed, and allow a precise identification of different versions of an item. This function never exposes users to the hash values; the encrypting and decrypting are done under the hood by the respective functions. Automatic, hashed IDs are generally recommended and easier to use, but some caveats apply.
+ When argument \code{manual.lookup} is set to \code{NULL}, IDs are computed by "summarising" the complete item wordings (\code{"Q Method is used by a crazy, but charming community of ..."}) into a hexadecimal number (\code{"ae128fs"}), a process known as cryptographic hashing.
+ These hash values change whenever anything in the full item wordings is changed, and allow a precise identification of different versions of an item.
+ This function never exposes users to the hash values; the encrypting and decrypting are done under the hood by the respective functions.
+ Automatic, hashed IDs are generally recommended and easier to use, but some caveats apply.
 
 	Hashed identification has not been widely tested in Q studies and should be used with great care and only for extra convenience.
 	When using hash identification, researchers should be careful to record the precise item wordings at the time of hashing for the printed Q-cards, preferably with a version control system.
@@ -132,6 +142,7 @@ q.sorts <- import.q.sorts(           # now import the sorts
     nrow = 4,
     dimnames = list(c("r-dominance","q-uprising","small-village",
                       "life-with-q"),"ID")
-    )
+    ),
+  header = FALSE                     # example data does not include header
   )
 }
