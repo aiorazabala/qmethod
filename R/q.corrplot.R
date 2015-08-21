@@ -14,6 +14,7 @@ q.corrplot <- function(corr.matrix, quietly = FALSE) {
   g <- g + scale_fill_gradient2(low = "red", high = "blue", mid = "white", limits = c(-1, 1))  # make sure whole range of values is covered
   g <- g + geom_text()
   g <- g + theme(axis.title = element_blank())  # kill axis labels
+  g <- g + theme(axis.text.x = element_text(angle = 90, hjust = 1))  # rotate x axis labels
   if (!quietly) {
     print(g)
   }
