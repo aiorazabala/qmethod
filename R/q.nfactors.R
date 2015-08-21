@@ -99,6 +99,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
 
   # Produce communalities and residuals ===
   communalities <- NULL
+
   communalities <- matrix(data = NA, nrow = cutoff, ncol = ncol(dataset), dimnames = list(1:cutoff, colnames(dataset)))  # make empty matrix
   q.residuals <- array(data = NA, dim = c(ncol(dataset), ncol(dataset), cutoff), dimnames = list(colnames(dataset), colnames(dataset), 1:cutoff))  # make empty array
   q.residuals.plots <- NULL
@@ -106,7 +107,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
     results <- principal(r = q.matrix, nfactors = i, residuals = TRUE, rotate = "none", n.obs = nrow(dataset))
     communalities[i, ] <- results$communality
     q.residuals[,,i] <- results$residual
-    q.residuals.plots[[i]] <- q.corrplot(corr.matrix = q.residuals[,,i]) + ggtitle(paste("Residual Correlations after", i, "Factors"))
+    q.residuals.plots[[i]] <- q.corrplot(corr.matrix = q.residuals[,,i], quietly = TRUE) + ggtitle(paste("Residual Correlations after", i, "Factors"))
   }
   howmany$communalities <- communalities  # store results
   howmany$residuals <- q.residuals
@@ -130,6 +131,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
   p <- p + theme(legend.position = "bottom")
   p <- p + geom_text(data = communalities.long, mapping = aes(label = Initial, x = Ncomps, y = Communality), size = 4)
   p <- p + ylim(0, 1)
+  p <- p + guides(colour = guide_legend(nrow = round(nrow(q.matrix)/10)))  # make sure legend does not clash
   # p <- p + scale_y_log10()   # maybe that's a bad idea, stacks the deck
 
   # thresholds layer
@@ -153,7 +155,7 @@ q.nfactors <- function(dataset, q.matrix = NULL, cutoff = NULL, siglevel = 0.05,
   howmany$summary <- summary  # save output
 
   # Simple correlation matrix
-  howmany$corr <- q.corrplot(corr.matrix = q.matrix) + ggtitle(label = "Original Correlation Matrix")
+  howmany$corr <- q.corrplot(corr.matrix = q.matrix, quietly = TRUE) + ggtitle(label = "Original Correlation Matrix")
 
   # Make table of eigenvalues
   q.paran.wide <- as.data.frame(q.paran.wide)  # different units, so should be df
