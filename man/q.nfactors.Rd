@@ -18,7 +18,8 @@
 \arguments{
   \item{dataset}{
     a matrix or a data frame containing original data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell.
-    The matrix or data frame should not contain character strings. The results keep row names and column names if set in the \code{dataset} (see 'Details').
+    The matrix or data frame should not contain character strings.
+    The results keep row names and column names if set in the \code{dataset} (see 'Details').
     Same as for \code{\link{qmethod}}.
   }
   \item{q.matrix}{
@@ -84,10 +85,12 @@
     As more factors are extracted, it increases to one.
 
     In Q methodology, participant Q sorters (as the \emph{variables} in the factor analysis) are often not randomly sampled.
-    Eigenvalue-based criteria may therefore be ``relatively meaningless'' (Brown 1980: 233) because they depend on the vagaries of the p-set.
+    Eigenvalue-based criteria (but also communalities) may therefore be ``relatively meaningless'' (Brown 1980: 233) because they depend on the vagaries of the p-set.
 
-    A careful investigation of communalities \emph{across various factor models} may mitigate this problem.
+    A careful investigation of communalities \emph{across various factor models} may still inform a researcher's judgment \emph{at the margin} between two factor models (say, retaining two or three factors).
     For example, a Q researcher may be inclined to retain an additional factor, if it precipitously \emph{increases} the communalities of a subset of Q sorts the researcher suspects to be similar in viewpoint (based on interviews, or socio-demographic data of respondents, for instance).
+    Researchers should note that \emph{depending on the rotation}, a parallel increase of several Q sorts in communalities as an additional factor is retained \emph{need not precipitate in loadings on that factor}.
+    A supposed similarity in shared viewpoints of any subset of Q sorts can only be ascertained after rotation procedures are completed.
 
     A more rigorous criterion for this approach may be to look at changes in \emph{residual} correlations (\code{residuals}) between any two factor models, and associated significance tests (\code{Bartlett}) (such as Bartlett 1950, 1951).
 
