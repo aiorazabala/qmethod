@@ -51,7 +51,14 @@ make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckfor
       serialize = FALSE
     )
   } else {  # in case of manually entered lookup table
-    lookup.table <- manual.lookup  # just assign it
+    if (!all(rownames(q.set) %in% rownames(manual.lookup))) {  # all q.set handles must occur inside lookup table
+      stop ("The specified lookup table does not include all handles in the q.set.")
+    }
+    lookup.table <- as.matrix(manual.lookup[rownames(q.set), ])  # assign only those rows we are interested in
+    colnames(lookup.table) <- colnames(manual.lookup)  # oddly, above code kills the colnames
+  }
+  if (any(is.na(lookup.table))) {  # test lookup table
+    stop ("There are missing (NA) IDs in the lookup table.")
   }
   if (any(duplicated(lookup.table))) {  # test lookup table
     stop ("There are duplicate IDs in the lookup table.")
