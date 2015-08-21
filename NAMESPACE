@@ -15,6 +15,7 @@ importFrom("plyr","count")
 importFrom("plyr","join_all")
 importFrom("reshape2","melt")
 importFrom("digest", "digest")
+importFrom("koRpus", "hyphen")
 importFrom("RColorBrewer", "brewer.pal")
 export("qmethod",
        "qzscores",

@@ -10,6 +10,10 @@
     , extreme.labels = c("negative", "positive")
     , incl.qdc = TRUE
     , quietly = FALSE
+    , hyph.pattern = "en"
+    , hyphenate = TRUE
+    , split.string = "[[:punct:]]"
+    , label.scale = 500
     )
 }
 \arguments{
@@ -27,6 +31,22 @@
   \item{quietly}{
     Logical, indicating whether a summary plot should be printed.
     Defaults to \code{FALSE}.
+  }
+  \item{hyph.pattern}{
+    A character vector of length 1, indicating the language for hyphenation via \code{\link[koRpus]{hyphen}}.
+    Must be either \code{"en"} (default, English), \code{"de"} (German), \code{"es"} (Spanish), \code{"fr"} (French), \code{"it"} (Italian) or \code{"ru"} (Russian).
+  }
+  \item{hyphenate}{
+    Logical, indicating whether item handles should be hyphenated for plot labels.
+    Defaults to \code{TRUE}.
+  }
+  \item{split.string}{
+    Character vector of length 1, indicating the string on which to wrap item handles for plot labels.
+    Defaults to \code{"[[:punct:]]"}, in which case all punctuation is replaced by linebreaks.
+    See \code{\link[base]{strsplit}} for details.
+  }
+  \item{label.scale}{
+    An integer vector to scale the plot labels, defaults to \code{500}.
   }
 }
 \details{

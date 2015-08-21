@@ -1,4 +1,4 @@
-q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), incl.qdc = TRUE, quietly = FALSE) {
+q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), incl.qdc = TRUE, quietly = FALSE, hyph.pattern = "en", hyphenate = TRUE, split.string = "[[:punct:]]", label.scale=500) {
   # Input verification ===================
   if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
     stop("The argument set for quietly must be a logical vector of length 1.")
@@ -12,8 +12,29 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
     )
   }
   if (!is.logical(incl.qdc)) {  # type correct?
-    "The argument set for incl.qdc needs to be TRUE or FALSE."
+    stop(
+      "The argument set for incl.qdc needs to be TRUE or FALSE."
+    )
   }
+  if (!hyph.pattern %in% c("de", "de.old", "en", "es", "fr", "it", "en.us", "ru")) {  # type correct?
+    stop(
+      "The argument set for hyph.pattern is not one of the allowed options."
+    )
+  }
+  if (!is.logical(hyphenate)) {  # type correct?
+    stop(
+      "The argument set for hyphenate needs to be TRUE or FALSE."
+    )
+  }
+  if (!is.vector(split.string) | length(split.string) != 1) {  # correct length of extreme labels?
+    stop(
+      "The split.string specified must be a vector of length 1."
+    )
+  }
+  if (!is.numeric(label.scale) || !is.vector(label.scale) || length(label.scale) != 1) {
+    stop("The argument set for label.scale must be an numeric vector of length 1.")
+  }
+
 
   # Preparation ===============================================================
   if (is.null(results$brief$fcolors)) {  # when there are no colors in object
@@ -31,12 +52,72 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
   } else {
     q.distribution <- NULL
   }
+
   # we want to know the distros for all subplots in advance, so we can scale all plots similarly (ylim especially in the below)
   distros <- apply(X = results$zsc_n, MARGIN = 2, FUN = count)  # gather the distribution for all
   distros <- join_all(dfs = distros, by = "x")  # join 'em
   rownames(distros) <- distros[,1]  # name 'em
   colnames(distros) <- names(factors)
   distros <- distros[,-1]  # simplify them
+
+  # Calculate some stuff for text size scaling =================================
+
+  # vertical space
+  v.space <- 1 / max(distros)
+  # now let's give the max chars after which to break the line for below str_wrap
+  max.lines.per.cell <- min(round(v.space * 45), 4)
+  wrap.length <- max(round(max(nchar(rownames(results$dataset)))/max.lines.per.cell), 8)
+
+  # horizontal space
+  splitstrings <- strsplit(x = rownames(results$dataset), split = "-")
+  splitstrings <- unlist(splitstrings)
+  longest.word <- max(nchar(splitstrings))
+  h.space <- 1 / sum(abs(range(results$dataset))) / wrap.length
+
+  # wrap handles
+  wrapped.handles <- rownames(results$dataset)
+  wrapped.handles <- strsplit(x = wrapped.handles, split = split.string)
+  names(wrapped.handles) <- rownames(results$dataset)
+
+  # put stuff together again if there are too many parts
+  for (i in names(wrapped.handles)) {
+    if(length(wrapped.handles[[i]]) > max.lines.per.cell) {
+      n <- 1
+      while (length(wrapped.handles[[i]]) > max.lines.per.cell) {
+        wrapped.handles[[i]][n + 1] <- paste(wrapped.handles[[i]][c(n, n+1)], collapse = " ")
+        wrapped.handles[[i]] <- wrapped.handles[[i]][-n]
+        wrapped.handles[[i]]
+        n <- n + 1
+      }
+    }
+  }
+
+  # hyphenate
+  if(hyphenate) {
+    for (handle in names(wrapped.handles)) {
+      if(length(wrapped.handles[[handle]]) < max.lines.per.cell) {
+        linebreaks <- length(wrapped.handles[[handle]])
+        for (handle.part in 1:length(wrapped.handles[[handle]])) {
+          if(nchar(wrapped.handles[[handle]][handle.part]) > wrap.length & linebreaks < max.lines.per.cell) {
+            hyphenated <- hyphen(words = wrapped.handles[[handle]][handle.part], quiet = TRUE, cache = TRUE, hyph.pattern = hyph.pattern)
+            hyphenated <- slot(object = hyphenated, name = "hyphen")$word
+            hyphenated <- strsplit(x = hyphenated, split = "-")
+            hyphenated <- unlist(hyphenated)
+            split.point <- round(length(hyphenated)/2)
+            hyphenated <- paste(c(paste0(c(hyphenated[1:split.point], "-"), collapse = ""), paste0(hyphenated[(split.point+1):length(hyphenated)], collapse = "")), sep = "-")
+            wrapped.handles[[handle]] <- append(x = wrapped.handles[[handle]], values = hyphenated, after = handle.part)
+            wrapped.handles[[handle]] <- wrapped.handles[[handle]][-handle.part]
+            linebreaks <- linebreaks + 1  # add to counter
+          }
+        }
+      }
+    }
+  }
+
+  # add linebreaks
+  wrapped.handles <- lapply(X = wrapped.handles, FUN = paste, collapse = "\n")
+  wrapped.handles <- cbind(names(wrapped.handles), unlist(wrapped.handles))
+  wrapped.handles <- wrapped.handles[, -1]
 
   # Loop over extracted factors ================================================
   for (current.fac in factors) {
@@ -49,7 +130,7 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
     colnames(array.viz.data)[2] <- "zsc"  # add generalized name
     colnames(array.viz.data)[3] <- "item.sd"  # add generalized name
     array.viz.data$item.sd[is.na(array.viz.data$item.sd)] <- 0  # set SDs to 0 if they are NA, which appropriately happens when only 1 person loads, since sd for n=1 is undefined. Bit of a hack job, but should not be much needed in real life, as factors with only 1 loader are crap anyway.
-    array.viz.data$item.wrapped <- str_wrap(gsub("-", " ", rownames(array.viz.data)), 10)  # make shorter, wrapped item handles
+    array.viz.data$item.wrapped <- wrapped.handles[c(row.names(array.viz.data))]
     array.viz.data <- array.viz.data[order(array.viz.data[,"fsc"],array.viz.data[,"item.sd"]),]  # ordering, needed for y variable
     array.viz.data$ycoord <- sequence(distros[, current.fac])  # add meaningless y variable for plotting
 
@@ -142,6 +223,8 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
         , x = fsc
         , y = ycoord
       )
+      , size = rel(h.space * label.scale)
+      , lineheight = rel(0.8)
     )
     # Visual Polishing ======================================================
     g <- g + coord_cartesian(  # shorten axes
@@ -166,7 +249,6 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
       , axis.ticks.y = element_blank()  # no y ticks, because meaningless
       , axis.text.y = element_blank()  # no y text, because meaningless
       , legend.position = "bottom"  # manually adjust legend
-      , legend.justification = c(0,1)
       , legend.direction = "horizontal"
       , panel.grid = element_blank()
       , legend.box = "horizontal"
