@@ -39,7 +39,10 @@ make.cards(
   	Defaults to \code{TRUE}.
   }
   \item{manual.lookup}{
-  	A matrix with handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as row names, and arbitrary, unique identifying strings in any of the columns as also expected in \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
+  	A matrix with handles (same as in \code{\link{build.q.set}}, \code{\link{import.q.concourse}}) as row names, \code{study.language} as columns and arbitrary, \emph{unique} identifying strings in the cells, as also expected in \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
+    If \code{study.language} is set to \code{NULL} (default), the first column in the provided matrix will be used.
+    Notice that \code{manual.lookup} must always be a matrix, even if it has only one column.
+
 		Defaults to \code{NULL} in which case items are automatically identified by full item hashes, as also detected by \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
   }
   \item{wording.font.size}{
@@ -71,12 +74,12 @@ make.cards(
 	If templates are duplex printed with the same page on the front and back, and in proper orientation, the front of each card includes the full wording, and the back its unique identifier (ID).
 
 	Identifiers (ID) entered manually or automatically hashed from full wordings are also expected in the import functions \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
-  The automatic summary of full item wordings, technically known as \emph{hashing}, proceeds internally by passing the full item wording to the \code{\link[digest]{digest}} function of the package \pkg{digest} (with arguments set to 
-  
+  The automatic summary of full item wordings, technically known as \emph{hashing}, proceeds internally by passing the full item wording to the \code{\link[digest]{digest}} function of the package \pkg{digest} (with arguments set to
+
   \code{algo = crc32, serialize = FALSE}.)
 
 	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.RNW} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed-out multi-page table.
-  
+
   If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}
 }
 

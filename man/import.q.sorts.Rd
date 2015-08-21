@@ -5,7 +5,7 @@
 	Turns raw Q-sorts (from *.CSV) into a Q-sorts array (when there are > 2 conditions) or matrix (with single condition).
 }
 \usage{
-import.q.sorts(q.sorts.dir,	q.set, q.distribution, 
+import.q.sorts(q.sorts.dir,	q.set, q.distribution,
                conditions = NULL, manual.lookup = NULL)
 }
 
@@ -31,15 +31,15 @@ import.q.sorts(q.sorts.dir,	q.set, q.distribution,
 		The chosen Q distribution as a vector of integers, such as \code{c(1,3,1)}.
 	}
 	\item{conditions}{
-		A character vector of (optional) study (within-subjects) conditions, such as 
-    
+		A character vector of (optional) study (within-subjects) conditions, such as
+
     \code{c("before","after")}, same as folders under \code{q.sorts.dir}.
 		Defaults to \code{NULL} in which case there is only one condition, and *.CSV files are expected directly under \code{q.sorts.dir}.
 	}
 	\item{manual.lookup}{
-		A matrix with handles (such as \kbd{q-is-great}, same as in \code{\link{build.q.set}}, 
-    
-    \code{\link{import.q.concourse}}) as row names, and arbitrary strings (item IDs, such as \code{"it212"}) in any of the columns as printed on the Q-cards by \code{\link{make.cards}}.
+		A matrix with handles (such as \kbd{q-is-great}, same as in \code{\link{build.q.set}},
+
+    \code{\link{import.q.concourse}}) as row names, and arbitrary strings (item IDs, such as \code{"it212"}) in \emph{any} of the columns as printed on the Q-cards by \code{\link{make.cards}}.
 		Defaults to \code{NULL} in which case items are automatically identified by automatic hash IDs, as also produced by \code{\link{make.cards}}.
 	}
 }
@@ -60,7 +60,7 @@ Q-sorts are conveniently entered as *.CSV (comma separated values) files in stan
 
 	Q-sorts are best entered not by typing up the full form of an item, but some unique string (ID) printed on the card.
 	This function, and, analogously, \code{\link{make.cards}} and \code{\link{import.q.feedback}} offer a manual and automatic way to create these IDs, which are then expected as input (see \link{qmethod-package} for details).
-  
+
   The automatic summary of full item wordings, technically known as \emph{hashing}, proceeds internally by passing the full item wording to the \code{\link[digest]{digest}} function of the package \pkg{digest} (with arguments set to \code{algo = crc32, serialize = FALSE}.)
 
 	Q-sorts are conveniently entered as *.CSV (comma separated values) files in standard spreadsheet editors.
@@ -125,7 +125,7 @@ q.sorts <- import.q.sorts(           # now import the sorts
   q.set = importexample$q.set,       # as produced by build.q.set
   q.distribution = c(1,2,1),         # very simple distribution
   conditions = c("before","after"),  # enter your conditions here, same as in path
-  manual.lookup = matrix(  # ideally empty for automatic hashing, 
+  manual.lookup = matrix(  # ideally empty for automatic hashing,
                            # or read in from *.CSV file
     c("i01","i02","i03","i04"),
     ncol = 1,
