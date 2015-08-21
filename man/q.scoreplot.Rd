@@ -70,7 +70,8 @@
 \author{Maximilian Held}
 
 \note{
-  This visualization currently only works with a forced Q distribution.
+  In rare cases \code{zsc_n} rounded scores from \code{\link{qzscores}} can violate a forced distribution when factor statement scores are tied between two columns.
+  For more information, see \url{https://github.com/aiorazabala/qmethod/issues/196}.
 }
 
 \seealso{

@@ -2,7 +2,7 @@
 \alias{qzscores}
 \title{Q methodology: z-scores from loadings}
 \description{Calculates factor characteristics, z-scores, and factor scores, provided a matrix of loadings and a matrix of (manually or automatically) flagged Q-sorts.}
-\usage{qzscores(dataset, nfactors, loa, flagged, forced = TRUE, 
+\usage{qzscores(dataset, nfactors, loa, flagged, forced = TRUE,
          distribution = NULL)}
 
 \arguments{
@@ -16,7 +16,12 @@
 
 \details{In order to implement manual flagging, use a manually created data frame for \code{flagged}. See an example of code to perform manual flagging or to manipulate the loadings in \url{https://github.com/aiorazabala/qmethod/wiki/Advanced-analysis}.
 
-The loadings from \code{principal(...)$loadings} can be explored to decide upon flagging. The \code{loa} data frame should have Q-sorts as rows, and factors as columns, where \code{TRUE} are the flagged Q-sorts.}
+The loadings from \code{principal(...)$loadings} can be explored to decide upon flagging. The \code{loa} data frame should have Q-sorts as rows, and factors as columns, where \code{TRUE} are the flagged Q-sorts.
+
+  In rare cases \code{zsc_n} rounded scores can violate a forced distribution when factor statement scores are tied between two columns.
+  This function preserves these ties by allowing a divergence from the forced distribution.
+  For more information, see \url{https://github.com/aiorazabala/qmethod/issues/196}.
+}
 \value{
 Returns a list of class \code{QmethodRes}, with seven objects:
 \item{brief}{a list with the basic values of the analysis: date (\code{"date"}), number of statements (\code{"nstat"}), number of Q-sorts (\code{"nqsort"}), whether the distribution was 'forced' (\code{"distro"}),  number of factors extracted (\code{"nfactors"}), type or rotation (\code{"rotation"}), method for correlation in the PCA (\code{"cor.method"}), and a summary of this information for display purposes (\code{"info"}).}
@@ -38,7 +43,7 @@ See further references on the methodology in \code{\link{qmethod-package}}.}
 \examples{
 data(lipset)
 library(psych)
-loa <- as.data.frame(unclass(principal(lipset[[1]], 
+loa <- as.data.frame(unclass(principal(lipset[[1]],
                      nfactors = 3, rotate = "varimax")$loadings))
 flagged <- qflag(nstat = 33, loa = loa)
 qmzsc <- qzscores(lipset[[1]], nfactors = 3, flagged = flagged, loa = loa)
