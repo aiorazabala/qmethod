@@ -1,4 +1,4 @@
-make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckformC32010.Rnw", output.pdf = TRUE, manual.lookup = NULL, wording.font.size = NULL, file.name = "QCards", babel.language=NULL) {
+make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckformC32010.Rnw", output.pdf = TRUE, manual.lookup = NULL, wording.font.size = NULL, file.name = "QCards", babel.language=NULL, show.handles=FALSE) {
 
   # Input validation also check more below
   if (!is.matrix(q.set)) {
@@ -22,6 +22,9 @@ make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckfor
     stop("The paper.format specified is not available.")
   }
   if (!is.logical(output.pdf)) {
+    stop("The argument output.pdf has not been specified logically.")
+  }
+  if (!is.logical(show.handles)) {
     stop("The argument output.pdf has not been specified logically.")
   }
   if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
@@ -67,12 +70,11 @@ make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckfor
   # Add ids to q.set.print ====================================================
   q.set.print$id <- NA  # set up empty id
   for (handle in rownames(q.set.print)) {  # loop over all ids in q.set
-    if (is.null(manual.lookup)) {  # for automatic hashing
-      q.set.print[handle,"id"] <- lookup.table[handle,study.language]
+    if (show.handles) {  # this is for the researcher-facing variant
+      q.set.print[handle, "id"] <- handle
     } else {
-      q.set.print[handle,"id"] <- lookup.table[handle]  # plug in id as row
+      q.set.print[handle,"id"] <- lookup.table[handle, study.language]
     }
-
   }
   path <- paste(  # assign path to template
     path.package("qmethod"),  # where is the package?

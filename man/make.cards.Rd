@@ -7,14 +7,15 @@
 }
 \usage{
 make.cards(
-  	 q.set,
+  	q.set,
     study.language = NULL,
     paper.format = "AveryZweckformC32010.Rnw",
     output.pdf = TRUE,
     manual.lookup = NULL,
     wording.font.size = NULL,
     file.name = "QCards",
-    babel.language = NULL
+    babel.language = NULL,
+    show.handles = FALSE
     )
 }
 
@@ -60,6 +61,11 @@ make.cards(
     Defaults to \code{NULL}, in which case babel is never called.
     Changing \code{babel.language} between function calls can occasionally leave inconsistent LaTeX temp files, which may trip up compilation.
     Please re-run the function once again or clean up temp files (in the working directory) in that case.
+  }
+  \item{show.handles}{
+    Logical.
+    If \code{TRUE}, meaningful \emph{handles} are used instead of \emph{IDs}, as may be useful for researcher-facing card sets.
+    Defaults to \code{FALSE}, in which case the participant-facint \emph{IDs} are used (as per \code{manual.lookup}).
   }
 }
 \details{

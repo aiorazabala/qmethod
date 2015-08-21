@@ -14,7 +14,7 @@ if(!is.null(babel.language)) {
     "\\usepackage[",
     babel.language, # for international support
     "]{babel}",
-    sep="" 
+    sep=""
   )
 }
 @
@@ -30,7 +30,19 @@ if(!is.null(babel.language)) {
 \begin{document}
 \pagestyle{empty}
 \setlength{\tabcolsep}{5mm}  % for margins and "aisle" margin between cards, fix by trial and error
-\newcolumntype{H}{>{\centering\arraybackslash\Huge\ttfamily}m}  % need this because font size should be different for ID
+%\newcolumntype{H}{>{\centering\arraybackslash\HUGE\ttfamily}m}  % need this because font size should be different for ID
+<<show.handles, echo = FALSE, results = "asis">>=
+if (show.handles) {
+  cat(
+    "\\newcolumntype{H}{>{\\centering\\arraybackslash\\Huge\\sffamily}m}"  # need this because font size should be different for handle
+  )
+} else {
+  cat(
+    "\\newcolumntype{H}{>{\\centering\\arraybackslash\\Huge\\ttfamily}m}"  # need this because font size should be different for ID
+  )
+}
+@
+
 <<make.cards, results='asis', echo=FALSE, warning=FALSE, message=FALSE>>=
 q.set.print$empty <- c("\\rule[-27mm]{0mm}{54mm}")  # creates empty column with a white height line to make sure rows have some height
 print.xtable(
