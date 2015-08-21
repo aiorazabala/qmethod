@@ -26,7 +26,18 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
   factors <- seq(results$brief$nfactors)  # set vector with length of factors
   names(factors) <- colnames(results$loa)  # take names from loa whatever they may be
   g.list <- as.list(factors)  # set up empty list
-  q.distribution <- count(df = results$dataset, 1)[,2]  # infer distribution from first column in dataset
+  if (results$brief$distro) {
+    q.distribution <- round(as.data.frame(table(as.matrix(results$dataset))/ncol(results$dataset))[,2])  # take average for precautionary reasons
+  } else {
+    q.distribution <- NULL
+  }
+  # we want to know the distros for all subplots in advance, so we can scale all plots similarly (ylim especially in the below)
+  distros <- apply(X = results$zsc_n, MARGIN = 2, FUN = count)  # gather the distribution for all
+  distros <- join_all(dfs = distros, by = "x")  # join 'em
+  rownames(distros) <- distros[,1]  # name 'em
+  colnames(distros) <- names(factors)
+  distros <- distros[,-1]  # simplify them
+
   # Loop over extracted factors ================================================
   for (current.fac in factors) {
     array.viz.data <- cbind(  # read in data
@@ -40,7 +51,7 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
     array.viz.data$item.sd[is.na(array.viz.data$item.sd)] <- 0  # set SDs to 0 if they are NA, which appropriately happens when only 1 person loads, since sd for n=1 is undefined. Bit of a hack job, but should not be much needed in real life, as factors with only 1 loader are crap anyway.
     array.viz.data$item.wrapped <- str_wrap(gsub("-", " ", rownames(array.viz.data)), 10)  # make shorter, wrapped item handles
     array.viz.data <- array.viz.data[order(array.viz.data[,"fsc"],array.viz.data[,"item.sd"]),]  # ordering, needed for y variable
-    array.viz.data$ycoord <- sequence(q.distribution)  # add meaningless y variable for plotting
+    array.viz.data$ycoord <- sequence(distros[, current.fac])  # add meaningless y variable for plotting
 
     # actual plotting ==========================================================
     fsc <- ycoord <- item.sd <- difference <- significance <- item.wrapped <- NULL  # this is a hideous, nonsensical piece of code to avoid a spurious R CMD Check note. It is recommended by the author of the offending package on StackExchange at http://stackoverflow.com/questions/9439256/how-can-i-handle-r-cmd-check-no-visible-binding-for-global-variable-notes-when
@@ -140,7 +151,7 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
       )
       , ylim = c(
         0.5
-        , max(array.viz.data$ycoord)+.5)
+        , max(distros)+.5)
     )
     g <- g + labs(  # add meaningful x axis title (replaces need for title, too)
       x=paste("Factor Score:", names(factors)[current.fac], sep=" ")
@@ -154,10 +165,11 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
       axis.title.y = element_blank()  # no y labels, because meaningless
       , axis.ticks.y = element_blank()  # no y ticks, because meaningless
       , axis.text.y = element_blank()  # no y text, because meaningless
-      , legend.position = c(0,1)  # manually adjust legend
+      , legend.position = "bottom"  # manually adjust legend
       , legend.justification = c(0,1)
       , legend.direction = "horizontal"
       , panel.grid = element_blank()
+      , legend.box = "horizontal"
     )
     # Put into list ============================================================
     g.list[[current.fac]] <- g  # add current graph to list

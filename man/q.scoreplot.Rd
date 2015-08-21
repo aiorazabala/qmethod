@@ -36,8 +36,8 @@
   The resulting graphs include the following information:
   \enumerate{
     \item \emph{Item Position.}
-      The items are sorted as per \code{\link{qmethod}}'s \code{zsc_n}, that is, the standardized average of loadings-weighted, item scores of flagged participants on a given factor, distributed across the original Q distribution.
-      Compared to \code{zsc}, which are the z-scores not forced back on the original Q distribution, \code{zsc_n} constitute a \emph{loss} of information.
+      The items are sorted as per \code{\link{qmethod}}'s \code{zsc_n}, that is, the standardized average of loadings-weighted item scores of flagged participants on a given factor, rank ordered.
+      Compared to \code{zsc}, which are the unrounded z-scores, \code{zsc_n} constitute a \emph{loss} of information.
       Absolute (rather than zscored) positions are chosen here despite that loss to avoid colossal overplotting of labels, as well as to reproduce Q sort data in its original form.
     \item \emph{Item Names.}
       Items are named according to a line-wrapped version of the \code{item.handles} from in \code{\link{import.q.concourse}}, handed on to results by \code{\link{qmethod}}.
@@ -71,6 +71,7 @@
 
 \note{
   In rare cases \code{zsc_n} rounded scores from \code{\link{qzscores}} can violate a forced distribution when factor statement scores are tied between two columns.
+  These ties are retained in the present plots.
   For more information, see \url{https://github.com/aiorazabala/qmethod/issues/196}.
 }
 

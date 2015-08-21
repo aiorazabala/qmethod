@@ -12,6 +12,7 @@ import("methods",
        "gridExtra",
        "memoise")
 importFrom("plyr","count")
+importFrom("plyr","join_all")
 importFrom("reshape2","melt")
 importFrom("digest", "digest")
 importFrom("RColorBrewer", "brewer.pal")
