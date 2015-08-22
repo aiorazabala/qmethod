@@ -163,22 +163,22 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
     if (incl.qdc == TRUE) {
       array.viz.qdc.diff <- array.viz.data[,c("fsc", "ycoord")]  # duplicate baseline dataset
       array.viz.qdc.sig <- array.viz.data[,c("fsc", "ycoord")]  # duplicate baseline dataset
-      for (other.fac in factors[-current.fac]) {  # go over the other factors
-        sed <- results$f_char$sd_dif[current.fac, other.fac]  # this and below unfortunately reproduces analysis from qdc.R, because qdc results are hard to read in
-        for (it in rownames(array.viz.data)) {  # go over all items
-          diff <- results$zsc[it, other.fac] - results$zsc[it, current.fac]  # set up difference in zscores
-          if (sed * 2.58 < abs(diff)) {  # if sig at .05 ...
-            array.viz.qdc.diff[it, names(factors)[other.fac]] <- diff  # ... assign difference
-            array.viz.qdc.sig[it, names(factors)[other.fac]] <- ".01"  # ... assign sig
-          } else if (sed * 1.96 < abs(diff)) {  # if sig at .01
-            array.viz.qdc.diff[it, names(factors)[other.fac]] <- diff  # ... assign difference
-            array.viz.qdc.sig[it, names(factors)[other.fac]] <- ".05"  # ... assign sig
-          } else {  # if non-sig ...
-            array.viz.qdc.diff[it, names(factors)[other.fac]] <- NA  # ... assign NA
-            array.viz.qdc.sig[it, names(factors)[other.fac]] <- NA  # ... assign NA
-          }
-        }
+      for (other.fac in factors[-current.fac]) {
+
+        sig2other <- as.matrix(results$qdc[rownames(array.viz.qdc.diff), grepl(names(factors)[current.fac], colnames(results$qdc)) & grepl(names(factors)[other.fac], colnames(results$qdc)) & grepl("sig", colnames(results$qdc))])
+        colnames(sig2other) <- names(factors)[other.fac]
+        sig2other[sig2other==""] <- NA
+        sig2other[sig2other=="**"] <- ".01"
+        sig2other[sig2other=="*"] <- ".05"
+        array.viz.qdc.sig <- cbind(array.viz.qdc.sig, sig2other)
+
+        diff2other <- as.matrix(results$qdc[rownames(array.viz.qdc.diff), grepl(names(factors)[current.fac], colnames(results$qdc)) & grepl(names(factors)[other.fac], colnames(results$qdc)) & !grepl("sig", colnames(results$qdc))])
+        colnames(diff2other) <- names(factors)[other.fac]
+        diff2other[is.na(sig2other)] <- NA  # kill non-significant diffs
+        array.viz.qdc.diff <- cbind(array.viz.qdc.diff, diff2other)
+
       }
+
       array.viz.qdc.diff$item <- rownames(array.viz.qdc.diff)  # add manual item names for orientation (gets killed in melt)
       array.viz.qdc.diff <- melt(
         data = array.viz.qdc.diff
