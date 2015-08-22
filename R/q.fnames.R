@@ -12,6 +12,11 @@ q.fnames <- function(results, fnames) {
   if (length(fnames) != results$brief$nfactors) stop(paste0("The names provided (", length(fnames), ") does not match the number of factors in the results (", results$brief$nfactors, ")"))
   if (max(nchar(fnames)) > 50) stop("The names provided are longer than 50 characters.")
 
+  # are any factors named yet? see #https://github.com/aiorazabala/qmethod/issues/241
+  if (any(colnames(results$loa) == c("f1", "f2", "f3"))) {
+    warning("At least some of the factors in results were already named. Old names have been overwritten.")
+  }
+
   # Change factor names for meaningful names
   q.objects <- c("loa", "flagged", "zsc", "zsc_n")
   for (i in q.objects) colnames(results[[i]]) <- fnames
