@@ -37,5 +37,12 @@ q.fnames <- function(results, fnames) {
   }
   results$qdc <- qdc
 
+  # Rename rotmat columns, rows, if it exists
+  # must check if exists, because qmethod < 1.4 did not produce it
+  if (exists(x = "results$brief$rotmat")) {  #
+    colnames(results$brief$rotmat) <- fnames
+    rownames(results$brief$rotmat) <- fnames
+  }
+
   return(invisible(results))
 }

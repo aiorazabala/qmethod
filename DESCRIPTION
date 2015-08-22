@@ -28,7 +28,6 @@ Imports:
   nFactors,
   grid,
   gridExtra,
-  memoise,
   koRpus
 LazyData: true
 Repository: CRAN

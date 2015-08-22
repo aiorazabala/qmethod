@@ -4,10 +4,7 @@ import("methods",
        "tools",
        "stringr",
        "paran",
-       "nFactors",
-       "grid",
-       "gridExtra",
-       "memoise"
+       "nFactors"
        )
 importFrom("plyr","count")
 importFrom("plyr","join_all")
@@ -20,7 +17,12 @@ importFrom("xtable", "xtable")
 importFrom("xtable", "print.xtable")
 importFrom("RColorBrewer", "brewer.pal")
 importFrom("psych", "principal")
-importFrom("psych", "factor.rotate")
+importFrom("psych", "target.rot")
+importFrom("psych", "Promax")
+importFrom("grid", "grid.newpage")
+importFrom("grid", "grid.draw")
+importFrom("gridExtra", "grid.arrange")
+importFrom("gridExtra", "arrangeGrob")
 export("qmethod",
        "qzscores",
        "qflag",
@@ -46,7 +48,8 @@ export("qmethod",
        "q.loaplot",
        "q.compplot",
        "q.rotplot",
-       "q.rotate")
+       "q.mrot.do",
+       "q.mrot.choose")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
