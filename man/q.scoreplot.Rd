@@ -64,8 +64,8 @@
     \item \emph{Tile Fill Color.}
       Tiles surrounding items are filled by a color identifying the current factor across all plots.
       The shade of the fill color is determined by the loadings-weighted population (!) standard deviation of items \emph{across} flagged Q sorts, as produced by \code{\link{qzscores}}.
-      The shade is scaled to the highest standard deviation of an item within a given factor plot, implying that the scale \emph{cannot} be compared across factor plots and visualizes only \emph{relative} dispersions \emph{within} factors.
-      This is a somewhat unconventional statistic in Q methodology, and is meant to give an impression of the \emph{dispersion} of items on across sorts flagged for a given factor.
+      The shade is scaled to the highest standard deviation of an item across all factors, implying that the scale \emph{can} be compared across factor plots \emph{within} the same \code{\link{qmethod}} analysis.
+      This is a somewhat unconventional statistic in Q methodology, and is meant to give an impression of the \emph{dispersion} of items across sorts loading on a given factor.
     \item \emph{Lines Distinguishing Items Factors.}
       For any item that is significantly distinguishing between any pair of factors as per \code{\link{qdc}}, a vertical line is drawn in the color of that other factor.
       The line is offset from the horizontal center of the item tile by the difference in \code{zsc} between the two factors on that item.

@@ -154,7 +154,7 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
     g <- g + scale_fill_gradient(
       low = fcolors[current.fac]
       , high="white"
-      , limits = c(0, max(array.viz.data$item.sd))
+      , limits = c(0, max(q.item.sd(results), na.rm = TRUE))
       , name = "Item Standard Deviation Across Flagged Q-Sorts\n"
       , guide = "colorbar"
     )
