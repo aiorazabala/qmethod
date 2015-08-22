@@ -1,5 +1,4 @@
 import("methods",
-       #,#"psych",
        "GPArotation",
        "ggplot2",
        "tools",
