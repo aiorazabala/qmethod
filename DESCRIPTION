@@ -11,10 +11,9 @@ Description: Analysis of Q methodology, used to identify distinct perspectives e
   The package uses principal components and it allows manual or automatic flagging, a number of mathematical methods for rotation, and a number of correlation coefficients for the initial correlation matrix.
   See further details in the package documentation, and in the web pages below, which include a cookbook, guidelines for more advanced analysis (how to perform manual flagging or change the sign of factors), data management, and a beta graphical user interface for online and offline use.
 License: GPL (>= 2)
-Depends:
-  ggplot2,
-  psych
 Imports:
+  ggplot2,
+  psych,
   methods,
   GPArotation,
   tools,

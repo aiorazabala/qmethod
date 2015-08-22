@@ -1,22 +1,27 @@
 import("methods",
-       "psych",
+       #,#"psych",
        "GPArotation",
-       "tools",
-       "xtable",
-       "knitr",
        "ggplot2",
+       "tools",
        "stringr",
        "paran",
        "nFactors",
        "grid",
        "gridExtra",
-       "memoise")
+       "memoise"
+       )
 importFrom("plyr","count")
 importFrom("plyr","join_all")
 importFrom("reshape2","melt")
 importFrom("digest", "digest")
 importFrom("koRpus", "hyphen")
+importFrom("knitr", "knit")
+importFrom("knitr", "knit2pdf")
+importFrom("xtable", "xtable")
+importFrom("xtable", "print.xtable")
 importFrom("RColorBrewer", "brewer.pal")
+importFrom("psych", "principal")
+importFrom("psych", "factor.rotate")
 export("qmethod",
        "qzscores",
        "qflag",
