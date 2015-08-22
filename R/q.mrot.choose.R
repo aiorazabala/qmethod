@@ -166,12 +166,13 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
           # IMPLEMENT angle
           angle <- angle + as.numeric(angle.change)  # readline does not capture numerics
           angle <- simplify.angle(angle.raw = angle)
+          radians <- angle * pi / 180 # because rotation matrices are build from radians, not angles
           rot.mat.angle <- diag(results$brief$nfactors)  # make identity matrix
           dimnames(rot.mat.angle) <- dimnames(rot.mat)  # take over dimnames
-          rot.mat.angle[combs[pair,"x-horizontal"], combs[pair,"x-horizontal"]] <- cos(angle)
-          rot.mat.angle[combs[pair,"x-horizontal"], combs[pair,"y-vertical"]] <- -sin(angle)
-          rot.mat.angle[combs[pair,"y-vertical"], combs[pair,"x-horizontal"]] <- sin(angle)
-          rot.mat.angle[combs[pair,"y-vertical"], combs[pair,"y-vertical"]] <- cos(angle)
+          rot.mat.angle[combs[pair,"x-horizontal"], combs[pair,"x-horizontal"]] <- cos(radians)
+          rot.mat.angle[combs[pair,"x-horizontal"], combs[pair,"y-vertical"]] <- -sin(radians)
+          rot.mat.angle[combs[pair,"y-vertical"], combs[pair,"x-horizontal"]] <- sin(radians)
+          rot.mat.angle[combs[pair,"y-vertical"], combs[pair,"y-vertical"]] <- cos(radians)
 
           rot.mat.pair <- rot.mat %*% rot.mat.angle  # take original rot.mat, and multiply by current angle
           # this yields the preliminary rot.mat for the current pair

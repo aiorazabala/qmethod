@@ -36,6 +36,8 @@
 
   Users can abort the rotation procedure at any time.
 
+  Interactive rotation expects angles, and transforms them to radians.
+
   Recall that any rotation will change the factor scores on \emph{all} factors (not merely the current factor pair), and may require a new factor interpretation.
   To aid in such an iterative process of rotation and interpretation, this function not only provides rotated \emph{loadings}, but also calculates and plots resultant \emph{factor scores} by re-running \code{\link{qmethod}}.
 
