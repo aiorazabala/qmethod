@@ -38,7 +38,6 @@ q.rotplot <- function(results, quietly = FALSE, label.scale = 200) {
 
   # find combinations
   combs <- combn(x = colnames(results$loa), m = 2, simplify = FALSE)  # the below couple of lines are unfortunately duplicate code from q.loaplot()
-  # TODO(maxheld83) this again could be read in from results$brief$rotation.angles IF that always existed
 
   # make plots
   loaplots <- q.loaplot(results = results, quietly = TRUE)
