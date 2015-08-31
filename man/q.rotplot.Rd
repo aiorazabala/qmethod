@@ -6,7 +6,7 @@
 }
 
 \usage{
-	q.rotplot(results, quietly = FALSE)
+	q.rotplot(results, quietly = FALSE, label.scale = 200)
 }
 
 \arguments{
@@ -16,6 +16,9 @@
   \item{quietly}{
     Logical, indicating whether a summary plot should be printed.
     Defaults to \code{FALSE}.
+  }
+  \item{label.scale}{
+    An integer vector to scale the plot labels, passed on to \code{\link{q.scoreplot}}, defaults to \code{500}.
   }
 }
 

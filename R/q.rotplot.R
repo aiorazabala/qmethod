@@ -1,4 +1,4 @@
-q.rotplot <- function(results, quietly = FALSE) {
+q.rotplot <- function(results, quietly = FALSE, label.scale = 200) {
   # Input verification =========================================================
   if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
     stop("The argument set for quietly must be a logical vector of length 1.")
@@ -43,7 +43,7 @@ q.rotplot <- function(results, quietly = FALSE) {
   # make plots
   loaplots <- q.loaplot(results = results, quietly = TRUE)
   compplot <- q.compplot(results = results, quietly = TRUE)
-  scoreplots <- q.scoreplot(results = results, incl.qdc = FALSE, quietly = TRUE)  # Let's not make this more complicated
+  scoreplots <- q.scoreplot(results = results, incl.qdc = FALSE, quietly = TRUE, label.scale = label.scale)  # Let's not make this more complicated
 
   rotplots <- loaplots.pairs <- NULL  # allow the object
 
