@@ -24,65 +24,17 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
   if (length(unique(colnames(dataset))) != nqsorts) stop("Q method input: one or more Q-sort names are duplicated. Please change the names of the dataset by using colnames().")
 
   # Run the analysis ===========================================================
-
-  # find unrotated loadings
-  cor.data <- cor(dataset, method=cor.method)
-  pca.results <- principal(r = cor.data, nfactors = nfactors, rotate = "none", n.obs = nrow(dataset), covar = FALSE)
-  loa.unrot <- unclass(pca.results$loadings)
-
-  # rotate loadings and store rot.mat
-  if (rotation == "none") {
-    loa <- loa.unrot  # just take the unrotated loadings
-    rot.mat <- diag(nfactors)  # if there is no rotation, an identity matrix is the rot.matrix
-  } else if (rotation == "varimax") {
-  # the following tries to replicate EXACTLY what psych::principal (v.1.5.6) does internally for legacy reasons
-  # prior versions of qmethod (< 1.4.0) here only used the rotation from within psych::principal
-  # separate rotation procedures were necessary in 1.4.0 to have a rot.mat as per https://github.com/aiorazabala/qmethod/issues/171
-  # from psych::principal doc:
-  #  > Rotations and transformations are either part of psych (Promax and cluster), of base R (varimax), or of GPArotation (simplimax, quartimax, oblimin).
-    varimax.results <- varimax(x = loa.unrot)
-    # using base::varimax, because psych::principal does
-    # see how in the psych::principal source, stats::varimax is also called with defaults
-    # > varimax = {rotated <- stats::varimax(loadings)  #varimax is from stats, the others are from GPArotation
-    # > loadings <- rotated$loadings},
-    loa <- unclass(varimax.results$loadings)
-    rot.mat <- varimax.results$rotmat
-  } else if (rotation == "promax") {  # this is done using psych functions as per manual
-    promax.results <- Promax(x = loa.unrot)
-    loa <- unclass(promax.results$loadings)
-    rot.mat <- promax.results$rotmat
-    # here too, psych::principal relies on defaults otherwise
-    # > cluster = 	 {loadings <- varimax(loadings)$loadings
-    # > pro <- target.rot(loadings)
-    # > loadings <- pro$loadings
-    # > Phi <- pro$Phi},
-  } else if (rotation == "cluster") {  # this is done using psych functions as per manual
-    cluster.results <- target.rot(x = varimax(x = loa.unrot)$loadings)
-    loa <- unclass(cluster.results$loadings)
-    rot.mat <- cluster.results$rotmat
-    # here too, psych::principal relies on defaults otherwise
-    # > cluster = 	 {loadings <- varimax(loadings)$loadings
-    # > pro <- target.rot(loadings)
-    # > loadings <- pro$loadings
-    # > Phi <- pro$Phi},
-  # remainder are all GPArotation procedures as per psych manual
-  } else if (rotation == "quartimax") {  # this is orthogonal
-    GPAresults <- GPForth(A = loa.unrot, method = rotation)
-    loa <- unclass(GPAresults$loadings)
-    rot.mat <- GPAresults$Th
-  } else if (rotation %in% c("simplimax", "oblimin")) {  # these are oblique
-    GPAresults <- GPFoblq(A = loa.unrot, method = rotation)
-    # notice that these procedures can occassionally NOT converge and fail
-    loa <- unclass(GPAresults$loadings)
-    rot.mat <- GPAresults$Th
-  } else {
-    stop("The chosen rotation is not available in qmethod.")
+  cor.data <- cor(x = dataset, method=cor.method)
+  pca.results <- principal(r = cor.data, nfactors = nfactors, rotate = rotation, n.obs = nrow(dataset), covar = FALSE)
+  if (rotation == "none") {  # if there is no rotation, psych does not return any rot.mat
+    rot.mat <- diag(x = 1, nrow = nfactors)  # ... instead, it must be an identity matrix
+  } else {  # this is for all other cases
+    rot.mat <- pca.results$rot.mat
   }
-
-  loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation, ...)$loadings)) #PCA from {psych} for factor loadings
+  loa <- as.data.frame(unclass(pca.results$loadings)) #PCA from {psych} for factor loadings
   names(loa) <- paste0("f", 1:length(loa))
-  colnames(rot.mat) <- names(loa)  # name rotmat
-  rownames(rot.mat) <- names(loa)  # name rotmat
+  colnames(rot.mat) <- names(loa)  # name rotmat same as loas
+  rownames(rot.mat) <- names(loa)  # name rotmat same as loas
   # The following depends on the qmethod functions: qflag, qzscores, qfcharact, qdc
   flagged <- qflag(loa=loa, nstat=nstat)
   qmethodresults <- qzscores(dataset, nfactors, flagged=flagged, loa=loa, forced=forced, distribution=distribution)
