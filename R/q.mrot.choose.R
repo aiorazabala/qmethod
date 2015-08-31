@@ -9,17 +9,15 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
   available.plots <- c("q.rotplot", "q.loaplot", "base")
   if (!is.character(plot.type) || !is.vector(plot.type) || length(plot.type) != 1 || !(plot.type %in% available.plots)) {
     stop(paste0(
-      "The argument set for plot.type must be a character vector of length 1 from the available plots ",
+      "The argument set for 'plot.type' must be a character vector of length 1 from the available plots ",
       available.plots,
       "."
     ))
   }
   if (!is.logical(plot.all) || !is.vector(plot.all) || length(plot.all) != 1) {
-    stop("The argument set for plot.all must be a logical vector of length 1.")
+    stop("The argument set for 'plot.all' must be a logical vector of length 1.")
   }
-#  if (!is.logical(cache) || !is.vector(cache) || length(cache) != 1) {
-#    stop("The argument set for cache must be a logical vector of length 1.")
-#  }
+
 
   # Set up data structure =====================================================
 
@@ -136,7 +134,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
       print(combs)
       pair <- NULL  # let's assume there is NO factor pair selected
       while (!(any(pair %in% row.names(combs), pair == ""))) {
-        pair <- readline(prompt = "Enter key number, blank to complete or 'Esc' to abort: ")
+        pair <- readline(prompt = "Enter row number, blank to complete or 'Esc' to abort: ")
         if (pair %in% combs[, "row number"]) {
           pair <- rownames(combs)[as.numeric(pair)]
         }
@@ -211,6 +209,38 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
       cat("Do you really want to finish manual rotation?", fill = TRUE)
       done.all <- readline(prompt = "Enter 'y' to finish and save, 'n' to continue or 'Esc' to abort: ")
     }
+
+    # NAME rotated factors
+    # notice that it makes sense to create names on completed rotations; THAT's what's defining the factors
+    # these names are then passed on to q.fnames in q.mrot.do.R, IF THERE ARE NAMES
+    done.naming <- NULL
+    while (is.null(done.naming) || !(done.naming == "y" || done.naming == "n")) {
+      names <- NULL
+      while (is.null(names) || !(any(names == "") || length(names) == results.rot$brief$nfactors)) {
+        cat("Do you want to rename the rotated factors", colnames(results.rot$loa), "(recommended)?", fill = TRUE)
+        raw.names <- readline(prompt = "Enter comma-separated factor names in the order given, leave blank for no names, or press 'Esc' to abort: ")
+        if (raw.names == "") {
+          names <- raw.names
+        } else {
+          split.names <- unlist(strsplit(x = raw.names, split = ","))  # split string
+          names <- trimws(split.names)  # kill whitespace
+        }
+      }
+      if (any(names == "")) {
+        cat("Are you sure you want to leave the rotated factors unnamed (not recommended)?")
+      } else {
+        colnames(rot.mat) <- names
+        rownames(rot.mat) <- names
+        results.rot <- q.mrot.do(results = results, rot.mat = rot.mat, quietly = TRUE)  # implement WITH names
+        plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = plot.all, combs = combs)
+        cat("Are the rotated factors named correctly?")
+      }
+      done.naming <- readline(prompt = "Enter 'y' to accept, 'n' to change names or 'Esc' to abort.")
+    }
+    if (any(names == "")) {
+      dimnames(rot.mat) <- NULL  # just to be sure and to clean up
+    }
+
 
     # IMPLEMENT done all
     if (done.all == "y") {

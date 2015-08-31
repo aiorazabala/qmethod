@@ -38,6 +38,8 @@
 
   Interactive rotation expects angles, and transforms them to radians.
 
+  Towards the end of the interactive procedure, users can name the \emph{rotated} factors, will be included as column and row names of the returned rotation matrix, which can be passed on to \code{\link{q.mrot.do}}, to rename all results of the analysis accordingly.
+
   Recall that any rotation will change the factor scores on \emph{all} factors (not merely the current factor pair), and may require a new factor interpretation.
   To aid in such an iterative process of rotation and interpretation, this function not only provides rotated \emph{loadings}, but also calculates and plots resultant \emph{factor scores} by re-running \code{\link{qmethod}}.
 

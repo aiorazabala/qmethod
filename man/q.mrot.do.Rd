@@ -16,6 +16,8 @@
   \item{rot.mat}{
     An arbitrary rotation matrix, as produced by \code{\link{q.mrot.choose}}.
     A rotation matrix must have as many rows and columns as there are factors retained in \code{results} and must be orthogonal, but not an identity matrix.
+
+    If the column and row names of the rotation matrix are named (manually, or by \code{\link{q.mrot.choose}}), these names will be passed to \code{\link{q.fnames}}, renaming all results accordingly.
   }
   \item{quietly}{
     Logical, indicating whether a summary and plot should be printed.
