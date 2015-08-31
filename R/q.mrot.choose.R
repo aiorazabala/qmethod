@@ -55,7 +55,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
     if (plot.type == "q.loaplot") {
       loaplots <- q.loaplot(results = results, quietly = TRUE)  # run quietly
       for (n in rownames(combs)) {  # retrieve only those that correspond to the combinations in rots
-        g[["pairs"]][[n]] <- loaplots[[combs[n,"y-vertical"]]][[combs[n,"x-horizontal"]]]
+        g[["pairs"]][[n]] <- loaplots[[combs[n,"x-horizontal"]]][[combs[n,"y-vertical"]]]
       }
       g$all <- do.call(what = "arrangeGrob", args = c(g$pairs, ncol = ceiling(sqrt(length(g$pairs)))))  # arrange them together
       # notice that the g$all object CANNOT be plot()ed or print()ed, but requires a grid.draw(), maybe with a grid.newpage() to flush the plot, as per http://stackoverflow.com/questions/31463445/how-do-i-get-rid-of-random-background-grid-from-arrangegrob?noredirect=1#comment50896311_31463445
@@ -67,8 +67,8 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
   }
 
   base.plot <- function(loa, pair, combs) {
-    plot(loa[, c(combs[pair, c("y-vertical")], combs[pair, c("x-horizontal")])], xlim = c(-1,1), ylim = c(-1,1), asp = 1)
-    text(loa[, c(combs[pair, c("y-vertical")], combs[pair, c("x-horizontal")])], labels = rownames(loa))
+    plot(loa[, c(combs[pair, c("x-horizontal")], combs[pair, c("y-vertical")])], xlim = c(-1,1), ylim = c(-1,1), asp = 1)
+    text(loa[, c(combs[pair, c("x-horizontal")], combs[pair, c("y-vertical")])], labels = rownames(loa))
   }
 
   plot.wrapper <- function(results, pair, combs, plot.type, plot.all, label.scale = label.scale) { # this just wraps all the plot commands for simplification
