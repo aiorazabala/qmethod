@@ -150,7 +150,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = FALSE, fi
         repeat {  # as long as users have not entered a blank angle
 
           # UPDATE on selecting angle
-          cat("\r", "You are rotating factor pair", pair, "currently at", angle, "degrees.")
+          cat("\r", "You are rotating factor pair", pair, "currently at", angle, "degrees.", fill = TRUE)
           flush.console()
 
           # SELECT angle
@@ -210,44 +210,44 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = FALSE, fi
       done.all <- readline(prompt = "Enter 'y' to finish and save, 'n' to continue or 'Esc' to abort: ")
     }
 
-    # NAME rotated factors
-    # notice that it makes sense to create names on completed rotations; THAT's what's defining the factors
-    # these names are then passed on to q.fnames in q.mrot.do.R, IF THERE ARE NAMES
-    done.naming <- NULL
-    while (is.null(done.naming) || !(done.naming == "y" || done.naming == "n")) {
-      names <- NULL
-      while (is.null(names) || !(any(names == "") || length(names) == results.rot$brief$nfactors)) {
-        cat("Do you want to rename the rotated factors", colnames(results.rot$loa), "(recommended)?", fill = TRUE)
-        raw.names <- readline(prompt = "Enter comma-separated factor names in the order given, leave blank for no names, or press 'Esc' to abort: ")
-        if (raw.names == "") {
-          names <- raw.names
-        } else {
-          split.names <- unlist(strsplit(x = raw.names, split = ","))  # split string
-          names <- trimws(split.names)  # kill whitespace
-        }
-      }
-      if (any(names == "")) {
-        cat("Are you sure you want to leave the rotated factors unnamed (not recommended)?")
-      } else {
-        colnames(rot.mat) <- names
-        rownames(rot.mat) <- names
-        results.rot <- q.mrot.do(results = results, rot.mat = rot.mat, quietly = TRUE)  # implement WITH names
-        plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = plot.all, combs = combs, label.scale = label.scale)
-        cat("Are the rotated factors named correctly?")
-      }
-      done.naming <- readline(prompt = "Enter 'y' to accept, 'n' to change names or 'Esc' to abort.")
-    }
-    if (any(names == "")) {
-      dimnames(rot.mat) <- NULL  # just to be sure and to clean up
-    }
-
-
     # IMPLEMENT done all
     if (done.all == "y") {
       done.all <- TRUE
-      write.csv(x = rot.mat, file = file)
+
+      # NAME rotated factors
+      # notice that it makes sense to create names on completed rotations; THAT's what's defining the factors
+      # these names are then passed on to q.fnames in q.mrot.do.R, IF THERE ARE NAMES
+      done.naming <- NULL
+      while (is.null(done.naming) || !(done.naming == "y")) {
+        names <- NULL
+        while (is.null(names) || !(any(names == "") || length(names) == results.rot$brief$nfactors)) {
+          cat("Do you want to rename the rotated factors", colnames(results.rot$loa), "(recommended)?", fill = TRUE)
+          raw.names <- readline(prompt = "Enter comma-separated factor names in the order given, leave blank for no names, or press 'Esc' to abort: ")
+          if (raw.names == "") {
+            names <- raw.names
+          } else {
+            split.names <- unlist(strsplit(x = raw.names, split = ","))  # split string
+            names <- trimws(split.names)  # kill whitespace
+          }
+        }
+        if (any(names == "")) {
+          cat("Are you sure you want to leave the rotated factors unnamed (not recommended)?")
+        } else {
+          colnames(rot.mat) <- names
+          rownames(rot.mat) <- names
+          results.rot <- q.mrot.do(results = results, rot.mat = rot.mat, quietly = TRUE)  # implement WITH names
+          plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = plot.all, combs = combs, label.scale = label.scale)
+          cat("Are the rotated factors named correctly?")
+        }
+        done.naming <- readline(prompt = "Enter 'y' to accept, 'n' to change names or 'Esc' to abort.")
+      }
+      if (any(names == "")) {
+        dimnames(rot.mat) <- NULL  # just to be sure and to clean up
+      }
+
+      write.csv(x = rot.mat, file = file, row.names = TRUE)
       cat("You have completed a manual rotation. A rotation matrix has been returned.", fill = TRUE)
-      warning("To change your results object, pass the rotation matrix to 'q.mrot.do'. Remember to save the rotation matrix.")
+      cat("To change your results object, pass the rotation matrix to 'q.mrot.do'. Remember to save the rotation matrix.", fill = TRUE)
     } else if (done.all == "n") {
       done.all <- FALSE
     }

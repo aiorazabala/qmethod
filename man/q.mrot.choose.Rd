@@ -10,7 +10,7 @@
   q.mrot.choose(
     results,
     plot.type = "q.rotplot",
-    plot.all = TRUE,
+    plot.all = FALSE,
     file = "",
     label.scale = 300
   )
