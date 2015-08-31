@@ -7,7 +7,13 @@
 }
 
 \usage{
-  q.mrot.choose(results, plot.type = "q.rotplot", plot.all = TRUE, file = "")
+  q.mrot.choose(
+    results,
+    plot.type = "q.rotplot",
+    plot.all = TRUE,
+    file = "",
+    label.scale = 300
+  )
 }
 
 \arguments{
@@ -24,6 +30,9 @@
   \item{file}{
   	Either a character string naming a file or a connection open for writing the resultant \code{rot.mat}, as expected by \code{\link{q.mrot.do}}.
     Defaults to \code{""}, in which case the output will go to the console.
+  }
+    \item{label.scale}{
+    An integer vector to scale the plot labels, passed on to \code{\link{q.scoreplot}}, defaults to \code{500}.
   }
 }
 

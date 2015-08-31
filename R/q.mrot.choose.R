@@ -1,4 +1,4 @@
-q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, file = "") {
+q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, file = "", label.scale = 300) {
   # Input validation ==========================================================
   if (!interactive()) {
     stop("This function can only be used interactively, because it requires user input.")
@@ -49,7 +49,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
   }
 
   # Plotting functions  ========================================================
-  plot.rot <- function(results, plot.type, combs) {
+  plot.rot <- function(results, plot.type, combs, label.scale = label.scale) {
     g <- NULL  # just to be safe that this is empty
     # notice that this, again, computes *all* plots, irrespective of whether they are called; inefficient but makes for cleaner, simpler code
     if (plot.type == "q.loaplot") {
@@ -60,7 +60,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
       g$all <- do.call(what = "arrangeGrob", args = c(g$pairs, ncol = ceiling(sqrt(length(g$pairs)))))  # arrange them together
       # notice that the g$all object CANNOT be plot()ed or print()ed, but requires a grid.draw(), maybe with a grid.newpage() to flush the plot, as per http://stackoverflow.com/questions/31463445/how-do-i-get-rid-of-random-background-grid-from-arrangegrob?noredirect=1#comment50896311_31463445
     } else if (plot.type == "q.rotplot") {
-      g <- q.rotplot(results = results, quietly = TRUE)
+      g <- q.rotplot(results = results, quietly = TRUE, label.scale = label.scale)
     }
     # TODO(maxheld83) add specific functions for other plots here
     return(invisible(g))
@@ -71,7 +71,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
     text(loa[, c(combs[pair, c("y-vertical")], combs[pair, c("x-horizontal")])], labels = rownames(loa))
   }
 
-  plot.wrapper <- function(results, pair, combs, plot.type, plot.all) { # this just wraps all the plot commands for simplification
+  plot.wrapper <- function(results, pair, combs, plot.type, plot.all, label.scale = label.scale) { # this just wraps all the plot commands for simplification
     if (plot.all) {pair <- "all"}  # in case user always wants all plots, set pair to all
     loa <- results$loa
     if (plot.type == "base") { # here come the base plots
@@ -89,10 +89,10 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
     } else {  # this is for all the non-base plots
       if (pair == "all") {  # here is the all-in-one
         grid.newpage()  # clean up plot just in case
-        grid.draw(plot.rot(results = results, plot.type = plot.type, combs = combs)$all)  # draw all
+        grid.draw(plot.rot(results = results, plot.type = plot.type, combs = combs, label.scale = label.scale)$all)  # draw all
       } else {  # print individually
         grid.newpage()
-        plot(plot.rot(results = results, plot.type = plot.type, combs = combs)$pairs[[pair]])  # plot is the one method that works both for ggplot objects and arrangeGrid objects, both can be the result here.
+        plot(plot.rot(results = results, plot.type = plot.type, combs = combs, label.scale = label.scale)$pairs[[pair]])  # plot is the one method that works both for ggplot objects and arrangeGrid objects, both can be the result here.
       }
     }
   }  # returns nothing, just plots things
@@ -127,7 +127,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
 
       # UPDATE on selecting f.pair
       cat("You are in manual rotation, based on a", results.rot$brief$rotation, "rotation.", fill = TRUE)
-      plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = plot.all, combs = combs)
+      plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = plot.all, combs = combs, label.scale = label.scale)
 
       # SELECT pair
       cat("Which factor pair would you like to rotate?", fill = TRUE)
@@ -145,7 +145,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
       angle <- 0
       done.pair <- FALSE  # assume it's not done
       while (!done.pair) {
-        plot.wrapper(results = results.rot, pair = pair, plot.type = plot.type, plot.all = plot.all, combs = combs)  # print only current pair, unless overwritten by plot.all
+        plot.wrapper(results = results.rot, pair = pair, plot.type = plot.type, plot.all = plot.all, combs = combs, label.scale = label.scale)  # print only current pair, unless overwritten by plot.all
 
         repeat {  # as long as users have not entered a blank angle
 
@@ -179,7 +179,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
           results.rot <- q.mrot.do(results = results, rot.mat = rot.mat.pair, quietly = TRUE)
 
           # PLOT angle
-          plot.wrapper(results = results.rot, pair = pair, plot.type = plot.type, plot.all = plot.all, combs = combs)
+          plot.wrapper(results = results.rot, pair = pair, plot.type = plot.type, plot.all = plot.all, combs = combs, label.scale = label.scale)
         }
 
         # CONFIRM done pair?
@@ -201,7 +201,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
     }
 
     # UPDATE on done all?
-    plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = plot.all, combs = combs)
+    plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = plot.all, combs = combs, label.scale = label.scale)
 
     # CONFIRM done all?
     done.all <- NULL
@@ -232,7 +232,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
         colnames(rot.mat) <- names
         rownames(rot.mat) <- names
         results.rot <- q.mrot.do(results = results, rot.mat = rot.mat, quietly = TRUE)  # implement WITH names
-        plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = plot.all, combs = combs)
+        plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = plot.all, combs = combs, label.scale = label.scale)
         cat("Are the rotated factors named correctly?")
       }
       done.naming <- readline(prompt = "Enter 'y' to accept, 'n' to change names or 'Esc' to abort.")
