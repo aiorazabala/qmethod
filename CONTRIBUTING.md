@@ -23,6 +23,13 @@ To learn more about the current state of development:
 - Read the [`qmethod` wiki](https://github.com/aiorazabala/qmethod/wiki) for some additional documentation :notebook:.
 
 
+## Beta-test New Features
+
+`qmethod` is under active development, and we're keen to have more beta-test new features.
+
+[Here](https://github.com/aiorazabala/qmethod/wiki/Beta-testing) is how.
+
+
 ## Add New Features
 
 There's so much more to do, and we're excited for new additions.
