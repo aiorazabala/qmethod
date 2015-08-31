@@ -38,16 +38,15 @@
 
 \details{
   Q methodologists often prefer by-hand (or manual or judgmental) rotations over automatic procedures.
-  This function allows users to rotate any pair of factors by any angle and provides informative plots for any rotation.
+  This function allows users to rotate any pair of factors by any angle and provides informative plots for the rotations.
   Users are guided through an iterative rotation procedure by a command line interface in the R console.
-  Arbitrary angles in degrees can be entered.
-  Negative (positive) angles rotate (counter) clockwise.
 
+  Arbitrary angles in degrees can be entered (transformed to radians).
+  Negative (positive) angles rotate (counter) clockwise.
   Users can abort the rotation procedure at any time.
 
-  Interactive rotation expects angles, and transforms them to radians.
-
-  Towards the end of the interactive procedure, users can name the \emph{rotated} factors, will be included as column and row names of the returned rotation matrix, which can be passed on to \code{\link{q.mrot.do}}, to rename all results of the analysis accordingly.
+  Towards the end of the interactive procedure, it is recommended that users name the \emph{rotated} factors.
+  These names will be included as column and row names of the returned rotation matrix, which can be passed on to \code{\link{q.mrot.do}}, to rename all results of the analysis accordingly.
 
   Recall that any rotation will change the factor scores on \emph{all} factors (not merely the current factor pair), and may require a new factor interpretation.
   To aid in such an iterative process of rotation and interpretation, this function not only provides rotated \emph{loadings}, but also calculates and plots resultant \emph{factor scores} by re-running \code{\link{qmethod}}.
@@ -88,6 +87,9 @@
   The default graphics device of the popular R IDE RStudio, in particular, appears to be slow on some platforms.
 
   Rotation angles are always simplified to be between -180 and 180 degrees.
+
+  The factor scores and other results presented during interactive rotation are computed using automated flagging.
+  Flags can later be adjusted using \code{\link{qflag}}, but such manually flagged analyses will then differ from the preview rendered during interactive rotation.
 }
 
 \section{Warning}{
