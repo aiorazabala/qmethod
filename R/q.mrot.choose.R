@@ -162,7 +162,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = TRUE, fil
           if (angle.change == "") break
 
           # IMPLEMENT angle
-          angle <- angle + as.numeric(angle.change)  # readline does not capture numerics
+          angle <- angle - as.numeric(angle.change)  # readline does not capture numerics
           angle <- simplify.angle(angle.raw = angle)
           radians <- angle * pi / 180 # because rotation matrices are build from radians, not angles
           rot.mat.angle <- diag(results$brief$nfactors)  # make identity matrix
