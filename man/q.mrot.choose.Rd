@@ -41,7 +41,7 @@
   This function allows users to rotate any pair of factors by any angle and provides informative plots for any rotation.
   Users are guided through an iterative rotation procedure by a command line interface in the R console.
   Arbitrary angles in degrees can be entered.
-  Positive (negative) angles rotate clockwise (counterclockwise).
+  Negative (positive) angles rotate (counter) clockwise.
 
   Users can abort the rotation procedure at any time.
 
