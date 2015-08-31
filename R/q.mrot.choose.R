@@ -236,7 +236,7 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = FALSE, fi
           colnames(rot.mat) <- names
           rownames(rot.mat) <- names
           results.rot <- q.mrot.do(results = results, rot.mat = rot.mat, quietly = TRUE)  # implement WITH names
-          plot.wrapper(results = results.rot, pair = "all", plot.type = plot.type, plot.all = TRUE, combs = combs, label.scale = label.scale)
+          plot(q.rotplot(results = results.rot, quietly = TRUE)$all)
           cat("Are the rotated factors named correctly?")
         }
         done.naming <- readline(prompt = "Enter 'y' to accept, 'n' to change names or 'Esc' to abort.")
