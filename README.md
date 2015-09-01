@@ -1,6 +1,7 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/qmethod)](http://cran.r-project.org/web/packages/qmethod)
 [![Build Status](https://travis-ci.org/aiorazabala/qmethod.svg)](https://travis-ci.org/aiorazabala/qmethod)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/qmethod)](http://cran.r-project.org/web/packages/qmethod/index.html)
+[![codecov.io](https://codecov.io/github/aiorazabala/qmethod/coverage.svg?branch=master)](https://codecov.io/github/aiorazabala/qmethod?branch=master)
 
 qmethod
 =======
