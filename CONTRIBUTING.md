@@ -56,6 +56,22 @@ We're roughly following the [GitHub Flow](https://guides.github.com/introduction
 5. **Shipping** :ship: : Periodically, whenever significant work has been done, @aiorazabala drafts a release (as per [#121](https://github.com/aiorazabala/qmethod/issues/121)) from `master`, essentially just marking some point in the history of the package as `x.x.x`, and sends it off to CRAN.
 
 
+## Testing
+
+Testing is an important part of quality software development, especially for scientific software, where users rely on the accuracy and reproducibility of results.
+
+To learn more about testing, consider Hadley Wickham's [`testthat` package](https://cran.r-project.org/package=testthat) (which is what we're using here) and his book chapter [on testing](http://r-pkgs.had.co.nz/tests.html).
+
+All new functions and changes *should come with* appropriate tests:
+
+- New functions and changes should test for internal **consistency**.
+  For example, `q.mrot.choose`, the interactive rotation function, should always produce a rotation matrix of `rank == nfactors` (pseudo-code; the number of factors should be the same as the rank of the rotation matrix).
+- Where applicable, new functions and changes should test against **old versions** (`>= 1.2.0`) *known* to be validated by Aiora against `PQMethod` (see [Zabala 2014](http://journal.r-project.org/archive/2014-2/zabala.pdf)). 
+- Whenever possible, new functions and changes should test against **(published) results** *known* to be true, using publicy available data.
+
+In addition to such tests for new functions, missing tests for old functions [would also be very welcome](https://github.com/aiorazabala/qmethod/issues/259).
+
+
 ## Style
 
 We try to abide by [Google's R Coding Style Guide](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml), and would recommend that for additions, too :lipstick:.
