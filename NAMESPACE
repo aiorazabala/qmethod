@@ -23,6 +23,8 @@ importFrom("grid", "grid.newpage")
 importFrom("grid", "grid.draw")
 importFrom("gridExtra", "grid.arrange")
 importFrom("gridExtra", "arrangeGrob")
+importFrom("devtools", "install_version")
+importFrom("devtools", "dev_mode")
 export("qmethod",
        "qzscores",
        "qflag",
