@@ -67,6 +67,5 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
   if (!quietly) {
     cat(qmethodresults$brief$info, sep="\n")
   }
-  # Will this cat() fill the screen when applying bootstrap?
   return(qmethodresults)
 }
