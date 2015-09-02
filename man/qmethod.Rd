@@ -51,9 +51,9 @@ Returns a list of class \code{QmethodRes}, with eight objects:
 See further references on the methodology in \code{\link{qmethod-package}}.}
 
 \note{
-In Q methodology there are commonly two techniques to extract the factors: principal components analysis (PCA) and centroid factor analysis.
-
-This package uses PCA because this function is already implemented in R. If you find a function in R that suitably implements centroid factor analysis as used in Q method (See Brown, 1980), please report to the author of this package: \email{aiora.zabala@gmail.com}.
+  In Q methodology there are commonly two techniques to extract the factors: principal components analysis (PCA), centroid factor analysis (CFA) (see Brown, 1980) as well as, recently, principal axis factoring (PAF).
+  This package currently only supports PCA because this function is already implemented in R.
+  If you find a function in R that suitably implements any of the other extraction methods, or would like to develop one yourself, please consider \href{https://github.com/aiorazabala/qmethod/issues/172}{contributing} to this package.
 }
 
 \author{Aiora Zabala}
