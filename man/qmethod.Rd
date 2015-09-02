@@ -4,7 +4,7 @@
 \description{This function performs a full Q method analysis using principal components analysis (see Notes). The main results are factor characteristics, statement z-scores and factor scores, and distinguising and consensus statements.}
 \usage{
 qmethod(dataset, nfactors, rotation = "varimax", forced = TRUE,
-        distribution = NULL, cor.method = "pearson", ...)}
+        distribution = NULL, cor.method = "pearson", quietly = FALSE, ...)}
 
 \arguments{
   \item{dataset}{a matrix or a data frame containing original data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell. The matrix or data frame should not contain character strings. The results keep row names and column names if set in the \code{dataset} (see 'Details').}
@@ -17,6 +17,10 @@ qmethod(dataset, nfactors, rotation = "varimax", forced = TRUE,
 \item{distribution}{logical; when forced = \code{FALSE}, the distribution has to be provided as a vector of numbers, such as \code{c(-2, -1, -1, 0, 1, 1, 2, 2)}.}
 \item{cor.method}{character string indicating which correlation coefficient is to be computed, to be passed on to the function \code{\link[stats]{cor}}: \code{"pearson"} (default), \code{"kendall"}, or \code{"spearman"}. }
 \item{...}{other parameters to pass to functions such as \code{\link[psych]{principal}}}
+\item{quietly}{
+  Logical, indicating whether a summary \code{"info"} (see below) should be returned to the terminal.
+  Defaults to \code{FALSE}.
+}
 }
 
 \details{This function wraps together all the steps required for a complete analysis: extracting component loadings (\code{\link[psych]{principal}}); flagging Q-sorts (\code{\link{qflag}}); calculating weights, z-scores, and rounded scores (\code{\link{qzscores}}), calculating general characteristics (\code{\link{qfcharact}}), and finding distinguishing and consensus statements (\code{\link{qdc}}).

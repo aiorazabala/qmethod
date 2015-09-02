@@ -2,8 +2,8 @@
 context(desc = "Manual rotation function")
 
 data("lipset")
-results.unrotated <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "none", forced = TRUE, cor.method = "pearson")
-results.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", forced = TRUE, cor.method = "pearson")
+results.unrotated <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "none", forced = TRUE, cor.method = "pearson", quietly = TRUE)
+results.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", forced = TRUE, cor.method = "pearson", quietly = TRUE)
 cor.mat <- cor(x = lipset[[1]], method = "pearson")
 rot.mat.varimax <- varimax(x = as.matrix(results.unrotated$loa))
 

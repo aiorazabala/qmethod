@@ -1,4 +1,4 @@
-qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson",...) {
+qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson", quietly = FALSE, ...) {
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
@@ -22,6 +22,9 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
     if (!is.numeric(distribution) & !is.integer(distribution)) stop("Q method input: The distribution provided contains non-numerical values.")
   }
   if (length(unique(colnames(dataset))) != nqsorts) stop("Q method input: one or more Q-sort names are duplicated. Please change the names of the dataset by using colnames().")
+  if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
+    stop("The argument set for quietly must be a logical vector of length 1.")
+  }
 
   # Run the analysis ===========================================================
   cor.data <- cor(x = dataset, method=cor.method)
@@ -61,7 +64,9 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
                                         qmethodresults$brief$cor.method))
   qmethodresults[[8]] <- qdc(dataset, nfactors, zsc=qmethodresults[[5]], sed=as.data.frame(qmethodresults[[7]][[3]]))
   names(qmethodresults)[8] <- "qdc"
-  cat(qmethodresults$brief$info, sep="\n")
+  if (!quietly) {
+    cat(qmethodresults$brief$info, sep="\n")
+  }
   # Will this cat() fill the screen when applying bootstrap?
   return(qmethodresults)
 }
