@@ -28,12 +28,13 @@ test_that(
 # test against old versions ==========================
 context(desc = "test against old (validated) version of qmethod")
 
+# notice that this is pretty much a stop-gap measure; preferable would be testing against validated data as per https://github.com/aiorazabala/qmethod/issues/262
+
 # Here come the variants under which this is tested, same as the nesting order of for loops in the below
 datasets <- list("lipset" = lipset[[1]])  # add more datasets here, if you like
-nfactors <- c(2:5)  # more seems dicey for lipset
-rotations <- c("none", "varimax")  # only test orthogonal ones
-# equimax appears not to work!!
-cor.methods <- c("pearson", "spearman", "kendall")  # those are currently all
+nfactors <- c(2:5)  # more seems dicey for lipset, 1: https://github.com/aiorazabala/qmethod/issues/270
+rotations <- c("none", "varimax", "quartimax")  # only test the orthogonal ones because https://github.com/aiorazabala/qmethod/issues/95
+cor.methods <- c("pearson", "spearman", "kendall")  # those are currently all supported
 
 # Loop over combinations
 old <- NULL
@@ -77,19 +78,118 @@ for (v in c("old", "new")) {  # loop over versions
           if (v == "new") {
             new <- round.result
             baseline <- old[[d]][[as.character(nf)]][[r]][[c]]
+            info.msg <- paste(
+              paste("dataset =", d),
+              paste("nfactor =", nf),
+              paste("rotation =", r),
+              paste("cor.method =", c),
+              sep = ", "
+            )
+            test_that(
+              desc = "datasets are the same",
+              code = {
+                expect_equal(
+                  object = new$dataset,
+                  expected = baseline$dataset
+                )
+              }
+            )
+            test_that(
+              desc = "brief is the same",
+              code = {
+                expect_equal(
+                  object = new$brief$nstat,
+                  expected = baseline$brief$nstat
+                )
+                expect_equal(
+                  object = new$brief$nqsorts,
+                  expected = baseline$brief$nqsorts
+                )
+                expect_equal(
+                  object = new$brief$distro,
+                  expected = baseline$brief$distro
+                )
+                expect_equal(
+                  object = new$brief$rotation,
+                  expected = baseline$brief$rotation
+                )
+                expect_equal(
+                  object = new$brief$cor.method,
+                  expected = baseline$brief$cor.method
+                )
+                expect_equal(
+                  object = new$brief$flagging,
+                  expected = baseline$brief$flagging
+                )
+              }
+            )
             test_that(
               desc = "loadings are the same",
               code = {
                 expect_equal(
                   object = new$loa,
                   expected = baseline$loa,
-                  info = paste(
-                    paste("dataset =", d),
-                    paste("nfactor =", nf),
-                    paste("rotation =", r),
-                    paste("cor.method =", c),
-                    sep = ", "
-                  )
+                  info = info.msg
+                )
+              }
+            )
+            test_that(
+              desc = "flags are the same",
+              code = {
+                expect_equal(
+                  object = new$flagged,
+                  expected = baseline$flagged,
+                  info = info.msg
+                )
+              }
+            )
+            test_that(
+              desc = "zsc are the same",
+              code = {
+                expect_equal(
+                  object = new$zsc,
+                  expected = baseline$zsc,
+                  info = info.msg
+                )
+              }
+            )
+            test_that(
+              desc = "zsc_n are the same",
+              code = {
+                expect_equal(
+                  object = new$zsc_n,
+                  expected = baseline$zsc_n,
+                  info = info.msg
+                )
+              }
+            )
+            test_that(
+              desc = "f_char are the same",
+              code = {
+                expect_equal(
+                  object = new$f_char$characteristics,
+                  expected = baseline$f_char$characteristics,
+                  info = info.msg
+                )
+                expect_equal(
+                  object = new$f_char$cor_zsc,
+                  expected = baseline$f_char$cor_zsc,
+                  info = info.msg
+                )
+                expect_equal(
+                  object = new$f_char$sd_dif,
+                  expected = baseline$f_char$sd_dif,
+                  info = info.msg
+                )
+              }
+            )
+            test_that(
+              desc = "qdc are the same",
+              code = {
+                expect_equal(
+                  object = new$qdc,
+                  expected = baseline$qdc,
+                  info = info.msg
                 )
               }
             )
