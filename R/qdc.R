@@ -1,7 +1,7 @@
 qdc <- function(dataset, nfactors, zsc, sed) {
   if (nfactors==1) {
     qdc.res <- "Warning: Only one factor selected. No distinguishing and consensus statements will be calculated."
-    print(qdc.res, quote = FALSE)
+    warning(qdc.res)
   } else {
     # Distinguishing and consensus statements
     # create data frame
@@ -13,9 +13,9 @@ qdc <- function(dataset, nfactors, zsc, sed) {
     qdc1 <- data.frame(matrix(data=as.numeric(NA), ncol=length(comp), nrow=nrow(dataset), dimnames=list(row.names(dataset), comp)))
     # differences in zsc between factors
     for (n in 1:length(comp)) {
-      first <-  names(zsc)[grep(paste0("f", comparisons[[n]][1]), 
+      first <-  names(zsc)[grep(paste0("f", comparisons[[n]][1]),
                                 names(zsc))]
-      second <- names(zsc)[grep(paste0("f", comparisons[[n]][2]), 
+      second <- names(zsc)[grep(paste0("f", comparisons[[n]][2]),
                                 names(zsc))]
       qdc1[n] <- zsc[first] - zsc[second]
     }
@@ -24,9 +24,9 @@ qdc <- function(dataset, nfactors, zsc, sed) {
     for (n in 1:length(comp)) {
       # find the threshold for the pair of factors
       sed <- data.frame(sed)
-      first <-  names(sed)[grep(paste0("f", comparisons[[n]][1]), 
+      first <-  names(sed)[grep(paste0("f", comparisons[[n]][1]),
                                 names(sed))]
-      second <- names(sed)[grep(paste0("f", comparisons[[n]][2]), 
+      second <- names(sed)[grep(paste0("f", comparisons[[n]][2]),
                                 names(sed))]
       sedth.01 <- sed[first, second]*2.58
       sedth.05 <- sed[first, second]*1.96 # differences are significant when > 2.58*SED for p < .01, or the same value rounded upwards (Brown, 1980, pp.245)
