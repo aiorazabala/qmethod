@@ -32,7 +32,7 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
   # Run the analysis ===========================================================
   cor.data <- cor(x = dataset, method=cor.method)
   pca.results <- principal(r = cor.data, nfactors = nfactors, rotate = rotation, n.obs = nrow(dataset), covar = FALSE)
-  if (rotation == "none") {  # if there is no rotation, psych does not return any rot.mat
+  if (rotation == "none" || nfactors == 1) {  # if there is no rotation or only 1 fac, psych does not return any rot.mat
     rot.mat <- diag(x = 1, nrow = nfactors)  # ... instead, it must be an identity matrix
   } else {  # this is for all other cases
     rot.mat <- pca.results$rot.mat

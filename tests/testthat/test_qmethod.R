@@ -89,7 +89,7 @@ context(desc = "test against old (validated) version of qmethod")
 
 # Here come the variants under which this is tested, same as the nesting order of for loops in the below
 datasets <- list("lipset" = lipset[[1]])  # add more datasets here, if you like
-nfactors <- c(2:5)  # more seems dicey for lipset, 1: https://github.com/aiorazabala/qmethod/issues/270
+nfactors <- c(1:5)  # more seems dicey for lipset
 rotations <- c("none", "varimax", "quartimax")  # only test the orthogonal ones because https://github.com/aiorazabala/qmethod/issues/95
 cor.methods <- c("pearson", "spearman", "kendall")  # those are currently all supported
 
