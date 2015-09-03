@@ -2,8 +2,10 @@
 context(desc = "Manual rotation function")
 
 data("lipset")
-results.unrotated <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "none", forced = TRUE, cor.method = "pearson", reorder = FALSE, quietly = TRUE)
-results.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", forced = TRUE, cor.method = "pearson", reorder = FALSE, quietly = TRUE)
+results.unrotated <- qmethod(dataset = lipset[[1]], nfactors = 4, rotation = "none", forced = TRUE, cor.method = "pearson", reorder = FALSE, quietly = TRUE)
+results.varimax <- qmethod(dataset = lipset[[1]], nfactors = 4, rotation = "varimax", forced = TRUE, cor.method = "pearson", reorder = FALSE, quietly = TRUE)
+# using 4 factors here for a change.
+# also, do not use 3 nfactors, because that requires flipping
 cor.mat <- cor(x = lipset[[1]], method = "pearson")
 rot.mat.varimax <- varimax(x = as.matrix(results.unrotated$loa))$rotmat
 
@@ -19,7 +21,7 @@ test_that(
   code = {
     loa <- as.matrix(results.unrotated$loa) %*% rot.mat.varimax
     expect_equivalent(object = abs(as.matrix(results.varimax$loa)), expected = abs(loa))
-    #TODO(maxheld83) abs must go, this is a bug https://github.com/aiorazabala/qmethod/issues/268
+    #must be abs because there might be flipping https://github.com/aiorazabala/qmethod/issues/268
   }
 )
 

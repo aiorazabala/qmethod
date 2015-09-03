@@ -21,7 +21,7 @@ test_that(
     principal.varimax <- principal(r = cor.mat, nfactors = 3, rotate = "varimax")
     qmethod.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", reorder = TRUE, quietly = TRUE)
     expect_equivalent(object = abs(as.matrix(qmethod.varimax$loa)), expected = abs(unclass(principal.varimax$loadings)))
-    #TODO(maxheld83) abs is to protect against https://github.com/aiorazabala/qmethod/issues/268, must go
+    #abs is ok and necessary protect against flipped factors https://github.com/aiorazabala/qmethod/issues/268
   }
 )
 
@@ -60,7 +60,24 @@ test_that(
     cor.mat.varimax <- varimax(x = loa.unrot)$rotmat
     loa.varimax <- loa.unrot %*% cor.mat.varimax
     loa.varimax <- as.data.frame(loa.varimax)
-    expect_equivalent(object = qmethod.varimax$loa, expected = loa.varimax)
+    expect_equivalent(object = abs(qmethod.varimax$loa), expected = abs(loa.varimax))  # must be abs because there might be flipping https://github.com/aiorazabala/qmethod/issues/268
+  }
+)
+
+# flipping negative factors =======
+context(desc = "flipping negative factors")
+test_that(
+  desc = "mostly negatively loading factors are flipped",
+  code = {
+    qmethod.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", reorder = FALSE, quietly = TRUE)
+    cor <- cor(x = lipset[[1]], method = "pearson")
+    res.unrot <- principal(r = cor, nfactors = 3, rotate = "none")
+    loa.unrot <- unclass(res.unrot$loadings)
+    loa.rot <- loa.unrot %*% qmethod.varimax$brief$rotmat
+    expect_equivalent(
+      object = qmethod.varimax$loa[, 1], # this is known to be negative without flipping
+      expected = -loa.rot[, 1]
+    )
   }
 )
 

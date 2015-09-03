@@ -39,8 +39,20 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
   }
   if (!reorder & rotation != "none") {  # this only applies for actual rotations
     principal.unrot <- principal(r = cor.data, nfactors = nfactors, rotate = "none", n.obs = nrow(dataset), covar = FALSE)  # must recalculate unrot
+
+    # rotate loadings
     loa.unrot <- unclass(principal.unrot$loa)
     loa <- loa.unrot %*% rot.mat
+
+    # flip loadings
+    # still need to make sure that components are not mostly *negative* as per https://github.com/aiorazabala/qmethod/issues/268
+    # this is code copied from principal, must sadly here be repeated b/c we cannot take re-ordered results from principal
+    # below else clause does not need this, because principal does this automatically
+    signed <- sign(colSums((loa)))
+    signed[signed == 0] <- 1  # special case of VERY bipolar factors
+    loa <- loa %*% diag(signed)  # flips signs where appropriate
+
+    # name loadings
     colnames(loa) <- paste0("RC", 1:ncol(loa))  # this gives a proper name as per https://github.com/aiorazabala/qmethod/issues/264
     colnames(rot.mat) <- colnames(loa)  # name rotmat same as loas
     rownames(rot.mat) <- colnames(loa)  # name rotmat same as loas

@@ -50,6 +50,7 @@ If the input data contains row names and variable names, these will be kept thro
   Such re-ordering does \emph{not} change the results, but merely the presentation and is generally discouraged for Q methodology, where the relative sum of squared loadings are generally considered less informative (compare Brown 1980: 223).
   Re-ordering is also incompatible with \code{\link{q.mrot.do}} and \code{\link{q.mrot.choose}} for by-hand rotation.
   \code{reorder = TRUE} is available as an option for backward compatibility: prior to version \code{"1.4.0"} \code{\link{qmethod}} \emph{did} reorder components, and the presentation of results may differ as a result in rare cases.
+  Notice that \code{\link{qmethod}} still 'flips' components that load negative on average by multiplying them with \code{-1}, as is also default behavior for \code{\link[psych]{principal}}.
 }
 \value{
 Returns a list of class \code{QmethodRes}, with eight objects:

@@ -39,6 +39,9 @@
   Any given rotated solution, including \code{rotation = "varimax"}, \code{rotation = "none"} and others from \code{\link{qmethod}} can be used as a baseline for applying a custom rotation matrix on top.
 
   Notice that \emph{non-orthogonal} baseline rotations may not be meaningfully rotated by-hand.
+
+  Notice that \code{\link{q.mrot.do}} \emph{does not} 'flip' components with a negative average of loadings as both \code{\link{qmethod}} and \code{\link[psych]{principal}} do.
+  In manual rotation, it is assumed that users \emph{want} a mostly negatively loading factor, though caution in interpreting the respective factor scores is advised.
 }
 
 \value{
