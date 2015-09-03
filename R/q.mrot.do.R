@@ -61,6 +61,9 @@ q.mrot.do <- function(results, rot.mat, quietly = FALSE) {  # this function simp
     # TODO(maxheld83) here we need the distribution from somewhere -> https://github.com/aiorazabala/qmethod/issues/246
     # TODO(maxheld83) use other weighting method here -> https://github.com/aiorazabala/qmethod/issues/166
     # TODO(maxheld83) write rots to results object here for reproduceability
+    results.rot$brief$cor.method <- results$brief$cor.method  # qzscores (above) otherwise forgets about cor method, though cor method is NOT unknown here -> https://github.com/aiorazabala/qmethod/issues/278
+
+    results.rot[[8]] <- qdc(dataset = results$dataset, nfactors = results$brief$nfactors, zsc=results.rot[[5]], sed=as.data.frame(results.rot[[7]][[3]]))  # this is just duplicate code from qmethod
 
     results.rot$brief$rotation <- "by-hand"  # make sure the results object always "knows" how/if it was rotated
 
