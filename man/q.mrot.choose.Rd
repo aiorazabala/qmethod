@@ -93,8 +93,7 @@
 }
 
 \section{Warning}{
-  This function has been recently developed with great care but has not been systematically validating against other programs or externally reviewed.
-  Users beware.
+  This function has been validated in selected analyses of the Lipset data against 'PQMethod' 2.3.5.
   Note that a manual rotation changes \emph{all} downstream results in a Q methodological analysis.
   If you would like to help testing this function, comment or contribute \href{https://github.com/aiorazabala/qmethod/issues/206}{here}.
 }
