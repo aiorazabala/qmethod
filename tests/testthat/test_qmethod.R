@@ -2,7 +2,7 @@
 context(desc = "factor extraction: principal components")
 
 test_that(
-  desc = "loadings are the same as psych::principal",
+  desc = "loadings are the same as psych::principal without rotation",
   code = {
     cor.mat <- cor(x = lipset[[1]], method = "pearson")
     princ.pca.loadings <- principal(r = cor.mat, nfactors = 4, rotate = "none")
@@ -15,12 +15,52 @@ test_that(
 context(desc = "automatic rotation procedures: varimax")
 
 test_that(
-  desc = "loadings are correctly rotated",
+  desc = "varimax rotated loadings are the same as principal (with reordering)",
   code = {
     cor.mat <- cor(x = lipset[[1]], method = "pearson")
     principal.varimax <- principal(r = cor.mat, nfactors = 3, rotate = "varimax")
-    qmethod.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", quietly = TRUE)
-    expect_equivalent(object = as.matrix(qmethod.varimax$loa), expected = unclass(principal.varimax$loadings))
+    qmethod.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", reorder = TRUE, quietly = TRUE)
+    expect_equivalent(object = abs(as.matrix(qmethod.varimax$loa)), expected = abs(unclass(principal.varimax$loadings)))
+    #TODO(maxheld83) abs is to protect against https://github.com/aiorazabala/qmethod/issues/268, must go
+  }
+)
+
+
+# dis/enable reordering of results ====================
+context(desc = "dis/enable reordering of results")
+
+test_that(
+  desc = "reordering enabled (TRUE) works",
+  code = {
+    # here is a case KNOWN to be reordered on varimax
+    results <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", reorder = TRUE, quietly = TRUE)
+    ss <- apply(X = results$loa, MARGIN = 2, FUN = function(x) sum(x^2))  # calculate sums of squares
+    expect_true(object = all(diff(ss) <= 0), info = "are all decreasing?")  # expect that they are all DECREASING
+    expect_true(object = results$brief$reorder, info = "is reorder status written to results?")
+  }
+)
+
+test_that(
+  desc = "reordering disabled (FALSE) works",
+  code = {
+    # here is a case KNOWN to be reordered on varimax
+    results <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", reorder = FALSE, quietly = TRUE)
+    ss <- apply(X = results$loa, MARGIN = 2, FUN = function(x) sum(x^2))  # calculate sums of squares
+    expect_false(object = all(diff(ss) <= 0), info = "are all decreasing?")  # expect that they are all DECREASING
+    expect_false(object = results$brief$reorder, info = "is reorder status written to results?")
+  }
+)
+test_that(
+  desc = "reordering disabled (FALSE) delivers correct loa",
+  code = {
+    qmethod.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", reorder = FALSE, quietly = TRUE)
+    cor <- cor(x = lipset[[1]], method = "pearson")
+    principal.unrot <- principal(r = cor, nfactors = 3, rotate = "none")
+    loa.unrot <- unclass(principal.unrot$loadings)
+    cor.mat.varimax <- varimax(x = loa.unrot)$rotmat
+    loa.varimax <- loa.unrot %*% cor.mat.varimax
+    loa.varimax <- as.data.frame(loa.varimax)
+    expect_equivalent(object = qmethod.varimax$loa, expected = loa.varimax)
   }
 )
 
@@ -71,7 +111,8 @@ for (v in c("old", "new")) {  # loop over versions
     for (nf in nfactors) {
       for (r in rotations) {
         for (c in cor.methods) {
-          round.result <- suppressWarnings(qmethod(dataset = datasets[[d]], nfactors = nf, rotation = r, cor.method = c, quietly = TRUE))
+          round.result <- suppressWarnings(qmethod(dataset = datasets[[d]], nfactors = nf, rotation = r, cor.method = c, reorder = TRUE, quietly = TRUE))
+          # MUST be reordered version, that's the old default behavior prior to 1.4.0
           if (v == "old") {
             old[[d]][[as.character(nf)]][[r]][[c]] <- round.result
           }

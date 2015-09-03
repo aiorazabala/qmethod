@@ -1,4 +1,4 @@
-qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson", quietly = FALSE, ...) {
+qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson", reorder = FALSE, quietly = FALSE, ...) {
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
@@ -22,6 +22,9 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
     if (!is.numeric(distribution) & !is.integer(distribution)) stop("Q method input: The distribution provided contains non-numerical values.")
   }
   if (length(unique(colnames(dataset))) != nqsorts) stop("Q method input: one or more Q-sort names are duplicated. Please change the names of the dataset by using colnames().")
+  if (!is.logical(reorder) || !is.vector(reorder) || length(reorder) != 1) {
+    stop("The argument set for reorder must be a logical vector of length 1.")
+  }
   if (!is.logical(quietly) || !is.vector(quietly) || length(quietly) != 1) {
     stop("The argument set for quietly must be a logical vector of length 1.")
   }
@@ -34,15 +37,30 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
   } else {  # this is for all other cases
     rot.mat <- pca.results$rot.mat
   }
-  loa <- as.data.frame(unclass(pca.results$loadings)) #PCA from {psych} for factor loadings
-  names(loa) <- paste0("f", 1:length(loa))
-  colnames(rot.mat) <- names(loa)  # name rotmat same as loas
-  rownames(rot.mat) <- names(loa)  # name rotmat same as loas
+  if (!reorder & rotation != "none") {  # this only applies for actual rotations
+    principal.unrot <- principal(r = cor.data, nfactors = nfactors, rotate = "none", n.obs = nrow(dataset), covar = FALSE)  # must recalculate unrot
+    loa.unrot <- unclass(principal.unrot$loa)
+    loa <- loa.unrot %*% rot.mat
+    colnames(loa) <- paste0("RC", 1:ncol(loa))  # this gives a proper name as per https://github.com/aiorazabala/qmethod/issues/264
+    colnames(rot.mat) <- colnames(loa)  # name rotmat same as loas
+    rownames(rot.mat) <- colnames(loa)  # name rotmat same as loas
+    loa <- as.data.frame(loa)  # downstream functions expect dataframe
+  } else {  # this is the "old" behavior and/or if rotation is none
+    loa <- as.data.frame(unclass(pca.results$loadings)) #PCA from {psych} for factor loadings
+    colnames(rot.mat) <- paste0("PC", 1:ncol(loa))
+    rownames(rot.mat) <- paste0("PC", 1:ncol(loa))
+    # this is to make sure this rotmat is properly understood
+    # notice that this rotmat may no longer refer directly to the rotated factors, because these are here RE-ORDERED
+    # instead, it refers to the PCs (hence the names) of the UNROTATED results, which are then rotated by this rotmat, and then re-ordered
+    # here is one of the MANY reasons to deprecate reorder = TRUE at some point https://github.com/aiorazabala/qmethod/issues/276
+    colnames(loa) <- paste0("f", 1:ncol(loa))  # this destroys the reordered names, known, unfixable bug: https://github.com/aiorazabala/qmethod/issues/275
+  }
   # The following depends on the qmethod functions: qflag, qzscores, qfcharact, qdc
   flagged <- qflag(loa=loa, nstat=nstat)
   qmethodresults <- qzscores(dataset, nfactors, flagged=flagged, loa=loa, forced=forced, distribution=distribution)
   qmethodresults$brief$rotation <- rotation
   qmethodresults$brief$rotmat <- rot.mat
+  qmethodresults$brief$reorder <- reorder  # object must know if it was reordered for compatibility reasons with q.mrot.do etc.
   qmethodresults$brief$flagging <- "automatic"
   qmethodresults$brief$cor.method <- cor.method
   qmethodresults$brief$info <- c("Q-method analysis.",

@@ -6,6 +6,12 @@ q.mrot.choose <- function(results, plot.type = "q.rotplot", plot.all = FALSE, fi
   if (class(results) != "QmethodRes") {  # only accept results object
     stop("The object provided is not of class 'QmethodRes'.")
   }
+  if (results$brief$reorder) {
+    stop(
+      "This function is incompatible with automatically reordered results.
+      Please use 'reorder = FALSE' in 'qmethod'."
+    )
+  }
   available.plots <- c("q.rotplot", "q.loaplot", "base")
   if (!is.character(plot.type) || !is.vector(plot.type) || length(plot.type) != 1 || !(plot.type %in% available.plots)) {
     stop(paste0(

@@ -2,38 +2,45 @@
 context(desc = "Manual rotation function")
 
 data("lipset")
-results.unrotated <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "none", forced = TRUE, cor.method = "pearson", quietly = TRUE)
-results.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", forced = TRUE, cor.method = "pearson", quietly = TRUE)
+results.unrotated <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "none", forced = TRUE, cor.method = "pearson", reorder = FALSE, quietly = TRUE)
+results.varimax <- qmethod(dataset = lipset[[1]], nfactors = 3, rotation = "varimax", forced = TRUE, cor.method = "pearson", reorder = FALSE, quietly = TRUE)
 cor.mat <- cor(x = lipset[[1]], method = "pearson")
-rot.mat.varimax <- varimax(x = as.matrix(results.unrotated$loa))
+rot.mat.varimax <- varimax(x = as.matrix(results.unrotated$loa))$rotmat
 
 test_that(
   desc = "returned rotation matrix is correct for varimax",
   code = {
-    expect_equivalent(object = results.varimax$brief$rotmat, expected = rot.mat.varimax$rotmat)
+    expect_equivalent(object = results.varimax$brief$rotmat, expected = rot.mat.varimax)
   }
 )
 
 test_that(
-  desc = "varimax rotation is the same as unrotated loadings matrix multiplied by varimax rotation",
+  desc = "varimax rotation loadings are the same as unrotated loadings matrix multiplied by varimax rotation",
   code = {
-    loa <- as.matrix(results.unrotated$loa) %*% rot.mat.varimax$rotmat
-
-    # must be ordered b/c psych does it, too https://github.com/aiorazabala/qmethod/issues/263
-    if(ncol(loa) >1) {
-      ev.rotated <- diag(t(loa) %*% loa)
-      ev.order <- order(ev.rotated,decreasing=TRUE)
-      loa <- loa[,ev.order]
-    }
+    loa <- as.matrix(results.unrotated$loa) %*% rot.mat.varimax
     expect_equivalent(object = abs(as.matrix(results.varimax$loa)), expected = abs(loa))
-    # abs must go, this is a bug https://github.com/aiorazabala/qmethod/issues/268
+    #TODO(maxheld83) abs must go, this is a bug https://github.com/aiorazabala/qmethod/issues/268
   }
 )
 
-#test_that(
-#  desc = "results object created from a varimax rotation matrix is the same as original varimax results object",
-#  code = {
-#    results.mrot.varimax <- q.mrot.do(results = results.unrotated, rot.mat = rot.mat.varimax, quietly = TRUE)
-#    expect_equivalent(object = results.mrot.varimax, expected = results.varimax)
-#  }
-#)
+test_that(
+  desc = "results object created from a varimax rotation matrix via q.mrot.do is the same as original varimax results object",
+  code = {
+    results.mrot.varimax <- q.mrot.do(results = results.unrotated, rot.mat = rot.mat.varimax, quietly = TRUE)
+    expect_equivalent(
+      object = results.mrot.varimax[names(results.mrot.varimax) != "brief"],
+      expected = results.varimax[names(results.varimax) != "brief"],
+      info = "all elements except brief"
+    )  # this only excludes brief
+    expect_equivalent(
+      object = results.mrot.varimax$brief[!names(results.mrot.varimax$brief) %in% c("date", "info", "rotation")],
+      expected = results.varimax$brief[!names(results.varimax$brief) %in% c("date", "info", "rotation")],
+      info = "all relevant elements from brief"
+    )
+    expect_equal(
+      object = results.mrot.varimax$brief$rotation,
+      expected = "by-hand",
+      info = "brief$rotation correct?"
+    )
+  }
+)
