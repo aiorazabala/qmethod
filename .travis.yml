@@ -13,5 +13,8 @@ notifications:
 r_github_packages:
   - aiorazabala/qmethod
 
+r_github_packages:
+  - jimhester/covr
+  
 after_success:
-  - codecov
+  - Rscript -e 'library(covr);codecov()'
