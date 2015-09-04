@@ -14,10 +14,4 @@ r_github_packages:
   - aiorazabala/qmethod
 
 after_success:
-  - Rscript -e 'covr::codecov()'
-
-before_install:
-  - pip install codecov
-  
-after_success:
   - codecov
