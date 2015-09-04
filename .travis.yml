@@ -15,5 +15,3 @@ r_github_packages:
 
 after_success:
   - codecov
-
-bash <(curl -s https://codecov.io/bash) -t 31e04eaa-bbf2-4268-91fa-2e09fd7a031e
