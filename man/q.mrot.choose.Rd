@@ -26,10 +26,11 @@
   	Defaults to \code{"q.rotplot"}}.
   \item{plot.all}{
   	Logical, indicating whether plots should include all factor pairs during the iterative rotation.
+  	Defaults to \code{FALSE}.
   }
   \item{file}{
   	Either a character string naming a file or a connection open for writing the resultant \code{rot.mat}, as expected by \code{\link{q.mrot.do}}.
-    Defaults to \code{""}, in which case the output will go to the console.
+    Defaults to \code{""}, in which case the output will be returned to the console.
   }
     \item{label.scale}{
     An integer vector to scale the plot labels, passed on to \code{\link{q.scoreplot}}, defaults to \code{500}.
@@ -48,7 +49,7 @@
   Towards the end of the interactive procedure, it is recommended that users name the \emph{rotated} factors.
   These names will be included as column and row names of the returned rotation matrix, which can be passed on to \code{\link{q.mrot.do}}, to rename all results of the analysis accordingly.
 
-  Recall that any rotation will change the factor scores on \emph{all} factors (not merely the current factor pair), and may require a new factor interpretation.
+  Recall that any rotation will change the factor scores, and may require a new factor interpretation.
   To aid in such an iterative process of rotation and interpretation, this function not only provides rotated \emph{loadings}, but also calculates and plots resultant \emph{factor scores} by re-running \code{\link{qmethod}}.
 
   Recall further that any given completed Q analysis and factor interpretation depends on a \emph{particular} rotation, which cannot be easily inferred from the factor loadings.
@@ -56,9 +57,9 @@
   To be able to document and reproduce a by-hand rotation, this function \emph{only} returns the rotation matrix, from which the by-hand rotation can be reproduced.
   To implement the by-hand rotation, users must pass this rotation matrix as \code{rot.mat} to \code{\link{q.mrot.do}}, which will then rerun the necessary functions to return a rotated \code{results} object of class \code{QmethodRes}.
 
-  If users wish to go forward with a by-hand rotation, they should carefully store the rotation matrix.
+  If users wish to go forward with a by-hand rotation, they should therefore carefully store the rotation matrix.
 
-  Any given rotated solution, including \code{rotation = "varimax"}, \code{rotation = "none"} and others from \code{\link{qmethod}} can be used as a baselines for by-hand rotation.
+  Any given rotated solution, including \code{rotation = "varimax"}, \code{rotation = "none"} and others from \code{\link{qmethod}} can be used as a baseline for by-hand rotation.
   Notice that \emph{non-orthogonal} baseline rotations may not be meaningfully rotated by-hand.
 }
 
@@ -90,12 +91,6 @@
 
   The factor scores and other results presented during interactive rotation are computed using automated flagging.
   Flags can later be adjusted using \code{\link{qflag}}, but such manually flagged analyses will then differ from the preview rendered during interactive rotation.
-}
-
-\section{Warning}{
-  This function has been validated in selected analyses of the Lipset data against 'PQMethod' 2.3.5.
-  Note that a manual rotation changes \emph{all} downstream results in a Q methodological analysis.
-  If you would like to help testing this function, comment or contribute \href{https://github.com/aiorazabala/qmethod/issues/206}{here}.
 }
 
 \seealso{

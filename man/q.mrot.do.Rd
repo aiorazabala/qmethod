@@ -40,7 +40,7 @@
 
   Notice that \emph{non-orthogonal} baseline rotations may not be meaningfully rotated by-hand.
 
-  Notice that \code{\link{q.mrot.do}} \emph{does not} 'flip' components with a negative average of loadings as both \code{\link{qmethod}} and \code{\link[psych]{principal}} do.
+  Notice that \code{\link{q.mrot.do}} \emph{does not} invert components with a negative average of loadings as both \code{\link{qmethod}} and \code{\link[psych]{principal}} do.
   In manual rotation, it is assumed that users \emph{want} a mostly negatively loading factor, though caution in interpreting the respective factor scores is advised.
 }
 
@@ -54,12 +54,6 @@
 
 \note{
   This function currently works only for forced distributions, because of a \href{https://github.com/aiorazabala/qmethod/issues/246}{technical reason}.
-}
-
-\section{Warning}{
-  This function has been validated in selected analyses of the Lipset data against 'PQMethod' 2.3.5.
-  Note that a manual rotation changes \emph{all} downstream results in a Q methodological analysis.
-  If you would like to help testing this function, comment or contribute \href{https://github.com/aiorazabala/qmethod/issues/206}{here}.
 }
 
 \seealso{

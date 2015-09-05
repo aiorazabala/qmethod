@@ -1,8 +1,8 @@
 \name{q.scoreplot}
 \alias{q.scoreplot}
-\title{Q methodology: creates Q array graph}
+\title{Q methodology: create Q factor score plot}
 \description{
-  Visualizes Q Method results, with one Q array graph for each extracted factor.
+  Visualizes Q Method results, with one Q factor score plot for each extracted factor.
 }
 \usage{
   q.scoreplot(
@@ -22,7 +22,7 @@
   }
   \item{extreme.labels}{
     A character vector of length 2 with labels for the negative and positive extreme of the q sort array, ideally as presented to study participants.
-    Defaults to \emph{negative} and \emph{positive}.
+    Defaults to \code{c("negative", "positive")}.
   }
   \item{incl.qdc}{
     Logical, indicating whether lines for relative position of distinguishing items on other factors should be drawn.
@@ -42,11 +42,12 @@
   }
   \item{split.string}{
     Character vector of length 1, indicating the string on which to wrap item handles for plot labels.
-    Defaults to \code{"[[:punct:]]"}, in which case all punctuation is replaced by linebreaks.
+    Defaults to \code{"[[:punct:]]"}, in which case all punctuation may be replaced by linebreaks.
     See \code{\link[base]{strsplit}} for details.
   }
   \item{label.scale}{
     An integer vector to scale the plot labels, defaults to \code{500}.
+    To avoid overplotting, try a lower number or adjust the returned \code{ggplot} directly by passing additional options.
   }
 }
 \details{
@@ -60,10 +61,11 @@
       Compared to \code{zsc}, which are the unrounded z-scores, \code{zsc_n} constitute a \emph{loss} of information.
       Absolute (rather than zscored) positions are chosen here despite that loss to avoid colossal overplotting of labels, as well as to reproduce Q sort data in its original form.
     \item \emph{Item Names.}
-      Items are named according to a line-wrapped version of the \code{item.handles} from in \code{\link{import.q.concourse}}, handed on to results by \code{\link{qmethod}}.
+      Items are named according to a line-wrapped version of the row names of the \code{"zsc_n"} array from \code{\link{qmethod}}.
     \item \emph{Tile Fill Color.}
-      Tiles surrounding items are filled by a color identifying the current factor across all plots.
-      The shade of the fill color is determined by the loadings-weighted population (!) standard deviation of items \emph{across} flagged Q sorts, as produced by \code{\link{qzscores}}.
+      Tiles surrounding items are filled by a color identifying the current factor across all plots, as created by \code{\link{q.fcolors}}.
+    \item \emph{Tile Fill Transparency.}
+      The transparency of the fill color is determined by the loadings-weighted population (!) standard deviation of items \emph{across} flagged Q sorts, as produced by \code{\link{qzscores}}.
       The shade is scaled to the highest standard deviation of an item across all factors, implying that the scale \emph{can} be compared across factor plots \emph{within} the same \code{\link{qmethod}} analysis.
       This is a somewhat unconventional statistic in Q methodology, and is meant to give an impression of the \emph{dispersion} of items across sorts loading on a given factor.
     \item \emph{Lines Distinguishing Items Factors.}

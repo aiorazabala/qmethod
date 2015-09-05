@@ -6,8 +6,8 @@
   Full item wordings are printed on the front of business cards and item IDs on the back.
 }
 \usage{
-make.cards(
-  	q.set,
+  make.cards(
+    q.set,
     study.language = NULL,
     paper.format = "AveryZweckformC32010.Rnw",
     output.pdf = TRUE,
@@ -16,7 +16,7 @@ make.cards(
     file.name = "QCards",
     babel.language = NULL,
     show.handles = FALSE
-    )
+  )
 }
 
 \arguments{
@@ -31,7 +31,7 @@ make.cards(
   \item{paper.format}{
   	A character vector of length 1, choosing among available templates of business card sheets.
   	Defaults to the only currently available \code{"AveryZweckformC32010.Rnw"}.
-    Must include file extension of template.
+    Must include file extension of the template.
   }
   \item{output.pdf}{
   	Logical.
@@ -49,7 +49,7 @@ make.cards(
   \item{wording.font.size}{
     A character vector of length 1 to set the font size of the full item wording on the cards.
     Defaults to \code{NULL} in which case the default font size 12pt is used.
-    Only \href{http://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing_text}{standard LaTeX font sizes} are allowed, from \code{\\tiny} to \code{\\Huge}.
+    Only \href{http://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing_text}{standard LaTeX font sizes} are allowed, from \code{"\\tiny"} to \code{"\\Huge"}.
   }
   \item{file.name}{
     A character vector of length 1 to set the filename \emph{without file extension}.
@@ -65,7 +65,7 @@ make.cards(
   \item{show.handles}{
     Logical.
     If \code{TRUE}, meaningful \emph{handles} are used instead of \emph{IDs}, as may be useful for researcher-facing card sets.
-    Defaults to \code{FALSE}, in which case the participant-facint \emph{IDs} are used (as per \code{manual.lookup}).
+    Defaults to \code{FALSE}, in which case the participant-facing \emph{IDs} are used (as per \code{manual.lookup}).
   }
 }
 \details{

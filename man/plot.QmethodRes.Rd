@@ -15,7 +15,7 @@
     array of colours to be used when plotting the points for each perspective.
     Defaults to a pre-defined set of colours based on the \code{\link[grDevices]{rainbow}} palette.
     Leave empty to read colors from results object or automatically generate colors via \code{\link{q.fcolors}}.
-    This option may be deprecated in future.
+    This option may be deprecated in the future.
   }
   \item{fnames}{names for factors to be used in the legend. In results where factor names have not been changed (using, e.g. \code{\link{q.fnames}}) it defaults to \code{'Factor 1'}, \code{'Factor 2'}, etc.}
   \item{legend}{logical; if \code{FALSE}, no \code{legend} will be drawn.}

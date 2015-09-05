@@ -1,6 +1,6 @@
 \name{q.loaplot}
 \alias{q.loaplot}
-\title{Q methodology: creates Q factor loadings plot}
+\title{Q methodology: create Q factor loadings plot}
 \description{
   Plots the loadings of Q-sorts on all factors against all factors.
 }
@@ -17,7 +17,7 @@
   }
 }
 \details{
-  During rotation procedures and final interpretation in Q methodology, researchers need to inspect the loadings produced by \code{\link{qmethod}} if participant Q-sorts (as people-variables) on the extracted factors.
+  During rotation procedures and final interpretation in Q methodology, researchers need to inspect the loadings of participant Q-sorts (as people-variables) on the extracted factors.
   Instead of a tabular view, this function creates a simple plot.
 }
 

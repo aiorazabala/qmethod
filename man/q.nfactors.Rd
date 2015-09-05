@@ -131,17 +131,19 @@
   }
 }
 \references{
-  Bartlett, M. S. (1950): \emph{Tests of significance in factor analysis}, British Journal of Psychology, 3, 77-85.
-  Bartlett, M. S. (1951): \emph{A further note on tests of significance}, British Journal of Psychology, 4, 1-2.
-  Brown, S. R., 1980: \emph{Political subjectivity: Applications of Q methodology in political science}, New Haven, CT: Yale University Press.
-  Catell, Raymond B. (1966): \emph{The Scree Test for the Number of Factors}, Multivariate Behavioral Research (1, 2).
-  Fruchter, Benjamin (1954): \emph{Introduction to Factor Analysis}, Princeton, NJ: Van Nostrand.
-  Glorfeld, L. W. 1995: \emph{An Improvement on Horn-s Parallel Analysis Methodology for Selecting the Correct Number of Factors to Retain}, Educational and Psychological Measurement. 55(3): 377-393.
-  Gutmann, L. (1954): \emph{An Outline of Some New Methodology for Social Research}, The Public Opinion Quarterly (18: 4).
-  Horn, J. L. (1965): \emph{A rationale and a test for the number of factors in factor analysis}, Psychometrika. 30: 179-185.
-  Kaiser, H.F. (1960). \emph{The application of electronic computers to factor analysis.} Educational and Psychological Measurement, 20, 141-151.
-  Thompson, Bruce (2004): \emph{Exploratory and Confirmatory Factor Analysis --- Understanding Concepts and Applications}, Washington, D.C.: American Psychological.
-  Watts, Simon and Stenner, Paul (2012): \emph{Doing Q Methodological Research: Theory, Method & Interpretation}, Oaks, CA: Sage Publications; 2012.
+  \itemize{
+    \item Bartlett, M. S. (1950): \emph{Tests of significance in factor analysis}, British Journal of Psychology, 3, 77-85.
+    \item Bartlett, M. S. (1951): \emph{A further note on tests of significance}, British Journal of Psychology, 4, 1-2.
+    \item Brown, S. R., 1980: \emph{Political subjectivity: Applications of Q methodology in political science}, New Haven, CT: Yale University Press.
+    \item Catell, Raymond B. (1966): \emph{The Scree Test for the Number of Factors}, Multivariate Behavioral Research (1, 2).
+    \item Fruchter, Benjamin (1954): \emph{Introduction to Factor Analysis}, Princeton, NJ: Van Nostrand.
+    \item Glorfeld, L. W. 1995: \emph{An Improvement on Horn-s Parallel Analysis Methodology for Selecting the Correct Number of Factors to Retain}, Educational and Psychological Measurement. 55(3): 377-393.
+    \item Gutmann, L. (1954): \emph{An Outline of Some New Methodology for Social Research}, The Public Opinion Quarterly (18: 4).
+    \item Horn, J. L. (1965): \emph{A rationale and a test for the number of factors in factor analysis}, Psychometrika. 30: 179-185.
+    \item Kaiser, H.F. (1960). \emph{The application of electronic computers to factor analysis.} Educational and Psychological Measurement, 20, 141-151.
+    \item Thompson, Bruce (2004): \emph{Exploratory and Confirmatory Factor Analysis --- Understanding Concepts and Applications}, Washington, D.C.: American Psychological.
+    \item Watts, Simon and Stenner, Paul (2012): \emph{Doing Q Methodological Research: Theory, Method & Interpretation}, Oaks, CA: Sage Publications; 2012.
+  }
 }
 
 \note{
@@ -150,7 +152,7 @@
   However, some of the results presented here are meaningful \emph{only} in a PCA-context, and dependent functions are sometimes called with PCA-related options.
   If you would like to add support for other extraction techniques, comment or contribute \href{https://github.com/aiorazabala/qmethod/issues/156}{on the development repository}.
 
-  This function forgoes some suggested criteria for the number of factors \emph{specific} to Q methodology, including Humphrey's rule (Fruchter 1954: 79-80 as cited in Brown 1980: 223), and Brown's rule of more than two significant factor loadings (Watts & Stenner 2012: 107).
+  This function foregoes some criteria for the number of factors discussed in the context of Q methodology, including Humphrey's rule (Fruchter 1954: 79-80 as cited in Brown 1980: 223), and Brown's rule of more than two significant factor loadings (Watts & Stenner 2012: 107).
   These criteria are not included because they appear to be based on \emph{loadings}, which themselves are dependent on the downstream rotation procedure.
   If you disagree or have an idea how to add these criteria, \href{https://github.com/aiorazabala/qmethod/issues/154}{comment on this issue}.
 }

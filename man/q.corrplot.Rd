@@ -1,8 +1,8 @@
 \name{q.corrplot}
 \alias{q.corrplot}
-\title{Q methodology: correlation plot}
+\title{Q methodology: creates correlation matrix heatmap plot}
 \description{
-	Produces a correlation plot from a given correlation matrix.
+	Produces a heatmap from a given correlation matrix.
 }
 \usage{
 	q.corrplot(corr.matrix, quietly = FALSE)

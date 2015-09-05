@@ -18,8 +18,8 @@
     Defaults to \code{NULL}. in which case factors are colored automatically by \pkg{RColorBrewer}.
   }
   \item{color.scheme}{
-    If \code{fcolors = NULL}, a character vector of length 1 from color schemes available in \pkg{RColorBrewer}, suitable for qualitative data (\code{type = "qual"}.
-    Defaults to \code{"Set1"}).
+    If \code{fcolors = NULL}, a character vector of length 1 from color schemes available in \pkg{RColorBrewer}, suitable for qualitative data (\code{type = "qual"}).
+    Defaults to \code{"Set1"}.
   }
 }
 

@@ -1,6 +1,6 @@
 q.fcolors <- function(results, fcolors = NULL, color.scheme = "Set1") {
   # Input verification ===================
-  if (class(results) != "QmethodRes") {  # correct clas?
+  if (class(results) != "QmethodRes") {  # correct class?
     stop("The object provided is not of class 'QmethodRes'.")
   }
   if (!is.null(fcolors)) {  # tests about fcolors
@@ -12,15 +12,15 @@ q.fcolors <- function(results, fcolors = NULL, color.scheme = "Set1") {
         "The factor colors specified are not a vector."
       )
     }
-    
+
     # Make test function for colors (are they valid?)
     # the below is pasted from http://stackoverflow.com/questions/13289009/check-if-character-string-is-a-valid-color-representation
     areColors <- function(x) {
       sapply(
-        x, 
+        x,
         function(X) {
           tryCatch(
-            is.matrix(col2rgb(X)), 
+            is.matrix(col2rgb(X)),
             error = function(e) FALSE
           )
         }
@@ -40,7 +40,7 @@ q.fcolors <- function(results, fcolors = NULL, color.scheme = "Set1") {
     )
     # the above tests internal to brewer.pal also error out if nfactors does not work with chosen palette
   }
-  
+
   # Assign/Create Color Palette
   if (is.null(fcolors)) {  # if there are no colors
     fcolors <- brewer.pal(n = results$brief$nfactors, name = color.scheme)

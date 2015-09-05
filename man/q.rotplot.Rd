@@ -53,6 +53,7 @@
 \seealso{
 	\code{\link{q.loaplot}}
 	\code{\link{q.compplot}}
+	\code{\link{q.scoreplot}}
 }
 
 \examples{

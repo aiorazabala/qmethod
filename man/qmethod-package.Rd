@@ -16,22 +16,38 @@
 
   The functions for each step may be used separately for advanced analysis, for example, for manual flagging (see details in \code{\link{qzscores}}).
 
-  The package also includes additional functions for the following:
+  The package also includes several additional functions for the following:
 
   \itemize{
-    \item Import data from PQMethod software (\code{\link{import.pqmethod}}), and from both HTMLQ and FlashQ (\code{\link{import.htmlq}}).
+    \item \emph{Administration} of a Q study, including:
+    \itemize{
+      \item generating printable cards for a Q study (\code{\link{make.cards}})
+      \item calculating an appropriate Q-distribution
+      %TODO(maxheld83) add here: (\code{\link{make.distribution}})
+    }
+    \item \emph{Importing} data from other software and raw files, including:
+    \itemize{
+      \item Data from PQMethod software (\code{\link{import.pqmethod}})
+      \item Data from online Q-sorting software HTMLQ and FlashQ (\code{\link{import.htmlq}})
+      \item Q-sorts in their \emph{raw form} from *.CSV files into Q-sort arrays to ingest into \code{\link{qmethod}} (\code{\link{import.q.sorts}})
+      \item Participant item feedback from raw *.CSV files (\code{\link{import.q.feedback}})
+      \item Complete concourses from raw *.TEX files (\code{\link{import.q.concourse}})
+      \item Sampling items (\code{\link{build.q.set}})
+    }
+    \item Advising \emph{factor retention} decisions (\code{\link{q.nfactors}})
+    \item \emph{Manual rotation} (\code{\link{q.mrot.choose}}, \code{\link{q.mrot.do}})
+    \item Informative \emph{plots} specific to Q Methodology, including:
+    \itemize{
+      \item Factor score plots (\code{\link{q.scoreplot}})
+      \item Factor composition plots (\code{\link{q.compplot}})
+      \item Correlation matrix heatmaps (\code{\link{q.corrplot}})
+      \item Loadings plots (\code{\link{q.loaplot}})
+    }
+    \item Calculating the dispersion of items \emph{within} factors.
+    \item Naming (\code{\link{q.fnames}}) and coloring (\code{\link{q.fcolors}}) factors in results and plots for easier interpretation.
     \item Export a plain-text report of the analysis for interpretation in two flavours (\code{\link{export.qm}}).
     \item Generic methods to \code{\link{print.QmethodRes}} and \code{\link{plot.QmethodRes}} Q method results.
-    \item Generate printable cards for the administration of a Q study. The function \code{\link{make.cards}} produces a PDF with full item wording and codes, ready for printout on business card templates that can be easily broken into individual Q-cards.
-    \item Several functions to aid reproducible research, by importing the following from raw, separate *.CSV or *.TEX files for each respondent or item:
-    \itemize{
-       \item Q-sorts (\code{\link{import.q.sorts}})
-       \item Participant item feedback (\code{\link{import.q.feedback}})
-       \item Complete concourses (\code{\link{import.q.concourse}})
-       \item Item samples (\code{\link{build.q.set}})
-    }
-    \item A function to rename the factors in the results, with short, meaningful names (\code{\link{q.fnames}}).
-    \item A function to advise the number of factors to be extracted (\code{\link{q.nfactors}})).
+    %TODO(maxheld83) it's completely unclear to me what a consistent / appropriate punctuation would be in this case
   }
   Use \code{help(package="qmethod")} for a list of all the functions.
 
@@ -53,13 +69,12 @@
       \item The item \strong{ID} is another shorthand way of referring to an item, that should be \emph{meaningless} to humans (so as not to influence the participants in unintended ways), such as an arbitrary string of characters.
       Item IDs are \emph{participant-facing} and are used to identify items during data \emph{entry}.
       The item ID can take two forms, depending on function arguments specified by the user:
+
       \enumerate{
-        \item Standard \strong{IDs} (such as \kbd{sta12}, \kbd{sta13}) which are generated automatically in \code{\link{qmethod}} or can be provided by the user using the respective \code{manual.lookup} arguments in \code{\link{make.cards}}, \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
+        \item Standard \strong{IDs} (such as \kbd{sta12}, \kbd{sta13}) can be provided by the user using the respective \code{manual.lookup} arguments in \code{\link{make.cards}}, \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}}.
         See the documentation of these functions for details.
         \item A set of hexadecimal \strong{hashed IDs} (such as \kbd{ae128fs}) can be automatically generated and expected by the functions \code{\link{make.cards}}, \code{\link{import.q.sorts}} and \code{\link{import.q.feedback}} if the argument \code{manual.lookup} remains empty and defaults to \code{NULL}.
-        In that case, IDs are computed by 'summarising' the full item wordings (e.g.
-
-        "\samp{Q Method is used by a crazy, but charming community ...}") into a hexadecimal number (e.g. "\kbd{ae128fs}"), a process known as cryptographic \emph{hashing} (for more details see \code{\link[digest]{digest}})).
+        In that case, IDs are computed by 'summarising' the full item wordings (e.g. "\samp{Q Method is used by a crazy, but charming community ...}") into a hexadecimal number (e.g. "\kbd{ae128fs}"), a process known as cryptographic \emph{hashing} (for more details see \code{\link[digest]{digest}})).
         These hash values change whenever \emph{anything} in the full item wordings is changed, and allow a precise identification of different versions of an item.
         This function never exposes users to the hash values.
         Automatic, hashed IDs are generally recommended and easier to use, but some caveats apply (see \code{\link{make.cards}}).
@@ -80,13 +95,14 @@
 }
 \author{
   Aiora Zabala\cr
-  Main author and maintainer\cr
+  Creator, author and maintainer\cr
   \url{http://www.landecon.cam.ac.uk/directory/aiora-zabala}\cr
   \email{aiora.zabala@gmail.com}
 
   Maximilian Held\cr
-  Author of additional functions: \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}}, \code{\link{make.cards}} and \code{\link{q.nfactors}}\cr
-  \url{http://www.maxheld.de/}
+  Author and co-maintainer\cr
+  \url{http://www.maxheld.de/}\cr
+  \email{info@maxheld.de}
 
 }
 \references{
