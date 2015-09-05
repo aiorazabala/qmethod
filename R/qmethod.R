@@ -53,14 +53,14 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
     loa <- loa %*% diag(signed)  # flips signs where appropriate
 
     # name loadings
-    colnames(loa) <- paste0("RC", 1:ncol(loa))  # this gives a proper name as per https://github.com/aiorazabala/qmethod/issues/264
+    colnames(loa) <- paste0("f", 1:ncol(loa))  # TODO(maxheld83) giving proper name as per https://github.com/aiorazabala/qmethod/issues/264 would be nice
     colnames(rot.mat) <- colnames(loa)  # name rotmat same as loas
     rownames(rot.mat) <- colnames(loa)  # name rotmat same as loas
     loa <- as.data.frame(loa)  # downstream functions expect dataframe
   } else {  # this is the "old" behavior and/or if rotation is none
     loa <- as.data.frame(unclass(pca.results$loadings)) #PCA from {psych} for factor loadings
-    colnames(rot.mat) <- paste0("PC", 1:ncol(loa))
-    rownames(rot.mat) <- paste0("PC", 1:ncol(loa))
+    colnames(rot.mat) <- paste0("f", 1:ncol(loa))  # TODO(maxheld83) giving proper name as per https://github.com/aiorazabala/qmethod/issues/264 would be nice
+    rownames(rot.mat) <- paste0("f", 1:ncol(loa))  # TODO(maxheld83) giving proper name as per https://github.com/aiorazabala/qmethod/issues/264 would be nice
     # this is to make sure this rotmat is properly understood
     # notice that this rotmat may no longer refer directly to the rotated factors, because these are here RE-ORDERED
     # instead, it refers to the PCs (hence the names) of the UNROTATED results, which are then rotated by this rotmat, and then re-ordered
