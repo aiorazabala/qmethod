@@ -33,8 +33,22 @@
   }
   Use \code{help(package="qmethod")} for a list of all the functions.
 
+<<<<<<< HEAD
 \subsection{Terminology}{
     The functions for analysis use the terms standard in Q methodology.
+=======
+	The package also includes a function for the administration of a q-study, \code{\link{make.cards}}, which produces a production-quality PDF with full item wordings and codes on business cards ready for printout.
+
+  For convenience, the package also includes a helper function \code{\link{make.distribution}} to fit a given number of items under a quasi-normal distribution, with a given maximum value.
+}
+\author{
+  Aiora Zabala\cr
+  \url{http://www.landecon.cam.ac.uk/directory/aiora-zabala}
+
+Maintainer: Aiora Zabala \email{aiora.zabala@gmail.com}
+}
+\references{Brown, S. R., 1980 \emph{Political subjectivity: Applications of Q methodology in political science}, New Haven, CT: Yale University Press.\cr Available from: \url{http://qmethod.org/papers/Brown-1980-PoliticalSubjectivity.pdf}.
+>>>>>>> 4bd0d1dea3cff65103c0f96674e6791f7db2743f
 
     In addition, the optional functions to import raw data from separate *.CSV files (\code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}}) and the card printing function (\code{\link{make.cards}}) refer to items in three distinct ways:
     \enumerate{
