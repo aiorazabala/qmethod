@@ -48,7 +48,7 @@ import.q.sorts(q.sorts.dir,	q.set, q.distribution = NULL,
 	  If \code{TRUE} (default), the first row in the *.CSV files will be considered as variable names and ignored.
 	  If \code{FALSE}, the first row in the *.CSV files will be considered as the top row in participant's Q-sorts.
 
-	  Notice that in both cases, \emph{columns} in the *.CSV must be ordered from right to left as in the original Q-sorts.
+	  Notice that in both cases, \emph{columns} in the *.CSV must be ordered from left (negative) to right (positive) as in the original Q-sorts.
 	}
 }
 
