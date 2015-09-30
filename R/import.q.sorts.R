@@ -60,6 +60,13 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=N
   }
   p.set <- unique(p.set)  # make participants unique, also for no-cond (just in case)
 
+  if (length(p.set) == 0) {
+    stop("No CSV files could be found in the specified location.")
+    # this tests (belatedly, somewhat) whether there are *any* CSVs to be found
+    # this cannot be tested elegantly earlier because of the edge-case of some condition having NO CSVs (which is conceivable)
+    # TODO(maxheld83) maybe rethink how this could be organized more elegantly
+  }
+
   # Set up empty array =========================================================
   q.sorts <- array(
     #  participants, conditions, items makes 3 dimensions, all of which integer
