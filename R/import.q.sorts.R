@@ -220,6 +220,10 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=N
 	}
   if (length(conditions) == 1) {
     q.sorts <- q.sorts[,,1]  # drops redundant dim for conditions
+    if (length(p.set) == 1) {  # edge case of one q.sort
+      q.sorts <- as.matrix(q.sorts)
+      colnames(q.sorts) <- p.set
+    }
   }
 	return(q.sorts)
 }
