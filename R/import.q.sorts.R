@@ -14,6 +14,7 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=N
   if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
     stop("The manual.lookup specified is not a matrix.")
   }
+  q.sorts.dir <- normalizePath(q.sorts.dir, mustWork = FALSE)  # normalize path for platform
   if (!is.null(conditions)) {  # test conditions subdir only if there are conditions
     for (cond in conditions) {
       if (!file.exists(paste(q.sorts.dir, cond, sep="")))  # this must not have a trailing slash, file.exists does not like that on win http://r.789695.n4.nabble.com/file-exists-does-not-like-path-names-ending-in-td4683717.html
@@ -104,7 +105,8 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=N
 		for (part in p.set) {  # loop over participants
 			path <- paste(
         q.sorts.dir,
-        if (cond!="only.one") {
+        "/",  # always needs slash because q.sorts.dir is normalized before
+        if (cond != "only.one") {
           paste(
             cond,
             "/",
@@ -115,6 +117,7 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=N
         ".csv",
         sep = ""
       )  # establish path
+			path <- normalizePath(path, mustWork = FALSE)  # just to be safe if there are double slashes or sth
 			if (!file.exists(path)) {  # there may be missing cases for some conditions
 				warning(
           paste(  # it's not a deal-breaker just a warning

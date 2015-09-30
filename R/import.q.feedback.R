@@ -10,6 +10,7 @@ import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup=NULL
   if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
     stop("The manual.lookup specified is not a matrix.")
   }
+  q.feedback.dir <- normalizePath(q.feedback.dir, mustWork = FALSE)  # just to be safe
 
 	# Set up empty array ==========================================================
 	q.feedback <- q.sorts # copy data structure from q.sorts
@@ -46,15 +47,18 @@ import.q.feedback <- function(q.feedback.dir, q.sorts, q.set, manual.lookup=NULL
         q.feedback.dir,
         if (length(conditions) > 1) {  #if more than 1 cond
           paste(
+            "/",
             cond,  # add condition to path
             "/",
             sep = ""
           )
         },  # otherwise, keep path simple
+        "/",
         part,
         ".csv",
         sep = ""
       )
+			path <- normalizePath(path, mustWork = FALSE)  # just to be safe
 			if (file.exists(path)) {  # not everyone comments
 				current.feedback <- read.csv(
           path,

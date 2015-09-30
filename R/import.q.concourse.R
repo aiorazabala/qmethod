@@ -2,6 +2,7 @@ import.q.concourse <- function(q.concourse.dir, languages=NULL) {
 
   # Input validation ===============
   # q.concourse.dir cannot be validated, there appears to be no file.exists equivalent for dirs
+  q.concourse.dir <- normalizePath(q.concourse.dir)  # just to be safe
   # languages (if applicable) are validated further down
 
 
@@ -18,7 +19,7 @@ import.q.concourse <- function(q.concourse.dir, languages=NULL) {
   } else {  # multilingual version
     for (lang in languages) {
       lang <- list.files(
-        path = paste(q.concourse.dir, lang, "/", sep=""),
+        path = paste(q.concourse.dir, "/", lang, sep=""),
         no.. = TRUE, #  no dotfiles
         pattern = "\\.tex$"  # only tex
       )
@@ -43,13 +44,15 @@ import.q.concourse <- function(q.concourse.dir, languages=NULL) {
   # Reading in full items ======================================================
   if (is.null(languages)) {  # monolingual version
     for (handle in q.item.handles) {  # loop over item handles
-      path <- paste(q.concourse.dir, handle, ".tex", sep = "")  # establish path
+      path <- paste(q.concourse.dir, "/", handle, ".tex", sep = "")  # establish path
+      path <- normalizePath(path, mustWork = FALSE)  # just to be sure
       q.concourse[handle] <- readChar(path, file.info(path)$size) # assign the full text
     }
   } else {  # multilingual version
     for (lang in languages) {  # loop over the languages
       for (handle in q.item.handles) {  # loop over item handles
-        path <- paste(q.concourse.dir, lang, "/", handle, ".tex", sep = "")  # establish path
+        path <- paste(q.concourse.dir, "/", lang, "/", handle, ".tex", sep = "")  # establish path
+        path <- normalizePath(path, mustWork = FALSE)  # just to be sure
         if (file.exists(path)) {  # if translation exists, read in
           q.concourse[handle,lang] <- readChar(path, file.info(path)$size) # assign the full text
         } else {  # error out if there is a missing translation

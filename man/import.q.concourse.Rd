@@ -13,7 +13,6 @@ import.q.concourse(q.concourse.dir, languages = NULL)
     A directory of \emph{individual} item wordings in *.TEX files with handles as filenames (e.g. \kbd{happy-feeling.tex}).
     If \code{languages} are specified, the directory should contain one folder per language, with all full item wordings as individual *.TEX files in \emph{each} language folder.
     Items should have the \emph{same} file name across all languages (e.g. \kbd{happy-feeling.tex}).
-    Directories end with a trailing slash, such as \code{study/q-sample/q-concourse/}.
    }
   \item{languages}{
   	A character vector of languages, same as folders within \code{q.concourse.dir}.
@@ -38,7 +37,7 @@ import.q.concourse(q.concourse.dir, languages = NULL)
 	Returns error if items are not available in all translations.
 
   Defaults to monolingual variant.
-  
+
   If you are not familiar with the terminology of Q item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
 }
 \value{
