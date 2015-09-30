@@ -26,7 +26,7 @@ import.q.sorts(q.sorts.dir,	q.set, q.distribution = NULL,
 		A matrix with handles as row names, languages (if applicable) in columns, as read in by \code{\link{build.q.set}}.
 	}
 	\item{q.distribution}{
-		The chosen Q distribution as a vector of integers, such as \code{c(1,3,1)}.
+		The chosen Q distribution as a vector of integer \emph{column heights} (or counts), such as \code{c(1,3,1)} for possible scores of \code{-1, 0, 0, 0, 1}.
 		Defaults to \code{NULL} for a free distribution.
 
 		If a \code{q.distribution} \emph{is} specified, all rows below the maximum column height of the distribution are ignored when reading in the *.CSV files.
