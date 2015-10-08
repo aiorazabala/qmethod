@@ -32,6 +32,8 @@
     \item A function to rename the factors in the results, with short, meaningful names (\code{\link{q.fnames}}).
   }
   Use \code{help(package="qmethod")} for a list of all the functions.
+   \subsection{Terminology}{
+     The functions for analysis use the terms standard in Q methodology.
     In addition, the optional functions to import raw data from separate *.CSV files (\code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}}) and the card printing function (\code{\link{make.cards}}) refer to items in three distinct ways:
     \enumerate{
       \item Item \strong{full wording}, is the complete item, such as:
