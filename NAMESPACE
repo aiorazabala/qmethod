@@ -4,7 +4,9 @@ import("methods",
        "digest",
        "tools",
        "xtable",
-       "knitr")
+       "knitr",
+       "MCMCpack",
+       "FactoMineR")
 export("qmethod",
        "qzscores",
        "qflag",
@@ -20,7 +22,14 @@ export("qmethod",
        "make.cards",
        "export.qm",
        "make.cards",
-       "make.distribution")
+       "make.distribution",
+       "qmboots",
+       "qmb.summary",
+       "qmb.plot",
+       "qindtest",
+       "qpcrustes",
+       "qfsi",
+       "qbstep")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
