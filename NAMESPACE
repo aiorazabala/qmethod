@@ -14,6 +14,7 @@ export("qmethod",
        "q.fnames",
        "qdc",
        "import.pqmethod",
+       "export.pqmethod",
        "import.htmlq",
        "build.q.set",
        "import.q.concourse",
@@ -29,7 +30,8 @@ export("qmethod",
        "qindtest",
        "qpcrustes",
        "qfsi",
-       "qbstep")
+       "qbstep",
+       "loa.and.flags")
 S3method("plot",
          "QmethodRes")
 S3method("summary",

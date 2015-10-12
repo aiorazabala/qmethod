@@ -1,4 +1,4 @@
-qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson",...) {
+qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson", silent=FALSE, ...) {
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
@@ -25,7 +25,7 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
   
   # Run the analysis
   cor.data <- cor(dataset, method=cor.method)
-  loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation, ...)$loadings)) #PCA from {psych} for factor loadings
+  loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation)$loadings, ...)) #PCA from {psych} for factor loadings
   names(loa) <- paste0("f", 1:length(loa))
   # The following depends on the qmethod functions: qflag, qzscores, qfcharact, qdc
   flagged <- qflag(loa=loa, nstat=nstat)
@@ -52,7 +52,6 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
                                         qmethodresults$brief$cor.method))
   qmethodresults[[8]] <- qdc(dataset, nfactors, zsc=qmethodresults[[5]], sed=as.data.frame(qmethodresults[[7]][[3]]))
   names(qmethodresults)[8] <- "qdc"
-  cat(qmethodresults$brief$info, sep="\n")
-  # Will this cat() fill the screen when applying bootstrap?
+  if (silent== FALSE) cat(qmethodresults$brief$info, sep="\n")
   return(qmethodresults)
 }

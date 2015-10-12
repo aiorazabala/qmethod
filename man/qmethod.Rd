@@ -4,7 +4,8 @@
 \description{This function performs a full Q method analysis using principal components analysis (see Notes). The main results are factor characteristics, statement z-scores and factor scores, and distinguishing and consensus statements.}
 \usage{
 qmethod(dataset, nfactors, rotation = "varimax", forced = TRUE, 
-        distribution = NULL, cor.method = "pearson", ...)}
+        distribution = NULL, cor.method = "pearson",
+        silent = FALSE, ...)}
 
 \arguments{
   \item{dataset}{a matrix or a data frame containing original data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell. The matrix or data frame should not contain character strings. The results keep row names and column names if set in the \code{dataset} (see 'Details').}
@@ -13,6 +14,7 @@ qmethod(dataset, nfactors, rotation = "varimax", forced = TRUE,
   \item{forced}{logical; Is the ranking of the items forced to match the distributions? Set to \code{TRUE} if all respondents ranked the items strictly following the distribution scores, in which case the values of the distribution are calculated automatically. Set to \code{FALSE} if respondents were able to rank the items without following the distribution, and the values of the distribution have to be provided as an array in the argument \code{distribution}.}
 \item{distribution}{logical; when forced = \code{FALSE}, the distribution has to be provided as a vector of numbers, such as \code{c(-2, -1, -1, 0, 1, 1, 2, 2)}.}
 \item{cor.method}{character string indicating which correlation coefficient is to be computed, to be passed on to the function \code{\link[stats]{cor}}: \code{"pearson"} (default), \code{"kendall"}, or \code{"spearman"}. }
+\item{silent}{logical; when = \code{TRUE}, a summary message is printed.}
 \item{...}{other parameters to pass to functions such as \code{\link[psych]{principal}}}
 }
 
