@@ -25,7 +25,7 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
   
   # Run the analysis
   cor.data <- cor(dataset, method=cor.method)
-  loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation)$loadings, ...)) #PCA from {psych} for factor loadings
+  loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation, ...)$loadings)) #PCA from {psych} for factor loadings
   names(loa) <- paste0("f", 1:length(loa))
   # The following depends on the qmethod functions: qflag, qzscores, qfcharact, qdc
   flagged <- qflag(loa=loa, nstat=nstat)
