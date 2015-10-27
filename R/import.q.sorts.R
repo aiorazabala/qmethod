@@ -1,37 +1,18 @@
 import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=NULL, manual.lookup=NULL, header = TRUE) {
   # Input validation (also see validation at the bottom!)
-  if (!is.matrix(q.set)) {
-    stop("The q.set specified is not a matrix.")
+  assert_that(is.dir(q.sorts.dir))  # this will be further tested for conditions
+  assert_that(is.matrix(q.set))
+  if (!is.null(q.distribution)) {
+    assert_that(is.vector(q.distribution))
+    # TODO there could be more tests here on q.distribution
   }
-  if (!is.null(q.distribution)){
-    if (!is.vector(q.distribution)) {
-      stop("The q.distribution specified is not a vector.")
-    }
+  if (!is.null(conditions)) {
+    assert_that(is.vector(conditions))
   }
-  if (!is.null(conditions) &  !is.vector(conditions)) {
-    stop("The conditions specified are not a vector.")
+  if (!is.null(manual.lookup)) {
+    assert_that(is.matrix(manual.lookup))
   }
-  if (!is.null(manual.lookup) & !is.matrix(manual.lookup)) {
-    stop("The manual.lookup specified is not a matrix.")
-  }
-  q.sorts.dir <- normalizePath(q.sorts.dir, mustWork = FALSE)  # normalize path for platform
-  if (!is.null(conditions)) {  # test conditions subdir only if there are conditions
-    for (cond in conditions) {
-      if (!file.exists(paste(q.sorts.dir, cond, sep="")))  # this must not have a trailing slash, file.exists does not like that on win http://r.789695.n4.nabble.com/file-exists-does-not-like-path-names-ending-in-td4683717.html
-      {
-        stop(
-          paste(
-            "Folder for condition",
-            cond,
-            "could not be found."
-          )
-        )
-      }
-    }
-  }
-  if (!is.logical(header)) {
-    stop("The argument header has not been specified logically.")
-  }
+  assert_that(is.logical(header))
 
   # Deal with no conditions
   if (is.null(conditions)) {
@@ -39,9 +20,15 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=N
   }
   conditions <- factor(conditions) #  such as before, after as factors
 
-  # Set up preliminary data structure ==========================================
-  p.set <- c() #  p.set are the participants in q lingo, empty vector
+  # Gather participants p.set ==========================================
   for (cond in conditions) {  # gather *all* participants for all conds
+    q.sorts.dir <- normalizePath(q.sorts.dir, mustWork = FALSE)  # normalize path for platform
+    if (!is.null(conditions)) {  # test conditions subdir only if there are conditions
+      for (cond in conditions) {
+        is.dir(paste(q.sorts.dir, cond, sep="/"))
+        # TODO more informative error message would be nice at some point
+      }
+    }
     p.set.cond <- list.files(  # gather people by listing files
       path = if (cond == "only.one"){  # if no conditions
         q.sorts.dir  # this is the path
@@ -49,8 +36,7 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=N
         paste (  # here comes the path
           q.sorts.dir,
           cond,  # consider condition in path
-          "/",
-          sep = ""
+          sep = "/"
         )
       },
       no.. = TRUE,  # no dotfiles
@@ -107,10 +93,9 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=N
         q.sorts.dir,
         "/",  # always needs slash because q.sorts.dir is normalized before
         if (cond != "only.one") {
-          paste(
+          paste0(
             cond,
-            "/",
-            sep = ""
+            "/"
           )
         },
         part,
