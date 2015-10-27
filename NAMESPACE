@@ -4,7 +4,8 @@ import("methods",
        "tools",
        "stringr",
        "paran",
-       "nFactors"
+       "nFactors",
+       "assertthat"
        )
 importFrom("plyr","count")
 importFrom("plyr","join_all")

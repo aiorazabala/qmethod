@@ -29,7 +29,8 @@ Imports:
   grid,
   gridExtra,
   koRpus,
-  devtools
+  devtools,
+  assertthat
 LazyData: true
 Repository: CRAN
 URL: https://github.com/aiorazabala/qmethod, https://github.com/aiorazabala/qmethod/wiki
