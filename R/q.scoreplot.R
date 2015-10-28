@@ -199,9 +199,9 @@ q.scoreplot <- function(results, extreme.labels = c("negative", "positive"), inc
       g <- g + geom_segment(
         data = array.viz.qdc
         , mapping = aes(
-          x = fsc + (difference/max(abs(range(difference)))) * 0.45  # scale to highest existing difference
+          x = fsc - (difference/max(abs(range(difference)))) * 0.45  # scale to highest existing difference
           , y = ycoord - 0.5
-          , xend = fsc + (difference/max(abs(range(difference)))) * 0.45  # multiply by .45 to make sure it's within half of the tile
+          , xend = fsc - (difference/max(abs(range(difference)))) * 0.45  # multiply by .45 to make sure it's within half of the tile
           , yend = ycoord + 0.5
           , colour = factor(factor)
           , linetype = significance
