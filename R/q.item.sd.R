@@ -1,9 +1,24 @@
-q.item.sd <- function(results) {
+q.item.sd <- function(results, standardize = FALSE) {
 	# calculates the sd of an item on a factor, weighted by loadings
 
   # Input validation
   if (class(results) != "QmethodRes") {
     stop("The object provided is not of class 'QmethodRes'.")
+  }
+  assert_that(is.flag(standardize))
+
+  results$dataset <- as.matrix(results$dataset, TRUE)  # because we need to protect against dfs
+
+  if (standardize) {
+    # base::scale cannot be used for standardizing dataset,
+    #  - because it uses sd, not pop.sd, leading to subtle differences
+    #  - because it always standardizes per column
+    sd.overall <- pop.sd(x = results$dataset)  # pop.sd because this is not a sample
+    # notice that doing an OVERALL sd and mean is harmless if distros are forced, but retains skew/asymmetry if distros are free
+    mean.overall <- mean(x = results$dataset)
+    # results$dataset <- results$dataset <- mean.overall
+    # there is NO centering done here actually, as per https://github.com/aiorazabala/qmethod/issues/325
+    results$dataset <- results$dataset/sd.overall
   }
 
   # Calculate item standard deviation
@@ -20,7 +35,7 @@ q.item.sd <- function(results) {
     if (all(wraw_all[[i]] == 0)) {
       # in case all scores are zero, which happens when NO person is automatically flagged
       # this creates evil NaN errors
-      # this should not happen to begin with, and automatic flagging from within rotations for q.scoreplot should be switched off https://github.com/aiorazabala/qmethod/issues/167
+      # this should not happen to begin with, and automatic flagging from within rotations for q.scoreplot.ord should be switched off https://github.com/aiorazabala/qmethod/issues/167
       item_sd[ , i] <- NA
     } else { # if there ARE any scores at all
       wraw_all_flagged <- wraw_all[[i]][ , which(!apply(wraw_all[[i]]==0, 2, all)), drop=FALSE]  # choose only flagged, drop must be FALSE in case there is only one flagged, which causes errors downstream
