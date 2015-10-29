@@ -33,7 +33,7 @@
     Defaults to \code{""}, in which case the output will be returned to the console.
   }
     \item{label.scale}{
-    An integer vector to scale the plot labels, passed on to \code{\link{q.scoreplot}}, defaults to \code{500}.
+    An integer vector to scale the plot labels, passed on to \code{\link{q.scoreplot.ord}}, defaults to \code{500}.
   }
 }
 

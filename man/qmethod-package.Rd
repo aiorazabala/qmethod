@@ -38,7 +38,7 @@
     \item \emph{Manual rotation} (\code{\link{q.mrot.choose}}, \code{\link{q.mrot.do}})
     \item Informative \emph{plots} specific to Q Methodology, including:
     \itemize{
-      \item Factor score plots (\code{\link{q.scoreplot}})
+      \item Factor score plots (\code{\link{q.scoreplot.ord}})
       \item Factor composition plots (\code{\link{q.compplot}})
       \item Correlation matrix heatmaps (\code{\link{q.corrplot}})
       \item Loadings plots (\code{\link{q.loaplot}})

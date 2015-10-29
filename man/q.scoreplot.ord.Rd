@@ -1,12 +1,13 @@
-\name{q.scoreplot}
-\alias{q.scoreplot}
-\title{Q methodology: create Q factor score plot}
+\name{q.scoreplot.ord}
+\alias{q.scoreplot.ord}
+\title{Q methodology: create ordinal Q factor score plot}
 \description{
-  Visualizes Q Method results, with one Q factor score plot for each extracted factor.
+  Visualizes Q Method results, with one ordinal Q factor score plot for each extracted factor.
 }
 \usage{
-  q.scoreplot(
+  q.scoreplot.ord(
     results
+    , factor
     , extreme.labels = c("negative", "positive")
     , incl.qdc = TRUE
     , quietly = FALSE
@@ -19,6 +20,9 @@
 \arguments{
   \item{results}{
     A results object from \code{\link{qmethod}}.
+  }
+  \item{factor}{
+    A vector of length one, indicating which factor should be plotted, either as integer or character factor name.
   }
   \item{extreme.labels}{
     A character vector of length 2 with labels for the negative and positive extreme of the q sort array, ideally as presented to study participants.
@@ -51,21 +55,19 @@
   }
 }
 \details{
-  During a factor interpretation in Q methodology, it is helpful to consider the \emph{ideal-typical} sort of a factor, as conveniently produced by \code{\link{qmethod}} in \code{zsc}.
+  During a factor interpretation in Q methodology, it is helpful to consider the \emph{ideal-typical} sort of a factor, as conveniently produced by \code{\link{qmethod}} in \code{zsc_n}.
   Instead of a tabular view, this function creates a plot similar to the Q sorts in which participants originally expressed their viewpoints, with items stacked according to the (forced) Q distribution.
 
   The resulting graphs include the following information:
   \enumerate{
     \item \emph{Item Position.}
       The items are sorted as per \code{\link{qmethod}}'s \code{zsc_n}, that is, the standardized average of loadings-weighted item scores of flagged participants on a given factor, rank ordered.
-      Compared to \code{zsc}, which are the unrounded z-scores, \code{zsc_n} constitute a \emph{loss} of information.
-      Absolute (rather than zscored) positions are chosen here despite that loss to avoid colossal overplotting of labels, as well as to reproduce Q sort data in its original form.
     \item \emph{Item Names.}
       Items are named according to a line-wrapped version of the row names of the \code{"zsc_n"} array from \code{\link{qmethod}}.
     \item \emph{Tile Fill Color.}
       Tiles surrounding items are filled by a color identifying the current factor across all plots, as created by \code{\link{q.fcolors}}.
     \item \emph{Tile Fill Transparency.}
-      The transparency of the fill color is determined by the loadings-weighted population (!) standard deviation of items \emph{across} flagged Q sorts, as produced by \code{\link{qzscores}}.
+      The transparency of the fill color is determined by the loadings-weighted population (!) standard deviation of items \emph{across} flagged Q sorts, as produced by \code{\link{q.item.sd}}.
       The shade is scaled to the highest standard deviation of an item across all factors, implying that the scale \emph{can} be compared across factor plots \emph{within} the same \code{\link{qmethod}} analysis.
       This is a somewhat unconventional statistic in Q methodology, and is meant to give an impression of the \emph{dispersion} of items across sorts loading on a given factor.
     \item \emph{Lines Distinguishing Items Factors.}
@@ -79,10 +81,17 @@
   This visualization was inspired by the \emph{crib sheet} method for rigorous factor interpretation, as suggested by Watts and Stenner (2012).
   These plots combine \emph{all} information necessary for a crib sheet reading in one visualization.
   Items scoring higher (or lower) than on any other factor can be easily spotted as those items with no lines on their left (right) half.
+
+  Compared to \code{zsc}, which are the unrounded z-scores, \code{zsc_n} constitute a \emph{loss} of information.
+  In particular, the precise location of an item on an ideal-typical, shared factor is replaced by that items (binned) \emph{rank} order.
+  Such summary may be easier to read and amenable to interpretation, because it reproduces Q sort data in its original form.
+  Users should be careful to interpret the plot in \emph{ordinal} terms: distances \emph{between} (nearby) columns are not strictly meaningful.
+
+  Users may consieder \code{q.scoreplot.num} as an alternative for a truthful representation of \emph{interval}-scaled factor score results.
 }
 
 \value{
-  Returns a list of \pkg{ggplot2} objects, one for each extracted factor.
+  Returns a list of \pkg{ggplot2} objects.
 }
 
 \references{
@@ -105,11 +114,13 @@
   , \code{\link{q.fcolors}}
   , \code{\link{q.fnames}}
   , \code{\link{pop.sd}}
+  , \code{\link{q.item.sd}}
+  , \code{\link{q.scoreplot.ord}}
 }
 
 \examples{
   # data(lipset)  # use data included with this package
   # results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")  # run analysis
-  # plots <- q.scoreplot(results = results)  # produces plots list
+  # plots <- q.scoreplot.ord(results = results, factor = 1)  # produces plots
   # plots[1]  # retrieves and prints plot for first factor
 }

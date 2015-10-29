@@ -18,7 +18,7 @@
     Defaults to \code{FALSE}.
   }
   \item{label.scale}{
-    An integer vector to scale the plot labels, passed on to \code{\link{q.scoreplot}}, defaults to \code{500}.
+    An integer vector to scale the plot labels, passed on to \code{\link{q.scoreplot.ord}}, defaults to \code{500}.
   }
 }
 
@@ -53,12 +53,12 @@
 \seealso{
 	\code{\link{q.loaplot}}
 	\code{\link{q.compplot}}
-	\code{\link{q.scoreplot}}
+	\code{\link{q.scoreplot.ord}}
 }
 
 \examples{
   data(lipset)  # use data included with this package
   results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")  # run analysis
-  rotplots <- q.rotplot(results)  # prints (overwhelming) grid of grids
+  # rotplots <- q.rotplot(results)  # prints (overwhelming) grid of grids
   # rotplots$`f1-f2`  # access individual factor pairs
 }

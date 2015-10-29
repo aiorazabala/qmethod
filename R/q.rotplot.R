@@ -42,7 +42,10 @@ q.rotplot <- function(results, quietly = FALSE, label.scale = 200) {
   # make plots
   loaplots <- q.loaplot(results = results, quietly = TRUE)
   compplot <- q.compplot(results = results, quietly = TRUE)
-  scoreplots <- q.scoreplot(results = results, incl.qdc = FALSE, quietly = TRUE, label.scale = label.scale)  # Let's not make this more complicated
+  scoreplots <- NULL
+  for (f in colnames(results$loa)) {
+    scoreplots[[f]] <- q.scoreplot.ord(results = results, factor = f, incl.qdc = FALSE, quietly = TRUE, label.scale = label.scale)  # Let's not make this more complicated
+  }
 
   rotplots <- loaplots.pairs <- NULL  # allow the object
 
