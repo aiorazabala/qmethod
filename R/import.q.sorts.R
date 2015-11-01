@@ -21,6 +21,7 @@ import.q.sorts <- function(q.sorts.dir, q.set, q.distribution=NULL, conditions=N
   conditions <- factor(conditions) #  such as before, after as factors
 
   # Gather participants p.set ==========================================
+  p.set <- NULL  # must first exist for later appending
   for (cond in conditions) {  # gather *all* participants for all conds
     q.sorts.dir <- normalizePath(q.sorts.dir, mustWork = FALSE)  # normalize path for platform
     if (!is.null(conditions)) {  # test conditions subdir only if there are conditions

@@ -119,8 +119,7 @@
 }
 
 \examples{
-  # data(lipset)  # use data included with this package
-  # results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")  # run analysis
-  # plots <- q.scoreplot.ord(results = results, factor = 1)  # produces plots
-  # plots[1]  # retrieves and prints plot for first factor
+  data(lipset)  # use data included with this package
+  results <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")  # run analysis
+  plots <- q.scoreplot.ord(results = results, factor = 1)  # produces plot for first factor
 }
