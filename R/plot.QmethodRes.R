@@ -3,7 +3,7 @@ plot.QmethodRes <- function(x,
                             pchlist = NULL, colours = NULL,
                             fnames = NULL, legend = TRUE, ...) {
   dfr <- x$zsc
-  lowlim <- floor(min(dfr[[1]]))
+  lowlim <- floor(min(dfr))
   highlim <- ceiling(max(dfr))
   if (is.null(pchlist)) pchlist <- c(1, 2, 0, 5, 6, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
   nfactors <- length(dfr)
