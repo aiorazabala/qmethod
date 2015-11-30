@@ -5,8 +5,7 @@ import("methods",
        "tools",
        "xtable",
        "knitr",
-       "MCMCpack",
-       "FactoMineR")
+       "MCMCpack")
 export("qmethod",
        "qzscores",
        "qflag",

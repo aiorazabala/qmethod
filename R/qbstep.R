@@ -2,7 +2,7 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
                    qmts=qmts, qmts_log=qmts_log, rotation="unknown", 
                    flagged=flagged, ...) {
   #solutions for indeterminacy issue in PCA bootstrap
-  loa <- as.data.frame(PCA(subdata, graph=FALSE)$var$coord[,c(1:nfactors)]) #PCA() from 'FactoMineR' is used instead of principal() from 'psych', because the latter does not return any values for some of the loadings, and it only returns three decimals
+  loa <- as.data.frame(unclass(principal(subdata, rotate="none", nfactors=nfactors)$loa))
   if (indet == "none") {
     #loa <- as.data.frame(PCA(subdata, graph=FALSE)$var$coord[,c(1:nfactors)])
     loa <- as.data.frame(unclass(varimax(as.matrix(loa))[[1]]))

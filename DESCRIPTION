@@ -21,7 +21,6 @@ Imports:
   digest,
   knitr,
   xtable,
-  FactoMineR,
   MCMCpack
 LazyData: true
 Repository: CRAN
