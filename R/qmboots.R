@@ -131,7 +131,7 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
     badsteps <- which(qindet[[2]][[1]] == errmsg)
     print(paste("Number of steps with order swap error:", 
                 length(badsteps)))
-
+    if (sum(qindet[[2]][[1]] == errmsg) == 0) badsteps <- 0
   } else badsteps <- 0
   
   #-----------------------------------------------
@@ -139,28 +139,20 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   #-----------------------------------------------
   qmbs <- list() #q method bootstrap summary
   n <- 1
-  if (indet == "qindtest" | indet == "both") {
-    while (n <= nfactors) {
-      qmbs[[n+1]] <- merge(describe(t(qmbr[[n]][[2]][,-badsteps])), 
-                           t(apply(qmbr[[n]][[2]][,-badsteps], 1, quantile, 
-                                   probs=c(0.025, 0.25, 0.75, 0.975), 
-                                   na.rm=TRUE)), 
-                           by='row.names', sort=FALSE)
-      rownames(qmbs[[n+1]]) <- qmbs[[n+1]][,1]
-      qmbs[[n+1]][,1] <- NULL
-      n <- n+1
+  while (n <= nfactors) {
+    if (badsteps > 0 & indet == "qindtest" | indet == "both") {
+      t.zsc <- qmbr[[n]]$zsc[,-badsteps]
+    } else {
+      t.zsc <- qmbr[[n]]$zsc
     }
-  } else {
-    while (n <= nfactors) {
-      qmbs[[n+1]] <- merge(describe(t(qmbr[[n]][[2]])), 
-                           t(apply(qmbr[[n]][[2]], 1, quantile, 
-                                   probs=c(0.025, 0.25, 0.75, 0.975), 
-                                   na.rm=TRUE)), 
-                           by='row.names', sort=FALSE)
-      rownames(qmbs[[n+1]]) <- qmbs[[n+1]][,1]
-      qmbs[[n+1]][,1] <- NULL
-      n <- n+1
-    }
+    qmbs[[n+1]] <- merge(describe(t(t.zsc)), 
+                         t(apply(t.zsc, 1, quantile, 
+                                 probs=c(0.025, 0.25, 0.75, 0.975), 
+                                 na.rm=TRUE)), 
+                         by='row.names', sort=FALSE)
+    rownames(qmbs[[n+1]]) <- qmbs[[n+1]][,1]
+    qmbs[[n+1]][,1] <- NULL
+    n <- n+1
   }
   names(qmbs) <- paste("factor",0:nfactors, sep="")
   #factor scores (fragment adapted from qzscores.R)
@@ -194,31 +186,27 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   #-----------------------------------------------
   qmbl <- list()
   n <- 1
-  if (indet == "qindtest" | indet == "both") {
-    while (n <= nfactors) {
-      qmbl[[n]] <- merge(describe(t(qmbr[[n]][[3]][,-badsteps])), t(apply(qmbr[[n]][[3]][,-badsteps], 1, quantile, probs=c(0.025, 0.25, 0.75, 0.975), na.rm=TRUE)), by='row.names', sort=FALSE)
-      rownames(qmbl[[n]]) <- qmbl[[n]][,1]
-      qmbl[[n]][,1] <- NULL
-      qmbl[[n]] <- qmbl[[n]][order(row.names(qmbl[[n]])), ]
-      qmbl[[n]]$flag_freq <- as.numeric(NA*nqsorts)
-      for (j in 1:nqsorts) {
-        qmbl[[n]][j,"flag_freq"] <- length(which(t(qmbr[[n]][[1]][,-badsteps])[,j] == TRUE)) / (length(which(t(qmbr[[n]][[1]][,-badsteps])[,j] == TRUE)) + length(which(t(qmbr[[n]][[1]][,-badsteps])[,j] == FALSE)))
-      }
-      n <- n+1
+  
+  while (n <= nfactors) {
+    if (badsteps > 0 & indet == "qindtest" | indet == "both") {
+      t.loa <- qmbr[[n]]$loa[,-badsteps]
+    } else t.loa <- qmbr[[n]]$loa
+    qmbl[[n]] <- merge(describe(t(t.loa)), 
+                       t(apply(t.loa, 1, quantile, probs=c(0.025, 0.25, 0.75, 0.975), na.rm=TRUE)), 
+                       by='row.names', sort=FALSE)
+    rownames(qmbl[[n]]) <- qmbl[[n]][,1]
+    qmbl[[n]][,1] <- NULL
+    qmbl[[n]] <- qmbl[[n]][order(row.names(qmbl[[n]])), ]
+    qmbl[[n]]$flag_freq <- as.numeric(NA*nqsorts)
+    for (j in 1:nqsorts) {
+      if (badsteps > 0 & indet == "qindtest" | indet == "both") {
+        token <- t(qmbr[[n]][[1]][,-badsteps])[,j]
+      } else token <- t(qmbr[[n]][[1]])[,j]
+      qmbl[[n]][j,"flag_freq"] <- length(which(token == TRUE)) / (length(which(token == TRUE)) + length(which(token == FALSE)))
     }
-  } else {
-    while (n <= nfactors) {
-      qmbl[[n]] <- merge(describe(t(qmbr[[n]][[3]])), t(apply(qmbr[[n]][[3]], 1, quantile, probs=c(0.025, 0.25, 0.75, 0.975), na.rm=TRUE)), by='row.names', sort=FALSE)
-      rownames(qmbl[[n]]) <- qmbl[[n]][,1]
-      qmbl[[n]][,1] <- NULL
-      qmbl[[n]] <- qmbl[[n]][order(row.names(qmbl[[n]])), ]
-      qmbl[[n]]$flag_freq <- as.numeric(NA*nqsorts)
-      for (j in 1:nqsorts) {
-        qmbl[[n]][j,"flag_freq"] <- length(which(t(qmbr[[n]][[1]])[,j] == TRUE)) / (length(which(t(qmbr[[n]][[1]])[,j] == TRUE)) + length(which(t(qmbr[[n]][[1]])[,j] == FALSE)))
-      }
-      n <- n+1
-    }
+    n <- n+1
   }
+  
   names(qmbl) <- paste("factor",1:nfactors, sep="")
   #export and report
   qmboots <- list()

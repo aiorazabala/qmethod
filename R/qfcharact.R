@@ -19,9 +19,9 @@ qfcharact <- function(loa, flagged, zsc, nfactors, floa, av_rel_coef=0.8) {
   colnames(sed) <- paste("f", 1:nfactors, sep="")
   row.names(sed) <- paste("f", 1:nfactors, sep="")
   f <- 1
-  while (f <= length(floa)) {
+  while (f <= ncol(floa)) {
     g <- 1
-    while (g <= length(floa)) {
+    while (g <= ncol(floa)) {
       sed[f,g] <- sqrt(se_fscores[[f]]^2 + se_fscores[[g]]^2)
       g <- g+1
     }
@@ -30,7 +30,7 @@ qfcharact <- function(loa, flagged, zsc, nfactors, floa, av_rel_coef=0.8) {
   #Bind all together
   f_char <- list()
   f_char[[1]] <- data.frame(cbind(av_rel_coef, nload, eigenvals, expl_var, reliability, se_fscores))
-  row.names(f_char[[1]]) <- paste("f",1:length(loa), sep="")
+  row.names(f_char[[1]]) <- paste("f",1:ncol(loa), sep="")
   f_char[[2]] <- f_cor
   f_char[[3]] <- sed
   names(f_char) <- cbind("characteristics", "cor_zsc", "sd_dif")

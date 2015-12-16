@@ -5,7 +5,7 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
   loa <- as.data.frame(unclass(principal(subdata, rotate="none", nfactors=nfactors)$loa))
   if (indet == "none") {
     #loa <- as.data.frame(PCA(subdata, graph=FALSE)$var$coord[,c(1:nfactors)])
-    loa <- as.data.frame(unclass(varimax(as.matrix(loa))[[1]]))
+    loa <- as.matrix(unclass(varimax(as.matrix(loa))[[1]]))
   }
   if (indet == "procrustes") {
     #loa <- as.data.frame(PCA(subdata, graph=FALSE)$var$coord[,c(1:nfactors)])
@@ -14,7 +14,7 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
     loa <- procrustes
   }
   if (indet == "qindtest" | indet == "both") {
-    loa <- as.data.frame(unclass(varimax(as.matrix(loa))[[1]]))
+    loa <- as.matrix(unclass(varimax(as.matrix(loa))[[1]]))
     qindeterminacy <- qindtest(loa=loa, target=subtarget, 
                                nfactors=nfactors)
     loa <- qindeterminacy[[1]]

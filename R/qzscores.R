@@ -25,24 +25,24 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
   row.names(zsc_mea) <- row.names(dataset)
   row.names(zsc_std) <- row.names(dataset)
   n <- 1
-  while (n <= length(floa)) {
+  while (n <= ncol(floa)) {
     zsc_sum[,n] <-      rowSums(wraw_all[[n]])
     zsc_mea[,n] <- mean(rowSums(wraw_all[[n]]))
     zsc_std[,n] <-   sd(rowSums(wraw_all[[n]]))
     n <- n+1
   }
-  colnames(zsc_sum) <- paste("z_sum_",c(1:length(floa)),sep="")
-  colnames(zsc_mea) <- paste("z_mea_",c(1:length(floa)),sep="")
-  colnames(zsc_std) <- paste("z_std_",c(1:length(floa)),sep="")
+  colnames(zsc_sum) <- paste("z_sum_",c(1:ncol(floa)),sep="")
+  colnames(zsc_mea) <- paste("z_mea_",c(1:ncol(floa)),sep="")
+  colnames(zsc_std) <- paste("z_std_",c(1:ncol(floa)),sep="")
   #-- z-scores for each statement
   zsc <- data.frame(cbind(1:nstat))
   row.names(zsc) <- row.names(dataset)
   n <- 1
-  while (n <= length(floa)) {
+  while (n <= ncol(floa)) {
     zsc[,n] <- (zsc_sum[,n]-zsc_mea[,n])/zsc_std[,n]
     n <- n+1
   }
-  colnames(zsc) <- paste("zsc_f",c(1:length(floa)),sep="")
+  colnames(zsc) <- paste("zsc_f",c(1:ncol(floa)),sep="")
   #D. FACTOR SCORES: rounded z-scores
   if (forced) {
     qscores <- sort(dataset[,1], decreasing=FALSE)
@@ -56,7 +56,7 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
   }
   zsc_n <- as.data.frame(zsc)
   f <- 1
-  while (f <= length(floa)) {
+  while (f <= ncol(floa)) {
     if (length(unique(zsc[,f])) == length(zsc[,f])) {
       zsc_n[,f] <- qscores[rank(zsc[,f])]
     } else {
@@ -71,7 +71,7 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
     }
     f <- f+1
   }
-  colnames(zsc_n) <- paste("fsc_f",c(1:length(floa)),sep="")
+  colnames(zsc_n) <- paste("fsc_f",c(1:ncol(floa)),sep="")
   #E. FACTOR CHARACTERISTICS
   f_char <- qfcharact(loa, flagged, zsc, nfactors, floa)
   #F. FINAL OUTPUTS

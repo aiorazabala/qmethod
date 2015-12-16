@@ -1,7 +1,7 @@
 qdc <- function(dataset, nfactors, zsc, sed) {
   if (nfactors==1) {
     qdc.res <- "Warning: Only one factor selected. No distinguishing and consensus statements will be calculated."
-    print(qdc.res, quote = FALSE)
+    warning(qdc.res)
   } else {
     # Distinguishing and consensus statements
     # create data frame

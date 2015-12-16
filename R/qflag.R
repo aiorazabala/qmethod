@@ -18,7 +18,8 @@ qflag <- function(loa=loa, nstat) {
     }
     f <- f+1
   }
-  names(flagged) <- paste("flag_f",1:ncol(loa), sep="")
+  flagged <- as.matrix(flagged)
+  colnames(flagged) <- paste("flag_f",1:ncol(loa), sep="")
   row.names(flagged) <- row.names(loa)
   return(flagged)
 }

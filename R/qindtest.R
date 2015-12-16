@@ -24,19 +24,20 @@ qindtest <- function(loa, target, nfactors) {
       print(qindt_log[1,1])
     } else {
     #add solution for ORDER SWAP here: reorder factors according to highest coefficients
-        loa_orig <- as.data.frame(loa)
+        loa_orig <- as.matrix(loa)
         #select for each factor, the factor that has highest correlation with the target
         swap <- list()
         for (j in 1:nfactors) {
           maxcor <- max(abs(corloa[,j]))
-          swap <- paste(swap,which(abs(corloa[,j]) == maxcor), sep=" ")
+          swap <- paste(swap,which(abs(corloa[,j]) == maxcor), sep=" ") # info piece
           loa[j] <- loa_orig[which(abs(corloa[,j]) == maxcor)]
         }
+        loa <- as.matrix(loa)
         #check that no factor has been chosen twice
         corloa2 <- cor(loa)
         diag(corloa2) <- 0
         if (max(abs(corloa2)) > 0.999) {
-          #!!! ehem, try format(corloa2, digits=16) and see that all correlations == 1 out of the diagonal are 0.9period instead of 1, which was giving me an errrror!
+          #!!! ehem, try format(corloa2, digits=16) and see that all correlations == 1 out of the diagonal are 0.9period instead of 1, which was causing an error!
           qindt_log[1,1] <- "ERROR in ORDER swap: at least one factor in the resample is best match for two or more factors in the target"         
           print(qindt_log[1,1])
           loa <- as.data.frame(loa_orig)
@@ -58,10 +59,12 @@ qindtest <- function(loa, target, nfactors) {
     if (sum(qindt[,2]) == 0) {
       qindt_log[1,2] <- "OK: No SIGN swap issues"
       print(qindt_log[1,2])
+      loa <- as.matrix(loa)
     } else {
     #add solution for SIGN SWAP here: switch sign of all factor loadings
         loa_orig <- as.data.frame(loa)
-        swapfactors <- which (qindt[,2] == TRUE)
+        swapfactors <- which(qindt[,2] == TRUE)
+        loa <- as.matrix(loa)
         loa[ , swapfactors] <- -loa[ , swapfactors]
         qindt_log[1,2] <- paste("OK: SIGN swap in factors ", paste(as.character(swapfactors), collapse=", "), sep="")
         print(qindt_log[1,2])
