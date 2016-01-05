@@ -2,7 +2,14 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
                    qmts=qmts, qmts_log=qmts_log, rotation="unknown", 
                    flagged=flagged, ...) {
   #solutions for indeterminacy issue in PCA bootstrap
-  loa <- as.data.frame(unclass(principal(subdata, rotate="none", nfactors=nfactors)$loa))
+  cor.data <- cor(subdata, method="pearson")
+  if (rotation=="unknown") rotation <- "none"
+  loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation, ...)$loadings))
+  
+  # Note (2015.12.17): the original line run principal directly: 
+  # loa <- as.data.frame(unclass(principal(subdata, rotate="none", nfactors=nfactors)$loa))
+  # However (funny enough!) principal() blocks the console when the data introduced is a square matrix (e.g. 30 observations and 30 statements), and the solution of producing the correlation table first avoids that bug.
+  
   if (indet == "none") {
     #loa <- as.data.frame(PCA(subdata, graph=FALSE)$var$coord[,c(1:nfactors)])
     loa <- as.matrix(unclass(varimax(as.matrix(loa))[[1]]))

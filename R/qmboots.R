@@ -50,6 +50,7 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   } else if (is.character(load) & length(load) == 1) {
     if (load == "auto") {
       qm <- qmethod(dataset, nfactors, rotation=rotation, ...)
+      flagged <- qm$flagged
       target <- as.matrix(qm$loa)
       colnames(target) <- paste0("target_f", 1:nfactors)
     } else stop("Q method input: 'load' has to be either 'auto' or a matrix.")
@@ -76,7 +77,7 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
     step_res <- qbstep(subdata=subdata, subtarget=subtarget, 
                        indet, nfactors, nqsorts, nstat, 
                        qmts=qmts, qmts_log=qmts_log, 
-                       rotation="unknown", flagged=flagged, ...)
+                       flagged=flagged, ...)
     #Export necessary results
     n <- 1
     while (n <= nfactors) {
