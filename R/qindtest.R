@@ -30,8 +30,7 @@ qindtest <- function(loa, target, nfactors) {
     for (j in 1:nfactors) {
       maxcor <- max(abs(corloa[,j]))
       swap <- paste(swap,which(abs(corloa[,j]) == maxcor), sep=" ") # info piece
-      loa[j] <- loa_orig[which(abs(corloa[,j]) == maxcor)][1] # (1) in the unlikely case in which the value of two or more coefficients are the same and highest, not selecting the first value would give an error---this step should actually be discarded
-      if (length(loa_orig[which(abs(corloa[,j]) == maxcor)]) > 1) warning("The reordering in this iteration may be incorrect.")
+      loa[,j] <- loa_orig[,which(abs(corloa[,j]) == maxcor)]
     }
     loa <- as.matrix(loa)
     #check that no factor has been chosen twice
@@ -43,7 +42,7 @@ qindtest <- function(loa, target, nfactors) {
       print(qindt_log[1,1])
       loa <- as.data.frame(loa_orig)
     } else {
-      qindt_log[1,1] <- paste("OK - Factors reordered: ",swap[1], sep="") # see note (1) above
+      qindt_log[1,1] <- paste("OK - Factors reordered: ",swap[1], sep="") # (1) in the unlikely case in which the value of two or more coefficients are the same and highest, not selecting the first value would give an error---this step should actually be discarded
       if (length(swap) > 1) warning("The reordering in this iteration may be incorrect.")
       
       print(qindt_log[1,1])

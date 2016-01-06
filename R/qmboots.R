@@ -157,8 +157,10 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   }
   names(qmbs) <- paste("factor",0:nfactors, sep="")
   #factor scores (fragment adapted from qzscores.R)
-  if (forced==T) qscores <- sort(dataset[,1], decreasing=FALSE)
-  if (forced==F) qscores <- distribution
+  qscores <- sort(dataset[,1], decreasing=FALSE)
+  if (exists("forced")) {
+    if (forced==F) qscores <- distribution
+  }
   #build frame for fscores
   zsc_mea <- data.frame(zsc_mea=c(1:nstat), row.names=row.names(dataset))
   zsc_bn <- data.frame(zsc_bn=c(1:nstat), row.names=row.names(dataset))
