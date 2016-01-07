@@ -23,7 +23,7 @@ Exports the raw data of a Q methodology study into the native format used in PQM
 
 Note that no checks are made on the data, such as whether there are duplicated or non-forced Q-sorts.
 
-It does not work for non-forced distributions.
+This function is not applicable for non-forced distributions.
 
 }
 
@@ -32,6 +32,8 @@ It does not work for non-forced distributions.
 File descriptions in \emph{PQMethod Manual}: \url{http://schmolck.org/qmethod/pqmanual.htm#appdxa}}
 
 \author{Aiora Zabala}
+
+\note{This function is experimental. Use with caution and verify that the output is as desired.}
 
 \examples{
 data(lipset)

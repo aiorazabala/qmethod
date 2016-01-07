@@ -12,15 +12,15 @@
   \item{qm}{original Q method results from qmethod() function.}
 }
 \details{
-Applies Factor Stability index to a bootstrapped Q method results. Returns a data frame with two variables and as many rows as factors extracted. The first variable is the raw Factor Stability index. The second variable is the Normalised Factor Stability index which ranges from 0 to 1.}
-
-\references{Zabala, A., 2012 \emph{title to determine}, Journal to determine.}
+Applies Factor Stability index to a bootstrapped Q method results. Returns a data frame with two variables and as many rows as factors extracted. The first variable is the raw Factor Stability index. The second variable is the Normalised Factor Stability index which ranges from 0 to 1.
+}
 
 \author{Aiora Zabala}
 
 \seealso{
 \code{\link{qmboots}}.
 }
+\note{IMPORTANT: This function is experimental.}
 \examples{
 data(lipset)
 boots <- qmboots(lipset[[1]], nfactors=3, nsteps=10, 
