@@ -54,7 +54,7 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
     } else stop("Q method input: The factor loading matrix provided in 'load' should have the correct number of Q-sort as rows and the correct number of rotated factors as columns.")
   } else if (is.character(load) & length(load) == 1) {
     if (load == "auto") {
-      qm <- qmethod(dataset, nfactors, rotation=rotation, ...)
+      qm <- qmethod(dataset, nfactors, rotation=rotation, forced=forced, distribution=distribution, ...)
       flagged <- qm$flagged
       target <- as.matrix(qm$loa)
       colnames(target) <- paste0("target_f", 1:nfactors)
@@ -82,7 +82,8 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
     step_res <- qbstep(subdata=subdata, subtarget=subtarget, 
                        indet, nfactors, nqsorts, nstat, 
                        qmts=qmts, qmts_log=qmts_log, 
-                       flagged=flagged, ...)
+                       flagged=flagged, forced=forced, 
+                       distribution=distribution, ...)
     # Export essential results: flagged, zsc and loa
     for (n in 1:nfactors) {
       #flagged q sorts
