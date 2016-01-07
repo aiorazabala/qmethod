@@ -1,9 +1,9 @@
-qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", indet="qindtest", fsi=TRUE, ...) {
+qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", indet="qindtest", fsi=TRUE, forced=T, distribution=NULL, ...) {
   startime <- Sys.time()
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
-  ##number of iterations requested
-  itnumber <- paste("Number of requested iterations: ",nsteps,sep="")
+  # Number of iterations requested
+  itnumber <- paste("Number of requested iterations:", nsteps)
   print(itnumber, quote=FALSE)
   
   #-----------------------------------------------
@@ -15,9 +15,12 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   n <- 1
   while (n <= nfactors) {
     qmbr[[n]] <- vector("list", 3)
-    qmbr[[n]][[1]] <- data.frame(matrix(FALSE, nrow=nqsorts, ncol=nsteps, dimnames=list(names(dataset), paste0("step_",1:nsteps))))
-    qmbr[[n]][[2]] <- data.frame(matrix(as.numeric(NA), nrow=nstat, ncol=nsteps, dimnames=list(row.names(dataset), paste0("step_",1:nsteps))))
-    qmbr[[n]][[3]] <- data.frame(matrix(as.numeric(NA), nrow=nqsorts, ncol=nsteps, dimnames=list(names(dataset), paste0("step_",1:nsteps))))
+    qmbr[[n]][[1]] <- data.frame(matrix(FALSE, nrow=nqsorts, ncol=nsteps, 
+                                        dimnames=list(names(dataset), paste0("step_",1:nsteps))))
+    qmbr[[n]][[2]] <- data.frame(matrix(as.numeric(NA), nrow=nstat, ncol=nsteps, 
+                                        dimnames=list(row.names(dataset), paste0("step_",1:nsteps))))
+    qmbr[[n]][[3]] <- data.frame(matrix(as.numeric(NA), nrow=nqsorts, ncol=nsteps, 
+                                        dimnames=list(names(dataset), paste0("step_",1:nsteps))))
     names(qmbr[[n]]) <- c("flagged", "zsc", "loa")
     n <- n+1
   }
@@ -27,8 +30,10 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   if (indet == "qindtest" | indet == "both") {
     #create dataframe for results and reports from INDETERMINACY issue
     qmts <- list()
-    qmts[[1]] <- data.frame(matrix(NA, nrow=nfactors, ncol=nsteps, dimnames=list(paste0("f",c(1:nfactors)), paste0("order_",1:nsteps))))
-    qmts[[2]] <- data.frame(matrix(NA, nrow=nfactors, ncol=nsteps, dimnames=list(paste0("f",c(1:nfactors)), paste0("sign_",1:nsteps))))
+    qmts[[1]] <- data.frame(matrix(NA, nrow=nfactors, ncol=nsteps, 
+                                   dimnames=list(paste0("f",c(1:nfactors)), paste0("order_",1:nsteps))))
+    qmts[[2]] <- data.frame(matrix(NA, nrow=nfactors, ncol=nsteps, 
+                                   dimnames=list(paste0("f",c(1:nfactors)), paste0("sign_",1:nsteps))))
     names(qmts) <- c("torder", "tsign")
     qmts_log <- list()
     qmts_log[[1]] <- data.frame(matrix(NA, nrow=1, ncol=nsteps, dimnames=list("log", paste0("log_ord_",1:nsteps))))
@@ -37,7 +42,7 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   }
   
   #-----------------------------------------------
-  # B. full sample Q method loadings
+  # B. full sample Q method loadings (target matrix)
   #-----------------------------------------------
   #use manually introduced matrix of factor loadings as target, if any
   if (is.matrix(load) | is.data.frame(load)) {
@@ -69,18 +74,17 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   it_count <- 1
   while (it_count <= nsteps) {
     qp <- 1 + (nqsorts*(it_count-1))
-    #create bootstrap resample
+    # Create bootstrap resample
     subdata <- dataset[ , qsvector[c(qp:(qp+(nqsorts-1)))]]
-    #reshape target matrix of original factor loadings
+    # Reshape target matrix of original factor loadings
     subtarget <-   target[qsvector[c(qp:(qp+(nqsorts-1)))],]
-    #full bootstrap step
+    # Full bootstrap step
     step_res <- qbstep(subdata=subdata, subtarget=subtarget, 
                        indet, nfactors, nqsorts, nstat, 
                        qmts=qmts, qmts_log=qmts_log, 
                        flagged=flagged, ...)
-    #Export necessary results
-    n <- 1
-    while (n <= nfactors) {
+    # Export essential results: flagged, zsc and loa
+    for (n in 1:nfactors) {
       #flagged q sorts
       qmbr[[n]][["flagged"]][paste0("step_",it_count)] <- step_res[[1]][[n]]
       #z-scores
@@ -92,26 +96,25 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
         }
         colnames(qmbr[[n]][[3]])[it_count] <- paste0("step_",it_count)
       }
-      n <- n+1 
     }
-    #Export results of indeterminacy correction, if any
+    # Export results of indeterminacy correction, if any
     if (indet == "both" | indet == "qindtest") {
-      #test results (logical)
+      # Test results (logical)
       qmts[[1]][paste("order_",it_count, sep="")] <- step_res[[4]]
       qmts[[2]][paste("sign_",it_count, sep="")]  <- step_res[[5]]
-      #reports of solution implementation
+      # Reports of solution implementation
       qmts_log[[1]][paste("log_ord_",it_count, sep="")] <- step_res[[6]]
       qmts_log[[2]][paste("log_sig_",it_count, sep="")] <- step_res[[7]]
     }
-    #iteration counting
-    it_msg <- paste("Finished iteration number ",it_count, sep="")
+    # Count the iteration
+    it_msg <- paste("Finished iteration number", it_count)
     print(it_msg, quote=FALSE)
     it_count <- it_count + 1
   }
   #---actual bootstrap ends here
   #-----------------------------------------------
-  
-  #export indeterminacy results into one object
+  # D. Export indeterminacy results into one object
+  #-----------------------------------------------
   qindet <- list()
   if (indet == "none") {
     qindet <- "Caution: no correction of PCA bootstrap indeterminacy issue was performed. This may introduced inflated variability in the results"
@@ -125,7 +128,7 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   }
   
   #-----------------------------------------------
-  #E-bis. Test which steps could not be swap corrected
+  # E. Test which steps could not be swap corrected
   #-----------------------------------------------
   if (indet == "qindtest" | indet == "both") {
     errmsg <- "ERROR in ORDER swap: at least one factor in the resample is best match for two or more factors in the target"
@@ -136,12 +139,13 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   } else badsteps <- 0
   
   #-----------------------------------------------
-  # D. summary stats for z-scores of bootstrap
+  # F. summary stats for z-scores of bootstrap
   #-----------------------------------------------
-  qmbs <- list() #q method bootstrap summary
-  n <- 1
-  while (n <= nfactors) {
-    if (badsteps > 0 & indet == "qindtest" | indet == "both") {
+  qmbs <- list() # Q method bootstrap summary
+  #- - - - - - - - - - - - - - - - - - - - - - - -
+  # 1. z-scores
+  for (n in 1:nfactors) {
+    if (sum(badsteps) > 0 & (indet == "qindtest" | indet == "both")) {
       t.zsc <- qmbr[[n]]$zsc[,-badsteps]
     } else {
       t.zsc <- qmbr[[n]]$zsc
@@ -153,40 +157,31 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
                          by='row.names', sort=FALSE)
     rownames(qmbs[[n+1]]) <- qmbs[[n+1]][,1]
     qmbs[[n+1]][,1] <- NULL
-    n <- n+1
   }
-  names(qmbs) <- paste("factor",0:nfactors, sep="")
-  #factor scores (fragment adapted from qzscores.R)
-  qscores <- sort(dataset[,1], decreasing=FALSE)
-  if (exists("forced")) {
-    if (forced==F) qscores <- distribution
-  }
-  #build frame for fscores
+  names(qmbs) <- paste0("factor", 0:nfactors)
+  #- - - - - - - - - - - - - - - - - - - - - - - -
+  # 2. Factor scores (fragment adapted from qzscores.R)
+  if (forced==T) qscores <- sort(dataset[,1], decreasing=FALSE)
+  if (forced==F) qscores <- distribution
+
+  # Build frame for factor scores
   zsc_mea <- data.frame(zsc_mea=c(1:nstat), row.names=row.names(dataset))
   zsc_bn <- data.frame(zsc_bn=c(1:nstat), row.names=row.names(dataset))
-  f <- 1
-  while (f <= nfactors) {
-    zsc_mea[,f] <- qmbs[[f+1]]$mean
-    f <- f+1
-  }
-  colnames(zsc_mea) <- paste("zsc_mea_f",c(1:nfactors),sep="")
-  f <- 1
-  while (f <= nfactors) {
-    s <- 1
-    while (s <= nstat) {
-      #find which statement has the current qscore rank
+  for (f in 1:nfactors) zsc_mea[,f] <- qmbs[[f+1]]$mean
+  colnames(zsc_mea) <- paste0("zsc_mea_f", c(1:nfactors))
+  for (f in 1:nfactors) {
+    for (s in 1:nstat) {
+      # Find which statement has the current qscore rank
       statement <- order(zsc_mea[,f])[[s]]
       zsc_bn[statement,f] <- qscores[[s]]
-      s <- s+1
     }
-    f <- f+1
   }
-  colnames(zsc_bn) <- paste("fsc_f",c(1:nfactors),sep="")
+  colnames(zsc_bn) <- paste0("fsc_f", c(1:nfactors))
   qmbs[[1]] <- zsc_bn
   names(qmbs)[1] <- c("Bootstraped factor scores")
   
   #-----------------------------------------------
-  # E. summary stats for loadings of bootstrap
+  # G. summary stats for loadings of bootstrap
   #-----------------------------------------------
   qmbl <- list()
   n <- 1
@@ -211,18 +206,21 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
     n <- n+1
   }
   
-  names(qmbl) <- paste("factor",1:nfactors, sep="")
-  #export and report
+  names(qmbl) <- paste0("factor", 1:nfactors)
+  #-----------------------------------------------
+  # H. Export everything and report
+  #-----------------------------------------------
   qmboots <- list()
   qmboots[[1]] <- qmbs
   qmboots[[2]] <- qmbr
   qmboots[[3]] <- qindet
-  qmboots[[4]] <- as.data.frame(matrix(qsvector, nrow=nqsorts, dimnames=list(NULL,paste("bsampl_", 1:nsteps, sep=""))))
+  qmboots[[4]] <- as.data.frame(matrix(qsvector, nrow=nqsorts, 
+                                       dimnames=list(NULL, paste0("bsampl_", 1:nsteps))))
   qmboots[[5]] <- qm
   qmboots[[6]] <- qscores
   qmboots[[7]] <- qmbl
   if (fsi == TRUE) {
-    #calculate FACTOR STABILITY INDEX
+    # Calculate FACTOR STABILITY INDEX
     fsii <- qfsi(nfactors=nfactors, nstat=nstat, qscores=qscores, zsc_bn=zsc_bn, qm=qm)
     qmboots[[8]] <- fsii
     names(qmboots) <- c("zscore-stats", "Full bootstrap results", "Indeterminacy tests", "Resamples", "Original results", "Q board values", "Loading stats", "Stability index")
@@ -231,7 +229,9 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   }
   fintime <- Sys.time()
   duration <- paste(format(floor(difftime(fintime, startime, units="hours")[[1]]), width=2),":", format(floor(difftime(fintime, startime, units="mins")[[1]] %% 60), width=2),":", format(floor(difftime(fintime, startime, units="secs")[[1]] %% 60), width=2), sep="")
+  
   cat("-----------------------------------------------\nBootstrap of ",nsteps," steps\nCall: qmboots(nfactors=",nfactors, ", nstat=", nstat, ", nqsorts=",nqsorts, ", nsteps=",nsteps, ", load=", load, ", rotation=", rotation, ", indet=",indet, ", fsi=",fsi,") \n-----------------------------------------------\nSTARTED : ",format(startime)," \nFINISHED: ", format(Sys.time()), "\nDURATION:            ", duration, " hrs:min:sec","\n-----------------------------------------------\nAlignment correction method: ",indet,"\nNumber of steps that could not be reordered: ",length(badsteps), "\n", sep="")
+  
   invisible(qmboots)
 }
 #TO-DO: set printing method to show the bootstrapped z-scores, factor scores and stability indices

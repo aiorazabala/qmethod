@@ -1,7 +1,8 @@
 qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat, 
                    qmts=qmts, qmts_log=qmts_log, rotation="unknown", 
                    flagged=flagged, ...) {
-  #solutions for indeterminacy issue in PCA bootstrap
+  #--------------------------------------------------------------------
+  # 1. Generate matrix of factor loadings
   cor.data <- cor(subdata, method="pearson")
   if (rotation=="unknown") rotation <- "none"
   loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation, ...)$loadings))
@@ -9,7 +10,8 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
   # Note (2015.12.17): the original line run 'principal()' directly: 
   # loa <- as.data.frame(unclass(principal(subdata, rotate="none", nfactors=nfactors)$loa))
   # However (funny enough!) principal() blocks the console when the data introduced are a square matrix (e.g. 30 observations and 30 statements); producing the correlation table first avoids that bug.
-  
+  #--------------------------------------------------------------------
+  # 2. Apply solutions for indeterminacy issue of PCA bootstrap  
   if (indet == "none") {
     #loa <- as.data.frame(PCA(subdata, graph=FALSE)$var$coord[,c(1:nfactors)])
     loa <- as.matrix(unclass(varimax(as.matrix(loa))[[1]]))
@@ -29,11 +31,13 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
       loa <- qpcrustes(loa=loa, target=subtarget, nfactors=nfactors)
     }
   }
-  #z-scores and factor scores with the indeterminacy corrected factor loadings
+  #--------------------------------------------------------------------
+  # 3. Calculate z-scores and factor scores with the indeterminacy corrected factor loadings 'loa'
   flagged <- qflag(nstat=nstat, loa=loa)
   qstep <- qzscores(subdata, nfactors=nfactors,  
                     flagged=flagged, loa=loa, ...)
-  #export necessary results
+  #--------------------------------------------------------------------
+  # 4. Export necessary results
   step_res <- list()
   step_res[[1]] <- list()
   step_res[[2]] <- list()
