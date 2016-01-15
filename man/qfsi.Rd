@@ -1,18 +1,18 @@
 \name{qfsi}
 \alias{qfsi}
 \title{Q Methodology: Factor Stability index}
-\description{Calculates Factor Stability index and Normalised Factor Stability index to bootstrapped Q method results}
+\description{Calculates a Factor Stability index and a Normalised Factor Stability index to bootstrapped Q method results (experimental).}
 \usage{qfsi(nfactors, nstat, qscores, zsc_bn, qm)}
 
 \arguments{
-  \item{nfactors}{number of factors to extract using PCA.}
+  \item{nfactors}{number of factors to extract.}
   \item{nstat}{number of statements in the study.}
-  \item{qscores}{all possible factor score values in the Q board.}
+  \item{qscores}{all possible factor score values in the Q grid distribution.}
   \item{zsc_bn}{bootstrapped factor scores.}
-  \item{qm}{original Q method results from qmethod() function.}
+  \item{qm}{original Q method results from \code{\link{qmethod}} function.}
 }
 \details{
-Applies Factor Stability index to a bootstrapped Q method results. Returns a data frame with two variables and as many rows as factors extracted. The first variable is the raw Factor Stability index. The second variable is the Normalised Factor Stability index which ranges from 0 to 1.
+Applies the Factor Stability index to a bootstrapped Q method results. Returns a data frame with two variables and as many rows as factors extracted. The first variable is the raw Factor Stability index. The second variable is the Normalised Factor Stability index which ranges from 0 to 1.
 }
 
 \author{Aiora Zabala}
@@ -20,7 +20,7 @@ Applies Factor Stability index to a bootstrapped Q method results. Returns a dat
 \seealso{
 \code{\link{qmboots}}.
 }
-\note{IMPORTANT: This function is experimental.}
+\note{IMPORTANT: This function is experimental. Please contact the author for details.}
 \examples{
 data(lipset)
 boots <- qmboots(lipset[[1]], nfactors=3, nsteps=10, 

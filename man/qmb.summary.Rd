@@ -10,11 +10,13 @@
 
 \value{
 Returns a list with two data frames:
-\item{qsorts}{For each Q-sort (row) the factor loadings from the standard analysis, the bootstrap, the bootstrap SE, the estimate of bias, and the frequency of flagging.}
-\item{statements}{For each statement (row) the z-scores from the standard analysis, from the bootstrap, bootstrap SE, estimate of bias of z-scores, factor scores from the standard analysis, from the bootstrap, estimate of bias of factor scores, distinguishing and consensus statements from the standard results (see \code{\link{qdc}}) and from the bootstrap values.}
+\item{qsorts}{data frame with Q-sort as rows, and the following columns: the factor loadings from the standard analysis, the bootstrap, the bootstrap SE, the estimate of bias, and the frequency of flagging.}
+\item{statements}{data frame with statements as rows, and the following columns: the z-scores from the standard analysis, from the bootstrap, bootstrap SE, estimate of bias of z-scores, factor scores from the standard analysis, from the bootstrap, estimate of bias of factor scores, distinguishing and consensus statements from the standard results (see \code{\link{qdc}}) and from the bootstrap values.}
 }
 
 \author{Aiora Zabala}
+
+\references{Zabala, accepted. Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives.}
 
 \seealso{
 \code{\link{qmethod}}, \code{\link{qmboots}}

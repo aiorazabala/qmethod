@@ -1,4 +1,4 @@
-loa.and.flags <- function(results, nload=F,...){
+loa.and.flags <- function(results, nload=FALSE){
   nfactors <- results$brief$nfactors
   loa <- round(results$loa, digits=2)
   fla <- as.data.frame(results$flagged)

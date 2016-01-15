@@ -1,24 +1,26 @@
 \name{qpcrustes}
 \alias{qpcrustes}
 \title{Q Methodology: Procrustes rotation of loadings}
-\description{This is a wrap of \code{procrustes} rotation from \pkg{MCMCpack} for bootstrapping Q methodology in the function \code{\link{qmboots}}.}
+\description{This is a wrap of \code{procrustes} rotation from \pkg{GPArotation} for bootstrapping Q methodology in the function \code{\link{qmboots}}.}
 \usage{qpcrustes(loa, target, nfactors)}
 
 \arguments{
-  \item{loa}{factor loadings from subsample analysis}
-  \item{target}{factor loadings from full sample analysis}
+  \item{loa}{factor loadings from the analysis of a resample.}
+  \item{target}{factor loadings from the analysis of a subsample.}
   \item{nfactors}{fumber of factors}
 }
 
-\details{Returns the factor loadings for the subsample after applying Procrustes rotation to correct the indeterminacy issue. Uses \code{procrustes} from \pkg{MCMCpack}. Used within the function \code{\link{qmboots}}, not intended for independent use.
+\details{Returns the factor loadings for the subsample after applying Procrustes rotation to correct the indeterminacy issue. Use \code{procrustes} from \pkg{GPArotation}. Used within the function \code{\link{qmboots}}, not intended for independent use.
 }
 
-\references{text here}
+\references{Zabala, accepted. Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives.}
 
 \author{Aiora Zabala}
 
+\note{this function is called within the function \code{\link{qmboots}}. Not intended to be used separately.}
+
 \seealso{
-Function \link{procrustes} from \pkg{MCMCpack} package.
+Function \code{procrustes} from \pkg{GPArotation} package.
 }
 \examples{
 data(lipset)

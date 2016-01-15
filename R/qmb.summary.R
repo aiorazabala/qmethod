@@ -1,14 +1,14 @@
 qmb.summary <- function(qmboots) {
   # Basic info from the analysis
-  nfactors <- qmboots$`Original results`$brief$nfactors
-  nstat    <- qmboots$`Original results`$brief$nstat
-  nqsorts  <- qmboots$`Original results`$brief$nqsorts
+  nfactors <- qmboots$orig.res$brief$nfactors
+  nstat    <- qmboots$orig.res$brief$nstat
+  nqsorts  <- qmboots$orig.res$brief$nqsorts
   
   #-------------------------------------------------------
   # Gather results of Q-sorts
-  obj.loa <- as.array(paste0("qmboots$'Loading stats'$factor", 1:nfactors))
+  obj.loa <- as.array(paste0("qmboots$loa.stats$factor", 1:nfactors))
   
-  loa.std <- qmboots$`Original results`$loa
+  loa.std <- qmboots$orig.res$loa
   loa.bts <- apply(obj.loa, 1,
                    function(x) eval(parse(text=paste0(x, "[,c('mean','sd')]"))))
   loa.frq <- apply(obj.loa, 1, 
@@ -35,7 +35,7 @@ qmb.summary <- function(qmboots) {
   # Gather results of statements
   obj.zsc <- as.array(paste0("qmboots$'zscore-stats'$factor", 1:nfactors))
   
-  zsc.std <- qmboots$`Original results`$zsc
+  zsc.std <- qmboots$orig.res$zsc
   zsc.bts <- apply(obj.zsc, 1,
                    function(x) eval(parse(text=paste0(x, "[,c('mean','sd')]"))))
   # Appropriate column names
@@ -45,7 +45,7 @@ qmb.summary <- function(qmboots) {
   }
   
   # And factor scores
-  zscn.std <- qmboots$`Original results`$zsc_n
+  zscn.std <- qmboots$orig.res$zsc_n
   zscn.bts <- qmboots$'zscore-stats'$'Bootstraped factor scores'
   colnames(zscn.bts) <- paste0("fsc.bts.", 1:nfactors)
   
