@@ -224,9 +224,9 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
     # Calculate FACTOR STABILITY INDEX
     fsii <- qfsi(nfactors=nfactors, nstat=nstat, qscores=qscores, zsc_bn=zsc_bn, qm=qm)
     qmboots[[8]] <- fsii
-    names(qmboots) <- c("zscore-stats", "Full bootstrap results", "Indeterminacy tests", "Resamples", "Original results", "Q board values", "Loading stats", "Stability index")
+    names(qmboots) <- c("zscore-stats", "full.bts.res", "indet.tests", "resamples", "orig.res", "q.array", "loa.stats", "fsi")
   } else {
-    names(qmboots) <- c("zscore-stats", "Full bootstrap results", "Indeterminacy tests", "Resamples", "Original results", "Q board values", "Loading stats")
+    names(qmboots) <- c("zscore-stats", "full.bts.res", "indet.tests", "resamples", "orig.res", "q.array", "loa.stats")
   }
   fintime <- Sys.time()
   duration <- paste(format(floor(difftime(fintime, startime, units="hours")[[1]]), width=2),":", format(floor(difftime(fintime, startime, units="mins")[[1]] %% 60), width=2),":", format(floor(difftime(fintime, startime, units="secs")[[1]] %% 60), width=2), sep="")

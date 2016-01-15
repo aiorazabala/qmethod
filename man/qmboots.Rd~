@@ -28,7 +28,7 @@
 \item{q.array}{array of values in the distribution grid.}
 \item{loa.stats}{statistics of factor loadings. List with as many objects as factors extracted, each object containing one data frame with the factor loading statistics of the bootrstrap. The factor loading statistics of interest are \code{mean} (the bootstrap estimate of the factor loading), and \code{sd} (the bootstrap estimate of the SE). This table includes \code{flag_freq}, which indicates the frequency with which the given Q-sort was flagged for the given factor.}
 \item{q.array}{array of values in the distribution grid.}
-\item{fsi}{factor stability index (optional; experimental).}
+\item{fsi}{factor stability index (experimental).}
 }
 \references{Zabala, accepted. Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives.}
 
