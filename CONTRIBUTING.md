@@ -60,12 +60,19 @@ We're roughly following the [GitHub Flow](https://guides.github.com/introduction
 
 Testing is an important part of quality software development, especially for scientific software, where users rely on the accuracy and reproducibility of results.
 
+Most essentially, any changes **should pass the tests for submitting packages to CRAN**. This involves running the following in your command line:
+`R CMD check --as-cran qmethod_1.4.0.tar.gz`
+and running the package through [WinBuilder](http://win-builder.r-project.org/), or
+either `R-devel CMD check --as-cran qmethod_1.4.0.tar.gz`
+...and getting **no errors** (or solving whatever may arise).
+If in the [CRAN package checks for qmethod](https://cran.r-project.org/web/checks/check_results_qmethod.html), your changes induce any change in the 'OK' Status, the maintainer(s) will poke you to fix it.
+
+
 To learn more about testing, consider Hadley Wickham's [`testthat` package](https://cran.r-project.org/package=testthat) (which is what we're using here) and his book chapter [on testing](http://r-pkgs.had.co.nz/tests.html).
 
-All new functions and changes *should come with* appropriate tests:
+It is advised that new functions and changes *come with* appropriate tests:
 
-- New functions and changes should test for internal **consistency**.
-  For example, `q.mrot.choose`, the interactive rotation function, should always produce a rotation matrix of `rank == nfactors` (pseudo-code; the number of factors should be the same as the rank of the rotation matrix).
+- For internal **consistency**. For example, `q.mrot.choose`, the interactive rotation function, should always produce a rotation matrix of `rank == nfactors` (pseudo-code; the number of factors should be the same as the rank of the rotation matrix).
 - Where applicable, new functions and changes should test against **old versions** (`>= 1.2.0`) *known* to be validated by Aiora against `PQMethod` (see [Zabala 2014](http://journal.r-project.org/archive/2014-2/zabala.pdf)). 
 - Whenever possible, new functions and changes should test against **(published) results** *known* to be true, using publicy available data.
 
@@ -75,6 +82,14 @@ In addition to such tests for new functions, missing tests for old functions [wo
 ## Style
 
 We try to abide by [Google's R Coding Style Guide](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml), and would recommend that for additions, too :lipstick:.
+
+## Help pages
+
+We give a lot of importance to the usability of the package. Whether you've developed a fantastic function won't matter, if it is not easy to use. For this, we believe that **good documentation is essential**. Please make sure that all new functions are well documented in the help pages. Some general points to observe when writing the help:
+- Write full sentences (with noun and verb).
+- Be consistent in the use of terms, e.g. do not write Q-Methodology and Q methodology in the same page, or CSV and *.csv, but stick to a single form. If in doubt, check the conventions used in the existing help pages, e.g. those for `qmethod()`
+- Think that the user might not necessarily be familiar with all the terms: define everything necessary or link to pages that give more details.
+- Don't be afraid of repeating: better to be in excess than to miss an explanation.
 
 
 ## Git(Hub)
