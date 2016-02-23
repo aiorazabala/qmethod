@@ -38,7 +38,7 @@ This function performs a single step within a bootstrap of Q methodology data. I
 \code{\link{qmethod}} and \code{\link{qmboots}} in this package.
 }
 
-\references{Zabala, accepted. Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives.}
+\references{Zabala, Pascual (2016) Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives. PLoS ONE 11(2): e0148087.}
 
 \keyword{multivariate}
 \keyword{Q methodology}

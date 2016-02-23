@@ -13,7 +13,7 @@
 \details{Returns the factor loadings for the subsample after applying Procrustes rotation to correct the indeterminacy issue. Use \code{procrustes} from \pkg{GPArotation}. Used within the function \code{\link{qmboots}}, not intended for independent use.
 }
 
-\references{Zabala, accepted. Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives.}
+\references{Zabala, Pascual (2016) Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives. PLoS ONE 11(2): e0148087.}
 
 \author{Aiora Zabala}
 

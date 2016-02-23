@@ -21,8 +21,7 @@ Second, \emph{sign swap} is tested for (Are all diagonal coefficients positive?)
 
 \note{this function is called within the function \code{\link{qmboots}}. Not intended to be used separately.}
 
-\references{
-Zabala, accepted. Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives.
+\references{Zabala, Pascual (2016) Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives. PLoS ONE 11(2): e0148087.
 
 See also:
 

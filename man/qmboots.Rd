@@ -30,7 +30,7 @@
 \item{q.array}{array of values in the distribution grid.}
 \item{fsi}{factor stability index (optional; experimental).}
 }
-\references{Zabala, accepted. Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives.}
+\references{Zabala, Pascual (2016) Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives. PLoS ONE 11(2): e0148087.}
 
 \author{Aiora Zabala}
 
