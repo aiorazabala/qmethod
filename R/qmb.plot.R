@@ -55,7 +55,7 @@ qmb.plot <- function(qmbsum, type=c("zsc", "loa"), nfactors, cex = 0.7, cex.leg=
   dotchart(db[,i], labels = rownames(db), pch=pich[i], 
            xlim=limits,  
            xlab=values, lcolor="white",
-           lwd = lwd, cex=cex, col=dot.col[i], ...)
+           lwd = lwd, cex=cex, color=dot.col[i], ...)
   mtext(item, side=2, line=1.5, cex=cex, ...)
   # Error bars:
   segments(x0=db[,i], y0=db[,"position"], 

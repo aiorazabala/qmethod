@@ -4,7 +4,7 @@
 \description{Plots the summary of bootstrap results, either z-scores or factor loadings.}
 \usage{qmb.plot(qmbsum, type = c("zsc", "loa"), nfactors, 
          cex = 0.7, cex.leg = 0.8, errbar.col = "black",
-         lwd = 1, lty = 1, vertdist = 0.2, limits = NA, 
+         lwd = 1, lty = 1, vertdist = 0.2, limits = NULL, 
          r.names = NA, sort = c("none", "difference", "sd"),
          sbset = NULL, leg.pos = "topleft", 
          bty = "n", plot.std = TRUE, pch= NULL,

@@ -73,6 +73,14 @@
 
     For more information on the file structure and the rationale behind it, consider the best practices suggested by Maximilian Held on the \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{data management} page.
   }
+  \subsection{Bootstrapping}{
+    A set of function are available to perform bootstrapping with Q data (see \href{http://goo.gl/KFyh5N}{Zabala and Pascual (2016) Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives. PLoS ONE} for details). The main bootstrap functions are as follows:
+    \itemize{
+      \item \code{\link{qmboots}} performs a full bootstrap. It calls internally to the functions \code{\link{qbstep}} (for each bootstrap step), and to either \code{\link{qindtest}} or \code{\link{qpcrustes}} in order to correct for the *alignment problem*
+      \item \code{\link{qmb.summary}} summarises the object resulting from \code{\link{qmboots}} into two tables: (1) summary of factor loadings (standard factor loadings, bootstrapped factor loadings, and flagging frequency) and (2) summary of statement scores (bootstrapped and standard z-scores, bootstrapped and standard factor scores, standard error of bootstrapped z-scores, and differences between standard and bootstrapped values).
+      \item \code{\link{qmb.plot}} plots an object resulting from \code{\link{qmb.summary}} into a figure designed for bootstrapped Q data (either the factor loadings or the statement z-scores).
+    }
+  }
 }
 \author{
   Aiora Zabala\cr
