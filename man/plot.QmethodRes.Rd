@@ -4,7 +4,8 @@
 \description{Takes an object \code{QmethodRes} resulting from \code{\link{qmethod}} and makes a dot-chart with the z-scores for statements and all factors.}
 \usage{
 \method{plot}{QmethodRes}(x, xlab = 'z-scores', ylab = 'statements', pchlist = NULL,
-     colours = NULL, fnames = NULL, legend = TRUE, ...)
+     colours = NULL, fnames = NULL, legend = TRUE, 
+     leg.pos="bottomright", ...)
                    }
 \arguments{
   \item{x}{results object returned by \code{\link{qmethod}}.}
@@ -14,6 +15,7 @@
   \item{colours}{array of colours to be used when plotting the points for each perspective. Defaults to a pre-defined set of colours based on the \code{\link[grDevices]{rainbow}} palette.}
   \item{fnames}{names for factors to be used in the legend. In results where factor names have not been changed (using, e.g. \code{\link{q.fnames}}) it defaults to \code{'Factor 1'}, \code{'Factor 2'}, etc.}
   \item{legend}{logical; if \code{FALSE}, no \code{legend} will be drawn.}
+  \item{leg.pos}{Position of the legend.}
   \item{...}{other arguments for \code{\link[graphics]{plot}}.}
 
 }

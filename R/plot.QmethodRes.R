@@ -1,7 +1,8 @@
 plot.QmethodRes <- function(x, 
                             xlab='z-scores', ylab='statements',
                             pchlist = NULL, colours = NULL,
-                            fnames = NULL, legend = TRUE, ...) {
+                            fnames = NULL, legend = TRUE, 
+                            leg.pos="bottomright", ...) {
   dfr <- x$zsc
   lowlim <- floor(min(dfr[[1]]))
   highlim <- ceiling(max(dfr))
@@ -23,7 +24,7 @@ plot.QmethodRes <- function(x,
        las=1, tick=F, line=-0.5, ...)
   abline(v=seq(from=lowlim, to=highlim, by=0.5), col=grey(0.6), lty=3)
   if (legend) {
-    legend('bottomright', 
+    legend(leg.pos, 
            legend=fnames, 
            col=colours[1:nfactors], 
            pch=pchlist[1:nfactors], 
