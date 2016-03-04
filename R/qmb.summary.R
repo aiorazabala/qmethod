@@ -13,7 +13,7 @@ qmb.summary <- function(qmboots) {
                    function(x) eval(parse(text=paste0(x, "[,c('mean','sd')]"))))
   loa.frq <- apply(obj.loa, 1, 
                    function(x) eval(parse(text=paste0(x, "[,c('flag_freq')]"))))
-  # Appropriate column names
+  # Give appropriate column names
   dimnames(loa.frq) <- list(rownames(loa.bts[[1]]), paste0("flag.freq", 1:nfactors))
   colnames(loa.std) <- paste0("f", 1:nfactors, ".std")
   for (i in 1:nfactors) {
@@ -24,13 +24,14 @@ qmb.summary <- function(qmboots) {
   loa.std <- loa.std[rownames(loa.frq),]
   
   # Calculate estimate of bias
-  loa.bts.est <- apply(obj.loa, 1, function(x) eval(parse(text=paste0(x, "[,'mean']"))))
+  loa.bts.est <- apply(obj.loa, 1, 
+                       function(x) eval(parse(text=paste0(x, "[,'mean']"))))
   loa.bias <- loa.std - loa.bts.est 
   names(loa.bias) <- paste0("f", 1:nfactors, ".bias")
   
   # Bind together
   qs <- data.frame(loa.std, do.call("cbind", loa.bts), loa.frq, loa.bias)
-
+  
   #-------------------------------------------------------
   # Gather results of statements
   obj.zsc <- as.array(paste0("qmboots$'zscore-stats'$factor", 1:nfactors))
@@ -50,7 +51,8 @@ qmb.summary <- function(qmboots) {
   colnames(zscn.bts) <- paste0("fsc.bts.", 1:nfactors)
   
   # Calculate estimate of bias for z-scores
-  zsc.bts.est <- apply(obj.zsc, 1, function(x) eval(parse(text=paste0(x, "[,'mean']"))))
+  zsc.bts.est <- apply(obj.zsc, 1, 
+                       function(x) eval(parse(text=paste0(x, "[,'mean']"))))
   zsc.bias <- zsc.std - zsc.bts.est 
   names(zsc.bias) <- paste0("f", 1:nfactors, ".bias")
   

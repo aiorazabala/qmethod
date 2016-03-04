@@ -14,14 +14,16 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   names(qmbr) <- paste0("factor_", 1:nfactors)
   n <- 1
   while (n <= nfactors) {
-    qmbr[[n]] <- vector("list", 3)
-    qmbr[[n]][[1]] <- data.frame(matrix(FALSE, nrow=nqsorts, ncol=nsteps, 
-                                        dimnames=list(names(dataset), paste0("step_",1:nsteps))))
-    qmbr[[n]][[2]] <- data.frame(matrix(as.numeric(NA), nrow=nstat, ncol=nsteps, 
-                                        dimnames=list(row.names(dataset), paste0("step_",1:nsteps))))
-    qmbr[[n]][[3]] <- data.frame(matrix(as.numeric(NA), nrow=nqsorts, ncol=nsteps, 
-                                        dimnames=list(names(dataset), paste0("step_",1:nsteps))))
-    names(qmbr[[n]]) <- c("flagged", "zsc", "loa")
+    qmbr[[n]] <- list()
+    qmbr[[n]]$flagged <- data.frame(matrix(as.logical(NA), nrow=nqsorts, ncol=nsteps, 
+                                           dimnames=list(colnames(dataset), 
+                                                         paste0("step_",1:nsteps))))
+    qmbr[[n]]$zsc     <- data.frame(matrix(as.numeric(NA), nrow=nstat, ncol=nsteps, 
+                                           dimnames=list(row.names(dataset), 
+                                                         paste0("step_",1:nsteps))))
+    qmbr[[n]]$loa     <- data.frame(matrix(as.numeric(NA), nrow=nqsorts, ncol=nsteps, 
+                                           dimnames=list(colnames(dataset), 
+                                                         paste0("step_",1:nsteps))))
     n <- n+1
   }
   #indeterminacy tests results
@@ -86,16 +88,16 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
                        distribution=distribution, ...)
     # Export essential results: flagged, zsc and loa
     for (n in 1:nfactors) {
-      #flagged q sorts
-      qmbr[[n]][["flagged"]][paste0("step_",it_count)] <- step_res[[1]][[n]]
-      #z-scores
-      qmbr[[n]][["zsc"]][paste0("step_",it_count)] <- step_res[[2]][[n]]
-      #factor loadings -- important to assign to the correct columns!
+      # z-scores
+      qmbr[[n]][["zsc"]][paste0("step_",it_count)] <- step_res$zsc[[n]]
+      # Flagged Q-sorts and factor loadings -- important to assign to the correct columns!
       for (r in 1:nqsorts) {
         if (sum(rownames(qmbr[[n]][[3]])[r] == names(subdata)) != 0) { #if the Q sort is in the resample...
-          qmbr[[n]][["loa"]][r,it_count] <- step_res[[3]][[n]][which(rownames(qmbr[[n]][[3]])[r] == names(subdata))]
+          qmbr[[n]][["flagged"]][r,it_count] <- step_res$flagged[[n]][which(rownames(qmbr[[n]][["flagged"]])[r] == names(subdata))]
+          qmbr[[n]][["loa"]][r,it_count]    <- step_res$loadings[[n]][which(rownames(qmbr[[n]][["loa"]])[r] == names(subdata))]
         }
-        colnames(qmbr[[n]][[3]])[it_count] <- paste0("step_",it_count)
+        colnames(qmbr[[n]][["flagged"]])[it_count] <- paste0("step_",it_count)
+        colnames(qmbr[[n]][["loa"]])[it_count]     <- paste0("step_",it_count)
       }
     }
     # Export results of indeterminacy correction, if any
@@ -140,7 +142,7 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   } else badsteps <- 0
   
   #-----------------------------------------------
-  # F. summary stats for z-scores of bootstrap
+  # F. Summary stats for z-scores of bootstrap
   #-----------------------------------------------
   qmbs <- list() # Q method bootstrap summary
   #- - - - - - - - - - - - - - - - - - - - - - - -
@@ -148,9 +150,7 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   for (n in 1:nfactors) {
     if (sum(badsteps) > 0 & (indet == "qindtest" | indet == "both")) {
       t.zsc <- qmbr[[n]]$zsc[,-badsteps]
-    } else {
-      t.zsc <- qmbr[[n]]$zsc
-    }
+    } else t.zsc <- qmbr[[n]]$zsc
     qmbs[[n+1]] <- merge(describe(t(t.zsc)), 
                          t(apply(t.zsc, 1, quantile, 
                                  probs=c(0.025, 0.25, 0.75, 0.975), 
@@ -164,7 +164,7 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   # 2. Factor scores (fragment adapted from qzscores.R)
   if (forced==T) qscores <- sort(dataset[,1], decreasing=FALSE)
   if (forced==F) qscores <- distribution
-
+  
   # Build frame for factor scores
   zsc_mea <- data.frame(zsc_mea=c(1:nstat), row.names=row.names(dataset))
   zsc_bn <- data.frame(zsc_bn=c(1:nstat), row.names=row.names(dataset))
@@ -182,28 +182,34 @@ qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", 
   names(qmbs)[1] <- c("Bootstraped factor scores")
   
   #-----------------------------------------------
-  # G. summary stats for loadings of bootstrap
+  # G. Summary stats for Q-sort factor loadings of bootstrap
   #-----------------------------------------------
   qmbl <- list()
-  n <- 1
-  
-  while (n <= nfactors) {
-    if (badsteps > 0 & indet == "qindtest" | indet == "both") {
+  for (n in 1:nfactors) {
+    if (sum(badsteps) > 0 & indet == "qindtest" | indet == "both") {
+      t.fla <- qmbr[[n]]$flagged[,-badsteps]
       t.loa <- qmbr[[n]]$loa[,-badsteps]
-    } else t.loa <- qmbr[[n]]$loa
-    qmbl[[n]] <- merge(describe(t(t.loa)), 
-                       t(apply(t.loa, 1, quantile, probs=c(0.025, 0.25, 0.75, 0.975), na.rm=TRUE)), 
-                       by='row.names', sort=FALSE)
+    } else {
+      t.fla <- qmbr[[n]]$flagged
+      t.loa <- qmbr[[n]]$loa
+    }
+    # Factor loadings
+    qmbl[[n]] <-   merge(describe(t(t.loa)), 
+                         t(apply(t.loa, 1, quantile, 
+                                 probs=c(0.025, 0.25, 0.75, 0.975), 
+                                 na.rm=TRUE)), 
+                         by='row.names', sort=FALSE)
     rownames(qmbl[[n]]) <- qmbl[[n]][,1]
     qmbl[[n]][,1] <- NULL
-    qmbl[[n]] <- qmbl[[n]][order(row.names(qmbl[[n]])), ]
-    qmbl[[n]]$flag_freq <- as.numeric(NA*nqsorts)
+    # Frequency of flagging
+    qmbl[[n]]$flag_freq <- rowMeans(t.fla, na.rm=T)
     for (j in 1:nqsorts) {
-      if (badsteps > 0 & indet == "qindtest" | indet == "both") {
+      if (sum(badsteps) > 0 & indet == "qindtest" | indet == "both") {
         token <- t(qmbr[[n]][[1]][,-badsteps])[,j]
       } else token <- t(qmbr[[n]][[1]])[,j]
       qmbl[[n]][j,"flag_freq"] <- length(which(token == TRUE)) / (length(which(token == TRUE)) + length(which(token == FALSE)))
     }
+    qmbl[[n]] <- qmbl[[n]][order(row.names(qmbl[[n]])), ]
     n <- n+1
   }
   

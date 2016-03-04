@@ -39,33 +39,32 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
   #--------------------------------------------------------------------
   # 4. Export necessary results
   step_res <- list()
-  step_res[[1]] <- list()
-  step_res[[2]] <- list()
-  step_res[[3]] <- list()
+  step_res$flagged  <- list()
+  step_res$zsc <- list()
+  step_res$loadings <- list()
   
-  qstep[[4]] <- as.data.frame(qstep[[4]])
-  qstep[[3]] <- as.data.frame(qstep[[3]])
+  qstep$flagged <- as.data.frame(qstep$flagged)
+  qstep$loa     <- as.data.frame(qstep$loa)
   
   n <- 1
   while (n <= nfactors) {
-    #flagged q sorts
-    step_res[[1]][n] <- qstep[[4]][n] #to append in qmbr[[n]][[1]]
-    #z-scores
-    step_res[[2]][n] <- qstep[[5]][n] #to append in qmbr[[n]][[2]]
-    #factor loadings
-    step_res[[3]][n] <- qstep[[3]][n] #to append in qmbr[[n]][[3]]
+    # Flagged q sorts
+    step_res$flagged[n]  <- qstep$flagged[n]   #to append in qmbr[[n]][[1]]
+    # z-scores
+    step_res$zsc[n] <- qstep$zsc[n]            #to append in qmbr[[n]][[2]]
+    # Factor loadings
+    step_res$loadings[n] <- qstep$loa[n]       #to append in qmbr[[n]][[3]]
     n <- n + 1
   }
   if (indet == "qindtest" | indet == "both") {
     qindt_log <- qindeterminacy[[2]]
-    qindt <- qindeterminacy[[3]]
-    #test results (logical)
-    step_res[4] <- qindt[1] #to append in qmts[1]
-    step_res[5] <- qindt[2] #to append in qmts[2]
-    #reports of solution implementation
-    step_res[6] <- qindt_log[1] #to append in qmts_log[1]
-    step_res[7] <- qindt_log[2] #to append in qmts_log[2]
-    names(step_res) <- c("flagged", "z_scores", "loadings", "torder_res_log", "tsign_res_log", "torder_res_report", "tsign_res_report")
-  } else {names(step_res) <- c("flagged", "z_scores", "loadings")}
+    qindt     <- qindeterminacy[[3]]
+    # Test results (logical)
+    step_res$torder_res_log <- qindt[1]        #to append in qmts[1]
+    step_res$tsign_res_log  <- qindt[2]        #to append in qmts[2]
+    # Reports of solution implementation
+    step_res$torder_res_report <- qindt_log[1] #to append in qmts_log[1]
+    step_res$tsign_res_report  <- qindt_log[2] #to append in qmts_log[2]
+  }
   return(step_res)
 }
