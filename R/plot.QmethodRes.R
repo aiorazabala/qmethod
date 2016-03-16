@@ -2,13 +2,20 @@ plot.QmethodRes <- function(x,
                             xlab='z-scores', ylab='statements',
                             pchlist = NULL, colours = NULL,
                             fnames = NULL, legend = TRUE, 
-                            leg.pos="bottomright", ...) {
+                            leg.pos="bottomright", 
+                            dist = TRUE, pchlist.fill = NULL, ...) {
   dfr <- x$zsc
   lowlim <- floor(min(dfr[[1]]))
   highlim <- ceiling(max(dfr))
-  if (is.null(pchlist)) pchlist <- c(1, 2, 0, 5, 6, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
+  if (is.null(pchlist)) {
+    pchlist <- c(1, 2, 0, 5, 6, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
+    pchlist.fill <- c(16, 17, 15, 18, 25, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
+  }
+  if (dist) pts <- qdc.zsc(x)
   nfactors <- length(dfr)
-  dfr <- dfr[order(apply(dfr, 1, sd)), ]
+  sta.order <- order(apply(dfr, 1, sd))
+  dfr <- dfr[sta.order, ]
+  pts <- pts[sta.order, ]
   if (is.null(colours)) colours <- rainbow(length(dfr))
   if (is.null(fnames) & names(x$zsc)[1] == "zsc_f1") fnames <- paste0("Factor ", 1:nfactors)
   if (is.null(fnames) & names(x$zsc)[1] != "zsc_f1") fnames <- names(x$zsc)
@@ -18,6 +25,11 @@ plot.QmethodRes <- function(x,
            pch=pchlist[[1]], color=colours[[1]], ...)
   for (i in 2:nfactors){
     points(x=dfr[[i]], 1:length(dfr[[i]]), pch = pchlist[i], type = "p", col=colours[[i]], ...)
+  }
+  if (dist) {
+    for (i in 1:nfactors){
+      points(x=pts[,i], 1:length(pts[,i]), pch = pchlist.fill[i], type = "p", col=colours[[i]], ...)
+    }
   }
   axis(side=2, at=1:nrow(dfr), 
        labels=rownames(dfr), 
