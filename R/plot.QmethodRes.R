@@ -9,7 +9,7 @@ plot.QmethodRes <- function(x,
   highlim <- ceiling(max(dfr))
   if (is.null(pchlist)) {
     pchlist <- c(1, 2, 0, 5, 6, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
-    pchlist.fill <- c(16, 17, 15, 18, 25, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
+    pchlist.fill <- c(16, 17, 15, 23, 25, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
   }
   if (dist) pts <- qdc.zsc(x)
   nfactors <- length(dfr)
@@ -24,7 +24,7 @@ plot.QmethodRes <- function(x,
            ylab=ylab, xlab=xlab, axis=NULL,
            pch=pchlist[[1]], color=colours[[1]], ...)
   for (i in 2:nfactors){
-    points(x=dfr[[i]], 1:length(dfr[[i]]), pch = pchlist[i], type = "p", col=colours[[i]], ...)
+    points(x=dfr[[i]], 1:length(dfr[[i]]), pch = pchlist[i], type = "p", col=colours[[i]], bg=colours[[i]], ...)
   }
   if (dist) {
     for (i in 1:nfactors){
