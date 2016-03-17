@@ -28,7 +28,7 @@ plot.QmethodRes <- function(x,
   }
   if (dist) {
     for (i in 1:nfactors){
-      points(x=pts[,i], 1:length(pts[,i]), pch = pchlist.fill[i], type = "p", col=colours[[i]], ...)
+      points(x=pts[,i], 1:length(pts[,i]), pch = pchlist.fill[i], type = "p", col=colours[[i]], bg=colours[[i]], ...)
     }
   }
   axis(side=2, at=1:nrow(dfr), 
