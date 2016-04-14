@@ -24,7 +24,7 @@ Applies the Factor Stability index to a bootstrapped Q method results. Returns a
 \examples{
 data(lipset)
 boots <- qmboots(lipset[[1]], nfactors=3, nsteps=10, 
-           rotation="varimax", indet="procrustes",
+           rotation="varimax", indet="qindtest",
            fsi=FALSE)
 fsi <- qfsi(nfactors=3, nstat=33, qscores=boots[[6]], 
            zsc_bn=boots[[1]][[1]], qm=boots[[5]])

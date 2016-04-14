@@ -1,12 +1,11 @@
 \name{plot.QmethodRes}
 \alias{plot.QmethodRes}
 \title{Q Method: plot for statement z-scores}
-\description{Takes an object \code{QmethodRes} resulting from \code{\link{qmethod}} and makes a dot-chart with the z-scores for statements and all factors.}
+\description{Takes an object of class \code{QmethodRes} resulting from \code{\link{qmethod}} and makes a dot-chart with the z-scores for statements and all factors.}
 \usage{
 \method{plot}{QmethodRes}(x, xlab = 'z-scores', ylab = 'statements', pchlist = NULL,
-     colours = NULL, fnames = NULL, legend = TRUE, 
-     leg.pos="bottomright", ...)
-                   }
+     colours = NULL, fnames = NULL, legend = TRUE, dist = TRUE, pchlist.fill = NULL,
+     leg.pos="bottomright", ...)}
 \arguments{
   \item{x}{results object returned by \code{\link{qmethod}}.}
   \item{xlab}{label for x axis. Defaults to 'z-scores'.}
@@ -15,6 +14,8 @@
   \item{colours}{array of colours to be used when plotting the points for each perspective. Defaults to a pre-defined set of colours based on the \code{\link[grDevices]{rainbow}} palette.}
   \item{fnames}{names for factors to be used in the legend. In results where factor names have not been changed (using, e.g. \code{\link{q.fnames}}) it defaults to \code{'Factor 1'}, \code{'Factor 2'}, etc.}
   \item{legend}{logical; if \code{FALSE}, no \code{legend} will be drawn.}
+  \item{dist}{Logical. Should distinguishing statements be indicated in the plot dots? If \code{TRUE}, then the z-score values that are distinguishing for a given statement and factor are represented with a different (filled) symbol.}
+  \item{pchlist.fill}{List of symbols to indicate distinguishing statements. By default, this is set to \code{NULL}, which provides a set of symbols that coincides with those in \code{pchlist}, but filled.}
   \item{leg.pos}{Position of the legend.}
   \item{...}{other arguments for \code{\link[graphics]{plot}}.}
 

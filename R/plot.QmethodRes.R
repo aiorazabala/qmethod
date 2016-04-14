@@ -2,8 +2,8 @@ plot.QmethodRes <- function(x,
                             xlab='z-scores', ylab='statements',
                             pchlist = NULL, colours = NULL,
                             fnames = NULL, legend = TRUE, 
-                            leg.pos="bottomright", 
-                            dist = TRUE, pchlist.fill = NULL, ...) {
+                            dist = TRUE, pchlist.fill = NULL, 
+                            leg.pos="bottomright", ...) {
   dfr <- x$zsc
   lowlim <- floor(min(dfr[[1]]))
   highlim <- ceiling(max(dfr))

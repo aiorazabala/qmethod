@@ -5,7 +5,7 @@
 \usage{qdc.zsc(results)}
 
 \arguments{
-  \item{x}{an object of class \code{QmethodRes}.}
+  \item{results}{an object of class \code{QmethodRes}.}
 }
 
 \note{This is a function used within \code{\link{plot.QmethodRes}}. Rarely to be used independently.}

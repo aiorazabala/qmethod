@@ -17,24 +17,28 @@
 
 \author{Aiora Zabala}
 
-\note{this function is called within the function \code{\link{qmboots}}. Not intended to be used separately.}
+\note{this function is called within the function \code{\link{qmboots}}. Not intended to be used separately. The function calls \code{procrustes} from \pkg{GPArotation}, a package that requires the package \code{graph}. As from April 2016 the package has been moved to Bioconductor, and therefore it needs to be installed manually. If you get errors of missing packages when using this function or \code{\link{qmboots}}, install \code{graph} manually:
+\code{source("https://bioconductor.org/biocLite.R")
+biocLite("graph")}
+}
 
 \seealso{
 Function \code{procrustes} from \pkg{GPArotation} package.
 }
 \examples{
-data(lipset)
-qm <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")
-qselim <- sample(1:3, 2, replace=FALSE) ##q sorts to eliminate
-subdata <- lipset[[1]][ , -qselim]
-library(psych)
-loa <- as.data.frame(unclass(principal(subdata, 
-           nfactors=3, rotate="varimax")$loadings))
-target <- as.matrix(as.data.frame(qm[3]))
-colnames(target) <- paste("target_f", 1:3, sep="")
-subtarget <- target[c(-qselim),]
-qindt <- qpcrustes(loa, subtarget, 3)
-qindt
+# This example requires installing 'MCMCpack':
+# data(lipset)
+# qm <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")
+# qselim <- sample(1:3, 2, replace=FALSE) ##q sorts to eliminate
+# subdata <- lipset[[1]][ , -qselim]
+# library(psych)
+# loa <- as.data.frame(unclass(principal(subdata, 
+#           nfactors=3, rotate="varimax")$loadings))
+# target <- as.matrix(as.data.frame(qm[3]))
+# colnames(target) <- paste("target_f", 1:3, sep="")
+# subtarget <- target[c(-qselim),]
+# qindt <- qpcrustes(loa, subtarget, 3)
+# qindt
 }
 
 \keyword{multivariate}

@@ -51,7 +51,7 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
     # Flagged q sorts
     step_res$flagged[n]  <- qstep$flagged[n]   #to append in qmbr[[n]][[1]]
     # z-scores
-    step_res$zsc[n] <- qstep$zsc[n]            #to append in qmbr[[n]][[2]]
+    step_res$zsc[n]      <- qstep$zsc[n]       #to append in qmbr[[n]][[2]]
     # Factor loadings
     step_res$loadings[n] <- qstep$loa[n]       #to append in qmbr[[n]][[3]]
     n <- n + 1
