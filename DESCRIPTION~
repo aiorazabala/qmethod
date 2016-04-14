@@ -21,6 +21,8 @@ Imports:
   digest,
   knitr,
   xtable
+Suggests:
+  MCMCpack
 LazyData: true
 Repository: CRAN
 URL: https://github.com/aiorazabala/qmethod, https://github.com/aiorazabala/qmethod/wiki
