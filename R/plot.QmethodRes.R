@@ -37,7 +37,7 @@ plot.QmethodRes <- function(x,
   axis(side=2, at=1:nrow(dfr), 
        labels=rownames(dfr), 
        las=1, tick=F, line=-0.5, ...)
-  abline(v=seq(from=lowlim, to=highlim, by=0.5), col=grey(0.6), lty=3)
+  abline(v=seq(from=min(xlimits), to=max(xlimits), by=0.5), col=grey(0.6), lty=3)
   if (legend) {
     legend(leg.pos, 
            legend=fnames, 
