@@ -5,7 +5,7 @@
 \usage{
 \method{plot}{QmethodRes}(x, xlab = 'z-scores', ylab = 'statements', pchlist = NULL,
      colours = NULL, fnames = NULL, legend = TRUE, dist = TRUE, pchlist.fill = NULL,
-     leg.pos="bottomright", ...)}
+     leg.pos="bottomright", xlim= NULL, ...)}
 \arguments{
   \item{x}{results object returned by \code{\link{qmethod}}.}
   \item{xlab}{label for x axis. Defaults to 'z-scores'.}
@@ -17,6 +17,7 @@
   \item{dist}{Logical. Should distinguishing statements be indicated in the plot dots? If \code{TRUE}, then the z-score values that are distinguishing for a given statement and factor are represented with a different (filled) symbol.}
   \item{pchlist.fill}{List of symbols to indicate distinguishing statements. By default, this is set to \code{NULL}, which provides a set of symbols that coincides with those in \code{pchlist}, but filled.}
   \item{leg.pos}{Position of the legend.}
+  \item{xlim}{Limits for the x axis, given as a vector of two numbers. If this is not provided, the limits are calculated from the sample.}
   \item{...}{other arguments for \code{\link[graphics]{plot}}.}
 
 }
