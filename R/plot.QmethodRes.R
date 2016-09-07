@@ -3,10 +3,13 @@ plot.QmethodRes <- function(x,
                             pchlist = NULL, colours = NULL,
                             fnames = NULL, legend = TRUE, 
                             dist = TRUE, pchlist.fill = NULL, 
-                            leg.pos="bottomright", ...) {
+                            leg.pos="bottomright", xlim= NULL, ...) {
   dfr <- x$zsc
   lowlim <- floor(min(dfr[[1]]))
   highlim <- ceiling(max(dfr))
+  if (is.null(xlim)) {
+    xlimits <- c(lowlim, highlim)
+  } else xlimits = xlim
   if (is.null(pchlist)) {
     pchlist <- c(1, 2, 0, 5, 6, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
     pchlist.fill <- c(16, 17, 15, 23, 25, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
@@ -20,7 +23,7 @@ plot.QmethodRes <- function(x,
   if (is.null(fnames) & names(x$zsc)[1] == "zsc_f1") fnames <- paste0("Factor ", 1:nfactors)
   if (is.null(fnames) & names(x$zsc)[1] != "zsc_f1") fnames <- names(x$zsc)
   dotchart(dfr[[1]], lcolor=grey(0.4),
-           xlim=c(lowlim, highlim),
+           xlim=xlimits,
            ylab=ylab, xlab=xlab, axis=NULL,
            pch=pchlist[[1]], color=colours[[1]], ...)
   for (i in 2:nfactors){
