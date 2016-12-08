@@ -14,11 +14,13 @@ plot.QmethodRes <- function(x,
     pchlist <- c(1, 2, 0, 5, 6, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
     pchlist.fill <- c(16, 17, 15, 23, 25, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
   }
-  if (dist) pts <- qdc.zsc(x)
   nfactors <- length(dfr)
   sta.order <- order(apply(dfr, 1, sd))
   dfr <- dfr[sta.order, ]
-  pts <- pts[sta.order, ]
+  if (dist) {
+    pts <- qdc.zsc(x)
+    pts <- pts[sta.order, ]
+  }
   if (is.null(colours)) colours <- rainbow(length(dfr))
   if (is.null(fnames) & names(x$zsc)[1] == "zsc_f1") fnames <- paste0("Factor ", 1:nfactors)
   if (is.null(fnames) & names(x$zsc)[1] != "zsc_f1") fnames <- names(x$zsc)
@@ -39,10 +41,14 @@ plot.QmethodRes <- function(x,
        las=1, tick=F, line=-0.5, ...)
   abline(v=seq(from=min(xlimits), to=max(xlimits), by=0.5), col=grey(0.6), lty=3)
   if (legend) {
+    if (dist) {
+      pch.leg = pchlist.fill[1:nfactors]
+      } else pch.leg <- pchlist[1:nfactors]
     legend(leg.pos, 
            legend=fnames, 
            col=colours[1:nfactors], 
-           pch=pchlist[1:nfactors], 
+           pch=pch.leg,
+           pt.bg=colours[1:nfactors],
            bty="n")
   }
 }
