@@ -85,7 +85,7 @@
 \author{
   Aiora Zabala\cr
   Main author and maintainer\cr
-  \url{http://www.landecon.cam.ac.uk/directory/aiora-zabala}\cr
+  \url{http://aiorazabala.net}\cr
   \email{aiora.zabala@gmail.com}
   
   Maximilian Held\cr 

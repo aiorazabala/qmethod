@@ -3,9 +3,12 @@
 \title{Q Method: plot for statement z-scores}
 \description{Takes an object of class \code{QmethodRes} resulting from \code{\link{qmethod}} and makes a dot-chart with the z-scores for statements and all factors.}
 \usage{
-\method{plot}{QmethodRes}(x, xlab = 'z-scores', ylab = 'statements', pchlist = NULL,
-     colours = NULL, fnames = NULL, legend = TRUE, dist = TRUE, pchlist.fill = NULL,
-     leg.pos="bottomright", xlim= NULL, ...)}
+\method{plot}{QmethodRes}(x, xlab = 'z-scores', ylab = 'statements', 
+     pchlist = NULL, colours = NULL, 
+     fnames = NULL, legend = TRUE,
+     dist = TRUE, pchlist.fill = NULL,
+     leg.pos="bottomright", xlim= NULL, 
+     sort.items=T, ...)}
 \arguments{
   \item{x}{results object returned by \code{\link{qmethod}}.}
   \item{xlab}{label for x axis. Defaults to 'z-scores'.}
@@ -18,6 +21,7 @@
   \item{pchlist.fill}{List of symbols to indicate distinguishing statements. By default, this is set to \code{NULL}, which provides a set of symbols that coincides with those in \code{pchlist}, but filled.}
   \item{leg.pos}{Position of the legend.}
   \item{xlim}{Limits for the x axis, given as a vector of two numbers. If this is not provided, the limits are calculated from the sample.}
+  \item{sort.items}{Whether and how the items are sorted in the vertical axis. Defaults to \code{TRUE}, which sorts the items according to the standard deviation of their z-scores for all factors. A value of \code{FALSE} will not sort the items, which are displayed in the same order as in the raw data. A numerical vector can also be provided in order to sort the statements manually: the vector needs to have the same length as the number of items, and provides the order in which the items are to be ordered.}
   \item{...}{other arguments for \code{\link[graphics]{plot}}.}
 
 }
@@ -34,5 +38,9 @@ title <- "Q method z-scores, lipset dataset"
 subtitle <- paste0("Three factors, PCA, varimax. Printed on ",
                   Sys.Date())
 plot(results, main = title, sub = subtitle)
+
+# Order the items in a different way
+plot(results, main = title, sub = subtitle, 
+     sort.items = c(rev(1:nrow(results$zsc))))
 }
 \keyword{plot}

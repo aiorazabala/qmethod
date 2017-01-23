@@ -3,7 +3,8 @@ plot.QmethodRes <- function(x,
                             pchlist = NULL, colours = NULL,
                             fnames = NULL, legend = TRUE, 
                             dist = TRUE, pchlist.fill = NULL, 
-                            leg.pos="bottomright", xlim= NULL, ...) {
+                            leg.pos="bottomright", xlim= NULL, 
+                            sort.items=T, ...) {
   dfr <- x$zsc
   lowlim <- floor(min(dfr[[1]]))
   highlim <- ceiling(max(dfr))
@@ -15,8 +16,20 @@ plot.QmethodRes <- function(x,
     pchlist.fill <- c(16, 17, 15, 23, 25, 16, 17, 15, 18, 21, 24, 23, 22, 3, 4, 7, 8, 9)
   }
   nfactors <- length(dfr)
-  sta.order <- order(apply(dfr, 1, sd))
+  # Sorting of items in y axis
+  sta.order <- 1:nrow(dfr)
+  if (is.numeric(sort.items)) {
+    if (length(sort.items) == nrow(dfr)) sta.order <- sort.items
+    if (length(sort.items) != nrow(dfr)) warning("The number of elements in the vector to sort the items ('sort.items') does not equal the number of items. Items will not be sorted in the plot.")
+  } else {
+    if (sort.items == F) {
+      sta.order <- 1:nrow(dfr)
+    } else {
+      if (sort.items == T) sta.order <- order(apply(dfr, 1, sd))
+    }
+  }
   dfr <- dfr[sta.order, ]
+    # Whether to show distinguishing statements
   if (dist) {
     pts <- qdc.zsc(x)
     pts <- pts[sta.order, ]
