@@ -1,9 +1,9 @@
 qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat, 
                    qmts=qmts, qmts_log=qmts_log, rotation="unknown", 
-                   flagged=flagged, ...) {
+                   flagged=flagged, cor.method="pearson", ...) {
   #--------------------------------------------------------------------
   # 1. Generate matrix of factor loadings
-  cor.data <- cor(subdata, method="pearson")
+  cor.data <- cor(subdata, method=cor.method)
   if (rotation=="unknown") rotation <- "none"
   loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation, ...)$loadings))
   
@@ -35,7 +35,7 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
   # 3. Calculate z-scores and factor scores with the indeterminacy corrected factor loadings 'loa'
   flagged <- qflag(nstat=nstat, loa=loa)
   qstep <- qzscores(subdata, nfactors=nfactors,  
-                    flagged=flagged, loa=loa, ...)
+                    flagged=flagged, loa=loa)
   #--------------------------------------------------------------------
   # 4. Export necessary results
   step_res <- list()

@@ -4,7 +4,8 @@
 \description{Implementation of the bootstrap to Q methodology using Principal Components Analysis (PCA).}
 \usage{qmboots(dataset, nfactors, nsteps, load = "auto",
         rotation = "varimax", indet = "qindtest", fsi = TRUE, 
-        forced = T, distribution = NULL, ...)}
+        forced = T, distribution = NULL, 
+        cor.method="pearson", ...)}
 
 \arguments{
   \item{dataset}{a matrix or dataframe containing original data, with statements as rows, Q sorts as columns, and Q board column values in each cell.}
@@ -16,6 +17,7 @@
  \item{fsi}{logical; Shall the Factor Stability index be calculated? (experimental index).}
  \item{forced}{logical; Is the ranking of the items forced to match the distributions? Set to \code{TRUE} if all respondents ranked the items strictly following the distribution scores, in which case the values of the distribution are calculated automatically. Set to \code{FALSE} if respondents had the possibility to rank the items without following the distribution, and the values of the distribution have to be provided as an array in the argument \code{distribution}.}
   \item{distribution}{logical; when forced = \code{FALSE}, the distribution has to be provided as a vector of numbers, such as \code{c(-2, -1, -1, 0, 1, 1, 2, 2)}.}
+  \item{cor.method}{character string indicating which correlation coefficient is to be computed, to be passed on to the function \code{\link[stats]{cor}}: \code{"pearson"} (default), \code{"kendall"}, or \code{"spearman"}. }
   \item{...}{Other arguments passed on to \code{\link{qmethod}}.}
 }
 

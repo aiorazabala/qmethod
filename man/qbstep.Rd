@@ -6,7 +6,7 @@
        nfactors, nqsorts, nstat, 
        qmts = qmts, qmts_log = qmts_log, 
        rotation = "unknown", 
-       flagged = flagged, ...)}
+       flagged = flagged, cor.method="pearson", ...)}
 
 \arguments{
   \item{subdata}{resampled dataset of Q-sorts.}
@@ -19,6 +19,7 @@
   \item{qmts_log}{data frame with two rows and at least one column. This is automatically created when this function is called from \code{\link{qmboots}}(see \emph{Note} below).}
   \item{rotation}{rotation method, defaults to \code{"none"}.}
   \item{flagged}{matrix or data frame of \code{nqsorts} rows and \code{nfactors} columns, with \code{TRUE} values for the Q-sorts that are flagged. Automatic flagging can be aplied using \code{\link{qflag}}. Manual flagging can be done by providing a logical matrix with \code{nqsorts} rows and \code{nfactors} columns to the argument \code{flagged}.}
+  \item{cor.method}{character string indicating which correlation coefficient is to be computed, to be passed on to the function \code{\link[stats]{cor}}: \code{"pearson"} (default), \code{"kendall"}, or \code{"spearman"}. }
   \item{...}{other arguments to be passed on to \code{\link{qzscores}} or to \code{\link[psych]{principal}}.}
 }
 
