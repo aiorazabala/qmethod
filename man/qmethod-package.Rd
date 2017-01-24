@@ -95,7 +95,7 @@
 }
 \references{
 \itemize{
-  \item Zabala, A., 2014. qmethod: A Package to Explore Human Perspectives Using Q Methodology. \emph{The R Journal}, 6(2):163-173.\cr Available from: \url{http://journal.r-project.org/archive/2014-2/zabala.pdf}.
+  \item Zabala, A., 2014. qmethod: A Package to Explore Human Perspectives Using Q Methodology. \emph{The R Journal}, 6(2):163-173.\cr Available from: \url{https://journal.r-project.org/archive/2014-2/zabala.pdf}.
   \item Zabala A. and Pascual, U., 2016. Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives. \emph{PLoS ONE}.\cr Available from: \url{http://goo.gl/KFyh5N}.
   \item Watts, S., and and P. Stenner, 2012. \emph{Doing Q Methodological Research: Theory, Method & Interpretation}, London: Sage Publications Ltd.
   \item Van Exel, J., and G. de Graaf, 2005. \emph{Q Methodology: A Sneak Preview}\cr Available from: \url{https://qmethodblog.files.wordpress.com/2016/01/qmethodologyasneakpreviewreferenceupdate.pdf}.

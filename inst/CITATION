@@ -10,7 +10,7 @@ citEntry(entry = "article",
   volume       = 6,
   number       = 2,
   pages        = "163--173",     
-  url          = "http://journal.r-project.org/archive/2014-2/zabala.pdf",
+  url          = "https://journal.r-project.org/archive/2014-2/zabala.pdf",
   textVersion  = "Aiora Zabala. qmethod: A Package to Explore Human Perspectives Using Q Methodology. The R Journal, 6(2):163-173, Dec 2014."
 )
 
