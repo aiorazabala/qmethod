@@ -4,7 +4,18 @@ plot.QmethodRes <- function(x,
                             fnames = NULL, legend = TRUE, 
                             dist = TRUE, pchlist.fill = NULL, 
                             leg.pos="bottomright", xlim= NULL, 
-                            sort.items=T, ...) {
+                            sort.items=T, factors = NULL, ...) {
+if (!is.null(factors) & dist) {
+  warning("Interpret with care.
+
+Only a subset of all the factors is plotted (argument 'factors'), and filled markers indicate distinguishing statements (argument 'dist = TRUE'). Significant differences are calculated with respect to all the factors in the object of results (not only those factors visible).")
+}
+    if (is.null(factors)) {
+    factors <- c(1:x$brief$nfactors)
+  } else if (max(factors) > max(c(1:x$brief$nfactors))) {
+    warning("The numbers of factors provided are beyond the number of factors in the object of results. The default factors will be plotted.")
+    factors <- c(1:x$brief$nfactors)
+  }
   dfr <- x$zsc
   lowlim <- floor(min(dfr[[1]]))
   highlim <- ceiling(max(dfr))
@@ -35,18 +46,20 @@ plot.QmethodRes <- function(x,
     pts <- pts[sta.order, ]
   }
   if (is.null(colours)) colours <- rainbow(length(dfr))
-  if (is.null(fnames) & names(x$zsc)[1] == "zsc_f1") fnames <- paste0("Factor ", 1:nfactors)
+  if (is.null(fnames) & names(x$zsc)[1] == "zsc_f1") fnames <- paste0("Factor ", factors)
   if (is.null(fnames) & names(x$zsc)[1] != "zsc_f1") fnames <- names(x$zsc)
-  dotchart(dfr[[1]], lcolor=grey(0.4),
+  dotchart(dfr[[factors[1]]], lcolor=grey(0.4),
            xlim=xlimits,
            ylab=ylab, xlab=xlab, axis=NULL,
            pch=pchlist[[1]], color=colours[[1]], ...)
-  for (i in 2:nfactors){
-    points(x=dfr[[i]], 1:length(dfr[[i]]), pch = pchlist[i], type = "p", col=colours[[i]], bg=colours[[i]], ...)
+  if(length(factors) > 1) {
+    for (i in 2:length(factors)){
+      points(x=dfr[[factors[i]]], 1:length(dfr[[factors[i]]]), pch = pchlist[i], type = "p", col=colours[[i]], bg=colours[[i]], ...)
+    }
   }
   if (dist) {
-    for (i in 1:nfactors){
-      points(x=pts[,i], 1:length(pts[,i]), pch = pchlist.fill[i], type = "p", col=colours[[i]], bg=colours[[i]], ...)
+    for (i in 1:length(factors)){
+      points(x=pts[,factors[i]], 1:length(pts[,factors[i]]), pch = pchlist.fill[i], type = "p", col=colours[[i]], bg=colours[[i]], ...)
     }
   }
   axis(side=2, at=1:nrow(dfr), 
@@ -55,13 +68,13 @@ plot.QmethodRes <- function(x,
   abline(v=seq(from=min(xlimits), to=max(xlimits), by=0.5), col=grey(0.6), lty=3)
   if (legend) {
     if (dist) {
-      pch.leg = pchlist.fill[1:nfactors]
-      } else pch.leg <- pchlist[1:nfactors]
+      pch.leg = pchlist.fill[1:length(factors)]
+      } else pch.leg <- pchlist[1:length(factors)]
     legend(leg.pos, 
            legend=fnames, 
-           col=colours[1:nfactors], 
+           col=colours[1:length(factors)], 
            pch=pch.leg,
-           pt.bg=colours[1:nfactors],
+           pt.bg=colours[1:length(factors)],
            bty="n")
   }
 }
