@@ -1,12 +1,12 @@
 Package: qmethod
-Version: 1.5.1
-Date: 2017-02-20
+Version: 1.5.2
+Date: 2017-03-21
 Title: Analysis of Subjective Perspectives Using Q Methodology
 Authors@R: c(person(given="Aiora", family="Zabala", comment="Main author", email="aiora.zabala@gmail.com", role=c("aut", "cre")),
              person(given="Maximilian", family="Held", comment="Author of additional data management functions", email="maximilian.held83@gmail.com", role=c("aut"))
             )
 Description: Analysis of Q methodology, used to identify distinct perspectives existing within a group.
-  This methodology is used across social, health and environmental sciences to understand diversity of attitudes, discourses, or decision-making styles (for more information, see http://qmethod.org).
+  This methodology is used across social, health and environmental sciences to understand diversity of attitudes, discourses, or decision-making styles (for more information, see <http://qmethod.org>).
   A single function runs the full analysis. Each step can be run separately using the corresponding functions: for automatic flagging of Q-sorts (manual flagging is optional), for statement scores, for distinguishing and consensus statements, and for general characteristics of the factors.
   Additional functions are available to import and export data, to print and plot, to import raw data from individual *.CSV files, and to make printable cards.
   The package also offers functions to print Q cards and to generate Q distributions for study administration.
