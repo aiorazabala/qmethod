@@ -37,7 +37,7 @@ qmb.plot <- function(qmbsum, type=c("zsc", "loa"), nfactors, cex = 0.7, cex.leg=
   db$position <- c(1:nitems)
   if(is.null(col)) {
     colegend=c(rep("black", nfactors), rep("white", 3))
-    dot.col="black"
+    dot.col=rep("black", nfactors)
     } else {
       colegend=c(col[1:nfactors], rep("white", 3))
       dot.col=col[1:nfactors]

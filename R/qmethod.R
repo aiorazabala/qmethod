@@ -50,7 +50,8 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
                                         qmethodresults$brief$flagging),
                                  paste0("Correlation coefficient: ",
                                         qmethodresults$brief$cor.method))
-  qmethodresults[[8]] <- qdc(dataset, nfactors, zsc=qmethodresults[[5]], sed=as.data.frame(qmethodresults[[7]][[3]]))
+  qmethodresults[[8]] <- qdc(dataset, nfactors, zsc=qmethodresults$zsc, 
+                             sed=as.data.frame(qmethodresults$f_char$sd_dif))
   names(qmethodresults)[8] <- "qdc"
   if (silent== FALSE) cat(qmethodresults$brief$info, sep="\n")
   return(qmethodresults)
