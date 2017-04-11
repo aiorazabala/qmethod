@@ -1,8 +1,9 @@
 % this createsactual paper business cards for q items as follows
  % sized 85*84mm (business cards)
  % 10 per a4 page
- % on Avery Zweckform C32010
-\documentclass[a4paper,12pt]{article}  % because, why not?
+ % printed in double side for cutting out
+ % based on AveryZweckformC32010.Rnw
+\documentclass[a4paper,12pt,twoside]{article}  % because, why not?
 \usepackage{longtable}  % for multi-page tables
 \usepackage{array}  % for center, bottom vertical alignment in tables
 \usepackage{calc}  % to easily identify dimensions etc.
@@ -32,16 +33,36 @@ if(!is.null(babel.language)) {
 \setlength{\tabcolsep}{5mm}  % for margins and "aisle" margin between cards, fix by trial and error
 \newcolumntype{H}{>{\centering\arraybackslash\Huge\ttfamily}m}  % need this because font size should be different for ID
 <<make.cards, results='asis', echo=FALSE, warning=FALSE, message=FALSE>>=
-q.set.print$empty <- c("\\rule[-27mm]{0mm}{54mm}")  # creates empty column with a white height line to make sure rows have some height
+q.set.print$id <- paste("\\centering \\textbf{", q.set.print$id, "}", sep="") # make the id centered and bold
+
+# re-arrange the dataset for use with xtable
+ids <- q.set.print[,"id"]
+full <- as.character(q.set.print[,"full wording"])
+q.set.print.double <- data.frame(column1 = NA, column2 = NA)[character(0), ]
+from <- 0
+to <- ceiling(nrow(q.set.print)/10-1)
+for (i in from:to) {
+  rows <- c(1:10) + i * 10
+  sub_ids <- ids[rows]
+  pageids <- cbind(sub_ids[1:5], sub_ids[6:10])
+  sub_full <- full[rows]
+  pagefull <- cbind(sub_full[6:10], sub_full[1:5])
+  q.set.print.double <- rbind(q.set.print.double, pageids, pagefull)
+}
+
+colnames(q.set.print.double) <- c("column1", "column2")
+
+q.set.print.double$empty <- c("\\rule[-27mm]{0mm}{52mm}")  # creates empty column with a white height line to make sure rows have some height
+
 print.xtable(
   xtable(
-      x     = q.set.print[c("id","empty","full wording")],
+      x     = q.set.print.double[c("column1","empty","column2")],
       type  = "latex",
       align = c(
       	"m{0mm}","|",  # this is just for the rownames, isn't actually printed
-      	"m{75mm}","|",  # this is for the hash or id, must be a little shorter to fit
+      	"m{75mm}","|",  # this is for the first column
       	"m{0mm}","|",  # empty column in the middle with stretcher vertical line, width is given by colsep in the above (no need for extra width here) - this adds up to 1cm anyway
-      	"m{75mm}","|"  # the real deal with the full item
+      	"m{75mm}","|"  # this is for the second column
       	)
   ), #  smaller than cards for margin,
   tabular.environment = "longtable",
@@ -56,7 +77,7 @@ print.xtable(
   #}
   size = wording.font.size,
   sanitize.text.function = identity,
-  hline.after = c(-1:nrow(q.set.print))
+  hline.after = c(0:nrow(q.set.print))
 )
 @
 \end{document}
