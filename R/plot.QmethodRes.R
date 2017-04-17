@@ -17,7 +17,7 @@ Only a subset of all the factors is plotted (argument 'factors'), and filled mar
     factors <- c(1:x$brief$nfactors)
   }
   dfr <- x$zsc
-  lowlim <- floor(min(dfr[[1]]))
+  lowlim <- floor(min(dfr))
   highlim <- ceiling(max(dfr))
   if (is.null(xlim)) {
     xlimits <- c(lowlim, highlim)
