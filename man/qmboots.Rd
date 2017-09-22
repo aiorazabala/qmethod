@@ -55,9 +55,9 @@ round(qms$qsorts, digits=2)     # Q-sorts
 
 # A more synthetic visualisation:
 # z-scores:
-qmb.plot(qms, nfactors=3, type="zsc", sort=TRUE)
+qmb.plot(qms, nfactors=3, type="zsc", sort="difference")
 # factor loadings:
-qmb.plot(qms, nfactors=3, type="loa", sort=TRUE)
+qmb.plot(qms, nfactors=3, type="loa", sort="difference")
 
 
 }

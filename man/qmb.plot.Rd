@@ -48,7 +48,7 @@ boots <- qmboots(lipset[[1]], nfactors = 3, nsteps = 50,
                 
 boots.summary <- qmb.summary(boots)
 
-qmb.plot(boots.summary, 3, type = "loa")
+qmb.plot(boots.summary, 3, type = "loa", sort="difference")
 }
 \keyword{Q methodology}
 \keyword{bootstrapping}
