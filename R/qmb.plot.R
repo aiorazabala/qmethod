@@ -24,11 +24,11 @@ qmb.plot <- function(qmbsum, type=c("zsc", "loa"), nfactors, cex = 0.7, cex.leg=
   nitems <- nrow(db)
   if(length(r.names) == nrow(db)) rownames(db) <- r.names
   
-  if(sort == "sd") {
+  if(sort[1] == "sd") {
     sds <- apply(db[,(1+nfactors):(2*nfactors)], 1, sum)
     db <- db[order(sds), ]
   }
-  if(sort == "difference") {
+  if(sort[1] == "difference") {
     sds <- abs(apply(db[,(1:nfactors)], 1, sd))
     db <- db[order(sds), ]
   }
