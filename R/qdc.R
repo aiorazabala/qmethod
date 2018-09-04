@@ -13,9 +13,9 @@ qdc <- function(dataset, nfactors, zsc, sed) {
     qdc1 <- data.frame(matrix(data=as.numeric(NA), ncol=length(comp), nrow=nrow(dataset), dimnames=list(row.names(dataset), comp)))
     # differences in zsc between factors
     for (n in 1:length(comp)) {
-      first <-  names(zsc)[grep(paste0("f", comparisons[[n]][1]), 
+      first <-  names(zsc)[grep(paste0("f", comparisons[[n]][1], "$"), 
                                 names(zsc))]
-      second <- names(zsc)[grep(paste0("f", comparisons[[n]][2]), 
+      second <- names(zsc)[grep(paste0("f", comparisons[[n]][2], "$"), 
                                 names(zsc))]
       qdc1[n] <- zsc[first] - zsc[second]
     }
@@ -24,9 +24,9 @@ qdc <- function(dataset, nfactors, zsc, sed) {
     for (n in 1:length(comp)) {
       # find the threshold for the pair of factors
       sed <- data.frame(sed)
-      first <-  names(sed)[grep(paste0("f", comparisons[[n]][1]), 
+      first <-  names(sed)[grep(paste0("f", comparisons[[n]][1], "$"), 
                                 names(sed))]
-      second <- names(sed)[grep(paste0("f", comparisons[[n]][2]), 
+      second <- names(sed)[grep(paste0("f", comparisons[[n]][2], "$"), 
                                 names(sed))]
       sedth.000001 <- sed[first, second]*4.753 # t-test values obtainable from qnorm(0.000001)
       sedth.001 <- sed[first, second]*3.291
