@@ -5,7 +5,7 @@
 \usage{export.pqmethod(dataset, study.name, 
      study.description, col.range, 
      filename='Q_data_forPQmethod', 
-     left.zeros, right.zeros, statements)}
+     left.zeros, right.zeros, statements, ...)}
 
 \arguments{
   \item{dataset}{a matrix or data frame qwith Q data: Q-sorts as columns and statements as rows. The names of the columns will be used as Q-sort IDs in the *.DAT file.}
