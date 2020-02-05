@@ -14,8 +14,6 @@
 \details{
 	Finds the distinguishing and consensus statements, based on the absolute differences between factor z-scores being larger than the standard error of differences (SED, calculated in \code{\link{qfcharact}}) for a given pair of factors.
 
-	Differences that are significant at a p-value < .05 are indicated with \code{'*'}, and differences significant at a p-value < .01 are indicated with \code{'**'}.
-
 	Returns a single data frame with the differences in z-scores between each pair of factors and the variable \code{dist.and.cons}, indicating whether each statement is distinguishing or consensus and for which factor(s) it is distinguishing. These are the possible categories in the \code{dist.and.cons} variable:
 	\itemize{
 		\item Where all the comparisons between each pair of factors are significantly different at p-value < .05 the statement is labelled as \code{"Distinguishes all"}.
@@ -23,6 +21,16 @@
 		\item Where none of the comparisons are significantly different, the statement is labeled as \code{"Consensus"}.
 		\item Statements that have category \code{""} (empty) are not distinguishing for any of the factors in particularly. They distinguish one or more pairs of factors and the star indications may be inspected to understand their role.
 	}
+	
+	Significant differences at p-values:
+	\itemize{
+	  \item {p >= 0.05 <- \code{""} (i.e. nothing)}
+    \item {p < 0.05 <- \code{"*"}}
+    \item {p < 0.01 <- \code{"**"}}
+    \item {p < 0.001 <- \code{"***"}}
+    \item {p < 0.000001 <- \code{"6*"}}
+}
+
 }
 
 \references{Brown, S. R., 1980 \emph{Political subjectivity: Applications of Q methodology in political science}, New Haven, CT: Yale University Press.

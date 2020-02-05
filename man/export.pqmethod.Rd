@@ -5,7 +5,7 @@
 \usage{export.pqmethod(dataset, study.name, 
      study.description, col.range, 
      filename='Q_data_forPQmethod', 
-     left.zeros, right.zeros, statements, ...)}
+     left.zeros, right.zeros, statements)}
 
 \arguments{
   \item{dataset}{a matrix or data frame qwith Q data: Q-sorts as columns and statements as rows. The names of the columns will be used as Q-sort IDs in the *.DAT file.}
@@ -16,7 +16,6 @@
   \item{left.zeros}{number of zeros before the distribution, in the second line of *.DAT file.}
   \item{right.zeros}{number of zeros after the distribution, in the second line of *.DAT file).}
   \item{statements}{a matrix with statements, one in each row).}
-  \item{...}{further arguments to be passed to \code{\link[utils]{read.table}} and \code{\link[utils]{read.fwf}}.}
 }
 \details{
 Exports the raw data of a Q methodology study into the native format used in PQMethod. Returns a message with some basic information about the data.

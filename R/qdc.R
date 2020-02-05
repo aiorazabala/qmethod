@@ -28,7 +28,7 @@ qdc <- function(dataset, nfactors, zsc, sed) {
                                 names(sed))]
       second <- names(sed)[grep(paste0("f", comparisons[[n]][2], "$"), 
                                 names(sed))]
-      sedth.000001 <- sed[first, second]*4.753 # t-test values obtainable from qnorm(0.000001)
+      sedth.000001 <- sed[first, second]*4.8916 # t-test values obtainable from qnorm(p = 0.000001) %>% round(4) (fix as per issue #362 on github)
       sedth.001 <- sed[first, second]*3.291
       sedth.01 <- sed[first, second]*2.576
       sedth.05 <- sed[first, second]*1.960 # differences are significant when > 2.58*SED for p < .01, or the same value rounded upwards (Brown, 1980, pp.245)
@@ -36,7 +36,7 @@ qdc <- function(dataset, nfactors, zsc, sed) {
       qdc2[which(abs(qdc1[[n]]) >  sedth.05), n] <- "*"
       qdc2[which(abs(qdc1[[n]]) >  sedth.01), n] <- "**"
       qdc2[which(abs(qdc1[[n]]) >  sedth.001), n] <- "***"
-      qdc2[which(abs(qdc1[[n]]) >  sedth.000001), n] <- "****"
+      qdc2[which(abs(qdc1[[n]]) >  sedth.000001), n] <- "6*"
     }
     names(qdc2) <- paste0("sig_",names(qdc2))
     qdc2$dist.and.cons <- as.character(apply(qdc2, 1, function(x) sum(x!="")==0))
