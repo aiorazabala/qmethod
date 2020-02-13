@@ -79,14 +79,14 @@ make.cards <- function(q.set, study.language=NULL, paper.format = "AveryZweckfor
     return(
       knit2pdf(
         input = path
-        ,output = paste(getwd(),"/",file.name,".tex",sep="")
+        ,output = paste(file.name,".tex",sep="")
       )
     )
   } else {
     return(
       knit(
         input = path
-        ,output = paste(getwd(),"/",file.name,".tex",sep="")
+        ,output = paste(file.name,".tex",sep="")
       )
     )
   }

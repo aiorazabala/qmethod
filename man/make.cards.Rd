@@ -48,7 +48,7 @@ make.cards(
     Only \href{http://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing_text}{standard LaTeX font sizes} are allowed, from \code{\\tiny} to \code{\\Huge}.
   }
   \item{file.name}{
-    A character vector of length 1 to set the filename \emph{without file extension}.
+    A character vector of length 1 to set the output file path relative to the working directory \emph{without file extension}.
     Defaults to \code{QCards}.
   }
   \item{babel.language}{
@@ -114,5 +114,7 @@ make.cards(
 \examples{
 ## Make cards from importexample
 data(importexample)
-make.cards(importexample$q.set, output.pdf = FALSE)
+# use your own output file name or leave NULL for `file.name`
+# tempfile() is used here to avoid leaving files behind example code runs
+make.cards(importexample$q.set, output.pdf = FALSE, file.name = tempfile())
 }
