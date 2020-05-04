@@ -10,8 +10,8 @@
 
 \value{
 Returns a list with two data frames:
-\item{qsorts}{data frame with Q-sort as rows, and the following columns: the factor loadings from the standard analysis, the bootstrap, the bootstrap SE, the estimate of bias, and the frequency of flagging.}
-\item{statements}{data frame with statements as rows, and the following columns: the z-scores from the standard analysis, from the bootstrap, bootstrap SE, estimate of bias of z-scores, factor scores from the standard analysis, from the bootstrap, estimate of bias of factor scores, distinguishing and consensus statements from the standard results (see \code{\link{qdc}}) and from the bootstrap values.}
+\item{qsorts}{data frame with Q-sort as rows, and the following columns: the factor loadings from the standard analysis (*.std), the bootstrap (*.loa), the bootstrap SE (*.SE), the frequency of flagging (*.freq*) and the estimate of bias (*.bias).}
+\item{statements}{data frame with statements as rows, and the following columns: the z-scores from the standard analysis (*.std), from the bootstrap (*.bts), bootstrap SE (*.SE), estimate of bias of z-scores (*.bias), factor scores from the standard analysis (fsc_f*), from the bootstrap (fsc.bts.*), estimate of bias of factor scores, distinguishing and consensus statements from the standard results (see \code{\link{qdc}}) and from the bootstrap values.}
 }
 
 \author{Aiora Zabala}
