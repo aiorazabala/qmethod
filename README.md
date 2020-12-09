@@ -1,8 +1,9 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/qmethod)](http://cran.r-project.org/web/packages/qmethod)
 [![Build Status](https://travis-ci.org/aiorazabala/qmethod.svg)](https://travis-ci.org/aiorazabala/qmethod)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/qmethod)](http://cran.r-project.org/web/packages/qmethod/index.html)
-<!---[![codecov.io](https://codecov.io/github/aiorazabala/qmethod/coverage.svg?branch=master)](https://codecov.io/github/aiorazabala/qmethod?branch=master)--->
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=GCMM9PTXPHNT8)
+
+<!---[![codecov.io](https://codecov.io/github/aiorazabala/qmethod/coverage.svg?branch=master)](https://codecov.io/github/aiorazabala/qmethod?branch=master)--->
 
 qmethod
 =======
@@ -18,5 +19,5 @@ install.packages('qmethod')
 
 To contribute, check out the [guidelines](https://github.com/aiorazabala/qmethod/blob/master/CONTRIBUTING.md).
 
-If you find the package useful, consider supporting it [with a donation.](https://www.paypal.com/donate?hosted_button_id=GCMM9PTXPHNT8)
+If you find the package useful, consider [supporting it with a donation.](https://www.paypal.com/donate?hosted_button_id=GCMM9PTXPHNT8)
 
