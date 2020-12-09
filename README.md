@@ -16,3 +16,5 @@ install.packages('qmethod')
 [Q](http://qmethod.org/about) is a methodology to study the distinct perspectives existing within a group on a topic of interest. It is used across social, health, and environmental studies.
 
 To contribute, check out the [guidelines](https://github.com/aiorazabala/qmethod/blob/master/CONTRIBUTING.md).
+
+If you find the package useful, consider supporting it [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=GCMM9PTXPHNT8)
