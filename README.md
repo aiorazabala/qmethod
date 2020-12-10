@@ -3,6 +3,7 @@
 checks](https://cranchecks.info/badges/worst/qmethod)](https://cranchecks.info/pkgs/qmethod)
 [![Build Status](https://travis-ci.org/aiorazabala/qmethod.svg)](https://travis-ci.org/aiorazabala/qmethod)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/qmethod)](http://cran.r-project.org/web/packages/qmethod/index.html)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.593190.svg)](https://doi.org/10.5281/zenodo.593190)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=GCMM9PTXPHNT8)
 
 <!---[![codecov.io](https://codecov.io/github/aiorazabala/qmethod/coverage.svg?branch=master)](https://codecov.io/github/aiorazabala/qmethod?branch=master)--->
