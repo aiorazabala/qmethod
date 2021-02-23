@@ -1,8 +1,6 @@
 
 **Contributions** to developing the package are **most welcome**.
-Great to have you here :bowtie:.
-
-Some friendly suggestions for contributing :smirk::
+Great to have you here. Some friendly suggestions for contributing:
 
 
 ## Team Members
