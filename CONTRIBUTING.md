@@ -7,13 +7,13 @@ Some friendly suggestions for contributing :smirk::
 
 ## Team Members
 
-[`qmethod`](https://github.com/aiorazabala/qmethod) was created by [Aiora Zabala](http://www.landecon.cam.ac.uk/directory/aiora-zabala), and is now maintained by her and [Max Held](http://www.maxheld.de).
+[`qmethod`](https://github.com/aiorazabala/qmethod) was created by [Aiora Zabala](http://www.landecon.cam.ac.uk/directory/aiora-zabala), with contributions by [Max Held](http://www.maxheld.de) and [Frans Hermans](www.maxheld.de).
 
 
 ## Learn More & Join the Conversation
 
-For now, most communication on developing this package happens right here on **our [GitHub issues](https://github.com/aiorazabala/qmethod/issues)** :octocat:.
-If you have any suggestion, preferably raise it here as a new issue, rather than send us an email – that way, we can keep everyone in the loop and have a public record.
+Communication on developing this package happens right here on **our [GitHub issues](https://github.com/aiorazabala/qmethod/issues)** :octocat: and by email.
+If you have any suggestion, you can raise it here as a new issue, send us an email, or both – that way, we can keep everyone in the loop and have a public record.
 If you can, *browse the existing issues first* to avoid duplication.
 
 To learn more about the current state of development:
@@ -25,7 +25,7 @@ To learn more about the current state of development:
 
 ## Beta-test New Features
 
-`qmethod` is under active development, and we're keen to have more beta-test new features.
+`qmethod` is under development, and we're keen to have more beta-test new features.
 
 [Here](https://github.com/aiorazabala/qmethod/wiki/Beta-testing) is how.
 
@@ -76,12 +76,7 @@ It is advised that new functions and changes *come with* appropriate tests:
 - Where applicable, new functions and changes should test against **old versions** (`>= 1.2.0`) *known* to be validated by Aiora against `PQMethod` (see [Zabala 2014](http://journal.r-project.org/archive/2014-2/zabala.pdf)). 
 - Whenever possible, new functions and changes should test against **(published) results** *known* to be true, using publicy available data.
 
-In addition to such tests for new functions, missing tests for old functions [would also be very welcome](https://github.com/aiorazabala/qmethod/issues/259).
-
-
-## Style
-
-We try to abide by [Google's R Coding Style Guide](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml), and would recommend that for additions, too :lipstick:.
+In addition to such tests for new functions, missing tests for old functions [would also be very welcome].
 
 ## Help pages
 
