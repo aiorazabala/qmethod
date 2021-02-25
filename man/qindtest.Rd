@@ -1,7 +1,7 @@
 \name{qindtest}
 \alias{qindtest}
 \title{Q Methodology: PCA bootstrap indeterminacy tests}
-\description{This is a simple test plus solution for the indeterminacy problem (alignment problem) when bootstrapping Principal Components Analysis (PCA) that causes factor order swaps and factor sign swaps.}
+\description{This is a simple test and implementation of the 'reordering-reflection' solution for the indeterminacy problem (alignment problem) when bootstrapping Principal Components Analysis (PCA) that causes factor order swaps and factor sign swaps.}
 \usage{qindtest(loa, target, nfactors)}
 
 \arguments{

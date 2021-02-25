@@ -1,4 +1,5 @@
 qfsi <- function(nfactors, nstat, qscores, zsc_bn, qm) {
+  warning("Note that this index is uncommon in Q methodology publications.")
   #calculate FACTOR STABILITY INDEX
   mx <- sum(abs(qscores))*2 #maximum possible position changes
   #qm is the original analysis results

@@ -1,4 +1,5 @@
 qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", indet="qindtest", fsi=TRUE, forced=T, distribution=NULL, cor.method="pearson", ...) {
+  warning("Note that bootstrapping is not standard in Q methodology, see the help page and relevant reference.")
   startime <- Sys.time()
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)

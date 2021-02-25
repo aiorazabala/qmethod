@@ -1,4 +1,4 @@
-qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson", silent=FALSE, ...) {
+qmethod <- function(dataset, nfactors, extraction="PCA", rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson", silent=FALSE, spc=0.005, ...) {
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
@@ -24,33 +24,45 @@ qmethod <- function(dataset, nfactors, rotation="varimax", forced=TRUE, distribu
     if (!is.numeric(distribution) & !is.integer(distribution)) stop("Q method input: The distribution provided contains non-numerical values.")
   }
   if (length(unique(colnames(dataset))) != nqsorts) stop("Q method input: one or more Q-sort names are duplicated. Please change the names of the dataset by using colnames().")
-  
+  if (rotation != "varimax") warning("Note that the rotation method selected is not standard in Q methodology publications.") # See discussion at https://github.com/aiorazabala/qmethod/issues/95
   # Run the analysis
   cor.data <- cor(dataset, method=cor.method)
-  loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation, ...)$loadings)) #PCA from {psych} for factor loadings
+  if(extraction == "PCA") {
+    loa <- as.data.frame(unclass(principal(cor.data, nfactors=nfactors, rotate=rotation, ...)$loadings)) #PCA from {psych} for factor loadings
+  }
+  if(extraction == "centroid") {
+    loa <- as.data.frame(unclass(centroid(tmat=cor.data, nfactors=nfactors, spc)))
+  }
   names(loa) <- paste0("f", 1:length(loa))
   # The following depends on the qmethod functions: qflag, qzscores, qfcharact, qdc
   flagged <- qflag(loa=loa, nstat=nstat)
   qmethodresults <- qzscores(dataset, nfactors, flagged=flagged, loa=loa, forced=forced, distribution=distribution)
-  qmethodresults$brief$rotation <- rotation
-  qmethodresults$brief$flagging <- "automatic"
+  if(extraction == "PCA") qmethodresults$brief$extraction <- extraction
+  if(extraction == "centroid") qmethodresults$brief$extraction <- paste0(extraction, " (threshold = ", spc, ")")
+  qmethodresults$brief$rotation   <- rotation
+  qmethodresults$brief$flagging   <- "automatic"
   qmethodresults$brief$cor.method <- cor.method
+  qmethodresults$brief$pkg.version <- packageVersion('qmethod')
   qmethodresults$brief$info <- c("Q-method analysis.",
-                                 paste0("Finished on:             ",
+                                 paste0("Finished on:               ",
                                         qmethodresults$brief$date),
-                                 paste0("Original data:           ",
+                                 paste0("'qmethod' package version: ",
+                                        qmethodresults$brief$pkg.version),
+                                 paste0("Original data:             ",
                                         qmethodresults$brief$nstat,
                                         " statements, ",
                                         qmethodresults$brief$nqsorts, " Q-sorts"),
-                                 paste0("Forced distribution:     ",
+                                 paste0("Forced distribution:       ",
                                         qmethodresults$brief$distro),
-                                 paste0("Number of factors:       ",
+                                 paste0("Number of factors:         ",
                                         qmethodresults$brief$nfactors),
-                                 paste0("Rotation:                ",
+                                 paste0("Extraction:                ",
+                                        qmethodresults$brief$extraction),
+                                 paste0("Rotation:                  ",
                                         qmethodresults$brief$rotation),
-                                 paste0("Flagging:                ",
+                                 paste0("Flagging:                  ",
                                         qmethodresults$brief$flagging),
-                                 paste0("Correlation coefficient: ",
+                                 paste0("Correlation coefficient:   ",
                                         qmethodresults$brief$cor.method))
   qmethodresults[[8]] <- qdc(dataset, nfactors, zsc=qmethodresults$zsc, 
                              sed=as.data.frame(qmethodresults$f_char$sd_dif))

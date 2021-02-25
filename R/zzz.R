@@ -1,4 +1,4 @@
-.onLoad <- function(...) {
+.onAttach <- function(...) {
       packageStartupMessage("
 Please cite as:
 

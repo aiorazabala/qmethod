@@ -30,14 +30,16 @@ export("qmethod",
        "qpcrustes",
        "qfsi",
        "qbstep",
-       "loa.and.flags")
+       "loa.and.flags",
+       "centroid")
 importFrom("grDevices", "grey", "rainbow", "gray")
 importFrom("graphics", "abline", "axis", "dotchart", "points", "legend", "mtext", "segments")
 importFrom("stats", "cor", "dnorm", "na.omit", "qnorm", "quantile", "sd", "var", "varimax")
-importFrom("utils", "capture.output", "combn", "read.csv", "read.csv2", "read.delim", "read.fwf")
+importFrom("utils", "capture.output", "combn", "read.csv", "read.csv2", "read.delim", "read.fwf", "packageVersion")
 S3method("plot",
          "QmethodRes")
 S3method("summary",
          "QmethodRes")
 S3method("print",
          "QmethodRes")
+
