@@ -76,18 +76,22 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
   f_char <- qfcharact(loa, flagged, zsc, nfactors, floa)
   #F. FINAL OUTPUTS
   brief <- list()
-  brief$date <- date()
-  brief$nstat <- nstat
-  brief$nqsorts <- nqsorts
-  brief$distro <- forced
-  brief$nfactors <- nfactors
-  brief$rotation <- "Unknown: loadings were provided separately."
-  brief$cor.method <- "Unknown: loadings were provided separately."
+  brief$date        <- date()
+  brief$pkg.version <- packageVersion('qmethod')
+  brief$nstat       <- nstat
+  brief$nqsorts     <- nqsorts
+  brief$distro      <- forced
+  brief$nfactors    <- nfactors
+  brief$extraction  <- "Unknown: loadings were provided separately."
+  brief$rotation    <- "Unknown: loadings were provided separately."
+  brief$cor.method  <- "Unknown: loadings were provided separately."
   brief$info <- c("Q-method z-scores.",
                   paste0("Finished on:             ", brief$date), 
+                  paste0("'qmethod' package version: ", brief$pkg.version),
                   paste0("Original data:           ", brief$nstat, " statements, ", brief$nqsorts, " Q-sorts"),
                   paste0("Forced distribution:     ", brief$distro),
                   paste0("Number of factors:       ", brief$nfactors),
+                  paste0("Extraction:              ", brief$extraction),
                   paste0("Rotation:                ", brief$rotation),
                   paste0("Flagging:                Unknown: flagged Q-sorts were provided separately."),
                   paste0("Correlation coefficient: ", brief$cor.method))

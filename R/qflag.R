@@ -7,8 +7,7 @@ qflag <- function(loa=loa, nstat) {
   # -- 2) qsorts which square loading is higher than the sum of square loadings of the same q-sort in all other factors
   thold.05 <- 1.96/sqrt(nstat)
   loa_sq <- loa^2
-  flagged <- data.frame(cbind(1:nqsorts))
-  flagged[,1] <- as.logical(flagged[,1])
+  flagged <- matrix(data=F, nrow=nqsorts, ncol=ncol(loa))
   f <- 1
   while (f <= ncol(loa)) {
     n <- 1
