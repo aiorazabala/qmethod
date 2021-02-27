@@ -33,13 +33,14 @@ qmethod <- function(dataset, nfactors, extraction="PCA", rotation="varimax", for
   } 
   if(extraction == "centroid") {
     loa.unr <- unclass(centroid(tmat=cor.data, nfactors=nfactors, spc))
-    if(rotation="none") { 
+    if(rotation == "none") { 
       loa <- loa.unr
-    } if(rotation="varimax") { 
+    } else if(rotation == "varimax") { 
       loa <- unclass(varimax(loa.unr[,1:nfactors])$loadings)
     } else if(rotation %in% uncommon.rotations) {
       stop("You have selected a rotation method that is not implemented for 'centroid' extraction within the 'qmethod()' wrapper. To use uncommon rotations with 'centroid' extraction, please run the 'centroid()' function manually. The help page 'help(centroid)' indicates how to run the full analysis step-by-step.")
     }
+  }
   names(loa) <- paste0("f", 1:length(loa))
   # The following depends on the qmethod functions: qflag, qzscores, qfcharact, qdc
   flagged <- qflag(loa=loa, nstat=nstat)
