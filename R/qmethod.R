@@ -25,15 +25,21 @@ qmethod <- function(dataset, nfactors, extraction="PCA", rotation="varimax", for
   }
   if (length(unique(colnames(dataset))) != nqsorts) stop("Q method input: one or more Q-sort names are duplicated. Please change the names of the dataset by using colnames().")
   if (rotation != "varimax") warning("Note that the rotation method selected is not standard in Q methodology publications.") # See discussion at https://github.com/aiorazabala/qmethod/issues/95
+  uncommon.rotations <- c("quartimax", "bentlerT", "geominT", "targetT", "bifactor", "TargetT", "equamax", "varimin", "specialT", "Promax", "promax", "cluster", "biquartimin", "specialQ")
   # Run the analysis
   cor.data <- cor(dataset, method=cor.method)
   if(extraction == "PCA") {
     loa <- unclass(principal(cor.data, nfactors=nfactors, rotate=rotation, ...)$loadings) #PCA from {psych} for factor loadings
-  }
+  } 
   if(extraction == "centroid") {
     loa.unr <- unclass(centroid(tmat=cor.data, nfactors=nfactors, spc))
-    loa <- unclass(varimax(loa.unr[,1:nfactors])$loadings)
-  }
+    if(rotation="none") { 
+      loa <- loa.unr
+    } if(rotation="varimax") { 
+      loa <- unclass(varimax(loa.unr[,1:nfactors])$loadings)
+    } else if(rotation %in% uncommon.rotations) {
+      stop("You have selected a rotation method that is not implemented for 'centroid' extraction within the 'qmethod()' wrapper. To use uncommon rotations with 'centroid' extraction, please run the 'centroid()' function manually. The help page 'help(centroid)' indicates how to run the full analysis step-by-step.")
+    }
   names(loa) <- paste0("f", 1:length(loa))
   # The following depends on the qmethod functions: qflag, qzscores, qfcharact, qdc
   flagged <- qflag(loa=loa, nstat=nstat)
