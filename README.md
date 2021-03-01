@@ -12,13 +12,20 @@ qmethod
 =======
 This R package performs the analysis of Q methodology data. See a [visual demo here](https://azabala.shinyapps.io/qmethod-gui/), and [more details in the wiki](https://github.com/aiorazabala/qmethod/wiki).
 
+[Q](http://qmethod.org/about) is a methodology to study the distinct perspectives existing within a group on a topic of interest. It is used across social, health, and environmental studies.
+
 You can install the stable version from [CRAN](http://cran.r-project.org/web/packages/qmethod/index.html):
 
 ```{r}
 install.packages('qmethod')
 ```
 
-[Q](http://qmethod.org/about) is a methodology to study the distinct perspectives existing within a group on a topic of interest. It is used across social, health, and environmental studies.
+To install the latest (not fully tested) version from [github](https://github.com/aiorazabala/qmethod):
+
+```{r}
+library(devtools)
+install_github("aiorazabala/qmethod")
+```
 
 To contribute, check out the [guidelines](https://github.com/aiorazabala/qmethod/blob/master/CONTRIBUTING.md).
 
