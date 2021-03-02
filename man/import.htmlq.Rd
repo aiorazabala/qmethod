@@ -5,7 +5,7 @@
 \usage{import.htmlq(filename, ...)}
 
 \arguments{
-  \item{filename}{a file with extension *.CSV (see full description of the file below in References).}
+  \item{filename}{a file with extension *.CSV, separated by ";" as done by default in HTMLQ (see full description of the file below in References).}
   \item{...}{further arguments to be passed to \code{\link[utils]{read.csv2}}.}
 }
 \details{

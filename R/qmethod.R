@@ -15,7 +15,7 @@ qmethod <- function(dataset, nfactors, extraction="PCA", rotation="varimax", for
   if (forced) {
     qscores <- sort(dataset[,1], decreasing=FALSE)
     if (sum(apply(dataset, 2, function(x) sort(x) != qscores)) > 0) stop("Q method input: The argument 'forced' is set as 'TRUE', but your data contains one or more Q-sorts that do not to follow the same distribution. 
- For details on how to solve this error, see 'help(qmethod)', including Note number 2.")
+ For details on how to solve this error, see 'help(qmethod)', including Note.")
   }
   if (!forced) {
     if (is.null(distribution)) stop("Q method input: The argument 'forced' is set as 'FALSE', but no distribution has been provided in the argument 'distribution'. 
@@ -41,7 +41,7 @@ qmethod <- function(dataset, nfactors, extraction="PCA", rotation="varimax", for
       stop("You have selected a rotation method that is not implemented for 'centroid' extraction within the 'qmethod()' wrapper. To use uncommon rotations with 'centroid' extraction, please run the 'centroid()' function manually. The help page 'help(centroid)' indicates how to run the full analysis step-by-step.")
     }
   }
-  names(loa) <- paste0("f", 1:length(loa))
+  colnames(loa) <- paste0("f", 1:ncol(loa))
   # The following depends on the qmethod functions: qflag, qzscores, qfcharact, qdc
   flagged <- qflag(loa=loa, nstat=nstat)
   qmethodresults <- qzscores(dataset, nfactors, flagged=flagged, loa=loa, forced=forced, distribution=distribution)

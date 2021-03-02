@@ -92,6 +92,9 @@
   Author of data management functions: \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}} and \code{\link{make.cards}}\cr
   \url{http://www.maxheld.de/}
 
+  Frans Hermans\cr 
+  Author of centroid function: \code{\link{centroid}}\cr
+  \url{https://www.researchgate.net/profile/Frans-Hermans-3}
 }
 \references{
 \itemize{

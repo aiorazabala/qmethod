@@ -2,7 +2,7 @@
 #based on Brown 1980: Political Subjectivity, pages 208-224.
 
 
-centroid <- function (tmat, nfactors = 7, spc = 0.005) 
+centroid <- function (tmat, nfactors = 7, spc = 10^-5) 
   #tmat is a correlation matrix
   #nfactors is number of components to extract. Warning: extracting more components than respondents is allowed!
   #spc is the threshold to accept factor results (in Brown this is set to 0.02)

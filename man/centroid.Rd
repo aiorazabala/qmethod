@@ -7,7 +7,7 @@
 \arguments{
   \item{tmat}{a correlation matrix between Q-sorts.}
   \item{nfactors}{number of factors/ components to extract. Defaults to 7.}
-  \item{spc}{the threshold to accept factor results, set to 0.005 by default (in Brown 1980, this is set to 0.02).}
+  \item{spc}{the threshold to accept factor results, set to 0.00001 by default (in Brown 1980, this is set to 0.02).}
 }
 
 \details{This functions implement the centroid method for extraction of factors, an alternative to Principal Components that can be used in Q methodology. The calculations are based in Brown (1980; below). 

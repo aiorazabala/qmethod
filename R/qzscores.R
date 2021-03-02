@@ -46,7 +46,8 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
   #D. FACTOR SCORES: rounded z-scores
   if (forced) {
     qscores <- sort(dataset[,1], decreasing=FALSE)
-    if (sum(apply(dataset, 2, function(x) sort(x) != qscores)) > 0) stop("Q method input: The argument 'forced' is set as 'TRUE', but your data contains one or more Q-sorts that do not to follow the same distribution.")
+    if (sum(apply(dataset, 2, function(x) sort(x) != qscores)) > 0) stop("Q method input: The argument 'forced' is set as 'TRUE', but your data contains one or more Q-sorts that do not to follow the same distribution. 
+ For details on how to solve this error, see 'help(qmethod)', including Note.")
   }
   if (!forced) {
     if (is.null(distribution)) stop("Q method input: The argument 'forced' is set as 'FALSE', but no distribution has been provided in the argument 'distribution'.")
