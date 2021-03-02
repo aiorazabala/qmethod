@@ -7,8 +7,8 @@
 \arguments{
   \item{dataset}{a matrix or a dataframe containing original data, with statements as rows, Q sorts as columns, and grid column values in each cell.}
   \item{nfactors}{number of factors extracted.}
-  \item{zsc}{a matrix with the factor z-scores for statements resulting from \code{\link{qzscores}}.}
-  \item{sed}{a matrix with the standard error of differences resulting from \code{\link{qfcharact}}.}
+  \item{zsc}{a matrix or a dataframe with the factor z-scores for statements resulting from \code{\link{qzscores}}.}
+  \item{sed}{a matrix or a dataframe with the standard error of differences resulting from \code{\link{qfcharact}}.}
 }
 
 \details{

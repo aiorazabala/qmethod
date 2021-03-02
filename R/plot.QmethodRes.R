@@ -46,8 +46,8 @@ Only a subset of all the factors is plotted (argument 'factors'), and filled mar
     pts <- pts[sta.order, ]
   }
   if (is.null(colours)) colours <- rainbow(length(dfr))
-  if (is.null(fnames) & names(x$zsc)[1] == "zsc_f1") fnames <- paste0("Factor ", factors)
-  if (is.null(fnames) & names(x$zsc)[1] != "zsc_f1") fnames <- names(x$zsc)
+  if (is.null(fnames) & colnames(x$zsc)[1] == "zsc_f1") fnames <- paste0("Factor ", factors)
+  if (is.null(fnames) & colnames(x$zsc)[1] != "zsc_f1") fnames <- colnames(x$zsc)
   dotchart(dfr[[factors[1]]], lcolor=grey(0.4),
            xlim=xlimits,
            ylab=ylab, xlab=xlab, axis=NULL,

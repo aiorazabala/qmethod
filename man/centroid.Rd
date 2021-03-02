@@ -56,7 +56,7 @@ results <- qzscores(lip, 3, loa=vmax$loadings, flagged=flags)
 summary(results)
 
 # Consensus and distinguishing statements
-results$qdc <- qdc(lip, 3, zsc=results$zsc, sed=as.data.frame(results$f_char$sd_dif))
+results$qdc <- qdc(lip, 3, zsc=results$zsc, sed=results$f_char$sd_dif)
 
 plot(results)
 

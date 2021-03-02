@@ -35,7 +35,7 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
   colnames(zsc_mea) <- paste("z_mea_",c(1:ncol(floa)),sep="")
   colnames(zsc_std) <- paste("z_std_",c(1:ncol(floa)),sep="")
   #-- z-scores for each statement
-  zsc <- data.frame(cbind(1:nstat))
+  zsc <- matrix(NA, ncol=nfactors, nrow=nstat)
   row.names(zsc) <- row.names(dataset)
   n <- 1
   while (n <= ncol(floa)) {
@@ -55,7 +55,7 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
     if (!is.numeric(distribution) & !is.integer(distribution)) stop("Q method input: The distribution provided contains non-numerical values.")
     qscores <- sort(distribution, decreasing=FALSE)
   }
-  zsc_n <- as.data.frame(zsc)
+  zsc_n <- as.matrix(zsc)
   f <- 1
   while (f <= ncol(floa)) {
     if (length(unique(zsc[,f])) == length(zsc[,f])) {
