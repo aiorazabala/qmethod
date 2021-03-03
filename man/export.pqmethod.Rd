@@ -20,9 +20,9 @@
 \details{
 Exports the raw data of a Q methodology study into the native format used in PQMethod. Returns a message with some basic information about the data.
 
-Note that no checks are made on the data, such as whether there are duplicated or non-forced Q-sorts.
+Note that \bold{no checks are made on the data}, such as whether there are duplicated or non-forced Q-sorts.
 
-This function is not applicable for non-forced distributions.
+This function is not applicable to non-forced distributions.
 
 }
 

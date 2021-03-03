@@ -36,11 +36,12 @@ export.qm <- function(qmobject, file, style = c("R", "PQMethod")) {
       print(round(qmobject$f_char[[2]], digits=4))
       # Factor Scores -- For Factor *
       cat("\n\nFactor Scores ", sep="\n")
-      nfactors <- length(qmobject$zsc_n)
+      nfactors <- ncol(qmobject$zsc_n)
       fsco <- as.list(1:nfactors)
+      zsc.df <- as.data.frame(qmobject$zsc)
       for (i in 1:nfactors) {
         names(fsco)[i] <- paste0("-- For Factor ", i)
-        fsco[[i]] <- round(qmobject$zsc[order(qmobject$zsc[i], decreasing=T), c(i, i)][1], digits=3)
+        fsco[[i]] <- round(zsc.df[order(zsc.df[i], decreasing=T), c(i, i)][1], digits=3)
       }
       print(fsco)
       # Descending Array of Differences Between Factors x and y
@@ -49,7 +50,7 @@ export.qm <- function(qmobject, file, style = c("R", "PQMethod")) {
       daf <- as.list(1:length(comparisons))
       for (i in 1:length(comparisons)) {
         names(daf)[i] <- paste(comparisons[[i]], collapse=" and ", sep="")
-        zsc <- qmobject$zsc[comparisons[[i]]]
+        zsc <- zsc.df[comparisons[[i]]]
         dif <- qmobject[[8]][c(names(qmobject[[8]])[grep(paste(paste(comparisons[[i]][1], comparisons[[i]][2], sep=".*"), paste(comparisons[[i]][2], comparisons[[i]][1], sep=".*"), sep="|"),names(qmobject[[8]]))],"dist.and.cons")]
         dad <- cbind(zsc, dif)
         daf[[i]] <- format(dad[order(dad[3], decreasing = T), ], digits=2)
@@ -60,8 +61,7 @@ export.qm <- function(qmobject, file, style = c("R", "PQMethod")) {
       print(qmobject$zsc_n)
       # Factor Q-Sort Values for Statements sorted by Consensus vs. Disagreement (Variance across Factor Z-Scores)
       cat("\n\nFactor Q-Sort Values for Statements sorted by Consensus vs. Disagreement (Variance across Factor Z-Scores)", sep="\n")
-      zsc <- qmobject$zsc
-      zsc.ord <- order(apply(zsc, 1, var))
+      zsc.ord <- order(apply(zsc.df, 1, var))
       print(qmobject$zsc_n[zsc.ord,])
       # Factor Characteristics
       cat("\n\nFactor Characteristics", sep="\n")
@@ -80,12 +80,11 @@ export.qm <- function(qmobject, file, style = c("R", "PQMethod")) {
       # Distinguishing Statements for Factor *
       cat("\n\nDistinguishing Statements ", sep="\n")
       dc <- qmobject$qdc
-      zsc <- qmobject$zsc
       dsf <- as.list(1:nfactors)
       for (i in 1:nfactors) {
         names(dsf)[i] <- paste0("for Factor ", i)
         d <- grep(paste0("f",i, "|all"), dc$dist.and.cons)
-        dsf[[i]] <- cbind(round(zsc[d, ], digits=2),dc[d, c(1,1+(2*(1:length(comparisons))))])
+        dsf[[i]] <- cbind(round(zsc.df[d, ], digits=2),dc[d, c(1,1+(2*(1:length(comparisons))))])
       }
       print(dsf)
       # Consensus Statements  --  Those That Do Not Distinguish Between ANY Pair of Factors.

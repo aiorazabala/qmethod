@@ -16,7 +16,7 @@ Only a subset of all the factors is plotted (argument 'factors'), and filled mar
     warning("The numbers of factors provided are beyond the number of factors in the object of results. The default factors will be plotted.")
     factors <- c(1:x$brief$nfactors)
   }
-  dfr <- x$zsc
+  dfr <- data.frame(x$zsc)
   lowlim <- floor(min(dfr[[1]]))
   highlim <- ceiling(max(dfr))
   if (is.null(xlim)) {

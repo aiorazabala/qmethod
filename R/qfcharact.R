@@ -1,6 +1,8 @@
-qfcharact <- function(loa, flagged, zsc, nfactors, floa, av_rel_coef=0.8) {
+qfcharact <- function(loa, flagged, zsc, nfactors, av_rel_coef=0.8) {
   nqsorts <- nrow(loa)
   loa_sq <- loa^2
+  #select FLAGGED Q sorts
+  floa <- flagged*loa
   #number of loading q-sorts
   nload <- colSums(flagged)
   #Eigenvalues
@@ -10,7 +12,7 @@ qfcharact <- function(loa, flagged, zsc, nfactors, floa, av_rel_coef=0.8) {
   #Reliability
   reliability <- av_rel_coef*nload/(1+(nload-1)*av_rel_coef)
   #Standard Error of Factor Scores
-  se_fscores <- sapply(as.data.frame(zsc), sd)*sqrt(1-reliability)
+  se_fscores <- apply(zsc, 2, sd)*sqrt(1-reliability)
   #FACTOR MATRIXES
   #correlation among factors
   f_cor <- cor(zsc)

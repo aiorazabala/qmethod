@@ -74,7 +74,7 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
   }
   colnames(zsc_n) <- paste("fsc_f",c(1:ncol(floa)),sep="")
   #E. FACTOR CHARACTERISTICS
-  f_char <- qfcharact(loa, flagged, zsc, nfactors, floa)
+  f_char <- qfcharact(loa, flagged, zsc, nfactors)
   #F. FINAL OUTPUTS
   brief <- list()
   brief$date        <- date()

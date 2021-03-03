@@ -46,3 +46,14 @@ plot(results, main = title, sub = subtitle,
      sort.items = c(rev(1:nrow(results$zsc))))
 }
 \keyword{plot}
+
+\note{
+The names of items to be plotted are taken from the matrix \code{x$zsc}.
+
+To change these names, change the row names in that matrix first, e.g.:
+\code{rownames(x$zsc) <- vector.of.item.names}.
+
+If the margin width is not enough to read the items, specify \code{par(mai=...)} first. See \code{\link[graphics]{par}} for details.
+
+
+}

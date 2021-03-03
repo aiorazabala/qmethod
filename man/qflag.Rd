@@ -30,8 +30,8 @@ See further references on the methodology in \code{\link{qmethod-package}}.}
 \examples{
 data(lipset)
 library(psych)
-loa <- as.data.frame(unclass(principal(lipset[[1]], nfactors = 3, 
-                                       rotate = "varimax")$loadings))
+loa <- unclass(principal(lipset[[1]], nfactors = 3,
+               rotate = "varimax")$loadings)
 flagged <- qflag(loa = loa, nstat = nrow(lipset[[1]]))
 summary(flagged)
 }

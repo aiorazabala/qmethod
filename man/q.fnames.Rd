@@ -23,6 +23,6 @@ Returns the object \code{results} of class \code{QmethodRes}, with the new facto
 data(lipset)
 results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax")
 factor.names <- c("good", "bad", "ugly") 
-results2 <- q.fnames(results, fnames = factor.names)
-results #shows all results
+results.renamed <- q.fnames(results, fnames = factor.names)
+results.renamed #shows all results
 }

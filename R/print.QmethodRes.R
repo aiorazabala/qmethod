@@ -16,21 +16,27 @@ print.QmethodRes <- function(x, length=10, digits=2, ...) {
   for (i in nxt) {
     cat("\n")
     cat(nl[i], ":\n")
-    print(format(x[[i]][1:dimsorts, ], scientific=F))
+    print(x[[i]][1:dimsorts, ])
     if (dimsorts < x$brief$nqsorts) cat(" (...) See item '...$", i, "' for the full data.\n", sep="")
   }
-  nxt <- c("zsc", "zsc_n")
-  for (i in nxt) {
-    cat("\n")
-    cat(nl[i], ":\n")
-    print(format(x[[i]][1:dimstats, ], scientific=F))
-    if (dimstats < x$brief$nstat) cat(" (...) See item '...$", i, "' for the full data.\n", sep="")
-  }
+
+  cat("\n")
+  cat(nl["zsc"], ":\n")
+  print(round(x[["zsc"]][1:dimstats, ], digits=2))
+  if (dimstats < x$brief$nstat) cat(" (...) See item '...$", "zsc", "' for the full data.\n", sep="")
+  
+  cat("\n")
+  cat(nl["zsc_n"], ":\n")
+  print(x[["zsc_n"]][1:dimstats, ])
+  if (dimstats < x$brief$nstat) cat(" (...) See item '...$", "zsc_n", "' for the full data.\n", sep="")
+  
+  
+  
   cat("\n", nl[7], ":\n", sep="")
   fcl <- c("   General factor characteristics:", "   Correlation between factor z-scores:", "   Standard error of differences between factors:")
   for (i in 1:length(x$f_char)) {
     cat(fcl[[i]], "\n")
-    print(x$f_char[[i]])
+    print(round(x$f_char[[i]], digits=2))
     cat("\n")
   }
   if (ll == 8) {
