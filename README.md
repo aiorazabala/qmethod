@@ -10,7 +10,7 @@ checks](https://cranchecks.info/badges/worst/qmethod)](https://cranchecks.info/p
 
 qmethod
 =======
-This R package performs the analysis of Q methodology data. See a [visual demo here](https://azabala.shinyapps.io/qmethod-gui/), and [more details in the wiki](https://github.com/aiorazabala/qmethod/wiki).
+This R package performs the analysis of Q methodology data. See a [visual demo here](https://github.com/aiorazabala/qmethod/wiki/Graphical-user-interface-for-qmethod-(beta)), and [more details in the wiki](https://github.com/aiorazabala/qmethod/wiki).
 
 [Q](http://qmethod.org/about) is a methodology to study the distinct perspectives existing within a group on a topic of interest. It is used across social, health, and environmental studies.
 
