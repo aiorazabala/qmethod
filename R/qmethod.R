@@ -1,4 +1,4 @@
-qmethod <- function(dataset, nfactors, extraction="PCA", rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson", silent=FALSE, spc=0.005, ...) {
+qmethod <- function(dataset, nfactors, extraction="PCA", rotation="varimax", forced=TRUE, distribution=NULL, cor.method="pearson", silent=FALSE, spc= 10^-5, ...) {
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
