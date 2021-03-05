@@ -1,8 +1,12 @@
 qdc.zsc <- function(results) {
-# Extract the scores of distinguishing statements from an object of class QmethodRes
+  # Extract the scores of distinguishing statements from an object of class QmethodRes
   nstat <- results$brief$nstat
   nfactors <- results$brief$nfactors
   zsc <- results$zsc
+  if (sum(is.na(colSums(zsc)))>0) {
+    zsc <- results$zsc[,!is.na(colSums(zsc))>0]
+    nfactors <- sum(!is.na(colSums(zsc)))
+  }
   dac <- results$qdc$dist.and.cons
   names(dac) <- rownames(results$qdc)
   qdc.zsc <- matrix(NA, nrow=nrow(zsc), ncol=ncol(zsc), dimnames=dimnames(zsc))
@@ -10,6 +14,11 @@ qdc.zsc <- function(results) {
   # Find which are the distinguishing statements
   for (i in 1:nfactors) {
     qdc.zsc[grep(paste0("all|f", i), dac), i] <- zsc[grep(paste0("all|f", i), dac), i]
+  }
+  if (nfactors==2) {
+    for (i in 1:nfactors) {
+      qdc.zsc[grep("Distinguishing", dac), i] <- zsc[grep("Distinguishing", dac), i]
+    }
   }
   return(qdc.zsc)
 }

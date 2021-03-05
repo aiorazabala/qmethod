@@ -1,8 +1,12 @@
 qdc <- function(dataset, nfactors, zsc, sed) {
   zsc <- as.data.frame(zsc)
   sed <- as.data.frame(sed)
-  if (nfactors==1) {
-    qdc.res <- "Warning: Only one factor selected. No distinguishing and consensus statements will be calculated."
+  if (sum(is.na(colSums(zsc)))>0) warning("Q analysis: Comparisons for distinguishing and consensus statements exclude the factor(s) for which there were no flags.")
+  if (sum(is.na(colSums(zsc)))>0 & !is.na(sum(zsc[,nfactors]))) stop("In addition, the factor without flags is not the last one. The distinguishing and consensus analysis cannot continue. You may run the full analysis manually: cor(db), then extraction and rotation, and qzscores(), skipping qdc().")
+    # Exclude the factor that has no flags
+    nfactors <- nfactors-sum(is.na(colSums(zsc))>0)
+    if (nfactors==1) {
+    qdc.res <- "Q analysis: Only one factor selected. No distinguishing and consensus statements will be calculated."
     warning(qdc.res)
   } else {
     # Distinguishing and consensus statements
@@ -15,11 +19,11 @@ qdc <- function(dataset, nfactors, zsc, sed) {
     qdc1 <- data.frame(matrix(data=as.numeric(NA), ncol=length(comp), nrow=nrow(dataset), dimnames=list(row.names(dataset), comp)))
     # differences in zsc between factors
     for (n in 1:length(comp)) {
-      first <-  names(zsc)[grep(paste0("f", comparisons[[n]][1], "$"), 
-                                names(zsc))]
-      second <- names(zsc)[grep(paste0("f", comparisons[[n]][2], "$"), 
-                                names(zsc))]
-      qdc1[n] <- zsc[first] - zsc[second]
+      first <-  colnames(zsc)[grep(paste0("f", comparisons[[n]][1], "$"), 
+                                colnames(zsc))]
+      second <- colnames(zsc)[grep(paste0("f", comparisons[[n]][2], "$"), 
+                                colnames(zsc))]
+      qdc1[n] <- zsc[,first] - zsc[,second]
     }
     qdc2 <- as.data.frame(qdc1)
     # significant differences

@@ -5,7 +5,7 @@
 \usage{
 qmethod(dataset, nfactors, extraction = "PCA", rotation = "varimax", 
         forced = TRUE, distribution = NULL, cor.method = "pearson",
-        silent = FALSE, spc = 0.005, ...)}
+        silent = FALSE, spc = 10^-5, ...)}
 
 \arguments{
   \item{dataset}{a matrix or a data frame containing original data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell. The matrix or data frame should not contain character strings. The results keep row names and column names if set in the \code{dataset} (see 'Details').}

@@ -1,5 +1,8 @@
 #calculates final z-scores and factor scores, and extracts main results for Q method
 qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distribution = NULL) {    
+  # Validation checks
+  if (0 %in% colSums(flagged)) warning("Q analysis: One or more of the factors extracted have no flagged Q-sorts and no statement calculations can be made on that specific factor. 
+Inspect the 'loa' and 'flagged' tables carefully to see if you missed any flag.")
   # calculate number of Q sorts and number of statements
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)
@@ -39,7 +42,7 @@ qzscores <- function(dataset, nfactors, loa, flagged, forced = TRUE, distributio
   row.names(zsc) <- row.names(dataset)
   n <- 1
   while (n <= ncol(floa)) {
-    zsc[,n] <- (zsc_sum[,n]-zsc_mea[,n])/zsc_std[,n]
+    if(sum(flagged[,n]) == 0) {} else {zsc[,n] <- (zsc_sum[,n]-zsc_mea[,n])/zsc_std[,n]}
     n <- n+1
   }
   colnames(zsc) <- paste("zsc_f",c(1:ncol(floa)),sep="")

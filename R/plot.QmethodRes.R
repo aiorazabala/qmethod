@@ -16,7 +16,12 @@ Only a subset of all the factors is plotted (argument 'factors'), and filled mar
     warning("The numbers of factors provided are beyond the number of factors in the object of results. The default factors will be plotted.")
     factors <- c(1:x$brief$nfactors)
   }
-  dfr <- data.frame(x$zsc)
+dfr <- data.frame(x$zsc)
+# For the rare case where one factor didn't have flags
+if (sum(is.na(colSums(x$zsc)))>0) {
+  dfr <- data.frame(x$zsc[,!is.na(colSums(x$zsc))])
+  factors <- 1:ncol(dfr)
+}
   lowlim <- floor(min(dfr[[1]]))
   highlim <- ceiling(max(dfr))
   if (is.null(xlim)) {
@@ -46,8 +51,8 @@ Only a subset of all the factors is plotted (argument 'factors'), and filled mar
     pts <- pts[sta.order, ]
   }
   if (is.null(colours)) colours <- rainbow(length(dfr))
-  if (is.null(fnames) & colnames(x$zsc)[1] == "zsc_f1") fnames <- paste0("Factor ", factors)
-  if (is.null(fnames) & colnames(x$zsc)[1] != "zsc_f1") fnames <- colnames(x$zsc)
+  if (is.null(fnames) & colnames(dfr)[1] == "zsc_f1") fnames <- paste0("Factor ", factors)
+  if (is.null(fnames) & colnames(dfr)[1] != "zsc_f1") fnames <- colnames(dfr)
   dotchart(dfr[[factors[1]]], lcolor=grey(0.4),
            xlim=xlimits,
            ylab=ylab, xlab=xlab, axis=NULL,
@@ -78,3 +83,4 @@ Only a subset of all the factors is plotted (argument 'factors'), and filled mar
            bty="n")
   }
 }
+
