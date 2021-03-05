@@ -25,7 +25,7 @@ qmethod <- function(dataset, nfactors, extraction="PCA", rotation="varimax", for
   }
   if (length(unique(colnames(dataset))) != nqsorts) stop("Q method input: one or more Q-sort names are duplicated. Please change the names of the dataset by using colnames().")
   if (rotation != "varimax") warning("Note that the rotation method selected is not standard in Q methodology publications.") # See discussion at https://github.com/aiorazabala/qmethod/issues/95
-  uncommon.rotations <- c("quartimax", "bentlerT", "geominT", "targetT", "bifactor", "TargetT", "equamax", "varimin", "specialT", "Promax", "promax", "cluster", "biquartimin", "specialQ")
+  uncommon.rotations <- c("quartimax", "bentlerT", "geominT", "targetT", "bifactor", "TargetT", "equamax", "varimin", "specialT", "Promax", "promax", "cluster", "biquartimin", "specialQ", "oblimin", "simplimax")
   # Run the analysis
   cor.data <- cor(dataset, method=cor.method)
   if(extraction == "PCA") {
