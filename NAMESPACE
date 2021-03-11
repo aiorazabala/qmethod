@@ -4,7 +4,8 @@ import("methods",
        "digest",
        "tools",
        "xtable",
-       "knitr")
+       "knitr",
+       "shiny")
 export("qmethod",
        "qzscores",
        "qflag",
@@ -31,7 +32,8 @@ export("qmethod",
        "qfsi",
        "qbstep",
        "loa.and.flags",
-       "centroid")
+       "centroid",
+       "runInterface")
 importFrom("grDevices", "grey", "rainbow", "gray")
 importFrom("graphics", "abline", "axis", "dotchart", "points", "legend", "mtext", "segments")
 importFrom("stats", "cor", "dnorm", "na.omit", "qnorm", "quantile", "sd", "var", "varimax")

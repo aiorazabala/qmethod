@@ -73,6 +73,7 @@ Inspect the 'loa' and 'flagged' tables carefully to see if you missed any flag."
         zsc_n[izscn,f] <- min(zsc_n[izscn,f])
       }
     }
+    if (sum(!is.na(zsc[,f])) == 0) zsc_n[,f] <- rep(NA, length(zsc_n[,f]))
     f <- f+1
   }
   colnames(zsc_n) <- paste("fsc_f",c(1:ncol(floa)),sep="")
