@@ -64,33 +64,26 @@ results #shows all results
 }
 
 
-\note{
+\section{Note about non-forced distribution studies}{
 The forced/ non-forced distribution (argument \code{forced}) refers to whether respondents were able to sort the items freely or they had to fit them in the distribution (i.e. the pyramid). If the \code{qmethod} function returns the following error: \code{"Q method input: The argument 'forced' is set as 'TRUE', but ..."} and you are unsure of how to solve it, continue reading. 
 
-First, ensure that the data are correctly introduced (typos in the numbers entered would make a forced distribution data appear as non-forced). 
+First, ensure that the data are correctly introduced. For example, typos in the numbers entered result from forced distribution Q-sorts appearing as non-forced. 
 
-Second, if you data are indeed non-forced, set the argument \code{"forced = FALSE"} and specify the argument \code{"distribution = ..."}. For the argument \code{"distribution"}, specify a numerical vector with as many elements as there are cells in your original distribution, and with the values of the columns. Repeat the values of the column as many times as there are cells in that column. For example, for the distribution shown in Figure 1 in \href{https://journal.r-project.org/archive/2014-2/zabala.pdf}{this paper at \emph{The R Journal}}, the argument \code{distribution} should be:
-\code{c(-4, -4,
- -3, -3, -3,
- -2, -2, -2, -2, 
- -1, -1, -1, -1, -1, 
-  0,  0,  0,  0,  0,
-  1,  1,  1,  1,  1, 
-  2,  2,  2,  2,
-  3,  3,  3,
-  4,  4 )}
+Second, if you data are indeed non-forced, set the argument \code{"forced = FALSE"} and specify the argument \code{"distribution = ..."}. For the argument \code{"distribution"}, specify a numerical vector with as many elements as there are cells in your original distribution (i.e. as many items in the Q-set), and with the values of the columns. Repeat the values of each column as many times as there are cells in that column. For example, for the distribution shown in Figure 1 in \href{https://journal.r-project.org/archive/2014-2/zabala.pdf}{this paper at \emph{The R Journal}}, the argument \code{distribution} should be:
+\preformatted{c(-4, -4,
+  -3, -3, -3,
+  -2, -2, -2, -2, 
+  -1, -1, -1, -1, -1, 
+   0,  0,  0,  0,  0,
+   1,  1,  1,  1,  1, 
+   2,  2,  2,  2,
+   3,  3,  3,
+   4,  4 )}
 
 Or alternatively (a different way of getting the same vector):
-\code{c(rep(-4, 2),
-rep(-3, 3), 
- rep(-2, 4), 
- rep(-1, 5), 
- rep( 0, 5), 
- rep( 1, 5), 
- rep( 2, 4), 
- rep( 3, 3), 
- rep( 4, 2))
-  }
+\preformatted{c(rep(-4, 2), rep(-3, 3), rep(-2, 4), rep(-1, 5), rep( 0, 5), rep( 1, 5), rep( 2, 4), rep( 3, 3), rep( 4, 2)) }
+
+If you don't want to specify a given distribution, you can specify \code{distribution = c(1:nrow(dataset)} and then ignore the factor scores in the output of results.
   
-IMPORTANT: The arguments \code{forced} and  \code{distribution} are relevant only for the calculation of factor (normalised) scores. All other values in the results (e.g. z-scores) are unaffected by these specifications. If in doubt, best to interpret the z-scores instead of the factor scores.
+\strong{IMPORTANT}: The arguments \code{forced} and  \code{distribution} are relevant only for the calculation of factor (normalised) scores. All other values in the results (e.g. z-scores) are unaffected by these specifications. \strong{If in doubt in a study with non-forced distribution, best to interpret the z-scores instead of the factor scores}.
 }
