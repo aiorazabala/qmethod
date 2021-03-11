@@ -34,7 +34,7 @@
        \item Complete concourses (\code{\link{import.q.concourse}})
        \item Item samples (\code{\link{build.q.set}})
     }
-    \item An interactive Graphical User Interface with the basic functionality (\code{\link{runInterface()}})
+    \item An interactive Graphical User Interface with the basic functionality (\code{\link{runInterface}})
   }
   Use \code{help(package="qmethod")} for a list of all the functions.
    \subsection{Terminology}{
