@@ -1,7 +1,7 @@
 \name{qmethod}
 \alias{qmethod}
 \title{Q methodology analysis}
-\description{This function performs a full Q method analysis using either principal components analysis or centroid factor extraction (see Notes). The main results are factor characteristics, statement z-scores and factor scores, and distinguishing and consensus statements.}
+\description{This function performs a full Q methodology analysis using either principal components analysis or centroid factor extraction. The main results are factor characteristics, statement z-scores and factor scores, and distinguishing and consensus statements.}
 \usage{
 qmethod(dataset, nfactors, extraction = "PCA", rotation = "varimax", 
         forced = TRUE, distribution = NULL, cor.method = "pearson",
@@ -12,7 +12,7 @@ qmethod(dataset, nfactors, extraction = "PCA", rotation = "varimax",
   \item{nfactors}{number of factors to extract.}
   \item{extraction}{extraction method, defaults to \code{"PCA"}, Principal Components Analysis. The \code{"centroid"} extraction is also allowed.}
   \item{rotation}{rotation method, defaults to \code{"varimax"}. Other possible rotations allowed in \code{\link[psych]{principal}} function can be used: \code{"none"}, \code{"varimax"}, \code{"quartimax"}, \code{"promax"}, \code{"oblimin"}, \code{"simplimax"}, and \code{"cluster"}, although only 'varimax' and manual rotation are standard in Q methodology.}
-  \item{forced}{logical; Is the ranking of the items forced to match the distributions? Set to \code{TRUE} if all respondents ranked the items strictly following the distribution scores, in which case the values of the distribution are calculated automatically. Set to \code{FALSE} if respondents were able to rank the items without following the distribution, and the values of the distribution have to be provided as an array in the argument \code{distribution}. See more details below in 'Notes' number 2.}
+  \item{forced}{logical; Is the ranking of the items forced to match the distributions? Set to \code{TRUE} if all respondents ranked the items strictly following the distribution scores, in which case the values of the distribution are calculated automatically. Set to \code{FALSE} if respondents were able to rank the items without following the distribution, and the values of the distribution have to be provided as an array in the argument \code{distribution}. See more details below in 'Notes'.}
 \item{distribution}{logical; when forced = \code{FALSE}, the distribution has to be provided as a vector of numbers, such as \code{c(-2, -1, -1, 0, 1, 1, 2, 2)}. See more details below in 'Notes' number 2.}
 \item{cor.method}{character string indicating which correlation coefficient is to be computed, to be passed on to the function \code{\link[stats]{cor}}: \code{"pearson"} (default), \code{"kendall"}, or \code{"spearman"}. }
 \item{silent}{logical; when = \code{TRUE}, a summary message is printed.}
