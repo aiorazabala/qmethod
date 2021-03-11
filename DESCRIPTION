@@ -7,11 +7,11 @@ Authors@R: c(person(given="Aiora", family="Zabala", comment=c("Main author", ORC
              person(given="Frans", family="Hermans", comment="Author of centroid extraction function", email="Hermans@iamo.de", role=c("aut"))
             )
 Description: Analysis of Q methodology, used to identify distinct perspectives existing within a group.
-  This methodology is used across social, health and environmental sciences to understand diversity of attitudes, discourses, or decision-making styles (for more information, see <http://qmethod.org>).
+  This methodology is used across social, health and environmental sciences to understand diversity of attitudes, discourses, or decision-making styles (for more information, see http://qmethod.org).
   A single function runs the full analysis. Each step can be run separately using the corresponding functions: for automatic flagging of Q-sorts (manual flagging is optional), for statement scores, for distinguishing and consensus statements, and for general characteristics of the factors.
   Additional functions are available to import and export data, to print and plot, to import raw data from individual *.CSV files, and to make printable cards.
   The package also offers functions to print Q cards and to generate Q distributions for study administration.
-  The package uses principal components and it allows manual or automatic flagging, a number of mathematical methods for rotation, and a number of correlation coefficients for the initial correlation matrix.
+  The package allows to choose either principal components or centroid factor extraction, manual or automatic flagging, a number of mathematical methods for rotation, and a number of correlation coefficients for the initial correlation matrix, among many other options.
   See further details in the package documentation, and in the web pages below, which include a cookbook, guidelines for more advanced analysis (how to perform manual flagging or change the sign of factors), data management, and a beta graphical user interface for online and offline use.
 License: GPL (>= 2)
 Imports:

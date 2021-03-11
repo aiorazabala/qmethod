@@ -1,7 +1,7 @@
 \name{qmethod}
 \alias{qmethod}
 \title{Q methodology analysis}
-\description{This function performs a full Q method analysis using principal components analysis (see Notes). The main results are factor characteristics, statement z-scores and factor scores, and distinguishing and consensus statements.}
+\description{This function performs a full Q method analysis using either principal components analysis or centroid factor extraction (see Notes). The main results are factor characteristics, statement z-scores and factor scores, and distinguishing and consensus statements.}
 \usage{
 qmethod(dataset, nfactors, extraction = "PCA", rotation = "varimax", 
         forced = TRUE, distribution = NULL, cor.method = "pearson",
@@ -65,7 +65,11 @@ results #shows all results
 
 
 \note{
-The forced/ non-forced distribution (argument \code{forced}) refers to whether respondents were able to sort the items freely or they had to fit them in the distribution (i.e. the pyramid). If the \code{qmethod} function returns the following error: \code{"Q method input: The argument 'forced' is set as 'TRUE', but ..."} and you are unsure of how to solve it, continue reading. First, ensure that the data are correctly introduced (typos in the numbers entered would make a forced distribution data appear as non-forced). Second, if you data are indeed non-forced, set the argument \code{"forced = FALSE"} and specify the argument \code{"distribution = ..."}. For the argument \code{"distribution"}, specify a numerical vector with as many elements as there are cells in your original distribution, and with the values of the columns. Repeat the values of the column as many times as there are cells in that column. For example, for the distribution shown in Figure 1 in \href{https://journal.r-project.org/archive/2014-2/zabala.pdf}{this paper at \emph{The R Journal}}, the argument \code{distribution} should be:
+The forced/ non-forced distribution (argument \code{forced}) refers to whether respondents were able to sort the items freely or they had to fit them in the distribution (i.e. the pyramid). If the \code{qmethod} function returns the following error: \code{"Q method input: The argument 'forced' is set as 'TRUE', but ..."} and you are unsure of how to solve it, continue reading. 
+
+First, ensure that the data are correctly introduced (typos in the numbers entered would make a forced distribution data appear as non-forced). 
+
+Second, if you data are indeed non-forced, set the argument \code{"forced = FALSE"} and specify the argument \code{"distribution = ..."}. For the argument \code{"distribution"}, specify a numerical vector with as many elements as there are cells in your original distribution, and with the values of the columns. Repeat the values of the column as many times as there are cells in that column. For example, for the distribution shown in Figure 1 in \href{https://journal.r-project.org/archive/2014-2/zabala.pdf}{this paper at \emph{The R Journal}}, the argument \code{distribution} should be:
 \code{c(-4, -4,
  -3, -3, -3,
  -2, -2, -2, -2, 

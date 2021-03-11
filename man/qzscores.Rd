@@ -8,13 +8,13 @@
 \arguments{
   \item{dataset}{a matrix or a data frame containing raw data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell.}
   \item{nfactors}{number of factors to extract.}
-  \item{loa}{matrix or data frame of \code{nqsorts} rows and \code{nfactors} columns, with values of factor loadings for Q-sorts, calculated using, e.g., \code{principal(...)$loadings}.}
+  \item{loa}{matrix or data frame of \code{nqsorts} rows and \code{nfactors} columns, with values of factor loadings for Q-sorts, calculated using, e.g., \code{principal(...)$loadings} or \code{\link{centroid}}.}
   \item{flagged}{matrix or data frame of \code{nqsorts} rows and \code{nfactors} columns, with \code{TRUE} values for the Q-sorts that are flagged. Automatic flagging can be aplied using \code{\link{qflag}}. Manual flagging can be done by providing a logical matrix with \code{nqsorts} rows and \code{nfactors} columns to the argument \code{flagged}.}
   \item{forced}{logical; Is the distribution of items forced? Set to \code{TRUE} if all respondents ranked the items following strictly the distribution scores, and the values of the distribution are calculated automatically. Set to \code{FALSE} if respondents were able to rank the items without following the distribution, and the values of the distribution have to be provided as an array in the argument \code{distribution}.}
   \item{distribution}{logical; when \code{forced = FALSE}, the distribution has to be provided as a vector of numbers, such as \code{c(-2, -1, -1, 0, 1, 1, 2, 2)}.}
 }
 
-\details{In order to implement manual flagging, use a manually created data frame for \code{flagged}. See an example of code to perform manual flagging or to manipulate the loadings in \url{https://github.com/aiorazabala/qmethod/wiki/Advanced-analysis}.
+\details{In order to implement manual flagging, use a manually created data frame (or matrix) for \code{flagged}. See an example of code to perform manual flagging or to manipulate the loadings in \url{https://github.com/aiorazabala/qmethod/wiki/Advanced-analysis}.
 
 The loadings from \code{principal(...)$loadings} can be explored to decide upon flagging. The \code{loa} data frame should have Q-sorts as rows, and factors as columns, where \code{TRUE} are the flagged Q-sorts.}
 \value{

@@ -8,9 +8,9 @@
 	It is used across social, health, and environmental studies.
 	See the references below for more details about the methodology.
 
-  This package performs the analysis of Q methodology data using principal components analysis, varimax rotation (replaceable by other rotations allowed in \code{\link[psych]{principal}}), and automatic flagging (manual flagging is optional).
+  This package performs the analysis of Q methodology data (both forced and non-forced distributions). The user can choose the extraction method (principal components analysis or centroid factor extraction) and the rotation method (none, varimax or other rotations, uncommon in Q but implemented via \code{\link[psych]{principal}}). The default analysis conducts automatic flagging, and manual flagging is optional.
 
-  The following steps of the analysis correspond to separate functions: factor loadings for Q-sorts, automatic flagging of Q-sorts (\code{\link{qflag}}), z-scores and factor scores for statements (\code{\link{qzscores}}), distinguishing and consensus statements (\code{\link{qdc}}), and general characteristics of the factors (\code{\link{qfcharact}}).
+  The following steps of the analysis correspond to separate functions: automatic flagging of Q-sorts (\code{\link{qflag}}), z-scores and factor scores for statements (\code{\link{qzscores}}), distinguishing and consensus statements (\code{\link{qdc}}), and general characteristics of the factors (\code{\link{qfcharact}}).
   The function \code{\link{qmethod}} wraps them all.
 
   The functions for each step may be used separately for advanced analysis, for example, for manual flagging (see details in \code{\link{qzscores}}).
@@ -18,9 +18,14 @@
   The package also includes additional functions for the following:
 
   \itemize{
-    \item Import data from PQMethod software (\code{\link{import.pqmethod}}), and from both HTMLQ and FlashQ (\code{\link{import.htmlq}}).
+    \item Import data from \href{http://schmolck.org/qmethod/}{PQMethod software} (\code{\link{import.pqmethod}}), and from both \href{https://github.com/aproxima/htmlq}{HTMLQ} and FlashQ (\code{\link{import.htmlq}}) tools for online data collection of Q-sorts.
     \item Export a plain-text report of the analysis for interpretation in two flavours (\code{\link{export.qm}}).
-    \item Generic methods to \code{\link{print.QmethodRes}} and \code{\link{plot.QmethodRes}} Q method results.
+    \item Generic methods to \code{\link{print.QmethodRes}} and \code{\link{plot.QmethodRes}} Q method results. The specific dotchart visualisation of Q results in \code{\link{plot.QmethodRes}} was first developed and introduced in this package, in preparation for the study published in \href{Zabala et al. (2017)}{https://doi.org/10.1016/j.ecolecon.2017.01.011}.  
+    \item Functions to explore the analysis and facilitate interpretation:
+    \itemize{
+       \item {explore automatic pre-flagging,  (\code{\link{loa.and.flags}})} 
+       \item {to rename the factors in the results, with short, meaningful names (\code{\link{q.fnames}}).}
+    }
     \item Generate printable cards for the administration of a Q study. The function \code{\link{make.cards}} produces a PDF with full item wording and codes, ready for printout on business card templates that can be easily broken into individual Q-cards.
     \item Several functions to aid reproducible research, by importing the following from raw, separate *.CSV or *.TEX files for each respondent or item:
     \itemize{
@@ -29,7 +34,7 @@
        \item Complete concourses (\code{\link{import.q.concourse}})
        \item Item samples (\code{\link{build.q.set}})
     }
-    \item A function to rename the factors in the results, with short, meaningful names (\code{\link{q.fnames}}).
+    \item An interactive Graphical User Interface with the basic functionality (\code{\link{runInterface()}})
   }
   Use \code{help(package="qmethod")} for a list of all the functions.
    \subsection{Terminology}{
@@ -114,4 +119,5 @@ data(lipset)
 results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax")
 summary(results)
 results
+plot(results)
 }
