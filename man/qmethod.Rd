@@ -54,9 +54,7 @@ See further references on the methodology in \code{\link{qmethod-package}}.}
 \author{Aiora Zabala}
 
 \seealso{
-\code{\link{qzscores}}
-\code{\link{centroid}}
-\code{\link[psych]{principal}} in package \pkg{psych}
+\code{\link{qzscores}} and \code{\link{centroid}} in this package, and \code{\link[psych]{principal}} in package \pkg{psych}.
 }
 \examples{
 data(lipset)
