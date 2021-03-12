@@ -16,10 +16,10 @@
 
 \details{In order to implement manual flagging, use a manually created data frame (or matrix) for \code{flagged}. See an example of code to perform manual flagging or to manipulate the loadings in \url{https://github.com/aiorazabala/qmethod/wiki/Advanced-analysis}.
 
-The loadings from \code{principal(...)$loadings} can be explored to decide upon flagging. The \code{loa} data frame should have Q-sorts as rows, and factors as columns, where \code{TRUE} are the flagged Q-sorts.}
+The loadings from \code{principal(...)$loadings} or \code{centroid} can be explored to decide upon flagging. The \code{loa} data frame should have Q-sorts as rows, and factors as columns, where \code{TRUE} are the flagged Q-sorts.}
 \value{
 Returns a list of class \code{QmethodRes}, with seven objects:
-\item{brief}{a list with the basic values of the analysis: date (\code{"date"}), number of statements (\code{"nstat"}), number of Q-sorts (\code{"nqsort"}), whether the distribution was 'forced' (\code{"distro"}),  number of factors extracted (\code{"nfactors"}), type or rotation (\code{"rotation"}), method for correlation in the PCA (\code{"cor.method"}), and a summary of this information for display purposes (\code{"info"}).}
+\item{brief}{a list with the basic values of the analysis: date (\code{"date"}), number of statements (\code{"nstat"}), number of Q-sorts (\code{"nqsort"}), whether the distribution was 'forced' (\code{"distro"}),  number of factors extracted (\code{"nfactors"}), type of extraction (\code{"extraction"}), type of rotation (\code{"rotation"}), method for correlation (\code{"cor.method"}), and a summary of this information for display purposes (\code{"info"}).}
 \item{dataset}{original data.}
 \item{loa}{factor loadings for Q-sorts.}
 \item{flagged}{logical dataframe of flagged Q-sorts.}

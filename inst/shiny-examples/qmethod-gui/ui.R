@@ -16,7 +16,7 @@ shinyUI(fluidPage(
 
       HTML("<p>See more information <a href='https://github.com/aiorazabala/qmethod/wiki' target='_blank'>about the package</a>, <a href='https://github.com/aiorazabala/qmethod/wiki/Cookbook' target='_blank'>a cookbook</a>, and a paper on its <a href='http://journal.r-project.org/archive/accepted/zabala.pdf' target='_blank'>implementation and validation</a>.</p>"),
 
-      HTML("<p style='font-size:x-small'><span style='text-transform:uppercase'>Technical notes:</span> 1) This GUI performs the analysis only on Q studies with <b>'forced' distribution</b>. To run the analysis with non-forced distributions, see p.11 in the <a href='http://cran.r-project.org/web/packages/qmethod/qmethod.pdf' target='_blank'>documentation</a>. 2) Q-sorts are <b>flagged automatically</b>. You can explore this flagging <a href='#flagging'>below</a>. Manual flagging in 'qmethod' is possible, but this requires further steps beyond this simplified GUI. Questions & comments (including how to improve this GUI) to <i>aiora [dot] zabala (at) gmail [dot] com</i></p>")
+      HTML("<p style='font-size:x-small'><span style='text-transform:uppercase'>Technical notes:</span> 1) This interface performs the analysis only on Q studies with <b>'forced' distribution</b>. To run the analysis with non-forced distributions, see <a href='http://cran.r-project.org/web/packages/qmethod/qmethod.pdf' target='_blank'>documentation</a>. 2) Q-sorts are <b>flagged automatically</b>. You can explore this flagging <a href='#flagging'>below</a>. Manual flagging is possible using R beyond this simplified interface. Questions & comments (including how to improve this GUI) to <i>aiora [dot] zabala (at) gmail [dot] com</i></p>")
 
     ),
 
@@ -38,7 +38,7 @@ shinyUI(fluidPage(
 
            "),
 
-      HTML("<p style='font-size:x-small'><span style='text-transform:uppercase'>Advanced: </span>1) <b>explore the flagging of Q-sorts</b> resulting from different number of factors <a href='#flagging'>below</a>, or 2) <b>information to aid the selection of number of factors</b> <a href='#xfactors'>below</a>.</p>")
+      HTML("<p style='font-size:small'><span style='text-transform:uppercase'>Advanced: </span>1) <b>explore the flagging of Q-sorts</b> resulting from different number of factors <a href='#flagging'>below</a>, or 2) <b>information to aid the selection of number of factors</b> <a href='#xfactors'>below</a>.</p>")
 
       )
 
@@ -60,7 +60,7 @@ sidebarLayout(
 
                        '.csv')),
 
-    HTML("<p style='font-size:x-small'>See an example of the format of the dataset <a href='http://people.ds.cam.ac.uk/az296/qmethod-gui/lipset.csv'>here</a>.</p>"),
+    HTML("<p style='font-size:x-small'>See an example of the format of the dataset <a href='http://aiorazabala.net/qmethod-gui/lipset.csv'>here</a>.</p>"), 
 
     tags$hr(),
 
@@ -172,7 +172,7 @@ HTML("<hr/>"),
 
 HTML("<h3 id='flagging'>Advanced: Explore the flagged Q-sorts</h3>"),
 
-p("The table on the left indicates with an '*' those Q-sorts flagged for each factor, using the automatic method. Change the number of factors in the slider below, to see how flaggings vary."),
+p("The table indicates with an '*' those Q-sorts flagged for each factor, using the automatic method. Change the number of factors in the slider below, to see how flaggings vary."),
 
 sidebarLayout(
 

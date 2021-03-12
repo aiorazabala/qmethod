@@ -127,7 +127,7 @@ mydata <- read.csv('", input$file1[[1]], "',
 
       return("Customised code will display here when some data is uploaded in step 1 above.")
 
-    paste0("plot(results, sub='Plot of statement z-scores')
+    paste0("plot(results, sub='Plot of statement z-scores (filled points: distinguishing items)')
 
 abline(v=0, col='grey')")
 

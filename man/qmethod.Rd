@@ -1,7 +1,7 @@
 \name{qmethod}
 \alias{qmethod}
 \title{Q methodology analysis}
-\description{This function performs a full Q methodology analysis using either principal components analysis or centroid factor extraction. The main results are factor characteristics, statement z-scores and factor scores, and distinguishing and consensus statements.}
+\description{This function performs a full Q methodology analysis. Both principal components analysis or centroid factor extraction can be used. The main results are factor characteristics, statement z-scores and factor scores, and distinguishing and consensus statements.}
 \usage{
 qmethod(dataset, nfactors, extraction = "PCA", rotation = "varimax", 
         forced = TRUE, distribution = NULL, cor.method = "pearson",
@@ -10,25 +10,25 @@ qmethod(dataset, nfactors, extraction = "PCA", rotation = "varimax",
 \arguments{
   \item{dataset}{a matrix or a data frame containing original data, with statements as rows, Q-sorts as columns, and the column scores in the distribution in each cell. The matrix or data frame should not contain character strings. The results keep row names and column names if set in the \code{dataset} (see 'Details').}
   \item{nfactors}{number of factors to extract.}
-  \item{extraction}{extraction method, defaults to \code{"PCA"}, Principal Components Analysis. The \code{"centroid"} extraction is also allowed.}
-  \item{rotation}{rotation method, defaults to \code{"varimax"}. Other possible rotations allowed in \code{\link[psych]{principal}} function can be used: \code{"none"}, \code{"varimax"}, \code{"quartimax"}, \code{"promax"}, \code{"oblimin"}, \code{"simplimax"}, and \code{"cluster"}, although only 'varimax' and manual rotation are standard in Q methodology.}
+  \item{extraction}{extraction method, either Principal Components Analysis or centroid factor extraction. It defaults to \code{"PCA"}.}
+  \item{rotation}{rotation method, defaults to \code{"varimax"}. For \code{"centroid"} extraction, \code{"none"} and \code{"varimax"} are implemented. For \code{"PCA"} other possible rotations allowed in \code{\link[psych]{principal}} function can be used: \code{"none"}, \code{"varimax"}, \code{"quartimax"}, \code{"promax"}, \code{"oblimin"}, \code{"simplimax"}, and \code{"cluster"}. Note that only 'varimax' and manual rotation are standard in Q methodology.}
   \item{forced}{logical; Is the ranking of the items forced to match the distributions? Set to \code{TRUE} if all respondents ranked the items strictly following the distribution scores, in which case the values of the distribution are calculated automatically. Set to \code{FALSE} if respondents were able to rank the items without following the distribution, and the values of the distribution have to be provided as an array in the argument \code{distribution}. See more details below in 'Notes'.}
 \item{distribution}{logical; when forced = \code{FALSE}, the distribution has to be provided as a vector of numbers, such as \code{c(-2, -1, -1, 0, 1, 1, 2, 2)}. See more details below in 'Notes' number 2.}
 \item{cor.method}{character string indicating which correlation coefficient is to be computed, to be passed on to the function \code{\link[stats]{cor}}: \code{"pearson"} (default), \code{"kendall"}, or \code{"spearman"}. }
 \item{silent}{logical; when = \code{TRUE}, a summary message is printed.}
-\item{spc}{If centroid extraction is selected, this is the threshold to accept factor results, set to 0.005 by default (in Brown 1980, this is set to 0.02; see \code{\link{centroid}})}.
+\item{spc}{If centroid extraction is selected, this is the threshold to accept factor results, set to 0.00001 by default (in Brown 1980, this is set to 0.02; see \code{\link{centroid}})}.
 \item{...}{other parameters to pass to functions such as \code{\link[psych]{principal}}}
 }
 
-\details{This function wraps together all the steps required for a complete analysis: extracting component loadings (\code{\link[psych]{principal}}); flagging Q-sorts (\code{\link{qflag}}); calculating weights, z-scores, and rounded scores (\code{\link{qzscores}}), calculating general characteristics (\code{\link{qfcharact}}), and finding distinguishing and consensus statements (\code{\link{qdc}}).
+\details{This function wraps together all the steps required for a complete analysis: extracting component loadings (\code{\link[psych]{principal}} or \code{\link{centroid}}); flagging Q-sorts (\code{\link{qflag}}); calculating weights, z-scores, and rounded scores (\code{\link{qzscores}}), calculating general characteristics (\code{\link{qfcharact}}), and finding distinguishing and consensus statements (\code{\link{qdc}}).
 
-The default \code{\link{qmethod}} performs automatic flagging and uses varimax rotation. Varimax rotation can be replaced by other methods for rotation allowed in \code{\link[psych]{principal}} from \pkg{psych} package.
+The default \code{\link{qmethod}} performs automatic flagging and uses varimax rotation. Varimax rotation can be replaced by \code{"none"} or other methods for rotation allowed in \code{\link[psych]{principal}} from \pkg{psych} package.
 
-If the input data contains row names and variable names, these will be kept throughout the analysis. Input data is validated, and it will give an error if there are non numerical values or either if the number of statements and Q-sorts introduced does not match the input data. It also returns error if the argument \code{forced} is set to \code{TRUE} but Q-sorts contain differing distributions.
+If the input data contains row names and variable names, these will be kept throughout the analysis. Input data is validated, and it will give an error if there are non numerical values or if either the number of statements and Q-sorts introduced do not match the input data. It also returns error if the argument \code{forced} is set to \code{TRUE} but Q-sorts contain differing distributions.
 }
 \value{
 Returns a list of class \code{QmethodRes}, with eight objects:
-\item{brief}{a list with the basic values of the analysis: date (\code{"date"}), number of statements (\code{"nstat"}), number of Q-sorts (\code{"nqsort"}), whether the distribution was 'forced' (\code{"distro"}),  number of factors extracted (\code{"nfactors"}), method for factor extraction (\code{"extraction"}), method for rotation (\code{"rotation"}), method for correlation in the PCA (\code{"cor.method"}), package version (\code{"pkg.version"}), and a summary of this information for display purposes (\code{"info"}).}
+\item{brief}{a list with the basic values of the analysis: date (\code{"date"}), number of statements (\code{"nstat"}), number of Q-sorts (\code{"nqsort"}), whether the distribution was 'forced' (\code{"distro"}),  number of factors extracted (\code{"nfactors"}), method for factor extraction (\code{"extraction"}), method for rotation (\code{"rotation"}), method for correlation (\code{"cor.method"}), package version (\code{"pkg.version"}), and a summary of this information for display purposes (\code{"info"}).}
 \item{dataset}{original data.}
 \item{loa}{factor loadings for Q-sorts.}
 \item{flagged}{logical dataframe of flagged Q-sorts.}
@@ -54,6 +54,8 @@ See further references on the methodology in \code{\link{qmethod-package}}.}
 \author{Aiora Zabala}
 
 \seealso{
+\code{\link{qzscores}}
+\code{\link{centroid}}
 \code{\link[psych]{principal}} in package \pkg{psych}
 }
 \examples{
