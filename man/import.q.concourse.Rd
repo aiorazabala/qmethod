@@ -33,7 +33,7 @@ import.q.concourse(q.concourse.dir, languages = NULL)
 
 	Individual items as *.TEX files should include minimal markup, and no trailing whitespace or empty newlines.
 	If you do not need any additional formatting, you can just save plain text files (*.TXT) with the extension *.TEX.
-	There is no need to know \href{http://www.latex-project.org}{LaTeX}.
+	There is no need to know \href{https://www.latex-project.org/}{LaTeX}.
 
 	Returns error if items are not available in all translations.
 

@@ -7,7 +7,7 @@ Authors@R: c(person(given="Aiora", family="Zabala", comment=c("Main author", ORC
              person(given="Frans", family="Hermans", comment="Author of centroid extraction function", email="Hermans@iamo.de", role=c("aut"))
             )
 Description: Analysis of Q methodology, used to identify distinct perspectives existing within a group.
-  This methodology is used across social, health and environmental sciences to understand diversity of attitudes, discourses, or decision-making styles (for more information, see <http://qmethod.org>).
+  This methodology is used across social, health and environmental sciences to understand diversity of attitudes, discourses, or decision-making styles (for more information, see <https://qmethod.org/>).
   A single function runs the full analysis. Each step can be run separately using the corresponding functions: for automatic flagging of Q-sorts (manual flagging is optional), for statement scores, for distinguishing and consensus statements, and for general characteristics of the factors.
   The package allows to choose either principal components or centroid factor extraction, manual or automatic flagging, a number of mathematical methods for rotation (or none), and a number of correlation coefficients for the initial correlation matrix, among many other options.
   Additional functions are available to import and export data (from raw *.CSV, 'HTMLQ' and 'FlashQ' *.CSV, 'PQMethod' *.DAT and 'easy-htmlq' *.JSON files), to print and plot, to import raw data from individual *.CSV files, and to make printable cards.

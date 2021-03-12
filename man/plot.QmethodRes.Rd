@@ -61,7 +61,7 @@ This specific dotchart visualisation of Q results implemented in \code{\link{plo
 
 \itemize{
   \item Zabala, A., 2014. qmethod: A Package to Explore Human Perspectives Using Q Methodology. \emph{The R Journal}, 6(2):163-173.\cr Available from: \url{https://journal.r-project.org/archive/2014-2/zabala.pdf}.
-  \item Zabala, A., Pascual, U. and Garcia-Barrios, L. 2017. Payments for Pioneers? Revisiting the Role of External Rewards for Sustainable Innovation under Heterogeneous Motivations. \emph{Ecological Economics}, 135:234-245.\cr Available from: \url{https://doi.org/10.1016/j.ecolecon.2017.01.011}.
+  \item Zabala, A., Pascual, U. and Garcia-Barrios, L. 2017. Payments for Pioneers? Revisiting the Role of External Rewards for Sustainable Innovation under Heterogeneous Motivations. \emph{Ecological Economics}, 135:234-245.\cr Available from: \url{https://www.sciencedirect.com/science/article/pii/S0921800916302683/}.
 }
 
 }
