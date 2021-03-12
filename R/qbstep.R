@@ -44,6 +44,7 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
   step_res$loadings <- list()
   
   qstep$flagged <- as.data.frame(qstep$flagged)
+  qstep$zsc     <- as.data.frame(qstep$zsc)
   qstep$loa     <- as.data.frame(qstep$loa)
   
   n <- 1

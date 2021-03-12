@@ -1,5 +1,5 @@
 qmb.plot <- function(qmbsum, type=c("zsc", "loa"), nfactors, cex = 0.7, cex.leg=0.8, errbar.col= "black", lwd=1, lty=1, vertdist = 0.2, limits=NULL, r.names=NA, sort=c("none", "difference", "sd"), sbset=NULL, leg.pos="topleft", bty = "n", plot.std = TRUE, pch= NULL, col=NULL, grid.col="gray", ...) {
-  if(type == "loa") {
+  if(type[[1]] == "loa") {
     boloa <- qmbsum[[1]]
     db <- boloa[ ,c(grep("loa", names(boloa)), grep("SE", names(boloa)), grep("std", names(boloa)))]
     item <- "Q-sort"
@@ -7,7 +7,7 @@ qmb.plot <- function(qmbsum, type=c("zsc", "loa"), nfactors, cex = 0.7, cex.leg=
     if(is.null(limits)) limits <- c(-1.0,1.0)
   }
   
-  if(type == "zsc") {
+  if(type[[1]] == "zsc") {
     boloa <- qmbsum[[2]]
     db <- boloa[ ,c(grep("zsc.bts", names(boloa)), grep("SE", names(boloa)),   grep("std", names(boloa)))]
     item <- "Statement"
