@@ -18,9 +18,9 @@
   The package also includes additional functions for the following:
 
   \itemize{
-    \item Import data from \href{http://schmolck.org/qmethod/}{PQMethod software} (\code{\link{import.pqmethod}}), both \href{https://github.com/aproxima/htmlq}{HTMLQ} and FlashQ (\code{\link{import.htmlq}}), and \href{https://github.com/shawnbanasick/easy-htmlq}{easy-htmlq} (\code{\link{import.easyhtmlq}}) tools for online data collection of Q-sorts.
+    \item Import data from \href{http://schmolck.org/qmethod/}{PQMethod software} (\code{\link{import.pqmethod}}), both \href{https://github.com/aproxima/htmlq/}{HTMLQ} and FlashQ (\code{\link{import.htmlq}}), and \href{https://github.com/shawnbanasick/easy-htmlq/}{easy-htmlq} (\code{\link{import.easyhtmlq}}) tools for online data collection of Q-sorts.
     \item Export a plain-text report of the analysis for interpretation in two flavours (\code{\link{export.qm}}).
-    \item Generic methods to \code{\link{print.QmethodRes}} and \code{\link{plot.QmethodRes}} Q method results. The specific dotchart visualisation of Q results in \code{\link{plot.QmethodRes}} was first developed and introduced in this package, in preparation for the study in \doi{10.1016/j.ecolecon.2017.01.011}{Zabala et al. (2017)}.  
+    \item Generic methods to \code{\link{print.QmethodRes}} and \code{\link{plot.QmethodRes}} Q method results. The specific dotchart visualisation of Q results in \code{\link{plot.QmethodRes}} was first developed and introduced in this package, in preparation for the study in \href{https://www.sciencedirect.com/science/article/abs/pii/S0921800916302683}{Zabala et al. (2017)}.  
     \item Functions to explore the analysis and facilitate interpretation:
     \itemize{
        \item {explore automatic pre-flagging,  (\code{\link{loa.and.flags}})} 
