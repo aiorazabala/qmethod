@@ -57,7 +57,7 @@ If the margin width is not enough to read the items, specify \code{par(mai=...)}
 }
 
 \references{
-This specific dotchart visualisation of Q results implemented in \code{\link{plot.QmethodRes}} was first developed and introduced in this R package, in preparation for the study published in \href{Zabala et al. (2017)}{https://doi.org/10.1016/j.ecolecon.2017.01.011}.
+This specific dotchart visualisation of Q results implemented in \code{\link{plot.QmethodRes}} was first developed and introduced in this R package, in preparation for the study published in \doi{10.1016/j.ecolecon.2017.01.011}{Zabala et al. (2017)}.
 
 \itemize{
   \item Zabala, A., 2014. qmethod: A Package to Explore Human Perspectives Using Q Methodology. \emph{The R Journal}, 6(2):163-173.\cr Available from: \url{https://journal.r-project.org/archive/2014-2/zabala.pdf}.

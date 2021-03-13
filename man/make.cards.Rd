@@ -52,7 +52,7 @@ make.cards(
     Defaults to \code{QCards}.
   }
   \item{babel.language}{
-    A character vector of length 1 to set the babel language for appropriate hyphenation, special letters and other international support as provided by the \href{https://www.ctan.org/pkg/babel}{babel LaTeX package}.
+    A character vector of length 1 to set the babel language for appropriate hyphenation, special letters and other international support as provided by the \href{https://www.ctan.org/pkg/babel/}{babel LaTeX package}.
     Only available babel options are permissible.
     Defaults to \code{NULL}, in which case babel is never called.
     Changing \code{babel.language} between function calls can occasionally leave inconsistent LaTeX temp files, which may trip up compilation.
@@ -77,7 +77,7 @@ make.cards(
 
 	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.RNW} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed-out multi-page table.
   
-  If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}
+  If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management/}{wiki}
 }
 
 \value{
