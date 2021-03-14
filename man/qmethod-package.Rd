@@ -99,7 +99,7 @@
 
   Frans Hermans\cr 
   Author of centroid function: \code{\link{centroid}}\cr
-  \url{https://www.researchgate.net/profile/Frans-Hermans-3/}
+  \url{https://www.researchgate.net/profile/Frans-Hermans-3}
 }
 \references{
 \itemize{
