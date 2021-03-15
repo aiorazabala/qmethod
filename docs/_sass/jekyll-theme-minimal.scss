@@ -274,10 +274,13 @@ footer {
 /*Extras - AZ*/
 
 ul.navigation {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background: #f8f8f8;
-  background-color: rgb(248, 248, 248);
+  padding: 10px 10px 10px 15px;
   border-radius: 5px;
   border: 1px solid #e5e5e5;
+  font-size: smaller;
+  list-style-type: none;
+}
+ul.navigation ul {
+  list-style-type: none;
+  margin-bottom:0;
 }
