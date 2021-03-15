@@ -1,11 +1,22 @@
-docs_list_title: Contents
-docs:
-
-- title: Introduction
-  url: introduction.html
-
-- title: Configuration
-  url: configuration.html
-
-- title: Deployment
-  url: deployment.html
+primary:
+  - text: Documentation
+    href: /docs/
+  - text: Navigation section
+    links:
+      - text: Demo link A
+        href: /two/a/
+      - text: Demo link B
+        href: /two/b/
+      - text: Demo link C
+        href: /two/c/
+      - text: Demo link D
+        href: /two/a/
+      - text: Demo link E
+        href: /two/b/
+      - text: Demo link F
+        href: /two/c/
+  - text: Referenced section
+    links: footer
+  - text: External link
+    href: https://18f.gsa.gov
+    external: true
