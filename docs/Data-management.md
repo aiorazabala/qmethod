@@ -1,4 +1,4 @@
-# Data management
+## Data management
 
 A Q study can quickly involve quite a lot of different kinds of interrelated  data, including a *concourse*, a *Q set* (or sample), a *condition of instruction* as well as the actual *Q sorts*.
 This page suggests some **best practices** for *reproducible*, *cumulative* and *systematic* Q research, as developed during the first [keyneson](https://github.com/maxheld83/keyneson) study.
