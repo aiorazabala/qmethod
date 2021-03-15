@@ -1,3 +1,5 @@
+# Cookbook
+
 **This is a step-by-step cookbook to run a full Q methodology analysis with the _qmethod_ package, once you have collected your data.**
 
 Please send your suggestions for improving this document [by email](mailto:aiora.zabala@gmail.com) or open an issue on [the issue tracker](https://github.com/aiorazabala/qmethod/issues).
