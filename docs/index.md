@@ -6,15 +6,16 @@ It is used across disciplines. See further about the method in [http://qmethod.o
 
 ### Overview
 
-This package performs the analysis of Q methodology data. Options include different extraction methods (principal components analysis and centroid factor extraction) and rotation methods (none, varimax and other mathematical rotations). See a [graphical interface](./GUI).
+This package performs the analysis of Q methodology data. It provides all the options necessary for standard Q analysis, such as different extraction methods (principal components analysis and centroid factor extraction), rotation methods (none or varimax), and both forced and non-forced distributions. Manual flagging [can be easily run](./Advanced-analysis). Additional options include different correlation coefficients for the initial correlation matrix and other mathematical rotations.
 
-_(From the package reference manual)_
+A single function runs the full analysis ([`qmethod()`](https://www.rdocumentation.org/packages/qmethod/versions/1.5.5/topics/qmethod)). Each step can also be run separately using the corresponding functions for automatic flagging, statement scores, distinguishing and consensus statements, and general factor characteristics.
 
-> The following steps of the analysis correspond to separate functions: automatic flagging of Q-sorts (manual flagging is optional), z-scores and factor scores for statements, distinguishing and consensus statements, and general characteristics of the factors. 
-> The function _qmethod_ wraps them all.
+Additional functions are available to import data from raw `.CSV`, ['HTMLQ'](https://github.com/aproxima/htmlq) and 'FlashQ' `.CSV` files, ['PQMethod'](http://schmolck.org/qmethod/) `.DAT` files and ['easy-htmlq'](https://github.com/shawnbanasick/easy-htmlq) `.JSON` files. ); to [plot](./plot) and summarise Q results; to import raw data from individual and multilingual `.CSV` files; to make printable cards; and to perform [bootstrapping](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148087).
 
-> The functions for each step may be used separately for advanced analysis, for example, for manual flagging. 
-> The package includes a function to import data from PQMethod software, to export plain text data for interpretation in two flavours, and to print and plot Q method results.
+See a [graphical interface](./GUI) with the basic functionality.
+
+For full details about what you can do, see the [package reference manual](http://cran.r-project.org/web/packages/qmethod/qmethod.pdf)).
+
 
 
 ### Resources
