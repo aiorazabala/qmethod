@@ -1,11 +1,2 @@
-docs_list_title: Contents
-docs:
-
-- title: Introduction
-  url: index
-
-- title: Cookbook
-  url: Cookbook
-
-- title: Plot
-  url: plot
+sidebar:
+  nav: docs
