@@ -1,4 +1,4 @@
-{{ site.data.navigation}}
+{% include navigation.html}
 
 ## _qmethod_, an R package to analyse Q methodology data
 
