@@ -1,3 +1,5 @@
+# Plots
+
 This is an example of what you can do with this package.
  
 The plot below allows the viewer to quickly identify which are the most distinguishing statements (at the top, e.g. statements 16 and 33) and which are of consensus (at the bottom, e.g. statements 20 and 17). 
