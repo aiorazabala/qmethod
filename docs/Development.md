@@ -4,9 +4,7 @@
 
 To join development, please consider our [guidelines](./Contribute).
 
-You are invited to **beta-test new features**.
-
-To do so:
+You are invited to **beta-test new features**. To do so:
 
 1. Explore the [issues](https://github.com/aiorazabala/qmethod/issues), [milestones](https://github.com/aiorazabala/qmethod/milestones) and open [pull requests](https://github.com/aiorazabala/qmethod/pulls) to find a [**feature branch**](https://guides.github.com/introduction/flow/) you are interested in.
   (Make sure to familiarize yourself with (Git)Hub first.)
@@ -24,7 +22,7 @@ To do so:
 3. You can now use this feature branch or forked version of `qmethod`.
 
 
-Please notice:
+Please note:
 
 - If you have any suggestions or find any bugs, please report them on our [issue tracker](https://github.com/aiorazabala/qmethod/issues), and refer to the version (and commit) you were using, ideally with a reproducible example of the problem.
 - **Do not use these beta versions for mission-critical work or publications. There may be bugs.**
