@@ -45,7 +45,7 @@ _Additional:_
 Alternatively, if you have introduced your data in [PQMethod](http://schmolck.userweb.mwn.de/qmethod/), find the *.DAT file of your project, e.g. `myproject.dat`, and use function `import.pqmethod()` to import your data.
 
 If you *do not* have one synthetic table as above, but only individual, **raw** Q sorts, you can use the `import.q.sorts()` function to build such a matrix with items as rows, and participants as columns.
-For more information, see the page on [data management](Data-management).
+For more information, see the page on [data management](./Data-management).
 
 ***
 
@@ -164,7 +164,7 @@ cor(mydata)
 ***
 
 ### 8. Explore the factor loadings
-This will help you decide whether to do automatic or manual flagging. For details on how to run the analysis with manual flagging or how to change the loadings, see [Advanced analysis](https://github.com/aiorazabala/qmethod/wiki/Advanced-analysis).
+This will help you decide whether to do automatic or manual flagging. For details on how to run the analysis with manual flagging or how to change the loadings, see [Advanced analysis](./Advanced-analysis).
 
 ```r
 # Run the analysis
