@@ -17,7 +17,8 @@
     <ul>
     {% for entry in site.data.navigation %}
         {% if entry.url == current_page %}
-            {% assign current = ' class="current"' %}
+            <!-- uses yellow, you can change to any other hexadecimal colour code. -->
+            {% assign current = ' style="background-color: #FFFFFF"' %}
         {% else %}
             <!-- We have to declare it 'null' to ensure it doesn't propagate. -->
             {% assign current = null %}
@@ -38,4 +39,3 @@
     {% endfor %}
     </ul>
 </nav>
-
