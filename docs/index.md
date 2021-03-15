@@ -1,4 +1,4 @@
-sidenav: docs
+sidenav: docs/navigation
 
 ## _qmethod_, an R package to analyse Q methodology data
 
