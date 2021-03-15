@@ -1,22 +1,22 @@
 # Belongs at: /_data/navigation.yml
 
-- title: Home
-  url: /
+#- title: Home
+# url: /
 
-- title: Doing Q:
-  sublinks:
-    - title: Cookbook
-      url: /Cookbook
-    - title: Graphical User Interface
-      url: /GUI
-    - title: Advanced analysis
-      url: /Advanced_analysis
-    - title: Plots
-      url: /Plots
-    - title: Reporting
-      url: /Reporting
-    - title: Data management
-      url: /Data_management
+#- title: Doing Q:
+#  sublinks:
+#    - title: Cookbook
+#      url: /Cookbook
+#    - title: Graphical User Interface
+#      url: /GUI
+#    - title: Advanced analysis
+#      url: /Advanced_analysis
+#    - title: Plots
+#      url: /Plots
+#    - title: Reporting
+#      url: /Reporting
+#    - title: Data management
+#      url: /Data_management
 
-- title: Package development
-  url: /Development
+#- title: Package development
+#  url: /Development
