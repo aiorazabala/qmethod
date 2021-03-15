@@ -2,7 +2,7 @@
 
 The function `qmethod()` runs the full analysis with the default loadings and with automatic flagging.
 
-To run more advanced analysis and assess the results at each step, you can run the analysis function by function. For example, to change the automatic flags manually (manual flagging), invert or manipulate Q-sort loadings:
+To run more advanced analysis and assess the results at each step, you can run the analysis function by function. For **example, to change the automatic flags manually (manual flagging), invert or manipulate Q-sort loadings**, continue reading.
 
 The following is sample code to run the analysis function by function. To adapt it to your data, replace `lipset[[1]]` with your dataset, and adjust the value of `factors`.
 ### 1. Load your data and the package
