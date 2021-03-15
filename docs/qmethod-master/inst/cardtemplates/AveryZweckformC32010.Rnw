@@ -1,0 +1,62 @@
+% this createsactual paper business cards for q items as follows
+ % sized 85*84mm (business cards)
+ % 10 per a4 page
+ % on Avery Zweckform C32010
+\documentclass[a4paper,12pt]{article}  % because, why not?
+\usepackage{longtable}  % for multi-page tables
+\usepackage{array}  % for center, bottom vertical alignment in tables
+\usepackage{calc}  % to easily identify dimensions etc.
+\usepackage[T1]{fontenc}  % read in eur sim
+\usepackage[utf8]{inputenc}  % allow accents etc in inputs
+<<babel.language, echo=FALSE, results="asis" >>=
+if(!is.null(babel.language)) {
+  cat(
+    "\\usepackage[",
+    babel.language, # for international support
+    "]{babel}",
+    sep="" 
+  )
+}
+@
+\usepackage[
+  a4paper,
+  height=54mm*5,  % 5 cards on top of one another
+  width=85mm*2+10mm,  % 2 cards abreast, 10mm aisle
+  vcentering,  % should be vertically centered
+  hcentering  % should be horizontaly centered
+  ]
+  {geometry
+}
+\begin{document}
+\pagestyle{empty}
+\setlength{\tabcolsep}{5mm}  % for margins and "aisle" margin between cards, fix by trial and error
+\newcolumntype{H}{>{\centering\arraybackslash\Huge\ttfamily}m}  % need this because font size should be different for ID
+<<make.cards, results='asis', echo=FALSE, warning=FALSE, message=FALSE>>=
+q.set.print$empty <- c("\\rule[-27mm]{0mm}{54mm}")  # creates empty column with a white height line to make sure rows have some height
+print.xtable(
+  xtable(
+      x     = q.set.print[c("id","empty","full wording")],
+      type  = "latex",
+      align = c(
+      	"m{0mm}",  # this is just for the rownames, isn't actually printed
+      	"H{72mm}",  # this is for the hash or id, must be a little shorter to fit
+      	"m{0mm}",  # empty column in the middle with stretcher vertical line, width is given by colsep in the above (no need for extra width here) - this adds up to 1cm anyway
+      	"m{75mm}"  # the real deal with the full item
+      	)
+  ), #  smaller than cards for margin,
+  tabular.environment = "longtable",
+  latex.environment = "center",
+  table.placement = "p",
+  floating = FALSE,
+  include.rownames = FALSE,
+  include.colnames = FALSE,
+  comment = FALSE,
+  #if(!is.null(wording.font.size)) {
+  #  paste(size = wording.font.size)
+  #}
+  size = wording.font.size,
+  sanitize.text.function = identity,
+  hline.after = NULL
+)
+@
+\end{document}

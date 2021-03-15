@@ -1,0 +1,10 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+.git
+.gitignore
+LICENSE.md
+README.md
+CONTRIBUTING.md
+.DS_Store
+.travis.yml
+^\docs
