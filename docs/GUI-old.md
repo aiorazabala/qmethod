@@ -1,3 +1,5 @@
+# Editing Graphical User Interface: install manually
+
 ### Deprecated
 
 These were two ways to install the GUI in `qmethod` versions <1.8, before [the GUI was integrated into the package](https://github.com/aiorazabala/qmethod/wiki). It's left here for reference.
