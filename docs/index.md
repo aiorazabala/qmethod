@@ -1,5 +1,3 @@
-{% include navigation.html %}
-
 ## _qmethod_, an R package to analyse Q methodology data
 
 Q is a methodology to study the distinct perspectives existing within a group of people, on a topic of interest.
