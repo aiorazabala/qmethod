@@ -4,13 +4,10 @@
 **Contributions** to developing the package are **most welcome**.
 Great to have you here. Some friendly suggestions for contributing:
 
-
-## Team Members
-
 [`qmethod`](https://github.com/aiorazabala/qmethod) was created by [Aiora Zabala](http://www.landecon.cam.ac.uk/directory/aiora-zabala), with contributions by [Max Held](http://www.maxheld.de) and [Frans Hermans](www.maxheld.de).
 
 
-## Learn More & Join the Conversation
+### Learn More & Join the Conversation
 
 Communication on developing this package happens right here on **our [GitHub issues](https://github.com/aiorazabala/qmethod/issues)** :octocat: and by email.
 If you have any suggestion, you can raise it here as a new issue, send us an email, or both – that way, we can keep everyone in the loop and have a public record.
@@ -23,14 +20,14 @@ To learn more about the current state of development:
 - Read the [`qmethod` wiki](https://github.com/aiorazabala/qmethod/wiki) for some additional documentation :notebook:.
 
 
-## Beta-test New Features
+### Beta-test New Features
 
 `qmethod` is under development, and we're keen to have more beta-test new features.
 
 [Here](https://github.com/aiorazabala/qmethod/wiki/Beta-testing) is how.
 
 
-## Add New Features
+### Add New Features
 
 There's so much more to do, and we're excited for new additions.
 
@@ -56,7 +53,7 @@ We're roughly following the [GitHub Flow](https://guides.github.com/introduction
 5. **Shipping** :ship: : Periodically, whenever significant work has been done, @aiorazabala drafts a release (as per [#121](https://github.com/aiorazabala/qmethod/issues/121)) from `master`, essentially just marking some point in the history of the package as `x.x.x`, and sends it off to CRAN.
 
 
-## Testing
+### Testing
 
 Testing is an important part of quality software development, especially for scientific software, where users rely on the accuracy and reproducibility of results.
 
@@ -78,7 +75,7 @@ It is advised that new functions and changes *come with* appropriate tests:
 
 In addition to such tests for new functions, missing tests for old functions [would also be very welcome].
 
-## Help pages
+### Help pages
 
 We give a lot of importance to the usability of the package. Whether you've developed a fantastic function won't matter, if it is not easy to use. For this, we believe that **good documentation is essential**. Please make sure that all new functions are well documented in the help pages. Some general points to observe when writing the help:
 - Write full sentences (with noun and verb).
@@ -87,7 +84,7 @@ We give a lot of importance to the usability of the package. Whether you've deve
 - Don't be afraid of repeating: better to be in excess than to miss an explanation.
 
 
-## Git(Hub)
+### Git(Hub)
 
 If you're unfamiliar with Git(Hub), it's probably worth spending some time learning these tools and conventions first.
 
