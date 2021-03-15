@@ -35,7 +35,7 @@ _(From the package reference manual)_
 ### Development
 
 The package has been created by [Aiora Zabala](http://aiorazabala.net), with contributions from [Max Held](http://www.maxheld.de/) and [Frans Hermans](https://www.researchgate.net/profile/Frans-Hermans-3). 
-To contribute, read the [guidelines](./Contributing), post your suggestions on the [issue tracker](https://github.com/aiorazabala/qmethod/issues), or email the maintainer.
+To contribute, read the [guidelines](./Contribute), post your suggestions on the [issue tracker](https://github.com/aiorazabala/qmethod/issues), or email the maintainer.
 
 The package is free and open source. It has been thoroughly [tested an validated](http://journal.r-project.org/archive/2014-2/zabala.pdf). If you use it, please [cite it](https://cran.r-project.org/web/packages/qmethod/citation.html) in your work.
 
