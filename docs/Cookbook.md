@@ -1,4 +1,4 @@
-# Cookbook
+## Cookbook
 
 **This is a step-by-step cookbook to run a full Q methodology analysis with the _qmethod_ package, once you have collected your data.**
 
