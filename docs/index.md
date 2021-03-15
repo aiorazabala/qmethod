@@ -1,12 +1,12 @@
-### _qmethod_, an R package to analyse Q methodology data
+## _qmethod_, an R package to analyse Q methodology data
 
 Q is a methodology to study the distinct perspectives existing within a group of people, on a topic of interest.
-It is used across disciplines. See further about the method in [http://qmethod.org/about](http://qmethod.org/about). See [an example of what you can do with this package](https://github.com/aiorazabala/qmethod/wiki/Sample-plot-of-Q-data).
+It is used across disciplines. See further about the method in [http://qmethod.org/about](http://qmethod.org/about). See [an example of what you can do with this package](./Sample-plot).
 
 
 ### Overview
 
-This package performs the analysis of Q methodology data. Options include different extraction methods (principal components analysis and centroid factor extraction) and rotation methods (none, varimax and other mathematical rotations). See a [graphical interface](https://github.com/aiorazabala/qmethod/wiki/Graphical-user-interface-for-qmethod-(beta)).
+This package performs the analysis of Q methodology data. Options include different extraction methods (principal components analysis and centroid factor extraction) and rotation methods (none, varimax and other mathematical rotations). See a [graphical interface](./GUI).
 
 _(From the package reference manual)_
 
@@ -19,12 +19,12 @@ _(From the package reference manual)_
 
 ### Resources
 
-* A [cookbook of _qmethod_](https://github.com/aiorazabala/qmethod/wiki/Cookbook).
+* A [cookbook of _qmethod_](./Cookbook).
 * The [package in CRAN, the R repository](http://cran.r-project.org/web/packages/qmethod/index.html).
 * The [package reference manual](http://cran.r-project.org/web/packages/qmethod/qmethod.pdf).
 * The latest code of the package is on [this Github site](https://github.com/aiorazabala/qmethod).
 * An introduction to the package, usage, and validation in [Zabala (2014)](http://journal.r-project.org/archive/2014-2/zabala.pdf).
-* For those not familiar with R, see a [simple graphical visual interface](https://github.com/aiorazabala/qmethod/wiki/Graphical-user-interface-for-qmethod-(beta)) to use either online (without installation) or offline.
+* For those not familiar with R, see a [simple graphical visual interface](./GUI) to use either online (without installation) or offline.
 * Introduction to Q methodology (slides of a graduate course): [session 1](http://aiorazabala.net/learnQ/Qmethod_AZ_slides_S2.pdf) and [session 2](http://aiorazabala.net/learnQ/Qmethod_AZ_slides_S2.pdf), including a demo of online Q-sorting using [HtmlQ](https://github.com/aproxima/htmlq).
 * Recommendations to [report Q studies](https://github.com/aiorazabala/qmethod/wiki/Reporting-a-Q-study), for transparency and to facilitate evidence review and reproducibility.
 * Suggested best practices in [data management](data-management) for Q studies.
@@ -35,7 +35,7 @@ _(From the package reference manual)_
 ### Development
 
 The package has been created by [Aiora Zabala](http://aiorazabala.net), with contributions from [Max Held](http://www.maxheld.de/) and [Frans Hermans](https://www.researchgate.net/profile/Frans-Hermans-3). 
-To contribute, read the [guidelines](https://github.com/aiorazabala/qmethod/blob/master/CONTRIBUTING.md), post your suggestions on the [issue tracker](https://github.com/aiorazabala/qmethod/issues), or email the maintainer.
+To contribute, read the [guidelines](./Contributing), post your suggestions on the [issue tracker](https://github.com/aiorazabala/qmethod/issues), or email the maintainer.
 
 The package is free and open source. It has been thoroughly [tested an validated](http://journal.r-project.org/archive/2014-2/zabala.pdf). If you use it, please [cite it](https://cran.r-project.org/web/packages/qmethod/citation.html) in your work.
 
