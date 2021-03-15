@@ -3,12 +3,20 @@
 - title: Home
   url: /
 
-- title: Group of Things
-  url: /group/
+- title: Doing Q:
   sublinks:
-    - title: Sub-item 1
-      url: /group/si1
-    - title: Sub-item 2
-      url: /group/si2
-    - title: Sub-item 3
-      url: /group/si3
+    - title: Cookbook
+      url: /Cookbook
+    - title: Graphical User Interface
+      url: /GUI
+    - title: Advanced analysis
+      url: /Advanced_analysis
+    - title: Plots
+      url: /Plots
+    - title: Reporting
+      url: /Reporting
+    - title: Data management
+      url: /Data_management
+
+- title: Package development
+  url: /Development
