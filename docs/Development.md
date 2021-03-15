@@ -1,8 +1,8 @@
-# Development
+## Development
 
-`qmethod` is under continued development, and fixes or additions are [released here on GitHub](https://github.com/aiorazabala/qmethod/releases) and published on [CRAN](https://cran.r-project.org/web/packages/qmethod/index.html).
+`qmethod` is under continued development, and fixes or additions are [released on GitHub](https://github.com/aiorazabala/qmethod/releases) and published on [CRAN](https://cran.r-project.org/web/packages/qmethod/index.html).
 
-To join development, please consider our [guidelines](https://github.com/aiorazabala/qmethod/blob/master/CONTRIBUTING.md).
+To join development, please consider our [guidelines](./Contributing).
 
 You are invited to **beta-test new features**.
 
@@ -11,7 +11,7 @@ To do so:
 1. Explore the [issues](https://github.com/aiorazabala/qmethod/issues), [milestones](https://github.com/aiorazabala/qmethod/milestones) and open [pull requests](https://github.com/aiorazabala/qmethod/pulls) to find a [**feature branch**](https://guides.github.com/introduction/flow/) you are interested in.
   (Make sure to familiarize yourself with (Git)Hub first.)
 2. Using the [`devtools`](https://cran.r-project.org/package=devtools) package, you can install such a feature branch or forked version *directly from GitHub*, using the appropriate `repo` (or `pull`) and `ref` (branch, commit or tag).
-  (To learn how to install R, read the [cookbook](https://github.com/aiorazabala/qmethod/wiki/Cookbook)).
+  (To learn how to install R, read the [cookbook](./Cookbook)).
   For example, to install Max's current fork, including additional plots, manual rotation etc from PR [97](https://github.com/aiorazabala/qmethod/pull/97) you would run:
 
   ```r
