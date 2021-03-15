@@ -1,22 +1,14 @@
-primary:
-  - text: Documentation
-    href: /docs/
-  - text: Navigation section
-    links:
-      - text: Demo link A
-        href: /two/a/
-      - text: Demo link B
-        href: /two/b/
-      - text: Demo link C
-        href: /two/c/
-      - text: Demo link D
-        href: /two/a/
-      - text: Demo link E
-        href: /two/b/
-      - text: Demo link F
-        href: /two/c/
-  - text: Referenced section
-    links: footer
-  - text: External link
-    href: https://18f.gsa.gov
-    external: true
+# Belongs at: /_data/navigation.yml
+
+- title: Home
+  url: /
+
+- title: Group of Things
+  url: /group/
+  sublinks:
+    - title: Sub-item 1
+      url: /group/si1
+    - title: Sub-item 2
+      url: /group/si2
+    - title: Sub-item 3
+      url: /group/si3
