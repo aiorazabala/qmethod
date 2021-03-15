@@ -2,7 +2,7 @@
 
 `qmethod` is under continued development, and fixes or additions are [released on GitHub](https://github.com/aiorazabala/qmethod/releases) and published on [CRAN](https://cran.r-project.org/web/packages/qmethod/index.html).
 
-To join development, please consider our [guidelines](./Contributing).
+To join development, please consider our [guidelines](./Contribute).
 
 You are invited to **beta-test new features**.
 
