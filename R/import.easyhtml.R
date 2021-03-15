@@ -1,10 +1,12 @@
 import.easyhtmlq <- function(filename, ...) {
   if (substr(filename, nchar(filename)-4, nchar(filename)) != ".json") stop("Q method input: the file name provided is not a '.json' filename")
-  
+  if (!requireNamespace("rjson", quietly = TRUE)) {
+    stop("Package \"rjson\" needed for this function to work. Please install it.", call. = FALSE)
+  }
 dataset <- list()
 
 # read the file
-a <- fromJSON(file = filename, ...)
+a <- rjson::fromJSON(file = filename, ...)
 
 # Q-SORTS
 # obtain number of statements and of Q-sorts

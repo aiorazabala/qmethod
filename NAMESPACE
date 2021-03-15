@@ -4,9 +4,7 @@ import("methods",
        "digest",
        "tools",
        "xtable",
-       "knitr",
-       "shiny",
-       "rjson")
+       "knitr")
 export("qmethod",
        "qzscores",
        "qflag",

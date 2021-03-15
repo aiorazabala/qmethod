@@ -18,6 +18,7 @@
   The package also includes additional functions for the following:
 
   \itemize{
+    \item An interactive Graphical User Interface with the basic functionality (\code{\link{runInterface}})
     \item Import data from \href{http://schmolck.org/qmethod/}{PQMethod software} (\code{\link{import.pqmethod}}), both \href{https://github.com/aproxima/htmlq/}{HTMLQ} and FlashQ (\code{\link{import.htmlq}}), and \href{https://github.com/shawnbanasick/easy-htmlq/}{easy-htmlq} (\code{\link{import.easyhtmlq}}) tools for online data collection of Q-sorts.
     \item Export a plain-text report of the analysis for interpretation in two flavours (\code{\link{export.qm}}).
     \item Generic methods to \code{\link{print.QmethodRes}} and \code{\link{plot.QmethodRes}} Q method results. The specific dotchart visualisation of Q results in \code{\link{plot.QmethodRes}} was first developed and introduced in this package, in preparation for the study in \href{https://www.sciencedirect.com/science/article/abs/pii/S0921800916302683}{Zabala et al. (2017)}.  
@@ -34,7 +35,6 @@
        \item Complete concourses (\code{\link{import.q.concourse}})
        \item Item samples (\code{\link{build.q.set}})
     }
-    \item An interactive Graphical User Interface with the basic functionality (\code{\link{runInterface}})
   }
   Use \code{help(package="qmethod")} for a list of all the functions.
    \subsection{Terminology}{
@@ -79,7 +79,7 @@
     For more information on the file structure and the rationale behind it, consider the best practices suggested by Maximilian Held on the \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{data management} page.
   }
   \subsection{Bootstrapping}{
-    A set of functions are available to perform bootstrapping with Q data (see \doi{10.1371/journal.pone.0148087}{Zabala and Pascual (2016) Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives. PLoS ONE} for details). The main bootstrap functions are as follows:
+    A set of functions are available to perform bootstrapping with Q data (see \href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148087}{Zabala and Pascual, 2016, Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives. PLoS ONE} for details). The main bootstrap functions are as follows:
     \itemize{
       \item \code{\link{qmboots}} performs a full bootstrap. It calls internally the functions \code{\link{qbstep}} (for each bootstrap step), and to either \code{\link{qindtest}} or \code{\link{qpcrustes}} in order to correct the \strong{alignment problem}.
       \item \code{\link{qmb.summary}} summarises the object resulting from \code{\link{qmboots}} into two tables: (1) summary of \strong{factor loadings} (standard factor loadings, bootstrapped factor loadings, and flagging frequency) and (2) summary of \strong{statement scores} (bootstrapped and standard z-scores, bootstrapped and standard factor scores, standard error of bootstrapped z-scores, and differences between standard and bootstrapped values).
@@ -106,8 +106,8 @@
   \item Zabala, A., 2014. qmethod: A Package to Explore Human Perspectives Using Q Methodology. \emph{The R Journal}, 6(2):163-173.\cr Available from: \url{https://journal.r-project.org/archive/2014-2/zabala.pdf}.
   \item Zabala A. and Pascual, U., 2016. Bootstrapping Q Methodology to Improve the Understanding of Human Perspectives. \emph{PLoS ONE}.\cr Available from: \doi{10.1371/journal.pone.0148087}.
   \item Watts, S., and and P. Stenner, 2012. \emph{Doing Q Methodological Research: Theory, Method & Interpretation}, London: Sage Publications Ltd.
-  \item Van Exel, J., and G. de Graaf, 2005. \emph{Q Methodology: A Sneak Preview}\cr Available from: \url{https://qmethodblog.files.wordpress.com/2016/01/qmethodologyasneakpreviewreferenceupdate.pdf}.
-  \item Brown, S. R., 1980. \emph{Political subjectivity: Applications of Q methodology in political science}, New Haven, CT: Yale University Press.\cr Available from: \url{https://qmethodblog.files.wordpress.com/2016/01/brown-1980-politicalsubjectivity.pdf}.
+  \item Van Exel, J., and G. de Graaf, 2005. \emph{Q Methodology: A Sneak Preview}\cr \url{https://qmethodblog.files.wordpress.com/2016/01/qmethodologyasneakpreviewreferenceupdate.pdf}{Available at this link}.
+  \item Brown, S. R., 1980. \emph{Political subjectivity: Applications of Q methodology in political science}, New Haven, CT: Yale University Press.\cr \url{https://qmethodblog.files.wordpress.com/2016/01/brown-1980-politicalsubjectivity.pdf}{Available at this link}.
   \item \url{https://qmethod.org/}\cr
 The website of the \emph{International Society for the Scientific Study of Subjectivity}.
   \item \url{http://schmolck.org/qmethod/}\cr

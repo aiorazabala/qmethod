@@ -26,7 +26,7 @@ biocLite("graph")}
 Function \code{procrustes} from \pkg{GPArotation} package.
 }
 \examples{
-# This example requires installing 'MCMCpack', check warning when running line 10 below:
+# This example requires installing 'MCMCpack':
 data(lipset)
 qm <- qmethod(lipset[[1]], nfactors=3, rotation="varimax")
 qselim <- sample(1:3, 2, replace=FALSE) ##q sorts to eliminate
@@ -37,8 +37,8 @@ loa <- as.data.frame(unclass(principal(subdata,
 target <- as.matrix(as.data.frame(qm[3]))
 colnames(target) <- paste("target_f", 1:3, sep="")
 subtarget <- target[c(-qselim),]
-# qindt <- qpcrustes(loa, subtarget, 3)
-# qindt
+qindt <- qpcrustes(loa, subtarget, 3)
+qindt
 }
 
 \keyword{multivariate}
