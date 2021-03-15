@@ -1,6 +1,4 @@
----
-sidenav: docs
----
+{{ site.data.navigation}}
 
 ## _qmethod_, an R package to analyse Q methodology data
 
