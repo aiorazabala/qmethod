@@ -75,7 +75,7 @@ Q-sorts are conveniently entered as *.CSV (comma separated values) files in stan
 		\item Function errors out if there are items in a given Q-sort that cannot be found in the sample \code{q.set}.
 	}
 
-If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \code{\link{qmethod-package}} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}
+If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \code{\link{qmethod-package}} first or consider the package \href{http://aiorazabala.github.io/qmethod/Data-management}{website}.
 
 }
 

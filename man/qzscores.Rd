@@ -14,7 +14,7 @@
   \item{distribution}{logical; when \code{forced = FALSE}, the distribution has to be provided as a vector of numbers, such as \code{c(-2, -1, -1, 0, 1, 1, 2, 2)}.}
 }
 
-\details{In order to implement manual flagging, use a manually created data frame (or matrix) for \code{flagged}. See an example of code to perform manual flagging or to manipulate the loadings in \url{https://github.com/aiorazabala/qmethod/wiki/Advanced-analysis}.
+\details{In order to implement manual flagging, use a manually created data frame (or matrix) for \code{flagged}. See an example of code to perform manual flagging or to manipulate the loadings in \href{http://aiorazabala.github.io/qmethod/Advanced-analysis}{the website}.
 
 The loadings from \code{principal(...)$loadings} or \code{centroid} can be explored to decide upon flagging. The \code{loa} data frame should have Q-sorts as rows, and factors as columns, where \code{TRUE} are the flagged Q-sorts.}
 \value{

@@ -28,7 +28,7 @@ build.q.set(q.concourse, q.sample, q.distribution)
 
   The function implements a number of tests on the validity and consistency of inputs.
   
-  If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
+  If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{http://aiorazabala.github.io/qmethod/Data-management}{website}.
 }
 
 \value{

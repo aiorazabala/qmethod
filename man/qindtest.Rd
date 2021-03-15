@@ -25,9 +25,9 @@ Second, \emph{sign swap} is tested for (Are all diagonal coefficients positive?)
 
 See also:
 
-- Timmerman, M.E., Kiers, H. a L., Smilde, A.K., 2007. Estimating confidence intervals for principal component loadings: a comparison between the bootstrap and asymptotic results. The British journal of mathematical and statistical psychology 60, 295-314.
+Timmerman, M.E., Kiers, H. a L., Smilde, A.K., 2007. Estimating confidence intervals for principal component loadings: a comparison between the bootstrap and asymptotic results. The British journal of mathematical and statistical psychology 60, 295-314.
 
-- Zhang, G., Preacher, K.J., Luo, S., 2010. Bootstrap Confidence Intervals for Ordinary Least Squares Factor Loadings and Correlations in Exploratory Factor Analysis. Multivariate Behavioral Research 45, 104-134.
+Zhang, G., Preacher, K.J., Luo, S., 2010. Bootstrap Confidence Intervals for Ordinary Least Squares Factor Loadings and Correlations in Exploratory Factor Analysis. Multivariate Behavioral Research 45, 104-134.
 }
 
 \author{Aiora Zabala}

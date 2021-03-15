@@ -50,7 +50,7 @@ import.q.feedback(q.feedback.dir,	q.sorts, q.set,	manual.lookup = NULL)
 	After an (arbitrary) header line, a *.CSV file may look like this:\cr
   \samp{sta001,"This q-item sounds like r-research to me!",FALSE}, indicating that it should \emph{not} be ignored (\kbd{FALSE}).
   
-  If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}
+  If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{http://aiorazabala.github.io/qmethod/Data-management}{website}.
 }
 
 \value{

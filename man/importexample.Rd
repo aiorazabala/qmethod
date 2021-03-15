@@ -9,7 +9,7 @@
 }
 \usage{importexample}
 \format{
-  \code{importexample} is included as a directory in \code{qmethod} package root folder, including subdirectories as documented in the package documentation, and on the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
+  \code{importexample} is included as a directory in \code{qmethod} package root folder, including subdirectories as documented in the package documentation, and on the package \href{http://aiorazabala.github.io/qmethod/Data-management}{website}.
   Importexample is \emph{also} partly included as a ready-made RData datafile in the folder \code{qmethod/data} so that (cumulative) function examples can run.
 }
 \source{None.}

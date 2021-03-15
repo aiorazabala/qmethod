@@ -28,5 +28,5 @@ Suggests:
   MCMCpack
 LazyData: true
 Repository: CRAN
-URL: https://github.com/aiorazabala/qmethod, https://github.com/aiorazabala/qmethod/wiki
+URL: https://github.com/aiorazabala/qmethod, http://aiorazabala.github.io/qmethod/
 BugReports: https://github.com/aiorazabala/qmethod/issues

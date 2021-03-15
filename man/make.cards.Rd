@@ -77,7 +77,7 @@ make.cards(
 
 	The function proceeds internally by preparing a dataframe with full item wordings and identifiers (ID), and then invokes a prepared \code{*.RNW} template included with this package, which in turn includes a \pkg{knitr} chunk, which in turn calls \pkg{xtable} to return a neatly layed-out multi-page table.
   
-  If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management/}{wiki}
+  If you are not familiar with the terminology of item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{http://aiorazabala.github.io/qmethod/Data-management}{website}.
 }
 
 \value{
@@ -92,7 +92,6 @@ make.cards(
   When \code{output.pdf = TRUE}, the function will sometimes fail with the error message\cr \code{"Running 'texi2dvi' on ... failed"}.
   This is not a bug with the function, but simply indicates that the path to pdflatex is not available in the current R environment.
   To fix this issue, compile the resulting *.TEX manually, use RStudio or try \href{https://www.r-bloggers.com/2012/12/building-r-packages-missing-path-to-pdflatex/}{this fix}.
-  You can also report other suggestions \href{https://github.com/aiorazabala/qmethod/issues/110}{here}.
 
   This function does \emph{not} automatically scale the font size to fit the given card size.
   Instead, users will have to proceed by trial and error, using a \code{wording.font.size} that works for their longest item.

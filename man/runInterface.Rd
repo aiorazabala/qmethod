@@ -25,7 +25,7 @@ The GUI shows the full results from the analysis, and also:
 	 }
 	 
 \note{
-This GUI has limited functionality in comparison to that through the command-line. For full functionality (such as specifying non-forced analysis, manual flagging, and much more), use the command-line directly in the R console. See, for example, a tutorial for [manual manipulation of Q-sort loadings and/or manual flagging](https://github.com/aiorazabala/qmethod/wiki/Advanced-analysis).
+This GUI has limited functionality in comparison to that through the command-line. For full functionality (such as specifying non-forced analysis, manual flagging, and much more), use the command-line directly in the R console. See, for example, a tutorial for \href{http://aiorazabala.github.io/qmethod/Advanced-analysis}{manual manipulation of Q-sort loadings and/or manual flagging}.
 
 To run this same analysis directly in R, see the code generated in the GUI in \emph{Run the analysis directly in R}. 
 }

@@ -39,7 +39,7 @@ import.q.concourse(q.concourse.dir, languages = NULL)
 
   Defaults to monolingual variant.
   
-  If you are not familiar with the terminology of Q item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{https://github.com/aiorazabala/qmethod/wiki/Data-management}{wiki}.
+  If you are not familiar with the terminology of Q item \emph{handle}, \emph{ID} and \emph{wording} or the file structure expected for import functions, please read the respective sections in the documentation for \link{qmethod-package} first or consider the package \href{http://aiorazabala.github.io/qmethod/Data-management}{website}.
 }
 \value{
 	Returns a character matrix with handles as row names, languages (if applicable) as columns and full item wording per language in cells.
