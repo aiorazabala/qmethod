@@ -4,11 +4,9 @@
     <ul>OLE
     {% for entry in site.data.navigation %}
         {% assign current = null %}
-        {% endif %}
         {% assign sublinks = entry.sublinks %}
         {% if sublinks %}
-        <li{{ current }}><a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a></li>
-        {% endif %}
+        <li><a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a></li>
     {% endfor %}
     </ul>
 </nav>
