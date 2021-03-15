@@ -40,12 +40,12 @@ _Additional:_
 
 2. Export it into *.[CSV](http://en.wikipedia.org/wiki/Comma-separated_values) format, for example: `mydata.csv`. This format is most versatile and is the format used in this cookbook. Any other format is fine, as long as it can be imported in R.
 
-    _Note:_ For the analysis, the data should only contain numbers. Column A in the image above contains the names of rows and requires setting row names (e.g. using `row.names()`, as explained in [step 6A](https://github.com/aiorazabala/qmethod/wiki/Cookbook#a-import-from-csv) below). Row names are useful to navigate and interpret the results. However, if you want to skip setting row names, then delete any column in the CSV containing them.
+    _Note:_ For the analysis, the data should only contain numbers. Column A in the image above contains the names of rows and requires setting row names (e.g. using `row.names()`, as explained in [step 6A](./Cookbook#a-import-from-csv) below). Row names are useful to navigate and interpret the results. However, if you want to skip setting row names, then delete any column in the CSV containing them.
 
 Alternatively, if you have introduced your data in [PQMethod](http://schmolck.userweb.mwn.de/qmethod/), find the *.DAT file of your project, e.g. `myproject.dat`, and use function `import.pqmethod()` to import your data.
 
 If you *do not* have one synthetic table as above, but only individual, **raw** Q sorts, you can use the `import.q.sorts()` function to build such a matrix with items as rows, and participants as columns.
-For more information, see the page on [data management](data-management).
+For more information, see the page on [data management](Data-management).
 
 ***
 
