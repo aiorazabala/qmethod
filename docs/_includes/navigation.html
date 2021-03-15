@@ -1,12 +1,13 @@
-<!-- Belongs at: /_includes/navigation.html -->
-
-<nav>
-    <ul>OLE
-    {% for entry in site.data.navigation %}
-        {% assign current = null %}
-        {% assign sublinks = entry.sublinks %}
-        {% if sublinks %}
-        <li><a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a></li>
-    {% endfor %}
+<ul>
+  <li><a href="{{site.baseurl}}/">Home</a></li>
+  <li>Doing Q:</li>
+    <ul>
+        <li><a href="{{site.baseurl}}/Cookbook/">Cookbook</a></li>
+        <li><a href="{{site.baseurl}}/GUI/">Graphical User Interface</a></li>
+        <li><a href="{{site.baseurl}}/Advanced_analysis/">Advanced analysis</a></li>
+        <li><a href="{{site.baseurl}}/Plots/">Plots</a></li>
+        <li><a href="{{site.baseurl}}/Reporting/">Reporting</a></li>
+        <li><a href="{{site.baseurl}}/Data_management/">Data management</a></li>
     </ul>
-</nav>
+  <li><a href="{{site.baseurl}}/Development/">Package development</a>
+</ul>
