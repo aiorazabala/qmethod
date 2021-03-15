@@ -1,4 +1,4 @@
-# Plots
+## Plots
 
 This is an example of what you can do with this package.
  
