@@ -1,4 +1,4 @@
-##Sample plot of Q data
+## Sample plot of Q data
 
 This is an example of what you can do with this package.
  
@@ -19,8 +19,10 @@ Sample code for this image:
 ```r 
 # Load data
 data(lipset)
-# Perform the Q analysis (extract with PCA, rotate three factors using varimax)
-results <- qmethod(lipset[[1]], nfactors = 3, rotation = "varimax")
+# Perform the Q analysis (extract with PCA, 
+# rotate three factors using varimax)
+results <- qmethod(lipset[[1]], nfactors = 3, 
+                   rotation = "varimax")
 plot(results)
 
 # Create a title for the plot
