@@ -42,7 +42,7 @@ Contributions are most welcome. To do so, please read the [guidelines](./Contrib
 
 The package is free and open source. It has been thoroughly [tested an validated](http://journal.r-project.org/archive/2014-2/zabala.pdf). If you use it, please [cite it](https://cran.r-project.org/web/packages/qmethod/citation.html) in your work.
 
-Pathway of priority developments, should resources allow [(also a record of some of the previous work is here)](https://github.com/aiorazabala/qmethod/issues?q=is%3Aissue)]:
+Pathway of priority developments, should resources allow [(also a record of some of the previous work is here)](https://github.com/aiorazabala/qmethod/issues?q=is%3Aissue):
 
 - [ ] Shiny GUI & usability
 [#369](https://github.com/aiorazabala/qmethod/issues/369),
