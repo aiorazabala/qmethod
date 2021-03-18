@@ -8,7 +8,7 @@ It is used across disciplines. See further about the method in [http://qmethod.o
 
 This package performs the analysis of Q methodology data. Data can be imported from a range of formats, and results can be explored and exported in multiple ways. See a [graphical interface](./GUI) with the basic functionality and [an example of what you can do with this package](./Sample-plot).
 
-The package provides all the options for standard Q analysis, such as different extraction methods (principal components analysis and centroid factor extraction), rotation methods (none or varimax), and both forced and non-forced distributions. Manual flagging can be easily run using R code [(see an example)](./Advanced-analysis). Additional options include different correlation coefficients for the initial correlation matrix (Pearson, Spearman and Kendall) and other mathematical rotations.
+The package provides all the options for standard Q analysis, such as different extraction methods (principal components analysis and centroid factor extraction), rotation methods (none or varimax), and both forced and non-forced distributions. Manual flagging can be easily run using R code [(see an example)](./Advanced-analysis#a-modify-any-individual-flag). Additional options include different correlation coefficients for the initial correlation matrix (Pearson, Spearman and Kendall) and other mathematical rotations.
 
 A single function runs the full analysis ([`qmethod()`](https://www.rdocumentation.org/packages/qmethod/versions/1.5.5/topics/qmethod)). Each step can also be run separately using the corresponding functions for correlation matrix, automatic flagging, statement scores, distinguishing and consensus statements, and general factor characteristics.
 
