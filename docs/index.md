@@ -42,7 +42,7 @@ Contributions are most welcome. To do so, please read the [guidelines](./Contrib
 
 The package is free and open source. It has been thoroughly [tested an validated](http://journal.r-project.org/archive/2014-2/zabala.pdf). If you use it, please [cite it](https://cran.r-project.org/web/packages/qmethod/citation.html) in your work.
 
-Pathway of priority developments, should resources allow:
+Pathway of priority developments, should resources allow [(also a record of some of the previous work is here)](https://github.com/aiorazabala/qmethod/issues?q=is%3Aissue)]:
 
 - [ ] Shiny GUI & usability
 [#369](https://github.com/aiorazabala/qmethod/issues/369),
@@ -57,6 +57,6 @@ Pathway of priority developments, should resources allow:
   - [X] Import Q-sorts, [#368](https://github.com/aiorazabala/qmethod/issues/368), 
   - [ ] Import Q-set [#370](https://github.com/aiorazabala/qmethod/issues/370), P-set data (done).
 
-If you find the package and these resources useful, consider [supporting maintenance and further enhancements:](https://www.paypal.com/donate?hosted_button_id=GCMM9PTXPHNT8) [[see some of the previous work](https://github.com/aiorazabala/qmethod/issues?q=is%3Aissue)]
+If you find the package and these resources useful, consider [supporting maintenance and further enhancements:](https://www.paypal.com/donate?hosted_button_id=GCMM9PTXPHNT8)
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=GCMM9PTXPHNT8)
