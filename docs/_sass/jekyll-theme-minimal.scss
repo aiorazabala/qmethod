@@ -286,7 +286,7 @@ ul.navigation ul {
 }
 h1 a {
   text-shadow: 5px 5px 15px #09016a, -5px -5px 19px #999999;
-  font-size: 3em;
+  font-size: 1.5em;
   color: #ffffff;
   font-family: serif;
   font-weight: 700;
@@ -296,5 +296,5 @@ h1 a:hover {
   color: #ffffff;
   transition: 0.3s;
   transform: scale(1.1)translate(-50%, -50%);
-  text-shadow: 5px 5px 5px #c43105, -5px -5px 19px #444, 5px 5px 15px #09016a;
+  text-shadow: 3px 3px 3px #000, -5px -5px 19px #444, 5px 5px 15px #09016a;
 }
