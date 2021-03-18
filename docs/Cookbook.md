@@ -42,7 +42,7 @@ _Additional:_
 
     _Note:_ For the analysis, the data should only contain numbers. Column A in the image above contains the names of rows and requires setting row names (e.g. using `row.names()`, as explained in [step 6A](./Cookbook#a-import-from-csv) below). Row names are useful to navigate and interpret the results. However, if you want to skip setting row names, then delete any column in the CSV containing them.
 
-Alternatively, if you have introduced your data in [PQMethod](http://schmolck.userweb.mwn.de/qmethod/), find the *.DAT file of your project, e.g. `myproject.dat`, and use function `import.pqmethod()` to import your data.
+Alternatively, if you have introduced your data in [PQMethod](http://schmolck.userweb.mwn.de/qmethod/), find the *.DAT file of your project, e.g. `myproject.dat`, and use function `import.pqmethod()` to import your data. If you have collected data online using either FlashQ, HTMLQ or easy-htmlq, find the relevant *.CSV or *.JSON data, and use functions `import.HTMLQ()` or `import.easyhtml()` to import your data.
 
 If you *do not* have one synthetic table as above, but only individual, **raw** Q sorts, you can use the `import.q.sorts()` function to build such a matrix with items as rows, and participants as columns.
 For more information, see the page on [data management](./Data-management).
@@ -119,12 +119,30 @@ mydata <- read.csv("mydata.csv")
 # mydata[ ,1] <- NULL
 ```
 
-#### B. Import from PQMethod
+#### B. Import from other Q software
+
+From PQMethod:
 ```r
 mydata <- import.pqmethod("myproject.dat")
 ```
 
-#### C. Introduce it manually
+From both FlashQ and HTMLQ:
+```r
+# The following imports the Q-sorts only:
+mydata <- import.htmlq("myproject.csv")[[1]]
+
+# to see other data related to the P-set, change [[1]] to [[2]]
+```
+
+From easy-htmlq:
+```r
+# The following imports the Q-sorts only:
+mydata <- import.easyhtmlq("myproject.json")[[1]]
+
+# to see other data related to the P-set, change [[1]] to [[2]]
+```
+
+#### C. Introduce Q-sorts manually
 ```r
 # Create one vector for each Q-sort:
 qsort1 <- c(-1,  0, -2,  0, -2, ...)
@@ -186,6 +204,12 @@ Additionally, you can print the loadings and the flags next to each other using 
 loa.and.flags(results)
 ```
 Note the `qmethod()` function uses "PCA" `extraction` and "varimax" `rotation` by default, but these attributes can be changed easily (see `help(qmethod)` for full details; attribute `extraction` in `qmethod` package versions >=1.7 only).
+```r
+# Run the analysis using centroid factor extraction instead of PCA, and without rotation:
+results <- qmethod(mydata, nfactors = 3, extraction="centroid", rotation="none")
+
+# Explore using the code above
+```
 
 
 ***
@@ -202,6 +226,8 @@ results$f_char$characteristics
 ```
 
 #### B. Screeplot
+
+The following example works for PCA only:
 ```r
 screeplot(prcomp(mydata), main = "Screeplot of unrotated factors", 
           type = "l")
@@ -212,7 +238,7 @@ screeplot(prcomp(mydata), main = "Screeplot of unrotated factors",
 ### 10. Run the final analysis
 Once the final number of factors has been decided, run the analysis again.
 
-The method below uses by default Pearson coefficient for the initial correlation, "PCA" extraction and "varimax" rotation; you can change these in the arguments `extraction`, `rotation` and `cor.method` (see `help(qmethod)` for full details; attribute `extraction` in `qmethod` package versions >=1.7 only).
+The method below uses by default Pearson coefficient for the initial correlation, "PCA" extraction and "varimax" rotation; you can change these in the arguments `extraction`, `rotation` and `cor.method`. See `help(qmethod)` for full details (attribute `extraction` in `qmethod` package versions >=1.7 only).
 
 #### A. Studies with forced distribution
 ```r
