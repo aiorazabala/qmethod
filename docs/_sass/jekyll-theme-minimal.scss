@@ -285,16 +285,14 @@ ul.navigation ul {
   margin-bottom:0;
 }
 h1 a {
-  text-shadow: 5px 5px 15px #09016a, -5px -5px 19px #999999;
+  text-shadow: 5px 5px 15px #09016a, 0px 0px 19px #000;
   font-size: 1.5em;
   color: #ffffff;
-  font-family: serif;
-  font-weight: 700;
   font-style: italic;    
 }
 h1 a:hover {
   color: #ffffff;
   transition: 0.3s;
   transform: scale(1.1)translate(-50%, -50%);
-  text-shadow: 3px 3px 3px #000, -5px -5px 19px #444, 5px 5px 15px #09016a;
+  text-shadow: 3px 3px 3px #000, -5px -5px 19px #444, 5px 5px 20px #09016a, 5px 5px 15px #09016a;
 }
