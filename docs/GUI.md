@@ -1,10 +1,10 @@
 ## Graphical User Interface
 
-For those who are not familiar with R, there is a Graphical User Interface (GUI) that can be used either online or offline. The [online version](https://azabala.shinyapps.io/qmethod-gui/) does not require installation, and the offline version requires installing R and the package first (see instructions below).
+If you are not familiar with R, there is a Graphical User Interface (GUI) that can be used either online or offline. The [online version](https://azabala.shinyapps.io/qmethod-gui/) does not require installation. The offline version requires installing R and the package first (see instructions below).
 
 [![](http://aiorazabala.net/qmethod-gui/Qmethod_Shiny_GUI2.png)](https://azabala.shinyapps.io/qmethod-gui/)
 
-Please note that the GUI offers only limited functionality from all what's available using the full package (See 'Technical notes' in the GUI).
+Note that the GUI offers only limited functionality from all what's available using the full package (See 'Technical notes' in the GUI).
 ### A. [Online version (link to external site)](https://azabala.shinyapps.io/qmethod-gui/)
 ### B. Install the offline version:
 
