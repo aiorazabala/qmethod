@@ -1,0 +1,12 @@
+name: qmethod-gui
+title: qmethod-gui
+username:
+account: azabala
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 33162
+bundleId: 4372997
+url: https://azabala.shinyapps.io/qmethod-gui/
+when: 1616252172.47635
+asMultiple: FALSE
+asStatic: FALSE
