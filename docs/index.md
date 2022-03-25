@@ -29,7 +29,7 @@ Here are further links to learn more about the software and about conducting Q m
 * An introduction to the package, usage, and validation in [Zabala (2014)](http://journal.r-project.org/archive/2014-2/zabala.pdf).
 * For those not familiar with R, see a [simple graphical visual interface](./GUI) to use either online (without installation) or offline.
 * Introduction to Q methodology (slides of a graduate course): [session 1](http://aiorazabala.net/learnQ/Qmethod_AZ_slides_S2.pdf) and [session 2](http://aiorazabala.net/learnQ/Qmethod_AZ_slides_S2.pdf), including a demo of online Q-sorting using [HtmlQ](https://github.com/aproxima/htmlq).
-* Recommendations to [report Q studies](https://github.com/aiorazabala/qmethod/wiki/Reporting-a-Q-study), for transparency and to facilitate evidence review and reproducibility.
+* Recommendations to [report Q studies](./Reporting), for transparency and to facilitate evidence review and reproducibility.
 * Suggested best practices in [data management](data-management) for Q studies.
 
 
