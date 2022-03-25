@@ -30,7 +30,7 @@ Here are further links to learn more about the software and about conducting Q m
 * For those not familiar with R, see a [simple graphical visual interface](./GUI) to use either online (without installation) or offline.
 * Introduction to Q methodology (slides of a graduate course): [session 1](http://aiorazabala.net/learnQ/Qmethod_AZ_slides_S2.pdf) and [session 2](http://aiorazabala.net/learnQ/Qmethod_AZ_slides_S2.pdf), including a demo of online Q-sorting using [HtmlQ](https://github.com/aproxima/htmlq).
 * Recommendations to [report Q studies](./Reporting), for transparency and to facilitate evidence review and reproducibility.
-* Suggested best practices in [data management](data-management) for Q studies.
+* Suggested best practices in [data management](./Data-management) for Q studies.
 
 
 ***
