@@ -89,7 +89,7 @@ HTML("<h3 id='code'>Run the analysis directly in R</h3>"),
 
 sidebarLayout(
   sidebarPanel(
-    p("To run the above analysis in R and explore the results further, copy and paste the code on the right:")
+    p("To run the above analysis in R and explore the results further, copy and paste the code on the right. You need to <a href='http://aiorazabala.github.io/qmethod/Cookbook#2-install-r' target='_blank'>install R</a> AND <a href='http://aiorazabala.github.io/qmethod/Cookbook#3-install-the-package-only-once' target='_blank'>install the 'qmethod' package</a> in your computer first if you have not done so already.")
   ),
   mainPanel(
     p("1. Load the package and upload your data:"),
