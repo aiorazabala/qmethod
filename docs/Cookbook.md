@@ -59,7 +59,7 @@ _Note:_ You can also [introduce the data directly in R](https://www.dummies.com/
 * [In Mac](http://cran.r-project.org/bin/macosx/)
 
 See full details in [CRAN - R project](http://cran.r-project.org/). 
-If you wish to use a [Graphical User Interface (GUI) for R](http://www.linuxlinks.com/article/20110306113701179/GUIsforR.html) rather than pure command lines, try [R Commander](http://socserv.mcmaster.ca/jfox/Misc/Rcmdr/installation-notes.html), [Deducer](http://www.deducer.org/pmwiki/index.php?n=Main.DownloadingAndInstallingDeducer), [RKWard](http://rkward.sourceforge.net/wiki/Main_Page) or [RStudio](http://www.rstudio.com/). 
+If you wish to use a [Graphical User Interface (GUI) for R](https://www.linuxlinks.com/guisforr/) rather than pure command lines, try [R Commander](http://socserv.mcmaster.ca/jfox/Misc/Rcmdr/installation-notes.html), [Deducer](http://www.deducer.org/pmwiki/index.php?n=Main.DownloadingAndInstallingDeducer), [RKWard](https://rkward.kde.org/) or [RStudio](http://www.rstudio.com/). 
 However, all the code you need to know is below.
 
 ![](http://pluto.huji.ac.il/~msby/StatThink/Screenshots_WinXP/7-R-Console.PNG)
