@@ -34,11 +34,11 @@ _Additional:_
 ### 1. Introduce your data (in an external spreadsheet software)
 
 
-1. The table shall have the following structure: statements as rows, Q-sorts as columns, and the scores of each Q-sort for each statement in the cells (as in the image).
+* The table shall have the following structure: statements as rows, Q-sorts as columns, and the scores of each Q-sort for each statement in the cells (as in the image).
 
 ![](http://aiorazabala.net/wp-content/uploads/2019/01/csvfile.png)
 
-2. Export it into *.[CSV](http://en.wikipedia.org/wiki/Comma-separated_values) format, for example: `mydata.csv`. This format is most versatile and is the format used in this cookbook. Any other format is fine, as long as it can be imported in R.
+* Export it into *.[CSV](http://en.wikipedia.org/wiki/Comma-separated_values) format, for example: `mydata.csv`. This format is most versatile and is the format used in this cookbook. Any other format is fine, as long as it can be imported in R.
 
     _Note:_ For the analysis, the data should only contain numbers. Column A in the image above contains the names of rows and requires setting row names (e.g. using `row.names()`, as explained in [step 6A](./Cookbook#a-import-from-csv) below). Row names are useful to navigate and interpret the results. However, if you want to skip setting row names, then delete any column in the CSV containing them.
 
@@ -46,6 +46,8 @@ Alternatively, if you have introduced your data in [PQMethod](http://schmolck.us
 
 If you *do not* have one synthetic table as above, but only individual, **raw** Q sorts, you can use the `import.q.sorts()` function to build such a matrix with items as rows, and participants as columns.
 For more information, see the page on [data management](./Data-management).
+
+_Note:_ You can also [introduce the data directly in R](https://www.dummies.com/article/technology/programming-web-design/r/how-to-create-a-data-frame-from-scratch-in-r-175059/). The way to do it is excluded from this cookbook because it is covered elsewhere in introductory courses for R.
 
 ***
 
