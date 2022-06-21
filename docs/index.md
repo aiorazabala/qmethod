@@ -44,6 +44,7 @@ The package is free and open source. It has been thoroughly [tested an validated
 
 Pathway of priority developments, should resources allow [(also a record of some of the previous work is here)](https://github.com/aiorazabala/qmethod/issues?q=is%3Aissue):
 
+- [ ] Video explaining how to interpret the Q plot [#373](https://github.com/aiorazabala/qmethod/issues/373)
 - [ ] Shiny GUI & usability
 [#369](https://github.com/aiorazabala/qmethod/issues/369),
 [#366](https://github.com/aiorazabala/qmethod/issues/366),
