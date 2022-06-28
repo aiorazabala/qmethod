@@ -46,6 +46,8 @@ Pathway of priority developments, should resources allow [(also a record of some
 
 - [ ] Video explaining how to interpret the Q plot [#373](https://github.com/aiorazabala/qmethod/issues/373)
 - [ ] Shiny GUI & usability
+[#375](https://github.com/aiorazabala/qmethod/issues/375),
+[#374](https://github.com/aiorazabala/qmethod/issues/374),
 [#369](https://github.com/aiorazabala/qmethod/issues/369),
 [#366](https://github.com/aiorazabala/qmethod/issues/366),
 ~[#287](https://github.com/aiorazabala/qmethod/issues/287)~, 
