@@ -31,6 +31,7 @@ Here are further links to learn more about the software and about conducting Q m
 * Introduction to Q methodology (slides of a graduate course): [session 1](http://aiorazabala.net/learnQ/Qmethod_AZ_slides_S2.pdf) and [session 2](http://aiorazabala.net/learnQ/Qmethod_AZ_slides_S2.pdf), including a demo of online Q-sorting using [HtmlQ](https://github.com/aproxima/htmlq).
 * Recommendations to [report Q studies](./Reporting), for transparency and to facilitate evidence review and reproducibility.
 * Suggested best practices in [data management](./Data-management) for Q studies.
+* A [video demonstrating the use of "qmethod" to analyse Q sort data](https://www.youtube.com/watch?v=Cxm6U1L88uU) (by [Dr. Kimberlee Everson](https://www.wku.edu/ealr/staff/kimberlee_everson))
 
 
 ***
