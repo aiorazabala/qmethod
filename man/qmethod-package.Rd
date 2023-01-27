@@ -90,12 +90,12 @@
 \author{
   Aiora Zabala\cr
   Main author and maintainer\cr
-  \url{http://aiorazabala.net/}\cr
+  \url{https://aiorazabala.net/}\cr
   \email{aiora.zabala@gmail.com}
   
   Maximilian Held\cr 
   Author of data management functions: \code{\link{import.q.sorts}}, \code{\link{import.q.concourse}}, \code{\link{build.q.set}}, \code{\link{import.q.feedback}} and \code{\link{make.cards}}\cr
-  \url{https://www.maxheld.de/}
+  \url{https://maxheld.de/}
 
   Frans Hermans\cr 
   Author of centroid function: \code{\link{centroid}}\cr
