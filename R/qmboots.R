@@ -1,5 +1,6 @@
 qmboots <- function(dataset, nfactors, nsteps, load="auto", rotation="varimax", indet="qindtest", fsi=TRUE, forced=T, distribution=NULL, cor.method="pearson", ...) {
-  warning("Note that bootstrapping is not standard in Q methodology, see the help page and relevant reference.")
+  warning("Note that bootstrapping is an advanced technique in Q methodology, see the help page and relevant reference.")
+  if(forced == F) warning("Because the data are specified as non-forced, it's advisable to focus the interpretation on the z-scores (rather than on the factor scores)")
   startime <- Sys.time()
   nstat <- nrow(dataset)
   nqsorts <- ncol(dataset)

@@ -35,7 +35,7 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
   # 3. Calculate z-scores and factor scores with the indeterminacy corrected factor loadings 'loa'
   flagged <- qflag(nstat=nstat, loa=loa)
   qstep <- qzscores(subdata, nfactors=nfactors,  
-                    flagged=flagged, loa=loa)
+                    flagged=flagged, loa=loa, ...)
   #--------------------------------------------------------------------
   # 4. Export necessary results
   step_res <- list()
