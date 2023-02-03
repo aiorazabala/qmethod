@@ -1,6 +1,6 @@
 q.fnames <- function(results, fnames) {
   # Error checks 
-  if (class(results) != "QmethodRes") stop("The object provided is not of class 'QmethodRes'")
+  if (!is(results, "QmethodRes")) stop("The object provided is not of class 'QmethodRes'")
   comb <- array(sapply(fnames, function(x) substring(x,1,1)))
   nos <- 0:9
   if(sum(comb %in% nos) > 0) stop("The names should not begin with a number")

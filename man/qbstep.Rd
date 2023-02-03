@@ -33,7 +33,7 @@ This function performs a single step within a bootstrap of Q methodology data. I
 
 \author{Aiora Zabala}
 
-\note{this function is called within the function \code{\link{qmboots}}. Not intended to be used separately.}
+\note{This function is called within the function \code{\link{qmboots}}. Not intended to be used separately.}
 
 \seealso{
 \code{\link{qmethod}} and \code{\link{qmboots}} in this package.

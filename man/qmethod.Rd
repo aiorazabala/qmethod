@@ -63,7 +63,7 @@ summary(results)
 results #shows all results
 
 # Remember to manually inspect the automatic pre-flagging:
-loa.and.flag(results)
+loa.and.flags(results)
 }
 
 

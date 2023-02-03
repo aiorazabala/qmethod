@@ -22,7 +22,7 @@ qflag <- function(loa=loa, nstat) {
   row.names(flagged) <- row.names(loa)
   # Checks to recommend manual inspection
   # Negative loading and flagged
-  if (sum(loa[which(flagged)] < 0) > 0) warning("One or more Q-sorts with negative loadings are flagged through the automatic pre-flagging. This is not necessarily an issue, but double check the flags manually, e.g. using the function 'loa.and.flags()'.")
+  if (sum(as.matrix(loa)[which(flagged)] < 0) > 0) warning("One or more Q-sorts with negative loadings are flagged through the automatic pre-flagging. This is not necessarily an issue, but double check the flags manually, e.g. using the function 'loa.and.flags()'.")
   # A Q-sort flagged in more than one
   if (sum(apply(flagged, 1, sum) > 1) > 0) warning("One or more Q-sorts is flagged for two or more factors through the automatic pre-flagging. This is not necessarily an issue, but double check the flags manually, e.g. using the function 'loa.and.flags()'.")
   return(flagged)

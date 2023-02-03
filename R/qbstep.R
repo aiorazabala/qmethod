@@ -26,7 +26,7 @@ qbstep <- function(subdata, subtarget, indet, nfactors, nqsorts, nstat,
     loa <- as.matrix(unclass(varimax(as.matrix(loa))[[1]]))
     qindeterminacy <- qindtest(loa=loa, target=subtarget, 
                                nfactors=nfactors)
-    loa <- qindeterminacy[[1]]
+    loa <- as.data.frame(qindeterminacy[[1]])
     if (indet == "both") {
       loa <- qpcrustes(loa=loa, target=subtarget, nfactors=nfactors)
     }
