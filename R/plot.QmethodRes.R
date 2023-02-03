@@ -38,11 +38,15 @@ if (sum(is.na(colSums(x$zsc)))>0) {
     if (length(sort.items) == nrow(dfr)) sta.order <- sort.items
     if (length(sort.items) != nrow(dfr)) warning("The number of elements in the vector to sort the items ('sort.items') does not equal the number of items. Items will not be sorted in the plot.")
   } else {
-    if (sort.items == F) {
-      sta.order <- 1:nrow(dfr)
+    if (is.character(sort.items)) {
+      if (sort.items == "consensus.top") sta.order <- order(apply(dfr, 1, sd), decreasing=T)
+      if (sort.items != "consensus.top") warning("The argument 'sort.items' does not correspond with any allowed value. See help pages for details. Items will not be sorted in the plot.")
     } else {
-      if (sort.items == T) sta.order <- order(apply(dfr, 1, sd))
-    }
+      if (sort.items == F) {
+        sta.order <- 1:nrow(dfr)
+      } else {
+        if (sort.items == T) sta.order <- order(apply(dfr, 1, sd))
+      }}
   }
   dfr <- dfr[sta.order, ]
     # Whether to show distinguishing statements
