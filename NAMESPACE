@@ -1,6 +1,5 @@
 import("methods",
        "psych",
-       "GPArotation",
        "digest",
        "tools",
        "xtable",
