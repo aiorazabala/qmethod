@@ -1,7 +1,8 @@
 citHeader("To cite 'qmethod' in publications, please use:")
 
 
-citEntry(entry = "article",
+bibentry(
+  bibtype      = "Article",
   title        = "{qmethod}: A Package to Explore Human Perspectives Using Q Methodology",          
   author       = c(person("Aiora", "Zabala")),     
   year         = 2014,          
