@@ -3,6 +3,8 @@
 Q is a methodology to study the distinct perspectives existing within a group of people, on a topic of interest.
 It is used across disciplines. See further about the method in [http://qmethod.org/about](http://qmethod.org/about). 
 
+> _New to R?_ Go directly [to the graphical interface](https://azabala.shinyapps.io/qmethod-gui/).
+
 
 ### Overview
 
