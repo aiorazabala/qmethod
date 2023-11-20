@@ -22,7 +22,7 @@ shinyUI(fluidPage(
 
            </ol>
 
-           <p><a href='#full'>Full results</a> are displayed at the end. To run the same analysis directly in R and use the full package functionality, see the code created below in <a href='#code'><i>Run the analysis directly in R</i></a>.</p>
+           <p><a href='#full'>Full results</a> are displayed at the end. To run the same analysis directly in R and use the full package functionality, see the code created below in <a href='#code'><i>Run the analysis directly in R</i></a>. To run this interface locally in your computer, <a href='http://aiorazabala.github.io/qmethod/GUI' target='_blank'><i>Install the offline version</i></a>.</p>
 
            "),
 
@@ -89,7 +89,7 @@ HTML("<h3 id='code'>Run the analysis directly in R</h3>"),
 
 sidebarLayout(
   sidebarPanel(
-    p("To run the above analysis in R and explore the results further, copy and paste the code on the right. (You need to <a href='http://aiorazabala.github.io/qmethod/Cookbook#2-install-r' target='_blank'>install R</a> AND <a href='http://aiorazabala.github.io/qmethod/Cookbook#3-install-the-package-only-once' target='_blank'>install the 'qmethod' package</a> in your computer first if you have not done so already).")
+    HTML("To run the above analysis in R and explore the results further, copy and paste the code on the right. (You need to <a href='http://aiorazabala.github.io/qmethod/Cookbook#2-install-r' target='_blank'>install R</a> AND <a href='http://aiorazabala.github.io/qmethod/Cookbook#3-install-the-package-only-once' target='_blank'>install the 'qmethod' package</a> in your computer first if you have not done so already).")
   ),
   mainPanel(
     p("1. Load the package and upload your data:"),
