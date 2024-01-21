@@ -1,0 +1,119 @@
+# a function to be called internally by other functions to zero the diagonal of input matrix
+setdiag0 <- function(x) {
+  x[row(x)==col(x)] <- 0
+  return(x)
+}
+
+# a function to apply a signs vector to an input matrix to improve positive manifold
+applyZ <- function (X,Z) {
+  m <- dim(X)[2]
+  for (i in 1:m) {
+  X[i,] <- X[i,] * Z[i]
+  X[,i] <- X[,i] * Z[i]
+  }
+  return(X)
+}
+
+fsv <- function(X) { #finds sign vector that will maximize positive manifold of the input matrix
+ # input is the matrix to be factored, whether original cor or residuals
+ # first find how many rows it has (rows=cols in our context)
+ n <- dim(X)[1]
+ # initialize the posn variable before entering loop
+ posn <- 0 
+ repeat {
+  # change sign at posn unless just starting, then initialize sign vector Z
+  if (posn==0) {
+   Z <- c(rep(1,n))  # starts out all ones of length n
+  } else {
+   Z[posn] <- Z[posn] * -1 
+  }
+   # get column sums of X as operated on by the Z so far
+  X2 <- applyZ(X,Z)
+  S <- colSums(X2) 
+   # now search for the biggest negative item in S
+   val <- 0
+  posn <- 0
+  ii <- 0 # just in case
+  for (ii in 1:n) {
+   if (S[ii] < 0) {
+    if (S[ii] < val) {
+	 val <- S[ii]
+	 posn <- ii
+	}
+   }
+  } # end of for loop
+ # 'until' condition for repeat loop in R must be implemented as break statement 
+ if (posn == 0) {break}
+ } # end of repeat loop
+ return(Z) 
+} # end of function fsv
+
+# Centroid extraction function -- takes correlation matrix as input and returns factor matrix and stats 
+qcf <- function(X) {  # Q-style centroid factoring                       
+  # initialize how many factors to extract: lesser of size of cor matrix or maxfactors
+  maxfactors <- 7
+  n <- dim(X)[1]
+  m <- dim(X)[2]  
+  if (m > maxfactors) {m <- maxfactors}  
+  # initialize loadings vector and output matrix so we can insert rather than append as we go
+  temploadings <- c(rep(0,n))
+  EV <- c(rep(0,m))
+  pctvar <- c(rep(0,m))
+  F <- matrix(nrow=n,ncol=m)
+  # outer loop: executed once for each factor extracted 
+  for (i in 1:m) {     
+    # set diagonals to zero (will be fixed later by adding h^2 estimate back in to column totals)
+    X <- setdiag0(X)  
+    # call a function that returns the reflection vector
+    Z <- fsv(X)
+    # apply it to the input matrix
+    X2 <- applyZ(X,Z)
+    # calculate sums of columns and store in sums vector
+    S <- colSums(X2) 
+    # set initial communality estimate to 0.80: this will be improved by iteration 
+    h2est <- rep(0.80,n)
+    # inner loop   to iterate communalities and associated matrix totals
+	repeat {
+	  # col sums plus communality estimates
+	  hS <- S + h2est
+      # get matrix total, adding in communality estimates to make up for zeroed diagonals
+	  T <- sum(hS)
+      # get reciprocal of sq rt of T as scaling factor
+	  sf <- 1/sqrt(T)
+      # multiply column sums by scaling factor to get initial loadings estimate
+	  for (j in 1:n) { temploadings[j] <- hS[j] * sf }
+      # square loadings to get vector of communality estimates
+	  newh2est <- temploadings * temploadings
+      # compare new communalities to old and unless the max difference in any column is < .02, loop again
+	  temp <- h2est - newh2est  # had to break this up during debugging as putting it
+	  temp2 <- abs(temp)        # all in one if statement was not always
+	  temp3 <- max(temp2)       # breaking out of the loop when it should
+	  if (temp3 < 0.02) {break} 
+	  h2est <- newh2est ## get ready to loop again with new communality estimate
+    } ## end of repeat loop -- go back unless break occurred
+    	# finish up for this factor and prepare for next
+	# calculate the crossproducts matrix
+	Xprod <- temploadings %*% t(temploadings)
+    # subtract crossproducts from input matrix to create residuals
+	residuals <- X - Xprod
+    # (un)reflect and save the factor loadings  
+	F[,i] <- temploadings * Z
+	# add up the diagonals and save as eigenvalue
+	EV[i] <- sum(newh2est)
+	# divide eigenvalue by n and save as percent of variance
+	pctvar[i] <- EV[i]/n
+    # (un)reflect the residuals
+	X <- applyZ(residuals,Z)
+    # now do next iteration with residuals as input (or fall through to finish up after last factor)
+  } # end of for loop
+  # calculate communalities across all factors for each sort? not implemented yet
+  # return results in a nice packet ready for further work
+  centroidresults <- NULL
+  centroidresults$EV <- EV
+  centroidresults$pctvar <- 100 * pctvar
+  centroidresults$loadings <- F
+  centroidresults$residuals <- residuals
+  return(centroidresults)
+} # end of qcf
+
+  
